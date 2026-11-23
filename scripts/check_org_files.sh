@@ -23,6 +23,7 @@ for f in \
   PULL_REQUEST_TEMPLATE.md \
   LICENSE-REVIEW.md \
   profile/README.md \
+  profile/README.zh-CN.md \
   docs/repo-taxonomy.md \
   docs/branch-protection.md \
   docs/release-train.md \

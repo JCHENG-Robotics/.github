@@ -3,6 +3,9 @@
 组织级治理仓库：组织主页、社区健康文件、issue/PR 模板、可复用 CI 工作流与
 复合 Action 骨架。**不包含产品代码、机器人配置或密钥。**
 
+组织主页：[English](profile/README.md) | [简体中文](profile/README.zh-CN.md)
+（英文为主文档，中文为对照译文。）
+
 ## M1 状态
 
 - 仓库骨架已准备，等待组织与 API 凭据后推送。

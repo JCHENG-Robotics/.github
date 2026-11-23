@@ -229,9 +229,9 @@ preserves compatibility with the frozen baseline.
 
 - `main` is protected on all three repositories: pull request, independent review, CODEOWNERS,
   required `m1-gate`, linear history, no force-push or deletion.
-- The single-account phase ended with the decision to add an independent reviewer. GitHub does not
-  allow self-approval, so `main` changes require a second reviewer; the reviewer onboarding and
-  CODEOWNERS update are in progress. A documented break-glass procedure is not the default.
+- The single-account phase ended with a second reviewer (`@JerichoSwaine`), who has maintain access
+  and is a CODEOWNER on all three repositories. `main` changes require one author and one reviewer;
+  a documented break-glass procedure is not the default.
 - Any real-robot motion requires the operator's explicit authorization; CI and automation never
   trigger motion.
 - Security reports follow [`SECURITY.md`](https://github.com/JCHENG-Robotics/.github/blob/main/SECURITY.md);

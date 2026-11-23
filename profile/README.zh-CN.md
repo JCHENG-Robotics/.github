@@ -7,6 +7,11 @@
 
 > 本文为英文主文档的中文对照；如有歧义，以英文版为准。
 
+**状态：** M1 完成 · 2026-11-23 · 英文为主文档  
+**从这里开始：** [冻结基线](https://github.com/JerichoCheng/jcheng-manipulation) ·
+[设计记录](https://github.com/JerichoCheng/jcheng-manipulation/blob/design/ecosystem-v1/docs/ecosystem/README.md) ·
+[M1 证据](https://github.com/JerichoCheng/jcheng-manipulation/blob/design/ecosystem-v1/docs/ecosystem/evidence/org-init-20261123/README.md)
+
 **目录：** [概览](#概览) · [为什么](#为什么做这件事) · [方法](#方法) ·
 [当前状态](#当前状态) · [证据基础](#证据基础) · [架构](#架构) ·
 [安全](#安全模型与不声称的能力) · [质量](#质量与可复现性) · [仓库](#仓库地图) ·
@@ -92,7 +97,7 @@ JCHENG Robotics 是一个面向低成本硬件、强调可靠性与可审计性�
 以及完整的失效模式分类。证据索引见
 [`jcheng-manipulation`](https://github.com/JerichoCheng/jcheng-manipulation)。
 
-**批判性阅读：** RSS 聚合**没有**满足 6 mm 误差预算门限；报告的放置均值在 6 mm 内，但那是不同的
+**批判性解读：** RSS 聚合**没有**满足 6 mm 误差预算门限；报告的放置均值在 6 mm 内，但那是不同的
 统计量。快速路径只在一个方向上完成验证。以上结果都不构成安全认证。
 
 ## 架构
@@ -109,7 +114,7 @@ L0  Governance          组织主页 · 模板 · 复用 CI · 分支保护
 Hardware plane          唯一发布者，厂商 DDS 域 0
 ```
 
-首批三个仓库刻意保持很小：
+首批三个仓库有意保持精简：
 
 | 仓库 | 职责 | M1 状态 |
 |---|---|---|
@@ -231,7 +236,7 @@ M2 从契约审计开始：在定义最终 IDL 之前，必须先盘点 `arm_int
 
 冻结的 `jcheng-manipulation v1.0.0` 基线为 MIT。新仓库为便于评审而公开，但**尚未添加
 `LICENSE`**：第三方依赖与版权审查仍在进行。审查批准前，新仓库不授予 MIT 许可，厂商资产
-不再分发。详见
+不参与再分发。详见
 [`license-review.md`](https://github.com/JCHENG-Robotics/.github/blob/main/docs/license-review.md)。
 
 ## 引用

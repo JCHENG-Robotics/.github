@@ -5,6 +5,11 @@ From a measured 5-DoF manipulation baseline to an independently versioned roboti
 
 [简体中文](README.zh-CN.md) | **English**
 
+**Status:** M1 complete · 2026-11-23 · English canonical  
+**Start here:** [Frozen baseline](https://github.com/JerichoCheng/jcheng-manipulation) ·
+[Design record](https://github.com/JerichoCheng/jcheng-manipulation/blob/design/ecosystem-v1/docs/ecosystem/README.md) ·
+[M1 evidence](https://github.com/JerichoCheng/jcheng-manipulation/blob/design/ecosystem-v1/docs/ecosystem/evidence/org-init-20261123/README.md)
+
 **Contents:** [Overview](#overview) · [Why](#why-this-exists) · [Method](#method) ·
 [Status](#status-at-a-glance) · [Evidence](#evidence-foundation) · [Architecture](#architecture) ·
 [Safety](#safety-model-and-non-claims) · [Quality](#quality-and-reproducibility) ·

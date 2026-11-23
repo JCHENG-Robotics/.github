@@ -212,8 +212,8 @@ M2 从契约审计开始：在定义最终 IDL 之前，必须先盘点 `arm_int
 
 - 三个仓库的 `main` 均受保护：PR、独立评审、CODEOWNERS、必需 `m1-gate`、线性历史、
   禁止 force-push 与删除。
-- 组织目前由单一账号操作。GitHub 不允许自我批准，因此后续 `main` 变更需要第二个评审人，
-  或采用书面记录的 break-glass 流程。增加第二名 maintainer 是推荐的下一步治理动作。
+- 组织已决定采用第二评审人，结束单账号阶段。GitHub 不允许自我批准，因此 `main` 变更需要
+  独立评审人；评审人 onboarding 与 CODEOWNERS 更新正在进行。break-glass 不是默认路径。
 - 任何实机运动都需要操作员明确授权；CI 与自动化不会触发运动。
 - 安全报告遵循 [`SECURITY.md`](https://github.com/JCHENG-Robotics/.github/blob/main/SECURITY.md)；
   不要在公开 issue 中披露利用细节或凭据。

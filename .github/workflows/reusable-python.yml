@@ -1,0 +1,38 @@
+name: reusable-python
+
+# M1 skeleton. M2 fills in real lint/test/coverage steps.
+on:
+  workflow_call:
+    inputs:
+      python-version:
+        description: Python version
+        required: false
+        type: string
+        default: "3.12"
+      working-directory:
+        description: Directory containing the Python project
+        required: false
+        type: string
+        default: "."
+      test-command:
+        description: Command used to run tests
+        required: false
+        type: string
+        default: "echo 'M1 skeleton: no tests wired yet'"
+
+permissions:
+  contents: read
+
+jobs:
+  skeleton:
+    name: python-skeleton
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Report skeleton inputs
+        shell: bash
+        working-directory: ${{ inputs.working-directory }}
+        run: |
+          echo "M1 skeleton: reusable-python"
+          echo "python-version=${{ inputs.python-version }}"
+          ${{ inputs.test-command }}

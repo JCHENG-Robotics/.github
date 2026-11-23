@@ -1,0 +1,32 @@
+name: reusable-release
+
+# M1 skeleton. M2/M8 add lock verification, SBOM, checksums, signing and release.
+on:
+  workflow_call:
+    inputs:
+      version:
+        description: Release version
+        required: true
+        type: string
+      lockfile:
+        description: Lockfile path
+        required: false
+        type: string
+        default: "locks/ecosystem.lock.yaml"
+
+permissions:
+  contents: read
+
+jobs:
+  skeleton:
+    name: release-skeleton
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Report skeleton inputs
+        shell: bash
+        run: |
+          echo "M1 skeleton: reusable-release"
+          echo "version=${{ inputs.version }}"
+          echo "lockfile=${{ inputs.lockfile }}"
+          echo "M8 will add: verify lock, build, SBOM, checksums, signing, release."

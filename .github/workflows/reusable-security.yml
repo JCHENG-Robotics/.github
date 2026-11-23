@@ -1,0 +1,27 @@
+name: reusable-security
+
+# M1 skeleton. M2 adds CodeQL, dependency review, secret scan and actionlint.
+on:
+  workflow_call:
+    inputs:
+      language:
+        description: Primary language
+        required: false
+        type: string
+        default: "python"
+
+permissions:
+  contents: read
+
+jobs:
+  skeleton:
+    name: security-skeleton
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Report skeleton inputs
+        shell: bash
+        run: |
+          echo "M1 skeleton: reusable-security"
+          echo "language=${{ inputs.language }}"
+          echo "M2 will add: CodeQL, dependency review, secret scan, actionlint, pin check."

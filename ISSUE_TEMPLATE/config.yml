@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security report
+    url: https://github.com/JCHENG-Robotics/.github/security/policy
+    about: 安全漏洞请走私密渠道，不要公开。
+  - name: Design documents
+    url: https://github.com/JerichoCheng/jcheng-manipulation/tree/design/ecosystem-v1/docs/ecosystem
+    about: M1 设计依据与评审材料。

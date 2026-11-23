@@ -1,0 +1,33 @@
+name: reusable-contract-check
+
+# M1 skeleton. M2 fills in IDL build, manifest, schema parity and SemVer diff.
+on:
+  workflow_call:
+    inputs:
+      base-ref:
+        description: Base tag/commit for compatibility comparison
+        required: false
+        type: string
+        default: ""
+      interfaces-path:
+        description: Path to the interfaces repository
+        required: false
+        type: string
+        default: "."
+
+permissions:
+  contents: read
+
+jobs:
+  skeleton:
+    name: contract-skeleton
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Report skeleton inputs
+        shell: bash
+        run: |
+          echo "M1 skeleton: reusable-contract-check"
+          echo "base-ref=${{ inputs.base-ref }}"
+          echo "interfaces-path=${{ inputs.interfaces-path }}"
+          echo "M2 will add: colcon build, interface_manifest.json, schema parity, SemVer diff."

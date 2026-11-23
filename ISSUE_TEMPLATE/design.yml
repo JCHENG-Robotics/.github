@@ -1,0 +1,42 @@
+name: Design / contract change
+description: Propose an architecture, contract, or safety-semantics change.
+title: "[design] "
+labels: ["design"]
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: 背景
+      description: 现状、问题、证据。
+    validations:
+      required: true
+  - type: textarea
+    id: decision
+    attributes:
+      label: 提议决策
+      description: 目标、边界、替代方案、否决原因。
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: 影响
+      description: 契约版本、仓库、模块、兼容性、安全/控制权。
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: 验证计划
+      description: 测试层级、E2E、受监督证据。
+    validations:
+      required: true
+  - type: checkboxes
+    id: gates
+    attributes:
+      label: 门禁
+      options:
+        - label: 已确认不修改冻结基线的标签/证据/实验历史。
+          required: true
+        - label: 已确认不会新增绕过统一运动入口的路径。
+          required: true

@@ -1,0 +1,20 @@
+name: contract-manifest-skeleton
+description: M1 skeleton; M2 generates interface_manifest.json and checks its hash.
+inputs:
+  interfaces-path:
+    description: Path to jcheng-interfaces
+    required: false
+    default: "."
+  output:
+    description: Manifest output path
+    required: false
+    default: "interface_manifest.json"
+runs:
+  using: composite
+  steps:
+    - name: Report inputs
+      shell: bash
+      run: |
+        echo "M1 skeleton: contract-manifest"
+        echo "interfaces-path=${{ inputs.interfaces-path }}"
+        echo "output=${{ inputs.output }}"

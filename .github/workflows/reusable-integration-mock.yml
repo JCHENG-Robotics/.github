@@ -1,0 +1,33 @@
+name: reusable-integration-mock
+
+# M1 skeleton. M3 fills in the mock stack and S1-S17 scenarios.
+on:
+  workflow_call:
+    inputs:
+      scenario-set:
+        description: Scenario set identifier
+        required: false
+        type: string
+        default: "m1"
+      system-ref:
+        description: System repository ref/commit
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  skeleton:
+    name: mock-skeleton
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Report skeleton inputs
+        shell: bash
+        run: |
+          echo "M1 skeleton: reusable-integration-mock"
+          echo "scenario-set=${{ inputs.scenario-set }}"
+          echo "system-ref=${{ inputs.system-ref }}"
+          echo "M3 will add: domain 43 mock stack, S1-S17 scenarios, evidence report."

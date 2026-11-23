@@ -1,0 +1,44 @@
+name: reusable-ros-build
+
+# M1 skeleton. M2/M3 fill in the digest-pinned container, apt list and colcon.
+on:
+  workflow_call:
+    inputs:
+      distro:
+        description: ROS 2 distribution
+        required: false
+        type: string
+        default: humble
+      image:
+        description: Digest-pinned container image
+        required: false
+        type: string
+        default: ""
+      packages:
+        description: Space-separated package list
+        required: false
+        type: string
+        default: ""
+      test-command:
+        description: Command used to run tests
+        required: false
+        type: string
+        default: "echo 'M1 skeleton: no ROS packages wired yet'"
+
+permissions:
+  contents: read
+
+jobs:
+  skeleton:
+    name: ros-skeleton
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Report skeleton inputs
+        shell: bash
+        run: |
+          echo "M1 skeleton: reusable-ros-build"
+          echo "distro=${{ inputs.distro }}"
+          echo "image=${{ inputs.image }}"
+          echo "packages=${{ inputs.packages }}"
+          ${{ inputs.test-command }}

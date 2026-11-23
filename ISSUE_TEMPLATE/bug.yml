@@ -1,0 +1,36 @@
+name: Bug report
+description: Report a defect in documentation, CI, or repository tooling.
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        不要包含令牌、私钥、真实站点 IP 或机器人凭据。安全漏洞请走私密渠道。
+  - type: textarea
+    id: what
+    attributes:
+      label: 发生了什么
+      description: 现象、期望、实际结果。
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 复现步骤
+      description: 命令、版本、提交、日志（脱敏）。
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: 版本 / 提交
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 检查
+      options:
+        - label: 已移除密钥与私有数据。
+          required: true
+        - label: 这不是需要私密报告的安全漏洞。
+          required: true

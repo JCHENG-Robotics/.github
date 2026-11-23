@@ -1,0 +1,20 @@
+name: setup-colcon-skeleton
+description: M1 skeleton; M2 installs the pinned ROS image and colcon.
+inputs:
+  distro:
+    description: ROS 2 distribution
+    required: false
+    default: humble
+  image:
+    description: Digest-pinned container image
+    required: false
+    default: ""
+runs:
+  using: composite
+  steps:
+    - name: Report inputs
+      shell: bash
+      run: |
+        echo "M1 skeleton: setup-colcon"
+        echo "distro=${{ inputs.distro }}"
+        echo "image=${{ inputs.image }}"

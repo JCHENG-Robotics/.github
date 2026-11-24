@@ -1,0 +1,90 @@
+# Ecosystem changelog
+
+All notable ecosystem-level changes are recorded here. Format based on
+[Keep a Changelog](https://keepachangelog.com/en/1.1.0/); the ecosystem follows
+[Semantic Versioning](https://semver.org/) per repository.
+Repository-local changes stay in their own `CHANGELOG.md`; this file records
+events that cross repository boundaries or change the ecosystem baseline.
+The ecosystem itself has no version until M8, so entries are dated rather than
+versioned.
+
+## [Unreleased]
+
+### Added
+
+- Documentation standard v1.0 (`docs/documentation-standard.md`) and
+  templates (`docs/templates/`); all product repositories now carry the same
+  README / ROADMAP / CHANGELOG / ACCEPTANCE set.
+- Ecosystem-level `ROADMAP.md`, `CHANGELOG.md` and `ACCEPTANCE.md` in this
+  repository; the organization profile now reflects the live repository map
+  and M6 status.
+- `acceptance/ecosystem-2026-11-24.json`: a machine-readable status report that
+  validates against `acceptance-report.v1` (reviewer pending; result
+  `inconclusive`).
+- `jcheng-mobile/LICENSE-REVIEW.md`: the pre-existing MIT file is retained
+  pending the organization review instead of being removed retroactively.
+
+## 2026-11-24 — M5.1/M5.2, M6 offline and capability repositories
+
+### Added
+
+- `jcheng-ops` v0.1.0: unattended operations guards (15 s hardware watchdog,
+  30 s health timer with a motion-idle guard, restart policies, OOM protection,
+  laptop Studio watchdog) and the 2026-11-24 incident record.
+- `jcheng-mobile` v0.1.0: contract-compliant M10 bringup, RTAB-Map ICP laser
+  odometry, slam_toolbox and Nav2 MPPI Omni chassis intent; no hardware access
+  and no fabricated odometry.
+- `jcheng-perception` v0.1.0 hardware bring-up: Pi 5 ARM64 build, wrist Aurora
+  data path, bus-measured wrist TF, single static-pose table-plane check and
+  the Pi 5 edge → laptop RTX 3060 real-YOLO detection path.
+- M5.1 Mock ROS transport in `jcheng-system` (lease, safety, `ExecuteMotion`,
+  stop latch); CI `m5-mock` green.
+- M5.2 supervised hardware motion in `jcheng-system`: single joint +0.05 rad
+  (505 vs 512 pulses) and gripper close/open, both `COMPLETED` and
+  `bus_verified`; stop latched in 0.266 ms.
+- M6 offline verification merged to `jcheng-system` `main` (`427214b`):
+  S13 G8 decision replay 21/21 and S17 MoveIt plan-only goal construction.
+
+### Changed
+
+- The organization profile is no longer an M1 document; it reports M1–M5.2
+  complete, M6 in progress and the admitted capability repositories.
+- `jcheng-ops` becomes the owner of unattended operations guards; the frozen
+  `jcheng-manipulation` baseline keeps only the `start_studio.sh` ordering fix
+  and a runbook pointer.
+
+## 2026-11-23 — contracts, mock system and read-only integration
+
+### Added
+
+- M2 contracts: `jcheng-interfaces` v0.1.0 (14 msg / 10 srv / 1 action,
+  seven JSON Schemas, OpenAPI `/v1`, WebSocket protocol, contract hash and
+  `jcheng_contracts` bindings), signed tag `v0.1.0`.
+- M3 mock system runtime: nine ROS packages, S1–S17 scenarios, lockfile and
+  `verify_lock.py`; `main` `40a74ba`.
+- M4 read-only robot integration: 30 minutes, 1799/1799 `measured` samples,
+  `writes=0`; independent bus reads replaced the command-cache `measured`
+  source.
+- `jcheng-perception` initialization (distributed Pi 5 edge + GPU detector).
+
+### Changed
+
+- The ecosystem baseline remains `jcheng-manipulation v1.0.0` (`b3411e4`);
+  no tag, evidence bundle or experiment history was modified.
+
+## 2026-11-23 — design approval and organization initialization
+
+### Added
+
+- M0 architecture approval and design record
+  (`jcheng-manipulation` `docs/ecosystem/`).
+- M1 initialization: `JCHENG-Robotics` organization, `.github`,
+  `jcheng-interfaces` and `jcheng-system` created, `main` protected,
+  111/111 API checks passed.
+- Bilingual organization profile, governance documents, issue/PR templates,
+  reusable CI workflows and composite Action skeletons.
+
+### Security
+
+- Repository rules: PR + CODEOWNERS + `m1-gate`, linear history, no force-push
+  or deletion; a second reviewer (`@JerichoSwaine`) holds maintain access.

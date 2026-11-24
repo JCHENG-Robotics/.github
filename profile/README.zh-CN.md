@@ -7,15 +7,16 @@
 
 > 本文为英文主文档的中文对照；如有歧义，以英文版为准。
 
-**状态：** M1–M4 完成 · M5.2 部分完成 · 2026-11-24 · 英文为主文档  
-**从这里开始：** [冻结基线](https://github.com/JerichoCheng/jcheng-manipulation) ·
-[设计记录](https://github.com/JerichoCheng/jcheng-manipulation/blob/design/ecosystem-v1/docs/ecosystem/README.md) ·
-[M1 证据](https://github.com/JerichoCheng/jcheng-manipulation/blob/design/ecosystem-v1/docs/ecosystem/evidence/org-init-20261123/README.md)
+**状态：** M1–M5.2 完成 · M6 进行中 · 2026-11-24 · 英文为主文档  
+**从这里开始：** [生态路线图](https://github.com/JCHENG-Robotics/.github/blob/main/ROADMAP.md) ·
+[验收报告](https://github.com/JCHENG-Robotics/.github/blob/main/ACCEPTANCE.md) ·
+[冻结基线](https://github.com/JerichoCheng/jcheng-manipulation)
 
 **目录：** [概览](#概览) · [为什么](#为什么做这件事) · [方法](#方法) ·
 [当前状态](#当前状态) · [证据基础](#证据基础) · [架构](#架构) ·
 [安全](#安全模型与不声称的能力) · [质量](#质量与可复现性) · [仓库](#仓库地图) ·
-[路线图](#路线图) · [治理](#治理) · [局限](#局限与有效性威胁) · [许可证](#许可证)
+[路线图](#路线图) · [验收](https://github.com/JCHENG-Robotics/.github/blob/main/ACCEPTANCE.md) · [治理](#治理) ·
+[局限](#局限与有效性威胁) · [许可证](#许可证)
 
 ---
 
@@ -75,13 +76,13 @@ JCHENG Robotics 是一个面向低成本硬件、强调可靠性与可审计性�
 | 项 | 状态 |
 |---|---|
 | 实验基线 | `jcheng-manipulation v1.0.0`，提交 `b3411e4`，已冻结；完整 G8 验收已记录 |
-| 生态初始化（M1） | **已完成**：三个仓库创建、`main` 受保护、**111/111** 项检查通过 |
-| 契约 | `v0.1.0` — 14 msgs、10 srvs、`ExecuteMotion`、JSON Schema、OpenAPI/WS `v1`；`contract_hash` 固定在 `jcheng-system` |
-| 系统运行时 | `v0.3.0-dev` — Mock 栈与 S1–S17 场景；M4 实机只读（30 分钟、**1799/1799** `measured`、`writes=0`）；M5.1 Mock ROS 传输已合并；M5.2 单关节 `COMPLETED`、夹爪全开 `STOP_LATCHED` |
-| 感知（L3） | `v0.1.0` — 腕部数据链路与单姿态桌面平面 TF 已验证；多姿态精度、外机位深度对齐与运动集成未验证 |
-| 运维 | `v0.1.0` — 15 s 硬件看门狗、30 s 健康巡检、服务自愈与 Studio 看护；2026-11-24 安装并验证 |
-| 新生态中的实机运动 | **仅受监督的 M5.2** — 一次单关节 `COMPLETED`；夹爪全开在 +13 脉冲处停止（目标 170、总线 183）并锁存。M4 为只读；任何后续运动都需要单独、明确的授权 |
-| 许可证 | 第三方依赖与版权审查**进行中**；尚未添加 `LICENSE` |
+| 生态里程碑 | **M1–M5.2 已完成**；M6 离线部分已合并，实机部分待授权 |
+| 契约 | `jcheng-interfaces` v0.1.0：14 msg / 10 srv / 1 action，7 个 Schema，契约哈希已固定 |
+| 系统运行时 | `jcheng-system` 0.3.0-dev：13 个 ROS 包；M4 只读与 M5.2 核心实机已验证 |
+| 能力仓库 | `jcheng-mobile` 与 `jcheng-perception` v0.1.0（实验性、部分实机）；`jcheng-ops` v0.1.0（已部署） |
+| 新生态中的实机运动 | 受监督单关节与夹爪运动已通过（M5.2）；完整 G8 复验待做 |
+| 文档 | 统一 README / ROADMAP / CHANGELOG / ACCEPTANCE；英文为主，中文 README 对照 |
+| 许可证 | 多数新仓库**进行中**；`jcheng-mobile` 初始化时带有 MIT；审查需解决该例外 |
 
 ## 证据基础
 
@@ -116,13 +117,16 @@ L0  Governance          组织主页 · 模板 · 复用 CI · 分支保护
 Hardware plane          唯一发布者，厂商 DDS 域 0
 ```
 
-首批三个仓库有意保持精简：
+首批仓库有意保持精简；此后生态增加了独立版本化的能力与运维仓库：
 
-| 仓库 | 职责 | M1 状态 |
+| 仓库 | 职责 | 当前状态 |
 |---|---|---|
-| [`JCHENG-Robotics/.github`](https://github.com/JCHENG-Robotics/.github) | 治理、模板、复用 CI | 完成 |
-| [`JCHENG-Robotics/jcheng-interfaces`](https://github.com/JCHENG-Robotics/jcheng-interfaces) | 契约、Schema、契约哈希 | 骨架；审计后才定义 IDL |
-| [`JCHENG-Robotics/jcheng-system`](https://github.com/JCHENG-Robotics/jcheng-system) | 特权运行时、安全、仲裁、网关 | 骨架；M3 实现 |
+| [`JCHENG-Robotics/.github`](https://github.com/JCHENG-Robotics/.github) | 治理、模板、复用 CI、生态文档 | M1 完成；文档标准 v1.0 |
+| [`JCHENG-Robotics/jcheng-interfaces`](https://github.com/JCHENG-Robotics/jcheng-interfaces) | 契约、Schema、契约哈希 | v0.1.0，已签名标签 |
+| [`JCHENG-Robotics/jcheng-system`](https://github.com/JCHENG-Robotics/jcheng-system) | 特权运行时、安全、仲裁、网关 | 0.3.0-dev；M6 离线 |
+| [`JCHENG-Robotics/jcheng-mobile`](https://github.com/JCHENG-Robotics/jcheng-mobile) | L3 移动底盘 | v0.1.0 实验性 |
+| [`JCHENG-Robotics/jcheng-perception`](https://github.com/JCHENG-Robotics/jcheng-perception) | L3 感知 | v0.1.0 实验性 |
+| [`JCHENG-Robotics/jcheng-ops`](https://github.com/JCHENG-Robotics/jcheng-ops) | 跨层运维 | v0.1.0 已部署 |
 
 ### 单一运动路径
 
@@ -160,39 +164,44 @@ Hardware plane          唯一发布者，厂商 DDS 域 0
 - 厂商容器重启可能移动机械臂（`startup_check`）；系统不会自动重启厂商容器。
 - 新生态不是安全认证系统，不声称满足 SIL/PL。
 
-M1 门禁确保新仓库不包含运行时代码与 IDL；没有运行时发布者，也就不存在硬件写入路径。
-只有在相应测试与受监督实机证据存在后，才会做出对应的安全声明。
+运行时已经存在，因此这条边界是**被执行**的，而不只是声明。M4 证明了只读链路只发布遥测、
+不发布命令（`writes=0`，30 分钟）。M5.1 在 Mock 栈上通过 ROS 服务/action 验证了租约、
+安全与停止语义；M5.2 把同一条路径接到受监督硬件桥，完成单关节与夹爪运动。S7（状态过期注入）
+与 S9（运行时发布者检测）仍未在实机单独验证，每次实机会话仍需单独、明确的授权。
 
 ## 质量与可复现性
 
 | 门禁 | 当前状态 |
 |---|---|
-| M1 仓库检查 | 三个仓库 **111/111** 项 API 检查通过 |
-| 分支保护 | PR + CODEOWNERS + 各仓库必需检查（`m1-gate`、`m2-contract`、`m3-mock`、`m4-readonly`、`m5-mock`、`m5-vendor`、`ops-gate`）；管理员受限；禁止 force-push/删除 |
-| 契约完整性 | 契约哈希 + `interface_manifest.json`（M2） |
-| 依赖锁定 | `ecosystem.lock.yaml` 固定提交、契约哈希、镜像摘要与机器人配置（M2/M3） |
+| 仓库检查 | M1 **111/111** 项 API 检查；三个创始仓库的 M2–M6 CI 门禁 |
+| 分支保护 | PR + CODEOWNERS + 各仓库必需检查；管理员受限；禁止 force-push/删除 |
+| 契约完整性 | 契约哈希 + `interface_manifest.json`，v0.1.0，标签已验证 |
+| 依赖锁定 | `ecosystem.lock.yaml` 固定提交、契约哈希、profile 哈希与 interfaces v0.1.0 |
 | 测试层级 | L0 契约 → L1 单元 → L2 Mock 集成 → L3 Mock E2E → L4 回放 → L5 受监督实机 |
-| 防绕过验证 | 计划中的 S1–S17 场景，包括未授权发布者与无租约执行（M3） |
+| 防绕过验证 | S1–S17：15 个场景通过、2 个按计划跳过、必选失败 0；M5.1 另有 5 项 ROS 传输测试 |
+| 实机证据 | M4 只读 1799/1799 `measured`、`writes=0`；M5.2 单关节/夹爪总线复核与停止锁存 |
 | 证据 | 每次运行记录版本、哈希、命令、观察与限制 |
+| 文档 | 标准 v1.0；每个产品仓库具备四件套 |
 
-M1 证据包见
-[`org-init-20261123`](https://github.com/JerichoCheng/jcheng-manipulation/blob/design/ecosystem-v1/docs/ecosystem/evidence/org-init-20261123/README.md)。
-设计记录见
-[`08-m1-execution.md`](https://github.com/JerichoCheng/jcheng-manipulation/blob/design/ecosystem-v1/docs/ecosystem/08-m1-execution.md)。
+当前状态与证据汇总见[生态路线图](https://github.com/JCHENG-Robotics/.github/blob/main/ROADMAP.md)与
+[验收报告](https://github.com/JCHENG-Robotics/.github/blob/main/ACCEPTANCE.md)。M1 验证 JSON 保存在
+本地暂存归档 `jcheng-ecosystem-bootstrap/M1-VERIFICATION.json`；设计记录位于
+`jcheng-manipulation` 的 `design/ecosystem-v1` 分支（`docs/ecosystem/`）。
 
 ## 仓库地图
 
 | 仓库 | 角色 | 状态 |
 |---|---|---|
-| `.github` | 组织治理、模板、复用 CI | M1 完成 |
-| `jcheng-interfaces` | ROS IDL、HTTP/WS Schema、契约哈希 | `v0.1.0`（M2） |
-| `jcheng-system` | 安全、控制权、运动、硬件桥、网关 | `v0.3.0-dev`（M2–M5.2） |
-| `jcheng-perception` | 分布式感知：Pi 5 采集/深度/TF/融合，笔记本 GPU YOLO | `v0.1.0` — 腕部链路已验证；运动集成未验证 |
-| `jcheng-ops` | 运维：健康巡检、硬件看门狗、服务自愈、事故手册 | `v0.1.0` |
+| `.github` | 组织治理、模板、复用 CI、生态文档 | M1 完成；文档标准 v1.0 |
+| `jcheng-interfaces` | ROS IDL、HTTP/WS Schema、契约哈希 | v0.1.0 |
+| `jcheng-system` | 安全、控制权、运动、硬件桥、网关 | 0.3.0-dev；M6 离线已合并 |
 | `jcheng-manipulation` | 冻结的 `v1.0.0` 实验基线与证据 | 只读参考 |
+| `jcheng-mobile` | 移动底盘能力（M10、SLAM、Nav2 意图） | v0.1.0 实验性；未实机验证 |
+| `jcheng-perception` | 边云分布式感知 | v0.1.0 实验性；部分实机链路 |
+| `jcheng-ops` | 无人值守运维、看门狗与恢复 | v0.1.0 已部署 |
+| `jcheng-mobile-bench` | 从 `jcheng-mobile` 拆出的台架材料 | 沙箱；不发布 |
 | `jcheng-teleop` | 遥操作能力 | 计划中 |
 | `jcheng-learning` | 数据集、训练、策略推理 | 计划中 |
-| `jcheng-mobile` | 移动底盘能力 | 计划中 |
 | `jcheng-applications` | 任务编排与操作应用 | 计划中 |
 
 ## 路线图
@@ -201,24 +210,24 @@ M1 证据包见
 |---|---|---|
 | M0 | 架构评审与批准 | 完成 |
 | M1 | 组织、三个仓库、模板、CI 骨架 | **完成** |
-| M2 | 现有接口契约审计；`jcheng-interfaces` v0.1 | 完成 |
-| M3 | `jcheng-system` Mock 栈；租约、安全、仲裁、网关 | 完成 |
-| M4 | 机器人只读接入（不运动） | 完成 — 1799/1799 `measured`、`writes=0` |
-| M5 | 受监督的单关节与夹爪执行 | M5.1 完成；M5.2 部分完成（夹爪 `STOP_LATCHED`） |
-| M6 | 基线回放与 G8 复验 | 下一步 |
-| M7 | 首个外部能力模块 | 计划中 |
+| M2 | 契约审计；`jcheng-interfaces` v0.1.0 | **完成** |
+| M3 | `jcheng-system` Mock 栈；租约、安全、仲裁、网关 | **完成** |
+| M4 | 机器人只读接入（不运动） | **完成** |
+| M5 | 受监督的单关节与夹爪执行 | **完成**（M5.1 Mock，M5.2 实机核心） |
+| M6 | 基线回放与 G8 复验 | **进行中**——S13 21/21、S17 plan-only 离线通过；真实 MoveIt、S14 底盘、完整 G8 待做 |
+| M7 | 首个集成能力模块 | **进行中**——`jcheng-mobile`、`jcheng-perception`、`jcheng-ops` 已准入 |
 | M8 | 生态 v1.0 发布：锁文件、SBOM、验收报告 | 计划中 |
 
-M2 从契约审计开始：在定义最终 IDL 之前，先盘点 `arm_interfaces`、Studio API、网关与安全执行
-路径。下一步是 M6：把冻结的 `v1.0.0` 基线通过新运行时回放，并复验 G8 任务；前提是 M5.2 在
-单独授权下收尾。
+M6 是当前门禁。决策回放已与基线一致（21/21），plan-only 契约已有测试；剩下的是执行：
+真实 MoveIt plan-only、S14 底盘、完整 G8 复跑与落点证据。每一项都需要单独、明确的授权。
+M5.2 还留下 S7（状态过期注入）与 S9（运行时发布者检测）未验证。
 
 ## 治理
 
-- 每个仓库的 `main` 均受保护：PR、独立评审、CODEOWNERS、线性历史、禁止 force-push 与删除。
-  必需检查按仓库配置——治理与感知为 `m1-gate`，契约为 `m1-gate` + `m2-contract`，系统运行时为
-  五个门禁，运维为 `ops-gate`。
-- 组织已结束单账号阶段：第二评审人 `@JerichoSwaine` 已具备 maintain 权限，并在每个仓库中
+- 所有仓库的 `main` 均受保护：PR、独立评审、CODEOWNERS、线性历史、禁止 force-push 与删除。
+  必需检查按仓库配置——治理与 perception 为 `m1-gate`；interfaces 为 `m1-gate` +
+  `m2-contract`；系统运行时为五个门禁；operations 为 `ops-gate`。
+- 组织已结束单账号阶段：第二评审人 `@JerichoSwaine` 已具备 maintain 权限，并在所有仓库中
   都是 CODEOWNER。`main` 变更需要一名作者与一名评审人；break-glass 不是默认路径。
 - 任何实机运动都需要操作员明确授权；CI 与自动化不会触发运动。
 - 安全报告遵循 [`SECURITY.md`](https://github.com/JCHENG-Robotics/.github/blob/main/SECURITY.md)；
@@ -235,15 +244,19 @@ M2 从契约审计开始：在定义最终 IDL 之前，先盘点 `arm_interface
 - **底盘开环。** 任何底盘运动都会使桌面标定失效；底盘没有里程计。
 - **快速路径范围。** 4.0/20 档有总线确认，但只在一个方向上完成验证。
 - **误差预算门限。** 6 mm RSS 门限未满足；实测放置均值是另一个统计量，不能解读为通过门限。
-- **新生态成熟度。** M2–M4 已完成，M5.1 已合并；M5.2 只完成一部分（一个单关节，夹爪锁存
-  `UNKNOWN`）。感知尚未与运动集成，也没有应用层。不对新生态做安全或性能声明。
-- **许可证状态。** 第三方依赖与版权审查完成前，不授予复用许可。
+- **新生态成熟度。** M6 尚未完成；M6 的实机部分与 M5.2 的残余检查未验证。能力仓库
+  （`jcheng-mobile`、`jcheng-perception`）为实验性且部分未实机验证；不对其做运动声明。
+- **运维覆盖。** 看门狗尚未在真实卡死中触发；整机重启路径未演练，因为厂商启动序列会移动机械臂。
+- **许可证状态。** 基线与 `jcheng-mobile` 为 MIT；其余新仓库没有 `LICENSE`，审查完成前
+  不授予复用许可。mobile 的文件保留待审查，不构成先例。
 
 ## 许可证
 
-冻结的 `jcheng-manipulation v1.0.0` 基线为 MIT。新仓库为便于评审而公开，但**尚未添加
-`LICENSE`**：第三方依赖与版权审查仍在进行。审查批准前，新仓库不授予 MIT 许可，厂商资产
-不参与再分发。详见
+冻结的 `jcheng-manipulation v1.0.0` 基线为 MIT。`jcheng-mobile` 在初始化时已带有一份
+MIT `LICENSE`。其余新仓库（`.github`、`jcheng-interfaces`、`jcheng-system`、
+`jcheng-perception`、`jcheng-ops`）**没有 `LICENSE`**：第三方依赖与版权审查仍在进行。
+审查批准前，这些仓库不授予 MIT 许可，厂商资产不参与再分发。`jcheng-mobile` 的文件
+**保留待审查**（见其 `LICENSE-REVIEW.md`），不构成给其他仓库添加许可证的先例。详见
 [`license-review.md`](https://github.com/JCHENG-Robotics/.github/blob/main/docs/license-review.md)。
 
 ## 引用

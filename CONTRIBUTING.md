@@ -25,6 +25,15 @@
 - 契约变更必须更新 `CHANGELOG.md`、`VERSION` 与 `interface_manifest.json`。
 - 不允许在消费者仓库里私自定义“临时消息”绕过契约。
 
+## 文档
+
+- 所有产品仓库遵循
+  [`docs/documentation-standard.md`](docs/documentation-standard.md)：`README.md`
+  （英文）、`README.zh-CN.md`、`ROADMAP.md`、`CHANGELOG.md`、`ACCEPTANCE.md`。
+- 范围、安全语义或验收状态的改动，必须在同一 PR 中同步更新 README 的范围/状态、
+  ROADMAP 的里程碑与 ACCEPTANCE 的结论/未验证项。
+- 状态只使用标准词汇；合成/Mock 结果不得写成实机验证。
+
 ## 安全与实机
 
 - **任何实机运动操作都需要单独、明确的授权。** 不得在 PR、CI 或本地脚本中

@@ -5,16 +5,16 @@ From a measured 5-DoF manipulation baseline to an independently versioned roboti
 
 [简体中文](README.zh-CN.md) | **English**
 
-**Status:** M1–M4 complete · M5.2 partial · 2026-11-24 · English canonical  
-**Start here:** [Frozen baseline](https://github.com/JerichoCheng/jcheng-manipulation) ·
-[Design record](https://github.com/JerichoCheng/jcheng-manipulation/blob/design/ecosystem-v1/docs/ecosystem/README.md) ·
-[M1 evidence](https://github.com/JerichoCheng/jcheng-manipulation/blob/design/ecosystem-v1/docs/ecosystem/evidence/org-init-20261123/README.md)
+**Status:** M1–M5.2 complete · M6 in progress · 2026-11-24 · English canonical  
+**Start here:** [Ecosystem roadmap](https://github.com/JCHENG-Robotics/.github/blob/main/ROADMAP.md) ·
+[Acceptance report](https://github.com/JCHENG-Robotics/.github/blob/main/ACCEPTANCE.md) ·
+[Frozen baseline](https://github.com/JerichoCheng/jcheng-manipulation)
 
 **Contents:** [Overview](#overview) · [Why](#why-this-exists) · [Method](#method) ·
 [Status](#status-at-a-glance) · [Evidence](#evidence-foundation) · [Architecture](#architecture) ·
 [Safety](#safety-model-and-non-claims) · [Quality](#quality-and-reproducibility) ·
-[Repositories](#repository-map) · [Roadmap](#roadmap) · [Governance](#governance) ·
-[Limitations](#limitations-and-threats-to-validity) · [License](#license)
+[Repositories](#repository-map) · [Roadmap](#roadmap) · [Acceptance](https://github.com/JCHENG-Robotics/.github/blob/main/ACCEPTANCE.md) ·
+[Governance](#governance) · [Limitations](#limitations-and-threats-to-validity) · [License](#license)
 
 ---
 
@@ -83,13 +83,13 @@ and the S1–S17 scenarios exist to prove the no-bypass boundary before any supe
 | Item | Status |
 |---|---|
 | Experimental baseline | `jcheng-manipulation v1.0.0`, commit `b3411e4`, frozen; full G8 acceptance recorded |
-| Ecosystem initialization (M1) | **Complete** — three repositories created, `main` protected, **111/111** checks passed |
-| Contracts | `v0.1.0` — 14 msgs, 10 srvs, `ExecuteMotion`, JSON Schemas, OpenAPI/WS `v1`; `contract_hash` pinned in `jcheng-system` |
-| System runtime | `v0.3.0-dev` — mock stack and S1–S17 scenarios; M4 read-only run (30 min, **1799/1799** `measured`, `writes=0`); M5.1 mock ROS transport merged; M5.2 single joint `COMPLETED`, gripper open `STOP_LATCHED` |
-| Perception (L3) | `v0.1.0` — wrist data path and single-pose table-plane TF verified; multi-pose accuracy, external-camera depth alignment and motion integration unverified |
-| Operations | `v0.1.0` — 15 s hardware watchdog, 30 s health watch, service self-healing and the Studio watchdog; installed and verified 2026-11-24 |
-| Real-robot motion in the new ecosystem | **Supervised M5.2 only** — one single-joint move `COMPLETED`; gripper open stopped at +13 pulses (target 170, bus 183) and latched. M4 was read-only; every further motion needs separate, explicit authorization |
-| License | **Pending** third-party and copyright review; no `LICENSE` file has been added |
+| Ecosystem milestones | **M1–M5.2 complete**; M6 offline part merged, real-robot M6 pending authorization |
+| Contracts | `jcheng-interfaces` v0.1.0: 14 msg / 10 srv / 1 action, seven schemas, pinned contract hash |
+| System runtime | `jcheng-system` 0.3.0-dev: 13 ROS packages; M4 read-only and M5.2 core hardware verified |
+| Capability repositories | `jcheng-mobile` and `jcheng-perception` v0.1.0 (experimental, partial hardware); `jcheng-ops` v0.1.0 (deployed) |
+| Real-robot motion in the new ecosystem | Supervised single-joint and gripper motions passed (M5.2); full G8 re-run pending |
+| Documentation | Unified README / ROADMAP / CHANGELOG / ACCEPTANCE set; English canonical, Chinese README |
+| License | **Pending** for most new repositories; `jcheng-mobile` carries MIT from initialization; the review must resolve the exception |
 
 ## Evidence foundation
 
@@ -127,13 +127,17 @@ L0  Governance          org profile · templates · reusable CI · branch protec
 Hardware plane          one publisher, vendor DDS domain 0
 ```
 
-The first three repositories are deliberately small:
+The founding repositories were deliberately small; the ecosystem has since
+added independently versioned capability and operations repositories:
 
-| Repository | Responsibility | M1 state |
+| Repository | Responsibility | Current state |
 |---|---|---|
-| [`JCHENG-Robotics/.github`](https://github.com/JCHENG-Robotics/.github) | Governance, templates, reusable CI | Complete |
-| [`JCHENG-Robotics/jcheng-interfaces`](https://github.com/JCHENG-Robotics/jcheng-interfaces) | Contracts, schemas, contract hashes | Skeleton; IDL after audit |
-| [`JCHENG-Robotics/jcheng-system`](https://github.com/JCHENG-Robotics/jcheng-system) | Privileged runtime, safety, arbitration, gateway | Skeleton; M3 implementation |
+| [`JCHENG-Robotics/.github`](https://github.com/JCHENG-Robotics/.github) | Governance, templates, reusable CI, ecosystem documents | M1 complete; documentation standard v1.0 |
+| [`JCHENG-Robotics/jcheng-interfaces`](https://github.com/JCHENG-Robotics/jcheng-interfaces) | Contracts, schemas, contract hashes | v0.1.0, signed tag |
+| [`JCHENG-Robotics/jcheng-system`](https://github.com/JCHENG-Robotics/jcheng-system) | Privileged runtime, safety, arbitration, gateway | 0.3.0-dev; M6 offline |
+| [`JCHENG-Robotics/jcheng-mobile`](https://github.com/JCHENG-Robotics/jcheng-mobile) | L3 mobile base | v0.1.0 experimental |
+| [`JCHENG-Robotics/jcheng-perception`](https://github.com/JCHENG-Robotics/jcheng-perception) | L3 perception | v0.1.0 experimental |
+| [`JCHENG-Robotics/jcheng-ops`](https://github.com/JCHENG-Robotics/jcheng-ops) | Cross-layer operations | v0.1.0 deployed |
 
 ### The single motion path
 
@@ -176,39 +180,48 @@ Consequently:
   container automatically.
 - The new ecosystem is not safety-certified and does not claim SIL/PL compliance.
 
-The M1 gate keeps the new repositories free of runtime code and IDL; without a runtime publisher there
-is no hardware write path. Safety claims will only be made after the corresponding tests and supervised
-hardware evidence exist.
+The runtime now exists, so the boundary is enforced rather than only declared.
+M4 proved that the read-only path publishes telemetry and no commands
+(`writes=0`, 30 minutes). M5.1 exercised lease, safety and stop semantics over
+ROS services/actions against the mock stack; M5.2 connected the same path to
+the supervised hardware bridge for one joint and the gripper. S7 (stale-state
+injection) and S9 (runtime publisher detection) remain unverified on hardware,
+and every real-robot session still requires separate, explicit authorization.
 
 ## Quality and reproducibility
 
 | Gate | Current state |
 |---|---|
-| M1 repository checks | **111/111** API checks passed across three repositories |
-| Branch protection | PR + CODEOWNERS + per-repository required checks (`m1-gate`, `m2-contract`, `m3-mock`, `m4-readonly`, `m5-mock`, `m5-vendor`, `ops-gate`); admins restricted; no force-push/delete |
-| Contract integrity | Contract hash + `interface_manifest.json` (M2) |
-| Dependency locking | `ecosystem.lock.yaml` pins commits, contract hash, image digest and robot profile (M2/M3) |
+| Repository checks | M1 **111/111** API checks; M2–M6 CI gates in the three founding repositories |
+| Branch protection | PR + CODEOWNERS + per-repository required checks; admins restricted; no force-push/delete |
+| Contract integrity | Contract hash + `interface_manifest.json`, v0.1.0, verified tag |
+| Dependency locking | `ecosystem.lock.yaml` pins commits, contract hash, profile hash and interfaces v0.1.0 |
 | Test levels | L0 contract → L1 unit → L2 mock integration → L3 mock E2E → L4 replay → L5 supervised hardware |
-| No-bypass verification | Planned S1–S17 scenarios, including unauthorized-publisher and missing-lease cases (M3) |
+| No-bypass verification | S1–S17: 15 scenarios pass, 2 skipped, 0 required failures; M5.1 adds 5 ROS transport tests |
+| Hardware evidence | M4 read-only 1799/1799 `measured`, `writes=0`; M5.2 joint/gripper with bus verification and stop latch |
 | Evidence | Per-run records with versions, hashes, commands, observations and limitations |
+| Documentation | Standard v1.0; every product repository carries the four-document set |
 
-The M1 evidence bundle is available at
-[`org-init-20261123`](https://github.com/JerichoCheng/jcheng-manipulation/blob/design/ecosystem-v1/docs/ecosystem/evidence/org-init-20261123/README.md).
-The design record is [`08-m1-execution.md`](https://github.com/JerichoCheng/jcheng-manipulation/blob/design/ecosystem-v1/docs/ecosystem/08-m1-execution.md).
+Current status and evidence are aggregated in the
+[ecosystem roadmap](https://github.com/JCHENG-Robotics/.github/blob/main/ROADMAP.md) and
+[acceptance report](https://github.com/JCHENG-Robotics/.github/blob/main/ACCEPTANCE.md). The M1
+verification JSON is kept in the local staging archive `jcheng-ecosystem-bootstrap/M1-VERIFICATION.json`;
+the design record is in `jcheng-manipulation` branch `design/ecosystem-v1` (`docs/ecosystem/`).
 
 ## Repository map
 
 | Repository | Role | State |
 |---|---|---|
-| `.github` | Organization governance, templates, reusable CI | M1 complete |
-| `jcheng-interfaces` | ROS IDL, HTTP/WS schemas, contract hashes | `v0.1.0` (M2) |
-| `jcheng-system` | Safety, authority, motion, hardware bridge, gateway | `v0.3.0-dev` (M2–M5.2) |
-| `jcheng-perception` | Distributed perception: Pi 5 edge capture/depth/TF/fusion, laptop GPU YOLO | `v0.1.0` — wrist path verified; motion integration unverified |
-| `jcheng-ops` | Operations: health watch, hardware watchdog, service self-healing, incident runbooks | `v0.1.0` |
+| `.github` | Organization governance, templates, reusable CI, ecosystem documents | M1 complete; documentation standard v1.0 |
+| `jcheng-interfaces` | ROS IDL, HTTP/WS schemas, contract hashes | v0.1.0 |
+| `jcheng-system` | Safety, authority, motion, hardware bridge, gateway | 0.3.0-dev; M6 offline merged |
 | `jcheng-manipulation` | Frozen `v1.0.0` experimental baseline and evidence | Read-only reference |
+| `jcheng-mobile` | Mobile-base capability (M10, SLAM, Nav2 intent) | v0.1.0 experimental; not hardware-validated |
+| `jcheng-perception` | Distributed edge/GPU perception | v0.1.0 experimental; partial hardware path |
+| `jcheng-ops` | Unattended operations, watchdog and recovery | v0.1.0 deployed |
+| `jcheng-mobile-bench` | Bench material split out of `jcheng-mobile` | Sandbox; not released |
 | `jcheng-teleop` | Teleoperation capability | Planned |
 | `jcheng-learning` | Datasets, training, policy inference | Planned |
-| `jcheng-mobile` | Mobile-base capability | Planned |
 | `jcheng-applications` | Task orchestration and operator applications | Planned |
 
 ## Roadmap
@@ -217,28 +230,29 @@ The design record is [`08-m1-execution.md`](https://github.com/JerichoCheng/jche
 |---|---|---|
 | M0 | Architecture review and approval | Complete |
 | M1 | Organization, three repositories, templates, CI skeleton | **Complete** |
-| M2 | Contract audit of existing interfaces; `jcheng-interfaces` v0.1 | Complete |
-| M3 | `jcheng-system` mock stack; lease, safety, arbitration, gateway | Complete |
-| M4 | Read-only robot integration (no motion) | Complete — 1799/1799 `measured`, `writes=0` |
-| M5 | Supervised single-joint and gripper execution | M5.1 complete; M5.2 partial (gripper `STOP_LATCHED`) |
-| M6 | Baseline replay and G8 re-validation | Next |
-| M7 | First external capability module | Planned |
+| M2 | Contract audit; `jcheng-interfaces` v0.1.0 | **Complete** |
+| M3 | `jcheng-system` mock stack; lease, safety, arbitration, gateway | **Complete** |
+| M4 | Read-only robot integration (no motion) | **Complete** |
+| M5 | Supervised single-joint and gripper execution | **Complete** (M5.1 mock, M5.2 hardware core) |
+| M6 | Baseline replay and G8 re-validation | **In progress** — S13 21/21 and S17 plan-only offline; real MoveIt, S14 base, full G8 pending |
+| M7 | First integrated capability module | **In progress** — `jcheng-mobile`, `jcheng-perception`, `jcheng-ops` admitted |
 | M8 | Ecosystem v1.0 release with lockfile, SBOM and acceptance report | Planned |
 
-M2 began with the contract audit: `arm_interfaces`, the Studio API, the gateway and the safety
-execution paths were mapped before the final IDL was defined. The next milestone is M6: replay the
-frozen `v1.0.0` baseline through the new runtime and re-validate the G8 task, after M5.2 is closed
-with a separate authorization.
+M6 is the current gate. The decision replay already matches the baseline
+(21/21), and the plan-only contract is tested; what remains is execution:
+real MoveIt plan-only, the S14 base, a full G8 re-run and landing evidence.
+Each requires separate, explicit authorization. M5.2 also leaves S7
+(stale-state injection) and S9 (runtime publisher detection) unverified.
 
 ## Governance
 
 - `main` is protected on every repository: pull request, independent review, CODEOWNERS, linear
   history, no force-push or deletion. Required checks are per repository — `m1-gate` for governance
-  and perception, `m1-gate` + `m2-contract` for interfaces, five gates for the system runtime,
+  and perception, `m1-gate` + `m2-contract` for interfaces, five gates for the system runtime, and
   `ops-gate` for operations.
 - The single-account phase ended with a second reviewer (`@JerichoSwaine`), who has maintain access
-  and is a CODEOWNER on every repository. `main` changes require one author and one reviewer; a
-  documented break-glass procedure is not the default.
+  and is a CODEOWNER on every repository. `main` changes require one author and one reviewer;
+  a documented break-glass procedure is not the default.
 - Any real-robot motion requires the operator's explicit authorization; CI and automation never
   trigger motion.
 - Security reports follow [`SECURITY.md`](https://github.com/JCHENG-Robotics/.github/blob/main/SECURITY.md);
@@ -257,17 +271,27 @@ with a separate authorization.
 - **Fast path scope.** The 4.0/20 profile is bus-verified but was validated in one direction.
 - **Error-budget bound.** The 6 mm RSS bound is not met; the empirical placement mean is a different
   statistic and should not be read as passing the bound.
-- **New ecosystem maturity.** M2–M4 are complete and M5.1 is merged; M5.2 stopped part-way (one
-  single joint, gripper latched `UNKNOWN`). Perception is not integrated with motion, and there is no
-  application layer. No safety or performance claim is made for the new ecosystem.
-- **License status.** Reuse is not granted until the third-party and copyright review is complete.
+- **New ecosystem maturity.** M6 is incomplete; the real-robot parts of M6 and
+  the residual M5.2 checks are not verified. Capability repositories
+  (`jcheng-mobile`, `jcheng-perception`) are experimental and partly
+  hardware-unvalidated; no motion claim is made for them.
+- **Operations coverage.** The watchdog has never fired in a real wedge; the
+  reboot path has not been exercised because the vendor boot sequence moves the
+  arm.
+- **License status.** The baseline and `jcheng-mobile` carry MIT; the other new
+  repositories have no `LICENSE` and grant no reuse until the review closes.
+  The mobile file is retained pending review, not a precedent.
 
 ## License
 
-The frozen `jcheng-manipulation v1.0.0` baseline is MIT-licensed. The new repositories are public for
-review but **do not yet have a `LICENSE` file**: the third-party dependency and copyright review is
-pending. Until that review is approved, no MIT grant is made for the new repositories, and vendor
-assets are not redistributed. See
+The frozen `jcheng-manipulation v1.0.0` baseline is MIT-licensed. `jcheng-mobile`
+was initialized with an MIT `LICENSE`. The other new repositories (`.github`,
+`jcheng-interfaces`, `jcheng-system`, `jcheng-perception`, `jcheng-ops`) have **no
+`LICENSE` file**: the third-party dependency and copyright review is pending.
+Until that review is approved, no MIT grant is made for those repositories, and
+vendor assets are not redistributed. The `jcheng-mobile` file is **retained
+pending the review** (see its `LICENSE-REVIEW.md`); it is not a precedent for
+adding licenses elsewhere. See
 [`license-review.md`](https://github.com/JCHENG-Robotics/.github/blob/main/docs/license-review.md).
 
 ## Citation

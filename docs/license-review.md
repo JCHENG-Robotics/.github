@@ -4,6 +4,13 @@
 > 规则：审查完成并签字前，三个新仓库**不得添加 `LICENSE` 文件**，不得对外宣称 MIT。
 > 公开仓库在无许可证时默认版权保留（all rights reserved），这是临时状态。
 
+> **已知例外（2026-11-24 记录）：** `jcheng-mobile` 在初始化提交
+> `ad389e4` 中已包含一份 MIT `LICENSE`（版权行 `JCHENG Robotics`），早于本审查
+> 规则生效。**决定：保留待审查，不追溯移除。** 审查需确认版权行与第三方兼容性；
+> 若最终不以 MIT 授权该仓库，则通过 PR 替换并记录变更。具体记录见
+> `jcheng-mobile/LICENSE-REVIEW.md`。其余新仓库仍按“无 `LICENSE`、默认版权保留”
+> 处理。
+
 ## 1. 目标
 
 为 `JCHENG-Robotics` 首批仓库确定：

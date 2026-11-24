@@ -7,7 +7,7 @@
 
 > 本文为英文主文档的中文对照；如有歧义，以英文版为准。
 
-**状态：** M1 完成 · 2026-11-23 · 英文为主文档  
+**状态：** M1–M4 完成 · M5.2 部分完成 · 2026-11-24 · 英文为主文档  
 **从这里开始：** [冻结基线](https://github.com/JerichoCheng/jcheng-manipulation) ·
 [设计记录](https://github.com/JerichoCheng/jcheng-manipulation/blob/design/ecosystem-v1/docs/ecosystem/README.md) ·
 [M1 证据](https://github.com/JerichoCheng/jcheng-manipulation/blob/design/ecosystem-v1/docs/ecosystem/evidence/org-init-20261123/README.md)
@@ -76,9 +76,11 @@ JCHENG Robotics 是一个面向低成本硬件、强调可靠性与可审计性�
 |---|---|
 | 实验基线 | `jcheng-manipulation v1.0.0`，提交 `b3411e4`，已冻结；完整 G8 验收已记录 |
 | 生态初始化（M1） | **已完成**：三个仓库创建、`main` 受保护、**111/111** 项检查通过 |
-| 契约 | 仅 M1 骨架；尚未定义 IDL/Schema；契约审计是 M2 门禁 |
-| 系统运行时 | 仅 M1 骨架；没有 ROS 包、节点或部署单元 |
-| 新生态中的实机运动 | **没有**；M4/M5 需要单独、明确的授权 |
+| 契约 | `v0.1.0` — 14 msgs、10 srvs、`ExecuteMotion`、JSON Schema、OpenAPI/WS `v1`；`contract_hash` 固定在 `jcheng-system` |
+| 系统运行时 | `v0.3.0-dev` — Mock 栈与 S1–S17 场景；M4 实机只读（30 分钟、**1799/1799** `measured`、`writes=0`）；M5.1 Mock ROS 传输已合并；M5.2 单关节 `COMPLETED`、夹爪全开 `STOP_LATCHED` |
+| 感知（L3） | `v0.1.0` — 腕部数据链路与单姿态桌面平面 TF 已验证；多姿态精度、外机位深度对齐与运动集成未验证 |
+| 运维 | `v0.1.0` — 15 s 硬件看门狗、30 s 健康巡检、服务自愈与 Studio 看护；2026-11-24 安装并验证 |
+| 新生态中的实机运动 | **仅受监督的 M5.2** — 一次单关节 `COMPLETED`；夹爪全开在 +13 脉冲处停止（目标 170、总线 183）并锁存。M4 为只读；任何后续运动都需要单独、明确的授权 |
 | 许可证 | 第三方依赖与版权审查**进行中**；尚未添加 `LICENSE` |
 
 ## 证据基础
@@ -166,7 +168,7 @@ M1 门禁确保新仓库不包含运行时代码与 IDL；没有运行时发布�
 | 门禁 | 当前状态 |
 |---|---|
 | M1 仓库检查 | 三个仓库 **111/111** 项 API 检查通过 |
-| 分支保护 | PR + CODEOWNERS + `m1-gate`；管理员受限；禁止 force-push/删除 |
+| 分支保护 | PR + CODEOWNERS + 各仓库必需检查（`m1-gate`、`m2-contract`、`m3-mock`、`m4-readonly`、`m5-mock`、`m5-vendor`、`ops-gate`）；管理员受限；禁止 force-push/删除 |
 | 契约完整性 | 契约哈希 + `interface_manifest.json`（M2） |
 | 依赖锁定 | `ecosystem.lock.yaml` 固定提交、契约哈希、镜像摘要与机器人配置（M2/M3） |
 | 测试层级 | L0 契约 → L1 单元 → L2 Mock 集成 → L3 Mock E2E → L4 回放 → L5 受监督实机 |
@@ -183,8 +185,10 @@ M1 证据包见
 | 仓库 | 角色 | 状态 |
 |---|---|---|
 | `.github` | 组织治理、模板、复用 CI | M1 完成 |
-| `jcheng-interfaces` | ROS IDL、HTTP/WS Schema、契约哈希 | M1 骨架 |
-| `jcheng-system` | 安全、控制权、运动、硬件桥、网关 | M1 骨架 |
+| `jcheng-interfaces` | ROS IDL、HTTP/WS Schema、契约哈希 | `v0.1.0`（M2） |
+| `jcheng-system` | 安全、控制权、运动、硬件桥、网关 | `v0.3.0-dev`（M2–M5.2） |
+| `jcheng-perception` | 分布式感知：Pi 5 采集/深度/TF/融合，笔记本 GPU YOLO | `v0.1.0` — 腕部链路已验证；运动集成未验证 |
+| `jcheng-ops` | 运维：健康巡检、硬件看门狗、服务自愈、事故手册 | `v0.1.0` |
 | `jcheng-manipulation` | 冻结的 `v1.0.0` 实验基线与证据 | 只读参考 |
 | `jcheng-teleop` | 遥操作能力 | 计划中 |
 | `jcheng-learning` | 数据集、训练、策略推理 | 计划中 |
@@ -197,22 +201,24 @@ M1 证据包见
 |---|---|---|
 | M0 | 架构评审与批准 | 完成 |
 | M1 | 组织、三个仓库、模板、CI 骨架 | **完成** |
-| M2 | 现有接口契约审计；`jcheng-interfaces` v0.1 | 下一步 |
-| M3 | `jcheng-system` Mock 栈；租约、安全、仲裁、网关 | 计划中 |
-| M4 | 机器人只读接入（不运动） | 计划中 |
-| M5 | 受监督的单关节与夹爪执行 | 计划中 |
-| M6 | 基线回放与 G8 复验 | 计划中 |
+| M2 | 现有接口契约审计；`jcheng-interfaces` v0.1 | 完成 |
+| M3 | `jcheng-system` Mock 栈；租约、安全、仲裁、网关 | 完成 |
+| M4 | 机器人只读接入（不运动） | 完成 — 1799/1799 `measured`、`writes=0` |
+| M5 | 受监督的单关节与夹爪执行 | M5.1 完成；M5.2 部分完成（夹爪 `STOP_LATCHED`） |
+| M6 | 基线回放与 G8 复验 | 下一步 |
 | M7 | 首个外部能力模块 | 计划中 |
 | M8 | 生态 v1.0 发布：锁文件、SBOM、验收报告 | 计划中 |
 
-M2 从契约审计开始：在定义最终 IDL 之前，必须先盘点 `arm_interfaces`、Studio API、网关与
-安全执行路径。这样避免重复定义，并保持与冻结基线的兼容性。
+M2 从契约审计开始：在定义最终 IDL 之前，先盘点 `arm_interfaces`、Studio API、网关与安全执行
+路径。下一步是 M6：把冻结的 `v1.0.0` 基线通过新运行时回放，并复验 G8 任务；前提是 M5.2 在
+单独授权下收尾。
 
 ## 治理
 
-- 三个仓库的 `main` 均受保护：PR、独立评审、CODEOWNERS、必需 `m1-gate`、线性历史、
-  禁止 force-push 与删除。
-- 组织已结束单账号阶段：第二评审人 `@JerichoSwaine` 已具备 maintain 权限，并在三个仓库中
+- 每个仓库的 `main` 均受保护：PR、独立评审、CODEOWNERS、线性历史、禁止 force-push 与删除。
+  必需检查按仓库配置——治理与感知为 `m1-gate`，契约为 `m1-gate` + `m2-contract`，系统运行时为
+  五个门禁，运维为 `ops-gate`。
+- 组织已结束单账号阶段：第二评审人 `@JerichoSwaine` 已具备 maintain 权限，并在每个仓库中
   都是 CODEOWNER。`main` 变更需要一名作者与一名评审人；break-glass 不是默认路径。
 - 任何实机运动都需要操作员明确授权；CI 与自动化不会触发运动。
 - 安全报告遵循 [`SECURITY.md`](https://github.com/JCHENG-Robotics/.github/blob/main/SECURITY.md)；
@@ -229,7 +235,8 @@ M2 从契约审计开始：在定义最终 IDL 之前，必须先盘点 `arm_int
 - **底盘开环。** 任何底盘运动都会使桌面标定失效；底盘没有里程计。
 - **快速路径范围。** 4.0/20 档有总线确认，但只在一个方向上完成验证。
 - **误差预算门限。** 6 mm RSS 门限未满足；实测放置均值是另一个统计量，不能解读为通过门限。
-- **新生态成熟度。** M1 只是仓库与治理初始化；架构尚未经过运行时验证，不对其做安全或性能声明。
+- **新生态成熟度。** M2–M4 已完成，M5.1 已合并；M5.2 只完成一部分（一个单关节，夹爪锁存
+  `UNKNOWN`）。感知尚未与运动集成，也没有应用层。不对新生态做安全或性能声明。
 - **许可证状态。** 第三方依赖与版权审查完成前，不授予复用许可。
 
 ## 许可证

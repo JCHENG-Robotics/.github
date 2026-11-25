@@ -24,6 +24,26 @@ versioned.
 - `jcheng-mobile/LICENSE-REVIEW.md`: the pre-existing MIT file is retained
   pending the organization review instead of being removed retroactively.
 
+## 2026-11-25 — S17 real, image rebuild, static mobile and dual-view perception
+
+### Added
+
+- M6 S17 real MoveIt plan-only in `jcheng-system`: MoveIt 2.5.10, `SUCCESS`,
+  8-point plan, 0 controller servers and no command topics.
+- ArmPi Ultra runtime image `armpi-ultra:flatten-20261125` (7.1 GB,
+  `linux/arm64`, digest
+  `sha256:d4e6f3901f1c43e08f4018ff7f7b55dec21b2955dba8b98404a440a1f89df15f`);
+  20 nodes / 60 topics preserved and the container survived a host reboot.
+- `jcheng-mobile` static bring-up: `/scan`, `/odom` and `/map` pass; motion,
+  mount pose and navigation remain unverified.
+- `jcheng-perception` ADR 0004 aligned external depth, split-edge ingress/fusion
+  and a single 60 s dual-view tag run (cross-view 3.37 mm); run 10 still wedges
+  the wrist depth reader, so the full window is not repeatable.
+- D435i depth-missing recovery documented in `jcheng-perception`
+  `docs/FAILURE_MODES.md`.
+- `acceptance/ecosystem-2026-11-25.json`: updated machine-readable status
+  report (reviewer pending; result `inconclusive`).
+
 ## 2026-11-24 — M5.1/M5.2, M6 offline and capability repositories
 
 ### Added

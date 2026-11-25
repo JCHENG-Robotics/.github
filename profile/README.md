@@ -5,7 +5,7 @@ From a measured 5-DoF manipulation baseline to an independently versioned roboti
 
 [简体中文](README.zh-CN.md) | **English**
 
-**Status:** M1–M5.2 complete · M6 in progress · 2026-11-24 · English canonical  
+**Status:** M1–M5.2 complete · M6 in progress · 2026-11-25 · English canonical  
 **Start here:** [Ecosystem roadmap](https://github.com/JCHENG-Robotics/.github/blob/main/ROADMAP.md) ·
 [Acceptance report](https://github.com/JCHENG-Robotics/.github/blob/main/ACCEPTANCE.md) ·
 [Frozen baseline](https://github.com/JerichoCheng/jcheng-manipulation)
@@ -83,11 +83,12 @@ and the S1–S17 scenarios exist to prove the no-bypass boundary before any supe
 | Item | Status |
 |---|---|
 | Experimental baseline | `jcheng-manipulation v1.0.0`, commit `b3411e4`, frozen; full G8 acceptance recorded |
-| Ecosystem milestones | **M1–M5.2 complete**; M6 offline part merged, real-robot M6 pending authorization |
+| Ecosystem milestones | **M1–M5.2 complete**; M6 S13 and S17 real MoveIt verified; S14 base and full G8 pending |
 | Contracts | `jcheng-interfaces` v0.1.0: 14 msg / 10 srv / 1 action, seven schemas, pinned contract hash |
-| System runtime | `jcheng-system` 0.3.0-dev: 13 ROS packages; M4 read-only and M5.2 core hardware verified |
-| Capability repositories | `jcheng-mobile` and `jcheng-perception` v0.1.0 (experimental, partial hardware); `jcheng-ops` v0.1.0 (deployed) |
-| Real-robot motion in the new ecosystem | Supervised single-joint and gripper motions passed (M5.2); full G8 re-run pending |
+| System runtime | `jcheng-system` 0.3.0-dev: 13 ROS packages; M4 read-only, M5.2 core, M6 S13 + S17 real verified; S14/G8 pending |
+| Runtime image | `armpi-ultra:flatten-20261125`, 7.1 GB arm64; 20 nodes / 60 topics preserved and reboot persistent |
+| Capability repositories | `jcheng-mobile` v0.1.0 static `/scan`/`/odom`/`/map`; `jcheng-perception` v0.1.0 aligned depth + split edge + one dual-view run; `jcheng-ops` v0.1.0 deployed |
+| Real-robot motion in the new ecosystem | Supervised single-joint and gripper motions passed (M5.2); M6 S17 real plan-only passed without execution; full G8 re-run pending |
 | Documentation | Unified README / ROADMAP / CHANGELOG / ACCEPTANCE set; English canonical, Chinese README |
 | License | **Pending** for most new repositories; `jcheng-mobile` carries MIT from initialization; the review must resolve the exception |
 
@@ -134,9 +135,9 @@ added independently versioned capability and operations repositories:
 |---|---|---|
 | [`JCHENG-Robotics/.github`](https://github.com/JCHENG-Robotics/.github) | Governance, templates, reusable CI, ecosystem documents | M1 complete; documentation standard v1.0 |
 | [`JCHENG-Robotics/jcheng-interfaces`](https://github.com/JCHENG-Robotics/jcheng-interfaces) | Contracts, schemas, contract hashes | v0.1.0, signed tag |
-| [`JCHENG-Robotics/jcheng-system`](https://github.com/JCHENG-Robotics/jcheng-system) | Privileged runtime, safety, arbitration, gateway | 0.3.0-dev; M6 offline |
-| [`JCHENG-Robotics/jcheng-mobile`](https://github.com/JCHENG-Robotics/jcheng-mobile) | L3 mobile base | v0.1.0 experimental |
-| [`JCHENG-Robotics/jcheng-perception`](https://github.com/JCHENG-Robotics/jcheng-perception) | L3 perception | v0.1.0 experimental |
+| [`JCHENG-Robotics/jcheng-system`](https://github.com/JCHENG-Robotics/jcheng-system) | Privileged runtime, safety, arbitration, gateway | 0.3.0-dev; M6 S13 + S17 real |
+| [`JCHENG-Robotics/jcheng-mobile`](https://github.com/JCHENG-Robotics/jcheng-mobile) | L3 mobile base | v0.1.0; static bring-up |
+| [`JCHENG-Robotics/jcheng-perception`](https://github.com/JCHENG-Robotics/jcheng-perception) | L3 perception | v0.1.0; aligned depth + single dual-view run |
 | [`JCHENG-Robotics/jcheng-ops`](https://github.com/JCHENG-Robotics/jcheng-ops) | Cross-layer operations | v0.1.0 deployed |
 
 ### The single motion path
@@ -198,7 +199,7 @@ and every real-robot session still requires separate, explicit authorization.
 | Dependency locking | `ecosystem.lock.yaml` pins commits, contract hash, profile hash and interfaces v0.1.0 |
 | Test levels | L0 contract → L1 unit → L2 mock integration → L3 mock E2E → L4 replay → L5 supervised hardware |
 | No-bypass verification | S1–S17: 15 scenarios pass, 2 skipped, 0 required failures; M5.1 adds 5 ROS transport tests |
-| Hardware evidence | M4 read-only 1799/1799 `measured`, `writes=0`; M5.2 joint/gripper with bus verification and stop latch |
+| Hardware evidence | M4 read-only 1799/1799 `measured`, `writes=0`; M5.2 joint/gripper with bus verification and stop latch; M6 S17 real MoveIt `SUCCESS`; 7.1 GB image preserves 20 nodes / 60 topics |
 | Evidence | Per-run records with versions, hashes, commands, observations and limitations |
 | Documentation | Standard v1.0; every product repository carries the four-document set |
 
@@ -214,10 +215,10 @@ the design record is in `jcheng-manipulation` branch `design/ecosystem-v1` (`doc
 |---|---|---|
 | `.github` | Organization governance, templates, reusable CI, ecosystem documents | M1 complete; documentation standard v1.0 |
 | `jcheng-interfaces` | ROS IDL, HTTP/WS schemas, contract hashes | v0.1.0 |
-| `jcheng-system` | Safety, authority, motion, hardware bridge, gateway | 0.3.0-dev; M6 offline merged |
+| `jcheng-system` | Safety, authority, motion, hardware bridge, gateway | 0.3.0-dev; M6 S13 + S17 real |
 | `jcheng-manipulation` | Frozen `v1.0.0` experimental baseline and evidence | Read-only reference |
-| `jcheng-mobile` | Mobile-base capability (M10, SLAM, Nav2 intent) | v0.1.0 experimental; not hardware-validated |
-| `jcheng-perception` | Distributed edge/GPU perception | v0.1.0 experimental; partial hardware path |
+| `jcheng-mobile` | Mobile-base capability (M10, SLAM, Nav2 intent) | v0.1.0; static `/scan`/`/odom`/`/map`; motion unverified |
+| `jcheng-perception` | Distributed edge/GPU perception | v0.1.0; aligned depth, split edge, one dual-view run; repeatability unverified |
 | `jcheng-ops` | Unattended operations, watchdog and recovery | v0.1.0 deployed |
 | `jcheng-mobile-bench` | Bench material split out of `jcheng-mobile` | Sandbox; not released |
 | `jcheng-teleop` | Teleoperation capability | Planned |
@@ -234,13 +235,13 @@ the design record is in `jcheng-manipulation` branch `design/ecosystem-v1` (`doc
 | M3 | `jcheng-system` mock stack; lease, safety, arbitration, gateway | **Complete** |
 | M4 | Read-only robot integration (no motion) | **Complete** |
 | M5 | Supervised single-joint and gripper execution | **Complete** (M5.1 mock, M5.2 hardware core) |
-| M6 | Baseline replay and G8 re-validation | **In progress** — S13 21/21 and S17 plan-only offline; real MoveIt, S14 base, full G8 pending |
-| M7 | First integrated capability module | **In progress** — `jcheng-mobile`, `jcheng-perception`, `jcheng-ops` admitted |
+| M6 | Baseline replay and G8 re-validation | **In progress** — S13 21/21, S17 plan-only and S17 real MoveIt pass; S14 base and full G8 pending |
+| M7 | First integrated capability module | **In progress** — mobile static bring-up; perception aligned depth, split edge and one dual-view run |
 | M8 | Ecosystem v1.0 release with lockfile, SBOM and acceptance report | Planned |
 
-M6 is the current gate. The decision replay already matches the baseline
-(21/21), and the plan-only contract is tested; what remains is execution:
-real MoveIt plan-only, the S14 base, a full G8 re-run and landing evidence.
+M6 is the current gate. The decision replay matches the baseline (21/21), and
+the S17 plan-only contract now passes against real MoveIt 2.5.10 without
+execution; what remains is the S14 base, a full G8 re-run and landing evidence.
 Each requires separate, explicit authorization. M5.2 also leaves S7
 (stale-state injection) and S9 (runtime publisher detection) unverified.
 
@@ -271,10 +272,10 @@ Each requires separate, explicit authorization. M5.2 also leaves S7
 - **Fast path scope.** The 4.0/20 profile is bus-verified but was validated in one direction.
 - **Error-budget bound.** The 6 mm RSS bound is not met; the empirical placement mean is a different
   statistic and should not be read as passing the bound.
-- **New ecosystem maturity.** M6 is incomplete; the real-robot parts of M6 and
-  the residual M5.2 checks are not verified. Capability repositories
-  (`jcheng-mobile`, `jcheng-perception`) are experimental and partly
-  hardware-unvalidated; no motion claim is made for them.
+- **New ecosystem maturity.** M6 is incomplete: S14 and a full G8 re-run remain,
+  and S7/S9 are unverified. Mobile has only a static bring-up; perception has
+  one dual-view run and a wrist depth reader that can still wedge. No motion
+  claim is made for either capability.
 - **Operations coverage.** The watchdog has never fired in a real wedge; the
   reboot path has not been exercised because the vendor boot sequence moves the
   arm.

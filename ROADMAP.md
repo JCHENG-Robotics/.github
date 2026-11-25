@@ -1,6 +1,6 @@
 # JCHENG ecosystem roadmap
 
-> Status: **M1–M5.2 complete; M6 in progress** as of 2026-11-24.
+> Status: **M1–M5.2 complete; M6 in progress** as of 2026-11-25.
 > The ecosystem has not reached v1.0 and makes no v1.0 acceptance claim.
 > English canonical. Repository-local roadmaps live in each repository.
 
@@ -14,10 +14,11 @@
 | Read-only robot integration | Complete (M4) | 30 min, 1799/1799 `measured`, `writes=0` |
 | Mock ROS transport (lease, safety, ExecuteMotion, stop latch) | Complete (M5.1) | 5 ROS tests; CI `m5-mock` |
 | Supervised hardware single-joint / gripper | Complete, core (M5.2) | joint1 505 vs 512 pulses; gripper 183→645/647→183; stop hold 0.266 ms |
-| Replay and plan-only verification | In progress (M6) | S13 21/21 decision match; S17 plan-only tests; real MoveIt/S14/G8 pending |
+| Replay and plan-only verification | In progress (M6) | S13 21/21; S17 plan-only and real MoveIt pass; S14 base and full G8 pending |
+| ArmPi Ultra runtime image | Complete (2026-11-25) | `armpi-ultra:flatten-20261125`, 7.1 GB, `linux/arm64`; 20 nodes / 60 topics preserved; `jcheng-system/deploy/armpi-ultra/` |
 | Frozen experimental baseline | Frozen | `jcheng-manipulation` `v1.0.0` at `b3411e4`; full G8 acceptance |
-| Mobile capability | Experimental | `jcheng-mobile` v0.1.0; offline checks pass; not hardware-validated |
-| Perception capability | Experimental | `jcheng-perception` v0.1.0; Pi 5 data path; multi-pose and motion unverified |
+| Mobile capability | Experimental | `jcheng-mobile` v0.1.0; static `/scan`, `/odom` and `/map` pass; motion, mount pose and navigation unverified |
+| Perception capability | Experimental | `jcheng-perception` v0.1.0; ADR 0004 aligned depth, split edge and one dual-view run; repeatability, multi-pose and motion unverified |
 | Operations | Deployed | `jcheng-ops` v0.1.0; four robot guards and Studio watchdog installed and verified |
 | License | Pending for most repositories | Frozen baseline and `jcheng-mobile` carry MIT (mobile retained pending review); `jcheng-interfaces`, `jcheng-system`, `jcheng-perception`, `jcheng-ops` and `.github` have no `LICENSE` |
 
@@ -32,21 +33,24 @@
 | M4 | Read-only robot integration (no motion) | Complete (2026-11-23) | 30 min, `writes=0`, independent bus reads match | `docs/ecosystem/evidence/m4-readonly-20261123/` |
 | M5.1 | Mock ROS services/actions, lease, safety, stop latch | Complete (2026-11-24) | 5 ROS tests; `m5-mock` green | `jcheng-system` `tests_ros/` |
 | M5.2 | Supervised single-joint and gripper execution | Complete, core (2026-11-24) | `COMPLETED` + `bus_verified`; stop latches | `docs/ecosystem/evidence/m52-final-20261124/` |
-| M6 | Baseline replay and G8 re-validation | In progress | S13/S17 offline pass; real MoveIt plan-only, S14 base, full G8 and landing evidence | `docs/ecosystem/evidence/m6-s13-20261124/` |
-| M7 | First integrated capability module on the system API | In progress | A capability passes L3 and supervised L5 through the system boundary | `jcheng-mobile`, `jcheng-perception` roadmaps |
+| M6 | Baseline replay and G8 re-validation | In progress — S13 21/21 and S17 plan-only + real pass; S14 base and full G8 pending | `docs/ecosystem/evidence/m6-s13-20261124/`; `jcheng-system/deploy/armpi-ultra/docs/ACCEPTANCE-20261125.md` |
+| M7 | First integrated capability module on the system API | In progress — mobile static bring-up, perception split edge/dual-view | A capability passes L3 and supervised L5 through the system boundary | `jcheng-mobile`, `jcheng-perception` roadmaps |
 | M8 | Ecosystem v1.0: lockfile, SBOM, signed acceptance report | Planned | All repositories at declared versions; ecosystem acceptance passes | — |
 
 ## Next
 
-1. **Finish M6.** Real MoveIt plan-only (S17), S14 base acceptance, full G8
-   re-run and landing evidence. Prerequisites: separate explicit authorization,
-   operator present, `jcheng-system` `m6/replay-planning` merged to `main`.
-2. **Integrate one capability end to end.** Mobile and perception are the
-   candidates; both require hardware validation of their own contracts first
-   (LiDAR mount and scan, aligned depth, multi-pose accuracy), then a supervised
-   path through `jcheng-system`.
+1. **Finish M6.** S17 real MoveIt plan-only passed on 2026-11-25; S14 base
+   acceptance, full G8 re-run and landing evidence remain. Prerequisites:
+   separate explicit authorization and an operator present.
+2. **Integrate one capability end to end.** Mobile has a static `/scan`,
+   `/odom` and `/map` bring-up; perception has aligned depth, split edge and a
+   single dual-view run. Both still need their own accuracy/repeatability work,
+   then a supervised path through `jcheng-system`.
 3. **Close the residual M5.2 items.** S7 stale-state injection and S9 runtime
    publisher detection need a supervised hardware session.
+4. **Keep the image lock current.** Re-record
+   `jcheng-system/deploy/armpi-ultra/container/image.lock` on every image
+   change; the 2026-11-25 digest is the current reference.
 
 ## Out of scope
 

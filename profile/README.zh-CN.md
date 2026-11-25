@@ -7,7 +7,7 @@
 
 > 本文为英文主文档的中文对照；如有歧义，以英文版为准。
 
-**状态：** M1–M5.2 完成 · M6 进行中 · 2026-11-24 · 英文为主文档  
+**状态：** M1–M5.2 完成 · M6 进行中 · 2026-11-25 · 英文为主文档  
 **从这里开始：** [生态路线图](https://github.com/JCHENG-Robotics/.github/blob/main/ROADMAP.md) ·
 [验收报告](https://github.com/JCHENG-Robotics/.github/blob/main/ACCEPTANCE.md) ·
 [冻结基线](https://github.com/JerichoCheng/jcheng-manipulation)
@@ -76,11 +76,12 @@ JCHENG Robotics 是一个面向低成本硬件、强调可靠性与可审计性�
 | 项 | 状态 |
 |---|---|
 | 实验基线 | `jcheng-manipulation v1.0.0`，提交 `b3411e4`，已冻结；完整 G8 验收已记录 |
-| 生态里程碑 | **M1–M5.2 已完成**；M6 离线部分已合并，实机部分待授权 |
+| 生态里程碑 | **M1–M5.2 已完成**；M6 S13 与 S17 实机 MoveIt 已验证；S14 底盘与完整 G8 待做 |
 | 契约 | `jcheng-interfaces` v0.1.0：14 msg / 10 srv / 1 action，7 个 Schema，契约哈希已固定 |
-| 系统运行时 | `jcheng-system` 0.3.0-dev：13 个 ROS 包；M4 只读与 M5.2 核心实机已验证 |
-| 能力仓库 | `jcheng-mobile` 与 `jcheng-perception` v0.1.0（实验性、部分实机）；`jcheng-ops` v0.1.0（已部署） |
-| 新生态中的实机运动 | 受监督单关节与夹爪运动已通过（M5.2）；完整 G8 复验待做 |
+| 系统运行时 | `jcheng-system` 0.3.0-dev：13 个 ROS 包；M4 只读、M5.2 核心、M6 S13 + S17 实机已验证；S14/G8 待做 |
+| 运行时镜像 | `armpi-ultra:flatten-20261125`，7.1 GB arm64；20 节点 / 60 话题保持不变，重启后仍生效 |
+| 能力仓库 | `jcheng-mobile` v0.1.0 静态 `/scan`/`/odom`/`/map`；`jcheng-perception` v0.1.0 对齐深度 + split edge + 单次双视图；`jcheng-ops` v0.1.0 已部署 |
+| 新生态中的实机运动 | 受监督单关节与夹爪运动已通过（M5.2）；M6 S17 实机 plan-only 通过但未执行；完整 G8 复验待做 |
 | 文档 | 统一 README / ROADMAP / CHANGELOG / ACCEPTANCE；英文为主，中文 README 对照 |
 | 许可证 | 多数新仓库**进行中**；`jcheng-mobile` 初始化时带有 MIT；审查需解决该例外 |
 
@@ -123,9 +124,9 @@ Hardware plane          唯一发布者，厂商 DDS 域 0
 |---|---|---|
 | [`JCHENG-Robotics/.github`](https://github.com/JCHENG-Robotics/.github) | 治理、模板、复用 CI、生态文档 | M1 完成；文档标准 v1.0 |
 | [`JCHENG-Robotics/jcheng-interfaces`](https://github.com/JCHENG-Robotics/jcheng-interfaces) | 契约、Schema、契约哈希 | v0.1.0，已签名标签 |
-| [`JCHENG-Robotics/jcheng-system`](https://github.com/JCHENG-Robotics/jcheng-system) | 特权运行时、安全、仲裁、网关 | 0.3.0-dev；M6 离线 |
-| [`JCHENG-Robotics/jcheng-mobile`](https://github.com/JCHENG-Robotics/jcheng-mobile) | L3 移动底盘 | v0.1.0 实验性 |
-| [`JCHENG-Robotics/jcheng-perception`](https://github.com/JCHENG-Robotics/jcheng-perception) | L3 感知 | v0.1.0 实验性 |
+| [`JCHENG-Robotics/jcheng-system`](https://github.com/JCHENG-Robotics/jcheng-system) | 特权运行时、安全、仲裁、网关 | 0.3.0-dev；M6 S13 + S17 实机 |
+| [`JCHENG-Robotics/jcheng-mobile`](https://github.com/JCHENG-Robotics/jcheng-mobile) | L3 移动底盘 | v0.1.0；静态 bring-up |
+| [`JCHENG-Robotics/jcheng-perception`](https://github.com/JCHENG-Robotics/jcheng-perception) | L3 感知 | v0.1.0；对齐深度 + 单次双视图 |
 | [`JCHENG-Robotics/jcheng-ops`](https://github.com/JCHENG-Robotics/jcheng-ops) | 跨层运维 | v0.1.0 已部署 |
 
 ### 单一运动路径
@@ -194,10 +195,10 @@ Hardware plane          唯一发布者，厂商 DDS 域 0
 |---|---|---|
 | `.github` | 组织治理、模板、复用 CI、生态文档 | M1 完成；文档标准 v1.0 |
 | `jcheng-interfaces` | ROS IDL、HTTP/WS Schema、契约哈希 | v0.1.0 |
-| `jcheng-system` | 安全、控制权、运动、硬件桥、网关 | 0.3.0-dev；M6 离线已合并 |
+| `jcheng-system` | 安全、控制权、运动、硬件桥、网关 | 0.3.0-dev；M6 S13 + S17 实机 |
 | `jcheng-manipulation` | 冻结的 `v1.0.0` 实验基线与证据 | 只读参考 |
-| `jcheng-mobile` | 移动底盘能力（M10、SLAM、Nav2 意图） | v0.1.0 实验性；未实机验证 |
-| `jcheng-perception` | 边云分布式感知 | v0.1.0 实验性；部分实机链路 |
+| `jcheng-mobile` | 移动底盘能力（M10、SLAM、Nav2 意图） | v0.1.0；静态 `/scan`/`/odom`/`/map`；运动未验证 |
+| `jcheng-perception` | 边云分布式感知 | v0.1.0；对齐深度、split edge、单次双视图；重复性未验证 |
 | `jcheng-ops` | 无人值守运维、看门狗与恢复 | v0.1.0 已部署 |
 | `jcheng-mobile-bench` | 从 `jcheng-mobile` 拆出的台架材料 | 沙箱；不发布 |
 | `jcheng-teleop` | 遥操作能力 | 计划中 |
@@ -214,13 +215,13 @@ Hardware plane          唯一发布者，厂商 DDS 域 0
 | M3 | `jcheng-system` Mock 栈；租约、安全、仲裁、网关 | **完成** |
 | M4 | 机器人只读接入（不运动） | **完成** |
 | M5 | 受监督的单关节与夹爪执行 | **完成**（M5.1 Mock，M5.2 实机核心） |
-| M6 | 基线回放与 G8 复验 | **进行中**——S13 21/21、S17 plan-only 离线通过；真实 MoveIt、S14 底盘、完整 G8 待做 |
-| M7 | 首个集成能力模块 | **进行中**——`jcheng-mobile`、`jcheng-perception`、`jcheng-ops` 已准入 |
+| M6 | 基线回放与 G8 复验 | **进行中**——S13 21/21、S17 plan-only 与 S17 实机 MoveIt 通过；S14 底盘、完整 G8 待做 |
+| M7 | 首个集成能力模块 | **进行中**——mobile 静态 bring-up；perception 对齐深度、split edge 与单次双视图 |
 | M8 | 生态 v1.0 发布：锁文件、SBOM、验收报告 | 计划中 |
 
-M6 是当前门禁。决策回放已与基线一致（21/21），plan-only 契约已有测试；剩下的是执行：
-真实 MoveIt plan-only、S14 底盘、完整 G8 复跑与落点证据。每一项都需要单独、明确的授权。
-M5.2 还留下 S7（状态过期注入）与 S9（运行时发布者检测）未验证。
+M6 是当前门禁。决策回放已与基线一致（21/21），S17 plan-only 契约已对真实
+MoveIt 2.5.10 通过且未执行；剩下的是 S14 底盘、完整 G8 复跑与落点证据。
+每一项都需要单独、明确的授权。M5.2 还留下 S7（状态过期注入）与 S9（运行时发布者检测）未验证。
 
 ## 治理
 
@@ -244,8 +245,8 @@ M5.2 还留下 S7（状态过期注入）与 S9（运行时发布者检测）未
 - **底盘开环。** 任何底盘运动都会使桌面标定失效；底盘没有里程计。
 - **快速路径范围。** 4.0/20 档有总线确认，但只在一个方向上完成验证。
 - **误差预算门限。** 6 mm RSS 门限未满足；实测放置均值是另一个统计量，不能解读为通过门限。
-- **新生态成熟度。** M6 尚未完成；M6 的实机部分与 M5.2 的残余检查未验证。能力仓库
-  （`jcheng-mobile`、`jcheng-perception`）为实验性且部分未实机验证；不对其做运动声明。
+- **新生态成熟度。** M6 尚未完成：S14 与完整 G8 复跑待做，S7/S9 未验证。mobile 只有
+  静态 bring-up；perception 只有单次双视图，且腕部深度 reader 仍可能卡死。不对两者做运动声明。
 - **运维覆盖。** 看门狗尚未在真实卡死中触发；整机重启路径未演练，因为厂商启动序列会移动机械臂。
 - **许可证状态。** 基线与 `jcheng-mobile` 为 MIT；其余新仓库没有 `LICENSE`，审查完成前
   不授予复用许可。mobile 的文件保留待审查，不构成先例。

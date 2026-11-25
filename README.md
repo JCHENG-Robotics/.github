@@ -35,7 +35,8 @@ Organization profile: [English](profile/README.md) | [简体中文](profile/READ
 | [ROADMAP.md](ROADMAP.md) | Ecosystem milestones M0–M8 and current state |
 | [CHANGELOG.md](CHANGELOG.md) | Ecosystem-level change record |
 | [ACCEPTANCE.md](ACCEPTANCE.md) | Ecosystem acceptance status and evidence |
-| [acceptance/ecosystem-2026-11-24.json](acceptance/ecosystem-2026-11-24.json) | Machine-readable acceptance (schema v1; reviewer pending) |
+| [acceptance/ecosystem-2026-11-25.json](acceptance/ecosystem-2026-11-25.json) | Current machine-readable acceptance (schema v1; reviewer pending) |
+| [acceptance/ecosystem-2026-11-24.json](acceptance/ecosystem-2026-11-24.json) | Previous machine-readable acceptance (history) |
 | [docs/documentation-standard.md](docs/documentation-standard.md) | Document standard and status vocabulary |
 | [docs/repo-taxonomy.md](docs/repo-taxonomy.md) | Repository layers, dependency direction and admission checks |
 | [docs/templates/](docs/templates/) | README / ROADMAP / CHANGELOG / ACCEPTANCE templates |

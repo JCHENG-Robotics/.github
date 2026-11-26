@@ -16,11 +16,14 @@ Organization profile: [English](profile/README.md) | [简体中文](profile/READ
   `jcheng-manipulation` (frozen baseline), `jcheng-mobile`, `jcheng-perception`
   and `jcheng-ops`. `jcheng-mobile-bench` is an explicitly labelled bench
   sandbox and is not released.
+- `jcheng-benchmark` is a BENCH-layer, offline read-only benchmark harness
+  (v0.1.0, experimental). It is outside the runtime dependency graph and has no
+  recorded or hardware result yet.
 - Documentation standard: every product repository carries `README.md`,
   `README.zh-CN.md`, `ROADMAP.md`, `CHANGELOG.md` and `ACCEPTANCE.md`. See
   [docs/documentation-standard.md](docs/documentation-standard.md).
 - This repository has no `LICENSE`. `jcheng-mobile` was initialized with an MIT
-  `LICENSE`; the other product repositories have none. The third-party and
+  `LICENSE`; the other new repositories have none. The third-party and
   copyright review is pending, and the mobile file is retained pending review
   rather than removed retroactively. See
   [docs/license-review.md](docs/license-review.md).

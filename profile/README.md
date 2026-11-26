@@ -88,6 +88,7 @@ and the S1–S17 scenarios exist to prove the no-bypass boundary before any supe
 | System runtime | `jcheng-system` 0.3.0-dev: 13 ROS packages; M4 read-only, M5.2 core, M6 S13 + S17 real verified; S14/G8 pending |
 | Runtime image | `armpi-ultra:flatten-20261125`, 7.1 GB arm64; 20 nodes / 60 topics preserved and reboot persistent |
 | Capability repositories | `jcheng-mobile` v0.1.0 static `/scan`/`/odom`/`/map`; `jcheng-perception` v0.1.0 aligned depth + split edge + one dual-view run; `jcheng-ops` v0.1.0 deployed |
+| Benchmark | `jcheng-benchmark` v0.1.0 experimental; offline, read-only harness and synthetic self-test only; no recorded or hardware result |
 | Real-robot motion in the new ecosystem | Supervised single-joint and gripper motions passed (M5.2); M6 S17 real plan-only passed without execution; full G8 re-run pending |
 | Documentation | Unified README / ROADMAP / CHANGELOG / ACCEPTANCE set; English canonical, Chinese README |
 | License | **Pending** for most new repositories; `jcheng-mobile` carries MIT from initialization; the review must resolve the exception |
@@ -129,7 +130,7 @@ Hardware plane          one publisher, vendor DDS domain 0
 ```
 
 The founding repositories were deliberately small; the ecosystem has since
-added independently versioned capability and operations repositories:
+added independently versioned capability, operations and benchmark repositories:
 
 | Repository | Responsibility | Current state |
 |---|---|---|
@@ -139,6 +140,7 @@ added independently versioned capability and operations repositories:
 | [`JCHENG-Robotics/jcheng-mobile`](https://github.com/JCHENG-Robotics/jcheng-mobile) | L3 mobile base | v0.1.0; static bring-up |
 | [`JCHENG-Robotics/jcheng-perception`](https://github.com/JCHENG-Robotics/jcheng-perception) | L3 perception | v0.1.0; aligned depth + single dual-view run |
 | [`JCHENG-Robotics/jcheng-ops`](https://github.com/JCHENG-Robotics/jcheng-ops) | Cross-layer operations | v0.1.0 deployed |
+| [`JCHENG-Robotics/jcheng-benchmark`](https://github.com/JCHENG-Robotics/jcheng-benchmark) | Cross-layer read-only benchmark harness | v0.1.0 experimental; synthetic self-test only |
 
 ### The single motion path
 
@@ -220,6 +222,7 @@ the design record is in `jcheng-manipulation` branch `design/ecosystem-v1` (`doc
 | `jcheng-mobile` | Mobile-base capability (M10, SLAM, Nav2 intent) | v0.1.0; static `/scan`/`/odom`/`/map`; motion unverified |
 | `jcheng-perception` | Distributed edge/GPU perception | v0.1.0; aligned depth, split edge, one dual-view run; repeatability unverified |
 | `jcheng-ops` | Unattended operations, watchdog and recovery | v0.1.0 deployed |
+| `jcheng-benchmark` | Cross-layer read-only benchmark harness and evidence reports | v0.1.0 experimental; no recorded or hardware result |
 | `jcheng-mobile-bench` | Bench material split out of `jcheng-mobile` | Sandbox; not released |
 | `jcheng-teleop` | Teleoperation capability | Planned |
 | `jcheng-learning` | Datasets, training, policy inference | Planned |
@@ -249,8 +252,8 @@ Each requires separate, explicit authorization. M5.2 also leaves S7
 
 - `main` is protected on every repository: pull request, independent review, CODEOWNERS, linear
   history, no force-push or deletion. Required checks are per repository — `m1-gate` for governance
-  and perception, `m1-gate` + `m2-contract` for interfaces, five gates for the system runtime, and
-  `ops-gate` for operations.
+  and perception, `m1-gate` + `m2-contract` for interfaces, five gates for the system runtime,
+  `ops-gate` for operations, and `benchmark-gate` for the benchmark harness.
 - The single-account phase ended with a second reviewer (`@JerichoSwaine`), who has maintain access
   and is a CODEOWNER on every repository. `main` changes require one author and one reviewer;
   a documented break-glass procedure is not the default.
@@ -287,7 +290,8 @@ Each requires separate, explicit authorization. M5.2 also leaves S7
 
 The frozen `jcheng-manipulation v1.0.0` baseline is MIT-licensed. `jcheng-mobile`
 was initialized with an MIT `LICENSE`. The other new repositories (`.github`,
-`jcheng-interfaces`, `jcheng-system`, `jcheng-perception`, `jcheng-ops`) have **no
+`jcheng-interfaces`, `jcheng-system`, `jcheng-perception`, `jcheng-ops`,
+`jcheng-benchmark`) have **no
 `LICENSE` file**: the third-party dependency and copyright review is pending.
 Until that review is approved, no MIT grant is made for those repositories, and
 vendor assets are not redistributed. The `jcheng-mobile` file is **retained

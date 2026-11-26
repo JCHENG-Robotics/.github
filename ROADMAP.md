@@ -20,7 +20,8 @@
 | Mobile capability | Experimental | `jcheng-mobile` v0.1.0; static `/scan`, `/odom` and `/map` pass; motion, mount pose and navigation unverified |
 | Perception capability | Experimental | `jcheng-perception` v0.1.0; ADR 0004 aligned depth, split edge and one dual-view run; repeatability, multi-pose and motion unverified |
 | Operations | Deployed | `jcheng-ops` v0.1.0; four robot guards and Studio watchdog installed and verified |
-| License | Pending for most repositories | Frozen baseline and `jcheng-mobile` carry MIT (mobile retained pending review); `jcheng-interfaces`, `jcheng-system`, `jcheng-perception`, `jcheng-ops` and `.github` have no `LICENSE` |
+| Benchmark harness | Experimental | `jcheng-benchmark` v0.1.0; offline read-only harness and synthetic self-test only; no recorded or hardware result |
+| License | Pending for most repositories | Frozen baseline and `jcheng-mobile` carry MIT (mobile retained pending review); `jcheng-interfaces`, `jcheng-system`, `jcheng-perception`, `jcheng-ops`, `jcheng-benchmark` and `.github` have no `LICENSE` |
 
 ## Milestones
 

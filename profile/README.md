@@ -88,11 +88,11 @@ and the S1–S17 scenarios exist to prove the no-bypass boundary before any supe
 | Contracts | `jcheng-interfaces` v0.1.0: 14 msg / 10 srv / 1 action, seven schemas, pinned contract hash |
 | System runtime | `jcheng-system` 0.3.0-dev: 13 ROS packages; M4 read-only, M5.2 core, M6 S13 + S17 real verified; S14/G8 pending |
 | Runtime image | `armpi-ultra:flatten-20261125`, 7.1 GB arm64; 20 nodes / 60 topics preserved and reboot persistent |
-| Capability repositories | `jcheng-mobile` v0.1.0 static `/scan`/`/odom`/`/map`; `jcheng-perception` v0.1.0 aligned depth + split edge + one dual-view run; `jcheng-ops` v0.1.0 deployed |
-| Learning / simulation | `jcheng-learning` v0.1.0 offline dataset/training/policy boundary; `jcheng-simulation` v0.1.0 offline multi-robot plant on domain 43 (mock verified, Gazebo partial) |
-| Teleoperation | `jcheng-teleop` v0.1.0 admission-only scaffold; the reserved `TeleopCommand` stream is documented but not published; no input adapter, device access or motion |
-| Operator / orchestration | `jcheng-studio` v0.7.0 console + read-only REST/WS + sessions/replay; `jcheng-applications` v0.1.0 offline core + read-only transport; no DDS or motion |
-| Research | `jcheng-research` v0.1.0, public; reports and decisions only, no runtime code |
+| Capability repositories | `jcheng-mobile` v0.1.0 static `/scan`/`/odom`/`/map`; `jcheng-perception` v0.1.0 aligned depth + split edge + one dual-view run + offline ORE S0/S1; `jcheng-ops` v0.1.0 deployed |
+| Learning / simulation | `jcheng-learning` v0.2.0 M1 offline dataset infrastructure; `jcheng-simulation` v0.1.0 offline multi-robot plant on domain 43 (mock verified, Gazebo partial) |
+| Teleoperation | `jcheng-teleop` v0.3.0 M0 design + M1 ROS-free core; system mock intake and ArmPi/Gate-2 simulation bridge pass L3; no hardware |
+| Operator / orchestration | `jcheng-studio` v0.7.0 console + read-only REST/WS + sessions/replay; `jcheng-applications` v0.1.0 M3 mock run + S3 branches/tree/WAITING/derived; no DDS or motion |
+| Research | `jcheng-research` v0.1.0, public; draft reports and SAM3/AGX Orin experiments recorded, review pending |
 | Benchmark | `jcheng-benchmark` v0.1.0 experimental; offline, read-only harness and synthetic self-test only; no recorded or hardware result |
 | Real-robot motion in the new ecosystem | Supervised single-joint and gripper motions passed (M5.2); M6 S17 real plan-only passed without execution; full G8 re-run pending |
 | Documentation | Unified README / ROADMAP / CHANGELOG / ACCEPTANCE set; English canonical, Chinese README |

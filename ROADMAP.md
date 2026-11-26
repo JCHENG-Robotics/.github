@@ -21,9 +21,12 @@
 | Perception capability | Experimental | `jcheng-perception` v0.1.0; ADR 0004 aligned depth, split edge and one dual-view run; repeatability, multi-pose and motion unverified |
 | Operations | Deployed | `jcheng-ops` v0.1.0; four robot guards and Studio watchdog installed and verified |
 | Benchmark harness | Experimental | `jcheng-benchmark` v0.1.0; offline read-only harness and synthetic self-test only; no recorded or hardware result |
-| Operator console | Experimental | `jcheng-studio` v0.1.0; admission-only scaffold; no backend, UI or gateway call |
-| Application orchestration | Experimental | `jcheng-applications` v0.1.0; offline recipe/planning/runner core and mock tests only; no gateway transport, persisted run or hardware |
-| License | Pending for most repositories | Frozen baseline and `jcheng-mobile` carry MIT (mobile retained pending review); `jcheng-interfaces`, `jcheng-system`, `jcheng-perception`, `jcheng-ops`, `jcheng-benchmark`, `jcheng-studio`, `jcheng-applications` and `.github` have no `LICENSE` |
+| Operator console | Experimental | `jcheng-studio` v0.7.0; ported console, read-only REST/WS, sessions, intent path and replay; no hardware acceptance |
+| Application orchestration | Experimental | `jcheng-applications` v0.1.0; offline recipe/planning/runner core and M2 read-only transport; no motion |
+| Learning | Experimental | `jcheng-learning` v0.1.0; offline dataset/training/policy-artifact boundary; no runtime node, policy or hardware |
+| Simulation | Experimental | `jcheng-simulation` v0.1.0; offline multi-robot plant on domain 43; mock verified, Gazebo partial; no hardware |
+| Research workspace | Experimental | `jcheng-research` v0.1.0; private, reports and decisions only; no investigation complete |
+| License | Pending for most repositories | Frozen baseline and `jcheng-mobile` carry MIT (mobile retained pending review); `jcheng-interfaces`, `jcheng-system`, `jcheng-perception`, `jcheng-ops`, `jcheng-learning`, `jcheng-simulation`, `jcheng-research`, `jcheng-benchmark`, `jcheng-studio`, `jcheng-applications` and `.github` have no `LICENSE` |
 
 ## Milestones
 
@@ -37,7 +40,7 @@
 | M5.1 | Mock ROS services/actions, lease, safety, stop latch | Complete (2026-11-24) | 5 ROS tests; `m5-mock` green | `jcheng-system` `tests_ros/` |
 | M5.2 | Supervised single-joint and gripper execution | Complete, core (2026-11-24) | `COMPLETED` + `bus_verified`; stop latches | `docs/ecosystem/evidence/m52-final-20261124/` |
 | M6 | Baseline replay and G8 re-validation | In progress — S13 21/21 and S17 plan-only + real pass; S14 base and full G8 pending | `docs/ecosystem/evidence/m6-s13-20261124/`; `jcheng-system/deploy/armpi-ultra/docs/ACCEPTANCE-20261125.md` |
-| M7 | First integrated capability module on the system API | In progress — mobile static bring-up, perception split edge/dual-view | A capability passes L3 and supervised L5 through the system boundary | `jcheng-mobile`, `jcheng-perception` roadmaps |
+| M7 | First integrated capability module on the system API | In progress — mobile static bring-up, perception split edge/dual-view; studio/applications/learning/simulation scaffolds admitted | A capability passes L3 and supervised L5 through the system boundary | `jcheng-mobile`, `jcheng-perception`, `jcheng-studio`, `jcheng-applications`, `jcheng-learning`, `jcheng-simulation` roadmaps |
 | M8 | Ecosystem v1.0: lockfile, SBOM, signed acceptance report | Planned | All repositories at declared versions; ecosystem acceptance passes | — |
 
 ## Next

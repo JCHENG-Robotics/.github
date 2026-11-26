@@ -41,8 +41,12 @@ verification JSON is in the local staging archive
 | Mobile capability v0.1.0 | `jcheng-mobile` | L0–L5 | partial pass — offline + static `/scan`, `/odom`, `/map`; motion, mount pose and navigation unverified | `jcheng-mobile/ACCEPTANCE.md` |
 | Perception capability v0.1.0 | `jcheng-perception` | L1–L5 | partial — synthetic + data path + aligned depth + split edge + one dual-view run; repeatability, multi-pose and motion unverified | `jcheng-perception/ACCEPTANCE.md` |
 | Operations v0.1.0 | `jcheng-ops` | L5 | partial (installed and verified; watchdog never fired) | `jcheng-ops/ACCEPTANCE.md` |
-| Operator console v0.1.0 | `jcheng-studio` | L0–L1 | pass — 13 tests, gate and CI; no backend, UI or gateway call | `jcheng-studio/ACCEPTANCE.md` |
-| Application orchestration v0.1.0 | `jcheng-applications` | L0–L2 | pass — 89 tests, gate and CI; no transport, persisted run or hardware | `jcheng-applications/ACCEPTANCE.md` |
+| Operator console v0.7.0 | `jcheng-studio` | L0–L5 | pass — ported console, read-only REST/WS, sessions, intent path and M3 replay; no hardware acceptance | `jcheng-studio/ACCEPTANCE.md` |
+| Application orchestration v0.1.0 | `jcheng-applications` | L0–L2 | pass — 89 tests, offline core and M2 read-only transport; no motion | `jcheng-applications/ACCEPTANCE.md` |
+| Learning scaffold v0.1.0 | `jcheng-learning` | L0 | pass — docs/admission only; no runtime node, policy or hardware | `jcheng-learning/ACCEPTANCE.md` |
+| Simulation plant v0.1.0 | `jcheng-simulation` | L0–L5 | pass (offline only) — mock verified, Gazebo partial; no hardware | `jcheng-simulation/ACCEPTANCE.md` |
+| Benchmark harness v0.1.0 | `jcheng-benchmark` | L0–L2 | inconclusive — synthetic self-test only; no suite result | `jcheng-benchmark/ACCEPTANCE.md` |
+| Research workspace v0.1.0 | `jcheng-research` | L0 | pass — structure/docs only; no completed investigation | `jcheng-research/ACCEPTANCE.md` |
 
 ## 3. Verified claims
 
@@ -61,6 +65,7 @@ verification JSON is in the local staging archive
 | The mobile capability starts no hardware path and passes a static `/scan`/`/odom`/`/map` bring-up | L0–L5 | `jcheng-mobile/ACCEPTANCE.md` |
 | The perception edge produces timestamp-matched fused targets and a single dual-view run | L3–L5 | `jcheng-perception/ACCEPTANCE.md` |
 | The operations guards are installed and observe the robot | L5 | 2026-11-24 verification; `status.json` green |
+| The learning, simulation, studio, applications, benchmark and research repositories pass their declared offline/L0 gates | L0–L2 | their `ACCEPTANCE.md` reports |
 
 ## 4. Not verified
 
@@ -75,6 +80,7 @@ verification JSON is in the local staging archive
 | Perception dual-view repeatability | Wrist depth DDS reader wedged at 7.5 s in run 10 | Full dual-view window not repeatable |
 | Operations watchdog real trigger | No wedge reproduced; no synthetic kernel stall | Trigger path correct by design only |
 | Operations reboot with drop-ins | Vendor boot sequence moves the arm; needs an operator | OOM settings take effect after restart only |
+| New L3/L4/BENCH/research hardware or motion claims | These repositories are offline/mock/scaffold only | No hardware or motion claim is made for them |
 | Ecosystem v1.0 acceptance | Not run | No v1.0 release claim |
 | License review | Pending; `jcheng-mobile` carries MIT from initialization (retained pending review), the other new repositories have no `LICENSE` | No uniform reuse position; the review must confirm or replace the mobile file |
 
@@ -91,6 +97,8 @@ verification JSON is in the local staging archive
 - The mobile mount/footprint values are provisional; motion is not accepted.
 - Perception now uses aligned external depth (ADR 0004), but only one dual-view
   run exists and the wrist depth reader can still wedge.
+- Learning, simulation, studio, applications, benchmark and research are
+  offline/mock/scaffold repositories; none has a hardware or motion acceptance.
 - The ecosystem is not safety-certified and claims no SIL/PL compliance.
 - License status is not uniform: `jcheng-mobile` carries an MIT `LICENSE`,
   retained pending review, while the other new repositories have no `LICENSE`
@@ -100,7 +108,7 @@ verification JSON is in the local staging archive
 
 | Role | Name | Date |
 |---|---|---|
-| Operator | JerichoCheng | 2026-11-25 |
+| Operator | JerichoCheng | 2026-11-26 |
 | Reviewer | pending | — |
 
 A signed acceptance requires a second reviewer and, for any L5 claim, the
@@ -109,9 +117,9 @@ for either.
 
 ## 7. Machine-readable report
 
-[`acceptance/ecosystem-2026-11-25.json`](acceptance/ecosystem-2026-11-25.json)
+[`acceptance/ecosystem-2026-11-26.json`](acceptance/ecosystem-2026-11-26.json)
 follows `acceptance-report.v1` and validates against
 [`acceptance-report.v1.schema.json`](https://github.com/JCHENG-Robotics/jcheng-interfaces/blob/main/schemas/acceptance-report.v1.schema.json).
 Its `reviewer` is `pending` and its `result` is `inconclusive`; it is a status
-record, not a signed acceptance. The 2026-11-24 report is kept as history.
-Per-repository reports, when produced, must use the same schema.
+record, not a signed acceptance. The 2026-11-25 and 2026-11-24 reports are kept
+as history. Per-repository reports, when produced, must use the same schema.

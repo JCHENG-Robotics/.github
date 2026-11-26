@@ -23,6 +23,11 @@ versioned.
   `inconclusive`).
 - `jcheng-mobile/LICENSE-REVIEW.md`: the pre-existing MIT file is retained
   pending the organization review instead of being removed retroactively.
+- `jcheng-benchmark` v0.1.0: a BENCH-layer, offline read-only benchmark
+  harness with pre-registered suite declarations, a strict JSONL runner,
+  provenance-labelled reports and a synthetic self-test; no recorded or
+  hardware result yet. The organization profile and repository taxonomy now
+  include it.
 
 ## 2026-11-25 — S17 real, image rebuild, static mobile and dual-view perception
 

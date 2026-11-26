@@ -44,6 +44,7 @@ verification JSON is in the local staging archive
 | Operator console v0.7.0 | `jcheng-studio` | L0–L5 | pass — ported console, read-only REST/WS, sessions, intent path and M3 replay; no hardware acceptance | `jcheng-studio/ACCEPTANCE.md` |
 | Application orchestration v0.1.0 | `jcheng-applications` | L0–L2 | pass — 89 tests, offline core and M2 read-only transport; no motion | `jcheng-applications/ACCEPTANCE.md` |
 | Learning scaffold v0.1.0 | `jcheng-learning` | L0 | pass — docs/admission only; no runtime node, policy or hardware | `jcheng-learning/ACCEPTANCE.md` |
+| Teleoperation scaffold v0.1.0 | `jcheng-teleop` | L0 | pass — docs/admission only; reserved intent stream not published; no input adapter or hardware | `jcheng-teleop/ACCEPTANCE.md` |
 | Simulation plant v0.1.0 | `jcheng-simulation` | L0–L5 | pass (offline only) — mock verified, Gazebo partial; no hardware | `jcheng-simulation/ACCEPTANCE.md` |
 | Benchmark harness v0.1.0 | `jcheng-benchmark` | L0–L2 | inconclusive — synthetic self-test only; no suite result | `jcheng-benchmark/ACCEPTANCE.md` |
 | Research workspace v0.1.0 | `jcheng-research` | L0 | pass — structure/docs only; no completed investigation | `jcheng-research/ACCEPTANCE.md` |
@@ -65,7 +66,7 @@ verification JSON is in the local staging archive
 | The mobile capability starts no hardware path and passes a static `/scan`/`/odom`/`/map` bring-up | L0–L5 | `jcheng-mobile/ACCEPTANCE.md` |
 | The perception edge produces timestamp-matched fused targets and a single dual-view run | L3–L5 | `jcheng-perception/ACCEPTANCE.md` |
 | The operations guards are installed and observe the robot | L5 | 2026-11-24 verification; `status.json` green |
-| The learning, simulation, studio, applications, benchmark and research repositories pass their declared offline/L0 gates | L0–L2 | their `ACCEPTANCE.md` reports |
+| The learning, teleop, simulation, studio, applications, benchmark and research repositories pass their declared offline/L0 gates | L0–L2 | their `ACCEPTANCE.md` reports |
 
 ## 4. Not verified
 

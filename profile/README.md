@@ -227,7 +227,7 @@ the design record is in `jcheng-manipulation` branch `design/ecosystem-v1` (`doc
 | `jcheng-teleop` | Teleoperation capability | Planned |
 | `jcheng-learning` | Datasets, training, policy inference | Planned |
 | `jcheng-studio` | Operator console: debug, diagnostics and experiment records | Experimental; v0.1.0 scaffold |
-| `jcheng-applications` | Task orchestration | Planned |
+| `jcheng-applications` | Task orchestration: recipe validation, deterministic planning and fail-closed intent sequencing | Experimental; v0.1.0 offline core |
 
 ## Roadmap
 

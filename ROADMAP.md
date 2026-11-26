@@ -1,6 +1,6 @@
 # JCHENG ecosystem roadmap
 
-> Status: **M1–M5.2 complete; M6 in progress** as of 2026-11-25.
+> Status: **M1–M5.2 complete; M6 in progress** as of 2026-11-26.
 > The ecosystem has not reached v1.0 and makes no v1.0 acceptance claim.
 > English canonical. Repository-local roadmaps live in each repository.
 
@@ -21,7 +21,9 @@
 | Perception capability | Experimental | `jcheng-perception` v0.1.0; ADR 0004 aligned depth, split edge and one dual-view run; repeatability, multi-pose and motion unverified |
 | Operations | Deployed | `jcheng-ops` v0.1.0; four robot guards and Studio watchdog installed and verified |
 | Benchmark harness | Experimental | `jcheng-benchmark` v0.1.0; offline read-only harness and synthetic self-test only; no recorded or hardware result |
-| License | Pending for most repositories | Frozen baseline and `jcheng-mobile` carry MIT (mobile retained pending review); `jcheng-interfaces`, `jcheng-system`, `jcheng-perception`, `jcheng-ops`, `jcheng-benchmark` and `.github` have no `LICENSE` |
+| Operator console | Experimental | `jcheng-studio` v0.1.0; admission-only scaffold; no backend, UI or gateway call |
+| Application orchestration | Experimental | `jcheng-applications` v0.1.0; offline recipe/planning/runner core and mock tests only; no gateway transport, persisted run or hardware |
+| License | Pending for most repositories | Frozen baseline and `jcheng-mobile` carry MIT (mobile retained pending review); `jcheng-interfaces`, `jcheng-system`, `jcheng-perception`, `jcheng-ops`, `jcheng-benchmark`, `jcheng-studio`, `jcheng-applications` and `.github` have no `LICENSE` |
 
 ## Milestones
 

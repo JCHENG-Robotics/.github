@@ -16,7 +16,7 @@ Organization profile: [profile/README.md](profile/README.md) | [profile/README.z
 - Ecosystem repositories: `.github`, `jcheng-interfaces`, `jcheng-system`,
   `jcheng-manipulation` (frozen baseline), `jcheng-mobile`, `jcheng-perception`,
   `jcheng-learning`, `jcheng-simulation`, `jcheng-studio`,
-  `jcheng-applications` and `jcheng-ops`. `jcheng-research` is a private
+  `jcheng-applications` and `jcheng-ops`. `jcheng-research` is a public
   investigation workspace. `jcheng-mobile-bench` is an explicitly labelled
   bench sandbox and is not released.
 - `jcheng-learning` (v0.1.0) is an offline dataset/training/policy-artifact
@@ -32,7 +32,7 @@ Organization profile: [profile/README.md](profile/README.md) | [profile/README.z
   boundary; neither joins a DDS domain, opens a device or executes motion.
   Studio has a ported console, read-only REST/WS, a session store and replay;
   Applications has an offline recipe/planning/runner core and a read-only
-  transport. `jcheng-research` (private, v0.1.0) produces reports and
+  transport. `jcheng-research` (public, v0.1.0) produces reports and
   decisions only; it is outside the runtime graph.
 - Documentation standard: every product repository carries `README.md`,
   `README.zh-CN.md`, `ROADMAP.md`, `CHANGELOG.md` and `ACCEPTANCE.md`. The

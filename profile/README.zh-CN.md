@@ -85,7 +85,7 @@ JCHENG Robotics 是一个面向低成本硬件、强调可靠性与可审计性�
 | 学习 / 仿真 | `jcheng-learning` v0.1.0 离线数据集/训练/策略边界；`jcheng-simulation` v0.1.0 域 43 上的离线多机器人被控对象（mock 已验证，Gazebo 部分验证） |
 | 遥操作 | `jcheng-teleop` v0.1.0 仅准入骨架；预留的 `TeleopCommand` 流已记录但未发布；无输入适配器、无设备访问、无运动 |
 | 操作台 / 编排 | `jcheng-studio` v0.7.0 控制台 + 只读 REST/WS + 会话/回放；`jcheng-applications` v0.1.0 离线核心 + 只读传输；不加入 DDS、不执行运动 |
-| 调研 | `jcheng-research` v0.1.0，私有；只产出报告与决策，无运行时代码 |
+| 调研 | `jcheng-research` v0.1.0，公开；只产出报告与决策，无运行时代码 |
 | 基准 | `jcheng-benchmark` v0.1.0 实验性；离线只读 runner 与合成自测；尚无可记录数据或硬件结果 |
 | 新生态中的实机运动 | 受监督单关节与夹爪运动已通过（M5.2）；M6 S17 实机 plan-only 通过但未执行；完整 G8 复验待做 |
 | 文档 | 统一 README / ROADMAP / CHANGELOG / ACCEPTANCE；英文为主，中文 README 对照 |
@@ -140,7 +140,7 @@ Hardware plane          唯一发布者，厂商 DDS 域 0
 | [`JCHENG-Robotics/jcheng-simulation`](https://github.com/JCHENG-Robotics/jcheng-simulation) | 域 43 上的离线多机器人被控对象 | v0.1.0；mock 已验证，Gazebo 部分验证 |
 | [`JCHENG-Robotics/jcheng-studio`](https://github.com/JCHENG-Robotics/jcheng-studio) | L4 操作台 | v0.7.0 |
 | [`JCHENG-Robotics/jcheng-applications`](https://github.com/JCHENG-Robotics/jcheng-applications) | L4 任务编排 | v0.1.0 |
-| [`JCHENG-Robotics/jcheng-research`](https://github.com/JCHENG-Robotics/jcheng-research) | 私有调研工作区 | v0.1.0；在运行时图之外 |
+| [`JCHENG-Robotics/jcheng-research`](https://github.com/JCHENG-Robotics/jcheng-research) | 公开调研工作区 | v0.1.0；在运行时图之外 |
 
 ### 单一运动路径
 
@@ -216,7 +216,7 @@ Hardware plane          唯一发布者，厂商 DDS 域 0
 | `jcheng-benchmark` | 跨层只读基准工具与证据报告 | v0.1.0 实验性；无可记录数据或硬件结果 |
 | `jcheng-simulation` | 域 43 上的离线多机器人被控对象 | v0.1.0；mock 已验证，Gazebo 部分验证 |
 | `jcheng-learning` | 数据集、训练与策略产物（离线） | v0.1.0；无运行时或策略 |
-| `jcheng-research` | 私有调研工作区：报告与决策 | v0.1.0；在运行时图之外 |
+| `jcheng-research` | 公开调研工作区：报告与决策 | v0.1.0；在运行时图之外 |
 | `jcheng-mobile-bench` | 台架材料沙箱 | 沙箱；不发布 |
 | `jcheng-teleop` | 遥操作意图：操作员输入到有界、受租约约束的意图 | 实验性；v0.1.0 仅准入骨架 |
 | `jcheng-studio` | 操作台：调试、诊断与实验记录 | 实验性；v0.7.0 控制台、REST/WS、会话、回放 |

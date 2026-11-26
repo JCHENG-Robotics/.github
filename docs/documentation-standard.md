@@ -35,8 +35,8 @@ Definitions:
 - **Product repository**: a repository with runtime, contract or operations
   content that is versioned and accepted independently: `jcheng-interfaces`,
   `jcheng-system`, `jcheng-manipulation`, `jcheng-mobile`,
-  `jcheng-perception`, `jcheng-ops`. New capability repositories join this set
-  when they are admitted.
+  `jcheng-perception`, `jcheng-ops`, `jcheng-simulation`. New capability
+  repositories join this set when they are admitted.
 - **Governance repository**: `.github`. It carries the bilingual organization
   profile plus ecosystem-level `ROADMAP.md`, `CHANGELOG.md`, `ACCEPTANCE.md`
   and this standard. It has no `VERSION` and no product acceptance.

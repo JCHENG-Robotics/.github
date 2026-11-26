@@ -81,6 +81,7 @@ JCHENG Robotics 是一个面向低成本硬件、强调可靠性与可审计性�
 | 系统运行时 | `jcheng-system` 0.3.0-dev：13 个 ROS 包；M4 只读、M5.2 核心、M6 S13 + S17 实机已验证；S14/G8 待做 |
 | 运行时镜像 | `armpi-ultra:flatten-20261125`，7.1 GB arm64；20 节点 / 60 话题保持不变，重启后仍生效 |
 | 能力仓库 | `jcheng-mobile` v0.1.0 静态 `/scan`/`/odom`/`/map`；`jcheng-perception` v0.1.0 对齐深度 + split edge + 单次双视图；`jcheng-ops` v0.1.0 已部署 |
+| 仿真 | `jcheng-simulation` v0.1.0 实验性：确定性 mock + Gazebo Harmonic 机械臂植物，仅域 43；离线验证，无硬件路径 |
 | 新生态中的实机运动 | 受监督单关节与夹爪运动已通过（M5.2）；M6 S17 实机 plan-only 通过但未执行；完整 G8 复验待做 |
 | 文档 | 统一 README / ROADMAP / CHANGELOG / ACCEPTANCE；英文为主，中文 README 对照 |
 | 许可证 | 多数新仓库**进行中**；`jcheng-mobile` 初始化时带有 MIT；审查需解决该例外 |
@@ -128,6 +129,7 @@ Hardware plane          唯一发布者，厂商 DDS 域 0
 | [`JCHENG-Robotics/jcheng-mobile`](https://github.com/JCHENG-Robotics/jcheng-mobile) | L3 移动底盘 | v0.1.0；静态 bring-up |
 | [`JCHENG-Robotics/jcheng-perception`](https://github.com/JCHENG-Robotics/jcheng-perception) | L3 感知 | v0.1.0；对齐深度 + 单次双视图 |
 | [`JCHENG-Robotics/jcheng-ops`](https://github.com/JCHENG-Robotics/jcheng-ops) | 跨层运维 | v0.1.0 已部署 |
+| [`JCHENG-Robotics/jcheng-simulation`](https://github.com/JCHENG-Robotics/jcheng-simulation) | 离线仿真被控对象（mock + Gazebo Harmonic） | v0.1.0 实验性；仅离线验证 |
 
 ### 单一运动路径
 
@@ -200,6 +202,7 @@ Hardware plane          唯一发布者，厂商 DDS 域 0
 | `jcheng-mobile` | 移动底盘能力（M10、SLAM、Nav2 意图） | v0.1.0；静态 `/scan`/`/odom`/`/map`；运动未验证 |
 | `jcheng-perception` | 边云分布式感知 | v0.1.0；对齐深度、split edge、单次双视图；重复性未验证 |
 | `jcheng-ops` | 无人值守运维、看门狗与恢复 | v0.1.0 已部署 |
+| `jcheng-simulation` | 离线仿真被控对象（mock + Gazebo Harmonic，域 43） | v0.1.0 实验性；仅离线验证 |
 | `jcheng-mobile-bench` | 从 `jcheng-mobile` 拆出的台架材料 | 沙箱；不发布 |
 | `jcheng-teleop` | 遥操作能力 | 计划中 |
 | `jcheng-learning` | 数据集、训练、策略推理 | 计划中 |
@@ -248,14 +251,16 @@ MoveIt 2.5.10 通过且未执行；剩下的是 S14 底盘、完整 G8 复跑与
 - **新生态成熟度。** M6 尚未完成：S14 与完整 G8 复跑待做，S7/S9 未验证。mobile 只有
   静态 bring-up；perception 只有单次双视图，且腕部深度 reader 仍可能卡死。不对两者做运动声明。
 - **运维覆盖。** 看门狗尚未在真实卡死中触发；整机重启路径未演练，因为厂商启动序列会移动机械臂。
-- **许可证状态。** 基线与 `jcheng-mobile` 为 MIT；其余新仓库没有 `LICENSE`，审查完成前
-  不授予复用许可。mobile 的文件保留待审查，不构成先例。
+- **许可证状态。** 基线与 `jcheng-mobile` 为 MIT；其余新仓库（包括
+  `jcheng-simulation`）没有 `LICENSE`，审查完成前不授予复用许可。mobile 的文件
+  保留待审查，不构成先例。
 
 ## 许可证
 
 冻结的 `jcheng-manipulation v1.0.0` 基线为 MIT。`jcheng-mobile` 在初始化时已带有一份
 MIT `LICENSE`。其余新仓库（`.github`、`jcheng-interfaces`、`jcheng-system`、
-`jcheng-perception`、`jcheng-ops`）**没有 `LICENSE`**：第三方依赖与版权审查仍在进行。
+`jcheng-perception`、`jcheng-ops`、`jcheng-simulation`）**没有 `LICENSE`**：第三方依赖
+与版权审查仍在进行。
 审查批准前，这些仓库不授予 MIT 许可，厂商资产不参与再分发。`jcheng-mobile` 的文件
 **保留待审查**（见其 `LICENSE-REVIEW.md`），不构成给其他仓库添加许可证的先例。详见
 [`license-review.md`](https://github.com/JCHENG-Robotics/.github/blob/main/docs/license-review.md)。

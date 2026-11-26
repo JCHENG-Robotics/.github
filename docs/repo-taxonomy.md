@@ -11,14 +11,16 @@
 | L3 | `jcheng-teleop` / `jcheng-learning` | 遥操作 / 学习（计划中） | 发布厂商话题、打开串口、加入硬件域 |
 | L4 | `jcheng-applications` | 任务编排、操作界面（计划中） | ROS 硬件话题、rclpy 直连 |
 | OPS | `jcheng-ops` | 无人值守巡检、看门狗、服务自愈 | 发送运动命令、加入 DDS 图、访问设备 |
+| SIM | `jcheng-simulation` | 离线仿真被控对象：确定性 mock + Gazebo Harmonic，仅域 43，`/sim/*` 话题 | 发布厂商话题、加入 0/41/42、成为运动源、复制厂商网格/权重 |
 | BENCH | `jcheng-mobile-bench` | 台架材料沙箱（不发布） | 被能力仓库或运行时依赖 |
 
 依赖方向：L4 -> L2 API；L3 -> L1 + L2 客户端；L2 -> L1；OPS -> 仅 HTTP 健康端点；L0 -> 所有（仅 CI）。
-`jcheng-mobile-bench` 不在依赖图中。
+`jcheng-mobile-bench`、`jcheng-benchmark` 与 `jcheng-simulation` 不在依赖图中；
+`jcheng-simulation` 只加入域 43，且不被任何运行时仓库导入。
 
 ## 文档要求
 
-每个产品仓库（L1–L4 与 OPS）必须具备，且结构遵循
+每个产品仓库（L1–L4、OPS 与 SIM）必须具备，且结构遵循
 [`documentation-standard.md`](documentation-standard.md)：
 
 - [ ] `README.md`（英文主文档）与 `README.zh-CN.md`（中文对照）。
@@ -39,3 +41,5 @@
 - [ ] 有 `capability.yaml`、CI、失败语义、契约握手测试。
 - [ ] 具备完整四件套文档（见上）。
 - [ ] 首次接入有受监督实机证据（如涉及运动）。
+- [ ] SIM 仓库只加入域 43，使用 `/sim/*` 与 `truth=simulated`，不发布厂商话题、
+      不成为运动源、不访问设备。

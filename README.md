@@ -8,14 +8,15 @@ and the ecosystem-level README, ROADMAP, CHANGELOG and acceptance report.
 Organization profile: [English](profile/README.md) | [简体中文](profile/README.zh-CN.md)
 (English is canonical; the Chinese page is a translation.)
 
-## Current state (2026-11-24)
+## Current state (2026-11-26)
 
 - M1–M5.2 are complete; the offline part of M6 is merged (S13 replay 21/21,
   S17 plan-only). The real-robot part of M6 awaits separate authorization.
 - Ecosystem repositories: `.github`, `jcheng-interfaces`, `jcheng-system`,
-  `jcheng-manipulation` (frozen baseline), `jcheng-mobile`, `jcheng-perception`
-  and `jcheng-ops`. `jcheng-mobile-bench` is an explicitly labelled bench
-  sandbox and is not released.
+  `jcheng-manipulation` (frozen baseline), `jcheng-mobile`, `jcheng-perception`,
+  `jcheng-ops` and `jcheng-simulation` (offline plant, domain 43 only).
+  `jcheng-mobile-bench` is an explicitly labelled bench sandbox and is not
+  released.
 - Documentation standard: every product repository carries `README.md`,
   `README.zh-CN.md`, `ROADMAP.md`, `CHANGELOG.md` and `ACCEPTANCE.md`. See
   [docs/documentation-standard.md](docs/documentation-standard.md).

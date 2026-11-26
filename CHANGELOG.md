@@ -44,12 +44,18 @@ versioned.
   profile, roadmap, acceptance and repository taxonomy now include it.
 - `jcheng-simulation` v0.1.0: offline multi-robot plant engine on domain 43;
   deterministic mock verified, Gazebo Harmonic partially verified.
-- `jcheng-research` v0.1.0: private investigation workspace for reports and
+- `jcheng-research` v0.1.0: public investigation workspace for reports and
   decisions; outside the runtime dependency graph.
 - Language switch standardized in every README: `**English** | [简体中文](README.zh-CN.md)`
   (English) and `**简体中文** | [English](README.md)` (Chinese) as the first line
   after the H1; the status block keeps one canonical sentence without a second
   link. `docs/documentation-standard.md` and both templates updated.
+
+### Changed
+
+- `jcheng-research` is public on GitHub; its README, AGENTS.md, ACCEPTANCE.md,
+  LICENSE-REVIEW.md, the repository taxonomy and the organization profile now
+  state that instead of claiming a private repository.
 
 ## 2026-11-25 — S17 real, image rebuild, static mobile and dual-view perception
 

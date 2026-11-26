@@ -41,6 +41,8 @@ verification JSON is in the local staging archive
 | Mobile capability v0.1.0 | `jcheng-mobile` | L0–L5 | partial pass — offline + static `/scan`, `/odom`, `/map`; motion, mount pose and navigation unverified | `jcheng-mobile/ACCEPTANCE.md` |
 | Perception capability v0.1.0 | `jcheng-perception` | L1–L5 | partial — synthetic + data path + aligned depth + split edge + one dual-view run; repeatability, multi-pose and motion unverified | `jcheng-perception/ACCEPTANCE.md` |
 | Operations v0.1.0 | `jcheng-ops` | L5 | partial (installed and verified; watchdog never fired) | `jcheng-ops/ACCEPTANCE.md` |
+| Operator console v0.1.0 | `jcheng-studio` | L0–L1 | pass — 13 tests, gate and CI; no backend, UI or gateway call | `jcheng-studio/ACCEPTANCE.md` |
+| Application orchestration v0.1.0 | `jcheng-applications` | L0–L2 | pass — 89 tests, gate and CI; no transport, persisted run or hardware | `jcheng-applications/ACCEPTANCE.md` |
 
 ## 3. Verified claims
 

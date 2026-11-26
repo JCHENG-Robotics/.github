@@ -32,6 +32,12 @@ versioned.
   (the ArmPi Debug Studio's ecosystem home) — gateway HTTP/WS only, no DDS
   domain, no device access and no motion execution. The organization profile
   and repository taxonomy now include it.
+- `jcheng-applications` v0.1.0: admission plus an offline L4 task-orchestration
+  core — recipe validation against the pinned gateway contract, deterministic
+  plans and a fail-closed runner over an abstract gateway port. No HTTP/WS
+  client, no DDS domain, no device access and no motion; the organization
+  profile, ecosystem roadmap, acceptance report and repository taxonomy now
+  include it.
 
 ## 2026-11-25 — S17 real, image rebuild, static mobile and dual-view perception
 

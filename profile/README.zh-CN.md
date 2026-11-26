@@ -207,7 +207,7 @@ Hardware plane          唯一发布者，厂商 DDS 域 0
 | `jcheng-teleop` | 遥操作能力 | 计划中 |
 | `jcheng-learning` | 数据集、训练、策略推理 | 计划中 |
 | `jcheng-studio` | 操作台：调试、诊断与实验记录 | 实验性；v0.1.0 骨架 |
-| `jcheng-applications` | 任务编排 | 计划中 |
+| `jcheng-applications` | 任务编排：配方校验、确定性规划与失败关闭的意图序列 | 实验性；v0.1.0 离线核心 |
 
 ## 路线图
 

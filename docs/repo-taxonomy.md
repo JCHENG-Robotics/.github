@@ -10,7 +10,7 @@
 | L3 | `jcheng-perception` | 边云分布式感知，输出建议位姿 | 发布运动命令、打开相机设备、伪造深度/TF |
 | L3 | `jcheng-teleop` / `jcheng-learning` | 遥操作 / 学习（计划中） | 发布厂商话题、打开串口、加入硬件域 |
 | L4 | `jcheng-studio` | 操作台：连接诊断、关节调试、轨迹检查与实验记录；只调用网关 HTTP/WS | 加入 DDS 域、ROS 硬件话题、rclpy 直连、访问设备、执行运动 |
-| L4 | `jcheng-applications` | 任务编排（计划中） | ROS 硬件话题、rclpy 直连 |
+| L4 | `jcheng-applications` | 任务编排：配方校验、确定性规划、失败关闭的网关意图序列（v0.1.0 离线核心） | ROS 硬件话题、rclpy 直连、加入 DDS 域、直接执行运动 |
 | OPS | `jcheng-ops` | 无人值守巡检、看门狗、服务自愈 | 发送运动命令、加入 DDS 图、访问设备 |
 | BENCH | `jcheng-benchmark` | 跨层只读基准：suite 声明、离线 runner、阈值与证据报告 | 运行时依赖、硬件访问、运动命令、生成测量数据 |
 | BENCH | `jcheng-mobile-bench` | 台架材料沙箱（不发布） | 被能力仓库或运行时依赖 |
@@ -19,6 +19,8 @@
 `jcheng-benchmark` 与 `jcheng-mobile-bench` 不在依赖图中。
 `jcheng-studio`（L4，2026-11-26 准入，v0.1.0 骨架）只经系统网关的 HTTP/WS 接口
 访问机器人，不加入任何 DDS 域，也不成为运动来源。
+`jcheng-applications`（L4，2026-11-26 准入，v0.1.0 骨架 + 离线编排核心）只经系统
+网关的 HTTP/WS 接口提交任务意图，不加入任何 DDS 域、不打开设备，也不成为运动来源。
 
 ## 文档要求
 

@@ -83,6 +83,7 @@ JCHENG Robotics 是一个面向低成本硬件、强调可靠性与可审计性�
 | 运行时镜像 | `armpi-ultra:flatten-20261125`，7.1 GB arm64；20 节点 / 60 话题保持不变，重启后仍生效 |
 | 能力仓库 | `jcheng-mobile` v0.1.0 静态 `/scan`/`/odom`/`/map`；`jcheng-perception` v0.1.0 对齐深度 + split edge + 单次双视图；`jcheng-ops` v0.1.0 已部署 |
 | 学习 / 仿真 | `jcheng-learning` v0.1.0 离线数据集/训练/策略边界；`jcheng-simulation` v0.1.0 域 43 上的离线多机器人被控对象（mock 已验证，Gazebo 部分验证） |
+| 遥操作 | `jcheng-teleop` v0.1.0 仅准入骨架；预留的 `TeleopCommand` 流已记录但未发布；无输入适配器、无设备访问、无运动 |
 | 操作台 / 编排 | `jcheng-studio` v0.7.0 控制台 + 只读 REST/WS + 会话/回放；`jcheng-applications` v0.1.0 离线核心 + 只读传输；不加入 DDS、不执行运动 |
 | 调研 | `jcheng-research` v0.1.0，私有；只产出报告与决策，无运行时代码 |
 | 基准 | `jcheng-benchmark` v0.1.0 实验性；离线只读 runner 与合成自测；尚无可记录数据或硬件结果 |
@@ -135,6 +136,7 @@ Hardware plane          唯一发布者，厂商 DDS 域 0
 | [`JCHENG-Robotics/jcheng-ops`](https://github.com/JCHENG-Robotics/jcheng-ops) | 跨层运维 | v0.1.0 已部署 |
 | [`JCHENG-Robotics/jcheng-benchmark`](https://github.com/JCHENG-Robotics/jcheng-benchmark) | 跨层只读基准工具 | v0.1.0 实验性；仅合成自测 |
 | [`JCHENG-Robotics/jcheng-learning`](https://github.com/JCHENG-Robotics/jcheng-learning) | L3 学习：数据集、训练、策略产物（离线） | v0.1.0；无运行时或策略 |
+| [`JCHENG-Robotics/jcheng-teleop`](https://github.com/JCHENG-Robotics/jcheng-teleop) | L3 遥操作：操作员输入到有界、受租约约束的意图（离线） | v0.1.0；仅准入 |
 | [`JCHENG-Robotics/jcheng-simulation`](https://github.com/JCHENG-Robotics/jcheng-simulation) | 域 43 上的离线多机器人被控对象 | v0.1.0；mock 已验证，Gazebo 部分验证 |
 | [`JCHENG-Robotics/jcheng-studio`](https://github.com/JCHENG-Robotics/jcheng-studio) | L4 操作台 | v0.7.0 |
 | [`JCHENG-Robotics/jcheng-applications`](https://github.com/JCHENG-Robotics/jcheng-applications) | L4 任务编排 | v0.1.0 |
@@ -216,7 +218,7 @@ Hardware plane          唯一发布者，厂商 DDS 域 0
 | `jcheng-learning` | 数据集、训练与策略产物（离线） | v0.1.0；无运行时或策略 |
 | `jcheng-research` | 私有调研工作区：报告与决策 | v0.1.0；在运行时图之外 |
 | `jcheng-mobile-bench` | 台架材料沙箱 | 沙箱；不发布 |
-| `jcheng-teleop` | 遥操作能力 | 计划中 |
+| `jcheng-teleop` | 遥操作意图：操作员输入到有界、受租约约束的意图 | 实验性；v0.1.0 仅准入骨架 |
 | `jcheng-studio` | 操作台：调试、诊断与实验记录 | 实验性；v0.7.0 控制台、REST/WS、会话、回放 |
 | `jcheng-applications` | 任务编排：配方校验、确定性规划与失败关闭的意图序列 | 实验性；v0.1.0 离线核心 + 只读传输 |
 
@@ -231,7 +233,7 @@ Hardware plane          唯一发布者，厂商 DDS 域 0
 | M4 | 机器人只读接入（不运动） | **完成** |
 | M5 | 受监督的单关节与夹爪执行 | **完成**（M5.1 Mock，M5.2 实机核心） |
 | M6 | 基线回放与 G8 复验 | **进行中**——S13 21/21、S17 plan-only 与 S17 实机 MoveIt 通过；S14 底盘、完整 G8 待做 |
-| M7 | 首个集成能力模块 | **进行中**——mobile 静态 bring-up；perception 对齐深度、split edge 与单次双视图；learning、simulation、studio、applications 骨架已准入 |
+| M7 | 首个集成能力模块 | **进行中**——mobile 静态 bring-up；perception 对齐深度、split edge 与单次双视图；learning、teleop、simulation、studio、applications 骨架已准入 |
 | M8 | 生态 v1.0 发布：锁文件、SBOM、验收报告 | 计划中 |
 
 M6 是当前门禁。决策回放已与基线一致（21/21），S17 plan-only 契约已对真实

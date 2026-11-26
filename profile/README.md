@@ -90,6 +90,7 @@ and the S1–S17 scenarios exist to prove the no-bypass boundary before any supe
 | Runtime image | `armpi-ultra:flatten-20261125`, 7.1 GB arm64; 20 nodes / 60 topics preserved and reboot persistent |
 | Capability repositories | `jcheng-mobile` v0.1.0 static `/scan`/`/odom`/`/map`; `jcheng-perception` v0.1.0 aligned depth + split edge + one dual-view run; `jcheng-ops` v0.1.0 deployed |
 | Learning / simulation | `jcheng-learning` v0.1.0 offline dataset/training/policy boundary; `jcheng-simulation` v0.1.0 offline multi-robot plant on domain 43 (mock verified, Gazebo partial) |
+| Teleoperation | `jcheng-teleop` v0.1.0 admission-only scaffold; the reserved `TeleopCommand` stream is documented but not published; no input adapter, device access or motion |
 | Operator / orchestration | `jcheng-studio` v0.7.0 console + read-only REST/WS + sessions/replay; `jcheng-applications` v0.1.0 offline core + read-only transport; no DDS or motion |
 | Research | `jcheng-research` v0.1.0, private; reports and decisions only, no runtime code |
 | Benchmark | `jcheng-benchmark` v0.1.0 experimental; offline, read-only harness and synthetic self-test only; no recorded or hardware result |
@@ -145,6 +146,7 @@ added independently versioned capability, operations and benchmark repositories:
 | [`JCHENG-Robotics/jcheng-perception`](https://github.com/JCHENG-Robotics/jcheng-perception) | L3 perception | v0.1.0; aligned depth + single dual-view run |
 | [`JCHENG-Robotics/jcheng-ops`](https://github.com/JCHENG-Robotics/jcheng-ops) | Cross-layer operations | v0.1.0 deployed |
 | [`JCHENG-Robotics/jcheng-learning`](https://github.com/JCHENG-Robotics/jcheng-learning) | L3 learning: datasets, training, policy artifacts (offline) | v0.1.0; no runtime or policy |
+| [`JCHENG-Robotics/jcheng-teleop`](https://github.com/JCHENG-Robotics/jcheng-teleop) | L3 teleoperation: operator input to bounded, lease-gated intent (offline) | v0.1.0; admission only |
 | [`JCHENG-Robotics/jcheng-simulation`](https://github.com/JCHENG-Robotics/jcheng-simulation) | Offline multi-robot plant on domain 43 | v0.1.0; mock verified, Gazebo partial |
 | [`JCHENG-Robotics/jcheng-studio`](https://github.com/JCHENG-Robotics/jcheng-studio) | L4 operator console | v0.7.0 |
 | [`JCHENG-Robotics/jcheng-applications`](https://github.com/JCHENG-Robotics/jcheng-applications) | L4 task orchestration | v0.1.0 |
@@ -236,7 +238,7 @@ the design record is in `jcheng-manipulation` branch `design/ecosystem-v1` (`doc
 | `jcheng-learning` | Datasets, training and policy artifacts (offline) | v0.1.0; no runtime or policy |
 | `jcheng-research` | Private investigation workspace: reports and decisions | v0.1.0; outside runtime graph |
 | `jcheng-mobile-bench` | Bench material split out of `jcheng-mobile` | Sandbox; not released |
-| `jcheng-teleop` | Teleoperation capability | Planned |
+| `jcheng-teleop` | Teleoperation intent: operator input to bounded, lease-gated intent | Experimental; v0.1.0 admission-only scaffold |
 | `jcheng-studio` | Operator console: debug, diagnostics and experiment records | Experimental; v0.7.0 console, REST/WS, sessions, replay |
 | `jcheng-applications` | Task orchestration: recipe validation, deterministic planning and fail-closed intent sequencing | Experimental; v0.1.0 offline core + read-only transport |
 
@@ -251,7 +253,7 @@ the design record is in `jcheng-manipulation` branch `design/ecosystem-v1` (`doc
 | M4 | Read-only robot integration (no motion) | **Complete** |
 | M5 | Supervised single-joint and gripper execution | **Complete** (M5.1 mock, M5.2 hardware core) |
 | M6 | Baseline replay and G8 re-validation | **In progress** — S13 21/21, S17 plan-only and S17 real MoveIt pass; S14 base and full G8 pending |
-| M7 | First integrated capability module | **In progress** — mobile static bring-up; perception split edge/dual-view; learning, simulation, studio and applications scaffolds admitted |
+| M7 | First integrated capability module | **In progress** — mobile static bring-up; perception split edge/dual-view; learning, teleop, simulation, studio and applications scaffolds admitted |
 | M8 | Ecosystem v1.0 release with lockfile, SBOM and acceptance report | Planned |
 
 M6 is the current gate. The decision replay matches the baseline (21/21), and

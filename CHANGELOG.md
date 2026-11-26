@@ -38,6 +38,10 @@ versioned.
   M2 read-only HTTP transport. No DDS domain, device access or motion.
 - `jcheng-learning` v0.1.0: offline dataset/training/policy-artifact boundary
   with no runtime node, policy or hardware access.
+- `jcheng-teleop` v0.1.0: L3 admission-only scaffold for teleoperation intent.
+  The reserved `TeleopCommand` stream is documented but not published; there is
+  no input adapter, device access, DDS domain or motion. The organization
+  profile, roadmap, acceptance and repository taxonomy now include it.
 - `jcheng-simulation` v0.1.0: offline multi-robot plant engine on domain 43;
   deterministic mock verified, Gazebo Harmonic partially verified.
 - `jcheng-research` v0.1.0: private investigation workspace for reports and

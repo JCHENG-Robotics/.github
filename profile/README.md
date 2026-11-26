@@ -226,7 +226,8 @@ the design record is in `jcheng-manipulation` branch `design/ecosystem-v1` (`doc
 | `jcheng-mobile-bench` | Bench material split out of `jcheng-mobile` | Sandbox; not released |
 | `jcheng-teleop` | Teleoperation capability | Planned |
 | `jcheng-learning` | Datasets, training, policy inference | Planned |
-| `jcheng-applications` | Task orchestration and operator applications | Planned |
+| `jcheng-studio` | Operator console: debug, diagnostics and experiment records | Experimental; v0.1.0 scaffold |
+| `jcheng-applications` | Task orchestration | Planned |
 
 ## Roadmap
 

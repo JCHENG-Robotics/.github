@@ -28,6 +28,10 @@ versioned.
   provenance-labelled reports and a synthetic self-test; no recorded or
   hardware result yet. The organization profile and repository taxonomy now
   include it.
+- `jcheng-studio` v0.1.0: admission-only scaffold for the L4 operator console
+  (the ArmPi Debug Studio's ecosystem home) — gateway HTTP/WS only, no DDS
+  domain, no device access and no motion execution. The organization profile
+  and repository taxonomy now include it.
 
 ## 2026-11-25 — S17 real, image rebuild, static mobile and dual-view perception
 

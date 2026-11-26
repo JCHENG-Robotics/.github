@@ -10,7 +10,7 @@
 | L3 | `jcheng-perception` | 边云分布式感知，输出建议位姿 | 发布运动命令、打开相机设备、伪造深度/TF |
 | L3 | `jcheng-learning` | 学习能力：数据集、训练、策略产物（离线） | 运行时节点、硬件访问、直接运动 |
 | L3 | `jcheng-simulation` | 离线多机器人被控对象，固定在域 43 | 打开设备、加入域 0/41/42、向真实系统发运动 |
-| L3 | `jcheng-teleop` | 遥操作意图：输入调理与 `TeleopCommand` 流（v0.1.0 仅准入） | 发布厂商话题、打开串口、访问设备、加入硬件域、直接运动 |
+| L3 | `jcheng-teleop` | 遥操作意图：输入调理、`TeleopCommand` 流、采集/回放与监督授权（v0.3.0 实验性） | 发布厂商话题、打开串口、访问设备、加入硬件域、直接运动 |
 | L4 | `jcheng-studio` | 操作台：连接诊断、关节调试、轨迹检查与实验记录；只调用网关 HTTP/WS | 加入 DDS 域、ROS 硬件话题、rclpy 直连、访问设备、执行运动 |
 | L4 | `jcheng-applications` | 任务编排：配方校验、确定性规划、失败关闭的网关意图序列（v0.1.0 离线核心） | ROS 硬件话题、rclpy 直连、加入 DDS 域、直接执行运动 |
 | OPS | `jcheng-ops` | 无人值守巡检、看门狗、服务自愈 | 发送运动命令、加入 DDS 图、访问设备 |
@@ -25,8 +25,11 @@
 访问机器人，不加入任何 DDS 域，也不成为运动来源。
 `jcheng-applications`（L4，2026-11-26 准入，v0.1.0 离线核心 + 只读传输）只经系统
 网关的 HTTP/WS 接口提交任务意图，不加入任何 DDS 域、不打开设备，也不成为运动来源。
-`jcheng-teleop`（L3，2026-11-26 准入，v0.1.0 仅准入）计划在域 42 发布遥操作意图；
-当前无运行时节点、无输入适配器、无设备访问，也不发布运动命令。
+`jcheng-teleop`（L3，2026-11-26 准入，v0.3.0 实验性）已有 ROS-free 核心、采集/回放、
+只读状态 API 与 M6 离线监督授权；`ros2_ws/` 的域 42 发布端是 **test-only** M2
+transport（无生产租约适配器、无操作员输入设备），因此 `capability.yaml` 仍为
+`offline` 且 runtime 为空。把它声明为 `intent_source` 需要
+`jcheng-interfaces` 的 class 提案先获批；系统层仍是唯一运动来源。
 
 ## 文档要求
 

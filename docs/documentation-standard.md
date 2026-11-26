@@ -56,8 +56,16 @@ with the format note instead (see §8):
 ## 3. Language policy
 
 - `README.md` is written in English and is canonical. `README.zh-CN.md` is a
-  full translation and opens with a pointer: “本文为英文主文档的中文对照；如有
-  歧义，以英文版为准。”
+  full translation.
+- The language switch is the **first line after the H1**, in both files:
+  - English README: `**English** | [简体中文](README.zh-CN.md)`
+  - Chinese README: `**简体中文** | [English](README.md)`
+
+  Do not add another language-switch link elsewhere in the README.
+- The status block states the canonical relationship once, without a second
+  link:
+  - English: `> English canonical; the Chinese README is a translation.`
+  - Chinese: `> 本文为英文主文档的中文对照；如有歧义，以英文版为准。`
 - `ROADMAP.md`, `CHANGELOG.md` and `ACCEPTANCE.md` are English-only. This keeps
   status and acceptance claims in one language, so they cannot drift apart.
 - Code comments, commit messages, log excerpts and command output stay in

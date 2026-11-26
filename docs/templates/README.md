@@ -1,10 +1,12 @@
 # <Repository name>
 
+**English** | [简体中文](README.zh-CN.md)
+
 <One paragraph: what this repository is, in one sentence of scope and one sentence of boundary.>
 
 > Status: **<Experimental | Deployed | Frozen>** as of <YYYY-MM-DD>.
 > Version <x.y.z>. <The single most important limitation.>
-> English canonical; see [README.zh-CN.md](README.zh-CN.md) for the Chinese translation.
+> English canonical; the Chinese README is a translation.
 
 ## Scope and boundary
 

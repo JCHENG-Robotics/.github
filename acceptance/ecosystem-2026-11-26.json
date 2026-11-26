@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-26",
+  "operator": "JerichoCheng",
+  "reviewer": "pending",
+  "lockfile": "jcheng-system/locks/ecosystem.lock.yaml",
+  "scenarios": [
+    {
+      "id": "M1-org-init",
+      "level": "L0",
+      "result": "pass",
+      "evidence": "jcheng-ecosystem-bootstrap/M1-VERIFICATION.json",
+      "notes": "111/111 API checks; three repositories and branch protection."
+    },
+    {
+      "id": "M2-contracts",
+      "level": "L1",
+      "result": "pass",
+      "evidence": "jcheng-interfaces (tag v0.1.0)",
+      "notes": "15 contract tests; Humble CI, local Jazzy build; signed tag."
+    },
+    {
+      "id": "M3-mock-system",
+      "level": "L3",
+      "result": "pass",
+      "evidence": "jcheng-system e2e/reports/m3-mock.json",
+      "notes": "15 scenarios passed, 2 skipped, 0 required failures; 16 pytest."
+    },
+    {
+      "id": "M4-readonly",
+      "level": "L5",
+      "result": "pass",
+      "evidence": "jcheng-manipulation/docs/ecosystem/evidence/m4-readonly-20261123",
+      "notes": "30 minutes; 1799/1799 measured; writes=0."
+    },
+    {
+      "id": "M5.1-mock-transport",
+      "level": "L3",
+      "result": "pass",
+      "evidence": "jcheng-system tests_ros",
+      "notes": "5 ROS tests; CI m5-mock."
+    },
+    {
+      "id": "M5.2-hardware-core",
+      "level": "L5",
+      "result": "inconclusive",
+      "evidence": "jcheng-manipulation/docs/ecosystem/evidence/m52-final-20261124",
+      "notes": "Joint, gripper, stop and lease/limit rejection pass; S7 and S9 not run."
+    },
+    {
+      "id": "M6-s13-replay",
+      "level": "L4",
+      "result": "pass",
+      "evidence": "jcheng-manipulation/docs/ecosystem/evidence/m6-s13-20261124",
+      "notes": "21/21 decisions match; validation mean 0.0166 ms, p95 <=0.0352 ms; no motion."
+    },
+    {
+      "id": "M6-s17-plan-only",
+      "level": "L1",
+      "result": "pass",
+      "evidence": "jcheng-system/tests/test_moveit_plan_only.py",
+      "notes": "Construction and rejection tests."
+    },
+    {
+      "id": "M6-s17-real",
+      "level": "L5",
+      "result": "pass",
+      "evidence": "jcheng-manipulation/docs/ecosystem/evidence/m6-s17-20261125",
+      "notes": "MoveIt 2.5.10 SUCCESS; 8-point plan; 0 controller servers; no command topics."
+    },
+    {
+      "id": "system-image",
+      "level": "L5",
+      "result": "pass",
+      "evidence": "jcheng-system/deploy/armpi-ultra/docs/ACCEPTANCE-20261125.md",
+      "notes": "7.1 GB arm64 image; 20 nodes / 60 topics preserved; reboot persistent."
+    },
+    {
+      "id": "M6-hardware",
+      "level": "L5",
+      "result": "inconclusive",
+      "notes": "S14 base, full G8 re-run and landing evidence not run."
+    },
+    {
+      "id": "baseline-v1.0.0",
+      "level": "L5",
+      "result": "pass",
+      "evidence": "jcheng-manipulation/ACCEPTANCE.md",
+      "notes": "Frozen baseline; full G8 pass. Error-budget bounds fail and are limitations."
+    },
+    {
+      "id": "mobile-offline",
+      "level": "L1",
+      "result": "pass",
+      "evidence": "jcheng-mobile/ACCEPTANCE.md",
+      "notes": "10 tests; build, xacro and launch description pass."
+    },
+    {
+      "id": "mobile-static",
+      "level": "L5",
+      "result": "pass",
+      "evidence": "jcheng-mobile/evidence/20261125_static_bringup/README.md",
+      "notes": "Static /scan, /odom and /map pass; no motion."
+    },
+    {
+      "id": "mobile-motion",
+      "level": "L5",
+      "result": "inconclusive",
+      "notes": "Mount pose and footprint provisional; navigation and lease/deadman motion not run."
+    },
+    {
+      "id": "perception-synthetic",
+      "level": "L3",
+      "result": "pass",
+      "evidence": "jcheng-perception/docs/EVIDENCE.md",
+      "notes": "77 tests on current main; synthetic 10 Hz; 99%+ match."
+    },
+    {
+      "id": "perception-aligned-depth",
+      "level": "L5",
+      "result": "pass",
+      "evidence": "jcheng-perception/docs/DEPLOYMENT.md",
+      "notes": "ADR 0004 executed; colour ~6.5 Hz / aligned depth ~3.9 Hz on the 2026-11-25 image."
+    },
+    {
+      "id": "perception-dual-view",
+      "level": "L5",
+      "result": "pass",
+      "evidence": "jcheng-perception/evidence/hardware_20261124_dualview",
+      "notes": "Single 60 s run: cross-view 3.37 mm; fused p95 3.78 mm; final 1.19 mm."
+    },
+    {
+      "id": "perception-repeatability",
+      "level": "L5",
+      "result": "inconclusive",
+      "notes": "Run 10 wrist depth reader wedged at 7.5 s; full dual-view window not repeatable."
+    },
+    {
+      "id": "perception-multi-pose-motion",
+      "level": "L5",
+      "result": "inconclusive",
+      "notes": "Multi-pose accuracy and motion TF not measured; poses are advisory only."
+    },
+    {
+      "id": "ops-deployed",
+      "level": "L5",
+      "result": "inconclusive",
+      "evidence": "jcheng-ops/docs/VERIFICATION.md",
+      "notes": "Guards installed and verified; watchdog trigger and reboot drill not run."
+    },
+    {
+      "id": "documentation-standard",
+      "level": "L0",
+      "result": "pass",
+      "evidence": ".github/docs/documentation-standard.md",
+      "notes": "All product repositories carry README, README.zh-CN, ROADMAP, CHANGELOG and ACCEPTANCE; links resolve."
+    },
+    {
+      "id": "learning-scaffold",
+      "level": "L0",
+      "result": "pass",
+      "evidence": "jcheng-learning/ACCEPTANCE.md",
+      "notes": "Docs/admission only; no runtime node, policy or hardware."
+    },
+    {
+      "id": "simulation-offline",
+      "level": "L5",
+      "result": "pass",
+      "evidence": "jcheng-simulation/ACCEPTANCE.md",
+      "notes": "Offline only; deterministic mock verified, Gazebo Harmonic partially verified."
+    },
+    {
+      "id": "studio-console",
+      "level": "L5",
+      "result": "pass",
+      "evidence": "jcheng-studio/ACCEPTANCE.md",
+      "notes": "Ported console, read-only REST/WS, sessions, intent path and M3 replay; no hardware acceptance."
+    },
+    {
+      "id": "applications-orchestration",
+      "level": "L2",
+      "result": "pass",
+      "evidence": "jcheng-applications/ACCEPTANCE.md",
+      "notes": "Offline core + M2 read-only transport; 89 tests; no motion."
+    },
+    {
+      "id": "benchmark-harness",
+      "level": "L2",
+      "result": "inconclusive",
+      "evidence": "jcheng-benchmark/ACCEPTANCE.md",
+      "notes": "Synthetic self-test only; no recorded or hardware suite result."
+    },
+    {
+      "id": "research-workspace",
+      "level": "L0",
+      "result": "pass",
+      "evidence": "jcheng-research/ACCEPTANCE.md",
+      "notes": "Structure/docs only; no completed investigation."
+    },
+    {
+      "id": "readme-language-switch",
+      "level": "L0",
+      "result": "pass",
+      "evidence": ".github/docs/documentation-standard.md",
+      "notes": "All product and profile READMEs use the same first-line switch and canonical status sentence."
+    }
+  ],
+  "metrics": {
+    "m1_api_checks": "111/111",
+    "m2_contract_tests": 15,
+    "m3_scenarios_passed": 15,
+    "m3_scenarios_skipped": 2,
+    "m4_samples": "1799/1799 measured",
+    "m4_writes": 0,
+    "m5_2_joint1_bus_pulses": "505 vs 512",
+    "m5_2_gripper_close_pulses": "183 to 645",
+    "m5_2_gripper_open_pulses": "647 to 183",
+    "m5_2_stop_hold_ms": 0.266,
+    "m6_s13_decisions": "21/21",
+    "m6_s13_validate_mean_ms": 0.0166,
+    "system_image_size": "7.1 GB",
+    "system_image_nodes": 20,
+    "system_image_topics": 60,
+    "baseline_backend_tests": 148,
+    "baseline_gateway_tests": 93,
+    "mobile_tests": 10,
+    "perception_tests": 77,
+    "perception_dual_view_cross_mm": 3.37,
+    "perception_dual_view_p95_mm": 3.78,
+    "perception_dual_view_final_mm": 1.19,
+    "ops_tests": 5,
+    "studio_version": "0.7.0",
+    "applications_tests": 89,
+    "learning_version": "0.1.0",
+    "simulation_version": "0.1.0"
+  },
+  "result": "inconclusive",
+  "limitations": [
+    "Ecosystem v1.0 acceptance has not been attempted.",
+    "M5.2 S7 stale-state injection and S9 runtime publisher detection are not verified on hardware.",
+    "M6 S14 base, full G8 re-run and landing evidence are not run.",
+    "Mobile motion, mount pose and navigation are not verified; static /scan, /odom and /map pass.",
+    "Perception has one dual-view run and a wrist depth reader that can wedge; repeatability and multi-pose accuracy are not verified.",
+    "Operations failure drills are not run; the watchdog has never fired in a real wedge.",
+    "No hardware e-stop, brake, independent encoder or self-collision model exists; the platform is not safety-certified.",
+    "License status is not uniform: jcheng-mobile carries an MIT LICENSE retained pending review; the other new repositories have none.",
+    "Learning, simulation, studio, applications, benchmark and research are offline/mock/scaffold only; no hardware or motion claim is made for them.",
+    "Reviewer sign-off is pending; this report is a status record, not a signed acceptance."
+  ]
+}

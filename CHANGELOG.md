@@ -28,16 +28,24 @@ versioned.
   provenance-labelled reports and a synthetic self-test; no recorded or
   hardware result yet. The organization profile and repository taxonomy now
   include it.
-- `jcheng-studio` v0.1.0: admission-only scaffold for the L4 operator console
-  (the ArmPi Debug Studio's ecosystem home) — gateway HTTP/WS only, no DDS
-  domain, no device access and no motion execution. The organization profile
-  and repository taxonomy now include it.
+- `jcheng-studio` v0.7.0: the L4 operator console is ported from the frozen
+  baseline, with read-only `/v1` REST/WS, the M2a session store, the M2b intent
+  path and M3 offline replay. It uses the gateway HTTP/WS boundary only; no DDS
+  domain, device access or motion execution. Hardware acceptance is not
+  implemented.
 - `jcheng-applications` v0.1.0: admission plus an offline L4 task-orchestration
-  core — recipe validation against the pinned gateway contract, deterministic
-  plans and a fail-closed runner over an abstract gateway port. No HTTP/WS
-  client, no DDS domain, no device access and no motion; the organization
-  profile, ecosystem roadmap, acceptance report and repository taxonomy now
-  include it.
+  core (recipe validation, deterministic plans, a fail-closed runner) and an
+  M2 read-only HTTP transport. No DDS domain, device access or motion.
+- `jcheng-learning` v0.1.0: offline dataset/training/policy-artifact boundary
+  with no runtime node, policy or hardware access.
+- `jcheng-simulation` v0.1.0: offline multi-robot plant engine on domain 43;
+  deterministic mock verified, Gazebo Harmonic partially verified.
+- `jcheng-research` v0.1.0: private investigation workspace for reports and
+  decisions; outside the runtime dependency graph.
+- Language switch standardized in every README: `**English** | [简体中文](README.zh-CN.md)`
+  (English) and `**简体中文** | [English](README.md)` (Chinese) as the first line
+  after the H1; the status block keeps one canonical sentence without a second
+  link. `docs/documentation-standard.md` and both templates updated.
 
 ## 2026-11-25 — S17 real, image rebuild, static mobile and dual-view perception
 

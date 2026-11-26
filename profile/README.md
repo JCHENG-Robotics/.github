@@ -92,7 +92,7 @@ and the S1–S17 scenarios exist to prove the no-bypass boundary before any supe
 | Learning / simulation | `jcheng-learning` v0.1.0 offline dataset/training/policy boundary; `jcheng-simulation` v0.1.0 offline multi-robot plant on domain 43 (mock verified, Gazebo partial) |
 | Teleoperation | `jcheng-teleop` v0.1.0 admission-only scaffold; the reserved `TeleopCommand` stream is documented but not published; no input adapter, device access or motion |
 | Operator / orchestration | `jcheng-studio` v0.7.0 console + read-only REST/WS + sessions/replay; `jcheng-applications` v0.1.0 offline core + read-only transport; no DDS or motion |
-| Research | `jcheng-research` v0.1.0, private; reports and decisions only, no runtime code |
+| Research | `jcheng-research` v0.1.0, public; reports and decisions only, no runtime code |
 | Benchmark | `jcheng-benchmark` v0.1.0 experimental; offline, read-only harness and synthetic self-test only; no recorded or hardware result |
 | Real-robot motion in the new ecosystem | Supervised single-joint and gripper motions passed (M5.2); M6 S17 real plan-only passed without execution; full G8 re-run pending |
 | Documentation | Unified README / ROADMAP / CHANGELOG / ACCEPTANCE set; English canonical, Chinese README |
@@ -150,7 +150,7 @@ added independently versioned capability, operations and benchmark repositories:
 | [`JCHENG-Robotics/jcheng-simulation`](https://github.com/JCHENG-Robotics/jcheng-simulation) | Offline multi-robot plant on domain 43 | v0.1.0; mock verified, Gazebo partial |
 | [`JCHENG-Robotics/jcheng-studio`](https://github.com/JCHENG-Robotics/jcheng-studio) | L4 operator console | v0.7.0 |
 | [`JCHENG-Robotics/jcheng-applications`](https://github.com/JCHENG-Robotics/jcheng-applications) | L4 task orchestration | v0.1.0 |
-| [`JCHENG-Robotics/jcheng-research`](https://github.com/JCHENG-Robotics/jcheng-research) | Private investigation workspace | v0.1.0; outside runtime graph |
+| [`JCHENG-Robotics/jcheng-research`](https://github.com/JCHENG-Robotics/jcheng-research) | Public investigation workspace | v0.1.0; outside runtime graph |
 | [`JCHENG-Robotics/jcheng-benchmark`](https://github.com/JCHENG-Robotics/jcheng-benchmark) | Cross-layer read-only benchmark harness | v0.1.0 experimental; synthetic self-test only |
 
 ### The single motion path
@@ -236,7 +236,7 @@ the design record is in `jcheng-manipulation` branch `design/ecosystem-v1` (`doc
 | `jcheng-benchmark` | Cross-layer read-only benchmark harness and evidence reports | v0.1.0 experimental; no recorded or hardware result |
 | `jcheng-simulation` | Offline multi-robot plant on domain 43 | v0.1.0; mock verified, Gazebo partial |
 | `jcheng-learning` | Datasets, training and policy artifacts (offline) | v0.1.0; no runtime or policy |
-| `jcheng-research` | Private investigation workspace: reports and decisions | v0.1.0; outside runtime graph |
+| `jcheng-research` | Public investigation workspace: reports and decisions | v0.1.0; outside runtime graph |
 | `jcheng-mobile-bench` | Bench material split out of `jcheng-mobile` | Sandbox; not released |
 | `jcheng-teleop` | Teleoperation intent: operator input to bounded, lease-gated intent | Experimental; v0.1.0 admission-only scaffold |
 | `jcheng-studio` | Operator console: debug, diagnostics and experiment records | Experimental; v0.7.0 console, REST/WS, sessions, replay |

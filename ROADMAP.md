@@ -26,7 +26,7 @@
 | Learning | Experimental | `jcheng-learning` v0.1.0; offline dataset/training/policy-artifact boundary; no runtime node, policy or hardware |
 | Teleoperation | Experimental | `jcheng-teleop` v0.1.0; admission-only scaffold, reserved `TeleopCommand` stream documented but not published; no input adapter, device access or motion |
 | Simulation | Experimental | `jcheng-simulation` v0.1.0; offline multi-robot plant on domain 43; mock verified, Gazebo partial; no hardware |
-| Research workspace | Experimental | `jcheng-research` v0.1.0; private, reports and decisions only; no investigation complete |
+| Research workspace | Experimental | `jcheng-research` v0.1.0; public, reports and decisions only; no investigation complete |
 | License | Pending for most repositories | Frozen baseline and `jcheng-mobile` carry MIT (mobile retained pending review); `jcheng-interfaces`, `jcheng-system`, `jcheng-perception`, `jcheng-ops`, `jcheng-learning`, `jcheng-teleop`, `jcheng-simulation`, `jcheng-research`, `jcheng-benchmark`, `jcheng-studio`, `jcheng-applications` and `.github` have no `LICENSE` |
 
 ## Milestones

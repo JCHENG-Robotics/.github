@@ -15,7 +15,7 @@
 - 生态仓库：`.github`、`jcheng-interfaces`、`jcheng-system`、
   `jcheng-manipulation`（冻结基线）、`jcheng-mobile`、`jcheng-perception`、
   `jcheng-learning`、`jcheng-simulation`、`jcheng-studio`、
-  `jcheng-applications` 与 `jcheng-ops`。`jcheng-research` 是私有调研工作区；
+  `jcheng-applications` 与 `jcheng-ops`。`jcheng-research` 是公开调研工作区；
   `jcheng-mobile-bench` 是明确的台架沙箱，不参与发布。
 - `jcheng-learning`（v0.1.0）是离线的数据集/训练/策略产物边界：没有运行时节点、
   策略或硬件访问。
@@ -26,7 +26,7 @@
 - `jcheng-studio`（操作台，v0.7.0）与 `jcheng-applications`（任务编排，v0.1.0）是
   L4 仓库。两者只经网关 HTTP/WS 边界访问机器人；不加入 DDS 域、不打开设备、不执行
   运动。Studio 已迁入控制台、只读 REST/WS、会话存储与回放；Applications 有离线
-  配方/规划/运行器核心与只读传输。`jcheng-research`（私有，v0.1.0）只产出报告与
+  配方/规划/运行器核心与只读传输。`jcheng-research`（公开，v0.1.0）只产出报告与
   决策，不在运行时图中。
 - 文档标准：所有产品仓库必须有 `README.md`、`README.zh-CN.md`、`ROADMAP.md`、
   `CHANGELOG.md`、`ACCEPTANCE.md`；语言切换固定放在 H1 之后第一行。规范见

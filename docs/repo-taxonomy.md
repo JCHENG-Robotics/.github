@@ -16,7 +16,7 @@
 | OPS | `jcheng-ops` | 无人值守巡检、看门狗、服务自愈 | 发送运动命令、加入 DDS 图、访问设备 |
 | BENCH | `jcheng-benchmark` | 跨层只读基准：suite 声明、离线 runner、阈值与证据报告 | 运行时依赖、硬件访问、运动命令、生成测量数据 |
 | BENCH | `jcheng-mobile-bench` | 台架材料沙箱（不发布） | 被能力仓库或运行时依赖 |
-| RESEARCH | `jcheng-research` | 私有调研：文献、根因、实验设计、报告与决策 | 运行时代码、硬件访问、运动命令 |
+| RESEARCH | `jcheng-research` | 公开调研：文献、根因、实验设计、报告与决策 | 运行时代码、硬件访问、运动命令 |
 
 依赖方向：L4 -> L2 API；L3 -> L1 + L2 客户端；L2 -> L1；OPS -> 仅 HTTP 健康端点；L0 -> 所有（仅 CI）。
 `jcheng-benchmark`、`jcheng-mobile-bench` 与 `jcheng-research` 不在运行时依赖图中；
@@ -43,7 +43,7 @@
 `.github` 作为治理仓库维护生态级 `ROADMAP.md`、`CHANGELOG.md`、`ACCEPTANCE.md`
 与双语组织主页；`jcheng-mobile-bench` 只需 `README.md` 明确标注沙箱状态。
 `jcheng-benchmark` 是版本化的 BENCH 仓，自行维护完整四件套文档，但不因此成为产品仓，
-也不作出产品验收结论。`jcheng-research` 是私有调研仓，保留完整四件套，但不在运行时
+也不作出产品验收结论。`jcheng-research` 是公开调研仓，保留完整四件套，但不在运行时
 依赖图中，也不作出产品验收结论。
 
 ## 新仓库准入检查

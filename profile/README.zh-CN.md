@@ -81,11 +81,11 @@ JCHENG Robotics 是一个面向低成本硬件、强调可靠性与可审计性�
 | 契约 | `jcheng-interfaces` v0.1.0：14 msg / 10 srv / 1 action，7 个 Schema，契约哈希已固定 |
 | 系统运行时 | `jcheng-system` 0.3.0-dev：13 个 ROS 包；M4 只读、M5.2 核心、M6 S13 + S17 实机已验证；S14/G8 待做 |
 | 运行时镜像 | `armpi-ultra:flatten-20261125`，7.1 GB arm64；20 节点 / 60 话题保持不变，重启后仍生效 |
-| 能力仓库 | `jcheng-mobile` v0.1.0 静态 `/scan`/`/odom`/`/map`；`jcheng-perception` v0.1.0 对齐深度 + split edge + 单次双视图；`jcheng-ops` v0.1.0 已部署 |
-| 学习 / 仿真 | `jcheng-learning` v0.1.0 离线数据集/训练/策略边界；`jcheng-simulation` v0.1.0 域 43 上的离线多机器人被控对象（mock 已验证，Gazebo 部分验证） |
-| 遥操作 | `jcheng-teleop` v0.1.0 仅准入骨架；预留的 `TeleopCommand` 流已记录但未发布；无输入适配器、无设备访问、无运动 |
-| 操作台 / 编排 | `jcheng-studio` v0.7.0 控制台 + 只读 REST/WS + 会话/回放；`jcheng-applications` v0.1.0 离线核心 + 只读传输；不加入 DDS、不执行运动 |
-| 调研 | `jcheng-research` v0.1.0，公开；只产出报告与决策，无运行时代码 |
+| 能力仓库 | `jcheng-mobile` v0.1.0 静态 `/scan`/`/odom`/`/map`；`jcheng-perception` v0.1.0 对齐深度 + split edge + 单次双视图 + 离线 ORE S0/S1；`jcheng-ops` v0.1.0 已部署 |
+| 学习 / 仿真 | `jcheng-learning` v0.2.0 M1 离线数据集基础设施；`jcheng-simulation` v0.1.0 域 43 上的离线多机器人被控对象（mock 已验证，Gazebo 部分验证） |
+| 遥操作 | `jcheng-teleop` v0.3.0 M0 设计 + M1 ROS-free 核心；系统 mock intake 与 ArmPi/Gate-2 仿真桥通过 L3；无硬件 |
+| 操作台 / 编排 | `jcheng-studio` v0.7.0 控制台 + 只读 REST/WS + 会话/回放；`jcheng-applications` v0.1.0 M3 mock 运行 + S3 分支/tree/WAITING/derived；不加入 DDS、不执行运动 |
+| 调研 | `jcheng-research` v0.1.0，公开；草稿报告与 SAM3/AGX Orin 实验已记录，评审待做 |
 | 基准 | `jcheng-benchmark` v0.1.0 实验性；离线只读 runner 与合成自测；尚无可记录数据或硬件结果 |
 | 新生态中的实机运动 | 受监督单关节与夹爪运动已通过（M5.2）；M6 S17 实机 plan-only 通过但未执行；完整 G8 复验待做 |
 | 文档 | 统一 README / ROADMAP / CHANGELOG / ACCEPTANCE；英文为主，中文 README 对照 |

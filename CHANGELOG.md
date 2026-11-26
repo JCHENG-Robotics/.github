@@ -57,6 +57,31 @@ versioned.
   LICENSE-REVIEW.md, the repository taxonomy and the organization profile now
   state that instead of claiming a private repository.
 
+## 2026-11-26 — teleop, S3/ORE progress and repository registration
+
+### Added
+
+- `jcheng-teleop` v0.3.0: M0 design and M1 ROS-free core complete; the system
+  mock intake (7 L2 + 3 ROS tests) and the test-only ArmPi/Gate-2 domain-43
+  simulation bridge pass L3. No hardware or PiPER X L3 claim.
+- `jcheng-applications`: M3 supervised run on the mock, the opt-in py_trees
+  engine, S3 declared branches on both engines, terminal `WAITING_FOR_OPERATOR`
+  and the derived-plan guard. 181 tests with the tree extra (161 + 3 skipped
+  without).
+- `jcheng-perception`: offline ore-scene S0/S1 (93 tests total); synthetic and
+  public-baseline metrics recorded, real-ore accuracy unverified.
+- `jcheng-research`: draft Ultralytics and RLinf/PiPER X reports, SAM3/AGX Orin
+  advisory-service and T1-gate experiments; the repository is now public. The
+  reports remain unreviewed.
+- `jcheng-system`: teleop intake, `/v1/ws/state`, and the P0 C1–C5 concurrency
+  probe resolved on the mock.
+
+### Changed
+
+- Registered `jcheng-benchmark`, `jcheng-studio`, `jcheng-applications`,
+  `jcheng-teleop` and `jcheng-research` in the ecosystem map; standardized the
+  README language switch across all product repositories.
+
 ## 2026-11-25 — S17 real, image rebuild, static mobile and dual-view perception
 
 ### Added

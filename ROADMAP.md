@@ -18,15 +18,15 @@
 | ArmPi Ultra runtime image | Complete (2026-11-25) | `armpi-ultra:flatten-20261125`, 7.1 GB, `linux/arm64`; 20 nodes / 60 topics preserved; `jcheng-system/deploy/armpi-ultra/` |
 | Frozen experimental baseline | Frozen | `jcheng-manipulation` `v1.0.0` at `b3411e4`; full G8 acceptance |
 | Mobile capability | Experimental | `jcheng-mobile` v0.1.0; static `/scan`, `/odom` and `/map` pass; motion, mount pose and navigation unverified |
-| Perception capability | Experimental | `jcheng-perception` v0.1.0; ADR 0004 aligned depth, split edge and one dual-view run; repeatability, multi-pose and motion unverified |
+| Perception capability | Experimental | `jcheng-perception` v0.1.0; ADR 0004 aligned depth, split edge, one dual-view run and offline ore-scene S0/S1 (93 tests); repeatability, real-ore accuracy, multi-pose and motion unverified |
 | Operations | Deployed | `jcheng-ops` v0.1.0; four robot guards and Studio watchdog installed and verified |
 | Benchmark harness | Experimental | `jcheng-benchmark` v0.1.0; offline read-only harness and synthetic self-test only; no recorded or hardware result |
 | Operator console | Experimental | `jcheng-studio` v0.7.0; ported console, read-only REST/WS, sessions, intent path and replay; no hardware acceptance |
-| Application orchestration | Experimental | `jcheng-applications` v0.1.0; offline recipe/planning/runner core and M2 read-only transport; no motion |
-| Learning | Experimental | `jcheng-learning` v0.1.0; offline dataset/training/policy-artifact boundary; no runtime node, policy or hardware |
-| Teleoperation | Experimental | `jcheng-teleop` v0.1.0; admission-only scaffold, reserved `TeleopCommand` stream documented but not published; no input adapter, device access or motion |
+| Application orchestration | Experimental | `jcheng-applications` v0.1.0; M2 read-only transport, M3 supervised run on the mock, S3 branches/tree/WAITING/derived-plan; no hardware |
+| Learning | Experimental | `jcheng-learning` v0.2.0; M1 offline dataset infrastructure and capture boundary; no runtime node, policy or hardware |
+| Teleoperation | Experimental | `jcheng-teleop` v0.3.0; M0 design and M1 ROS-free core complete; system mock intake and test-only ArmPi/Gate-2 simulation bridge pass L3; no hardware |
 | Simulation | Experimental | `jcheng-simulation` v0.1.0; offline multi-robot plant on domain 43; mock verified, Gazebo partial; no hardware |
-| Research workspace | Experimental | `jcheng-research` v0.1.0; public, reports and decisions only; no investigation complete |
+| Research workspace | Experimental | `jcheng-research` v0.1.0; public; draft reports (Ultralytics, RLinf/PiPER X) and SAM3/AGX Orin experiments recorded, review pending; no product/hardware claim |
 | License | Pending for most repositories | Frozen baseline and `jcheng-mobile` carry MIT (mobile retained pending review); `jcheng-interfaces`, `jcheng-system`, `jcheng-perception`, `jcheng-ops`, `jcheng-learning`, `jcheng-teleop`, `jcheng-simulation`, `jcheng-research`, `jcheng-benchmark`, `jcheng-studio`, `jcheng-applications` and `.github` have no `LICENSE` |
 
 ## Milestones

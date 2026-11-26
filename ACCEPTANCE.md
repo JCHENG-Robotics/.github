@@ -1,11 +1,11 @@
 # Ecosystem acceptance report
 
-> Status: **inconclusive** as of 2026-11-25. This report records milestone-gate
+> Status: **inconclusive** as of 2026-11-26. This report records milestone-gate
 > status; it is **not** a signed v1.0 acceptance. No ecosystem v1.0 acceptance
 > run has been attempted.
 > Operator: JerichoCheng. Reviewer: pending.
 > Scope: the whole ecosystem (governance, contracts, system runtime, frozen
-> baseline, capability and operations repositories).
+> baseline, capability, L4, benchmark, research and operations repositories).
 > No motion commands were sent by this documentation change.
 
 ## 1. How to read this report
@@ -37,17 +37,18 @@ verification JSON is in the local staging archive
 | M6 S17 real MoveIt | `jcheng-system` | L5 | pass — MoveIt 2.5.10, `SUCCESS`, 8-point plan, 0 controller servers, no command topics | `jcheng-manipulation/docs/ecosystem/evidence/m6-s17-20261125/` |
 | ArmPi Ultra image rebuild | `jcheng-system` | L5 | pass — 7.1 GB image, 20 nodes / 60 topics preserved, reboot persistent | `jcheng-system/deploy/armpi-ultra/docs/ACCEPTANCE-20261125.md` |
 | M6 S14 base / full G8 | `jcheng-system` | L5 | not started | — |
+| Teleop intake + simulation bridge | `jcheng-system`, `jcheng-teleop` | L2–L3 | pass (mock/simulation only) — intake 7+3 tests, ArmPi/Gate-2 domain-43 bridge; no hardware | `jcheng-system/e2e/reports/20261126_teleop_sim/`; `jcheng-teleop/ACCEPTANCE.md` |
 | Frozen baseline v1.0.0 | `jcheng-manipulation` | L5 | pass (G8, build, ops; see its ACCEPTANCE.md) | `evidence/g8_acceptance_20261123/` |
 | Mobile capability v0.1.0 | `jcheng-mobile` | L0–L5 | partial pass — offline + static `/scan`, `/odom`, `/map`; motion, mount pose and navigation unverified | `jcheng-mobile/ACCEPTANCE.md` |
-| Perception capability v0.1.0 | `jcheng-perception` | L1–L5 | partial — synthetic + data path + aligned depth + split edge + one dual-view run; repeatability, multi-pose and motion unverified | `jcheng-perception/ACCEPTANCE.md` |
+| Perception capability v0.1.0 | `jcheng-perception` | L1–L5 | partial — synthetic + data path + aligned depth + split edge + one dual-view run + offline ore-scene S0/S1; repeatability, real-ore accuracy, multi-pose and motion unverified | `jcheng-perception/ACCEPTANCE.md` |
 | Operations v0.1.0 | `jcheng-ops` | L5 | partial (installed and verified; watchdog never fired) | `jcheng-ops/ACCEPTANCE.md` |
 | Operator console v0.7.0 | `jcheng-studio` | L0–L5 | pass — ported console, read-only REST/WS, sessions, intent path and M3 replay; no hardware acceptance | `jcheng-studio/ACCEPTANCE.md` |
-| Application orchestration v0.1.0 | `jcheng-applications` | L0–L2 | pass — 89 tests, offline core and M2 read-only transport; no motion | `jcheng-applications/ACCEPTANCE.md` |
-| Learning scaffold v0.1.0 | `jcheng-learning` | L0 | pass — docs/admission only; no runtime node, policy or hardware | `jcheng-learning/ACCEPTANCE.md` |
-| Teleoperation scaffold v0.1.0 | `jcheng-teleop` | L0 | pass — docs/admission only; reserved intent stream not published; no input adapter or hardware | `jcheng-teleop/ACCEPTANCE.md` |
+| Application orchestration v0.1.0 | `jcheng-applications` | L0–L3 | pass — 181 tests with tree extra (161+3 skip without), M2 transport, M3 mock run and S3 branches/tree/WAITING/derived; no hardware | `jcheng-applications/ACCEPTANCE.md` |
+| Learning capability v0.2.0 | `jcheng-learning` | L0–L1 | pass — M1 offline dataset infrastructure; no runtime node, policy or hardware | `jcheng-learning/ACCEPTANCE.md` |
+| Teleoperation v0.3.0 | `jcheng-teleop` | L0–L3 | pass — M0 design/M1 ROS-free core + system mock intake/simulation bridge; no hardware | `jcheng-teleop/ACCEPTANCE.md` |
 | Simulation plant v0.1.0 | `jcheng-simulation` | L0–L5 | pass (offline only) — mock verified, Gazebo partial; no hardware | `jcheng-simulation/ACCEPTANCE.md` |
 | Benchmark harness v0.1.0 | `jcheng-benchmark` | L0–L2 | inconclusive — synthetic self-test only; no suite result | `jcheng-benchmark/ACCEPTANCE.md` |
-| Research workspace v0.1.0 | `jcheng-research` | L0 | pass — structure/docs only; no completed investigation | `jcheng-research/ACCEPTANCE.md` |
+| Research workspace v0.1.0 | `jcheng-research` | L0 | pass — structure/gate only; draft reports and SAM3/AGX Orin experiments recorded but unreviewed | `jcheng-research/ACCEPTANCE.md` |
 
 ## 3. Verified claims
 

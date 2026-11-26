@@ -12,6 +12,9 @@ versioned.
 
 ### Added
 
+- `jcheng-simulation` v0.1.0 admitted as the SIM-layer offline plant
+  (deterministic mock + Gazebo Harmonic, domain 43 only); repository taxonomy,
+  documentation-standard product set and organization profile updated.
 - Documentation standard v1.0 (`docs/documentation-standard.md`) and
   templates (`docs/templates/`); all product repositories now carry the same
   README / ROADMAP / CHANGELOG / ACCEPTANCE set.

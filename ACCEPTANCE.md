@@ -8,8 +8,9 @@
 > baseline, capability, L4, benchmark, research and operations repositories).
 > No motion commands were sent by this documentation change.
 > Since 2026-11-26 the contract moved to v0.2.0 and 7 of 8 runtime consumers
-> adopted it; the organization merge queue is active. Two L0 gates fail:
-> organization CI reuse and workspace-path consistency (section 4).
+> adopted it; the organization merge queue is active. One L0 gate still fails:
+> workspace-path consistency. Organization CI reuse is implemented but not yet
+> adopted by a repository (section 4).
 
 ## 1. How to read this report
 
@@ -33,7 +34,10 @@ verification JSON is in the local staging archive
 | M2 contract definition and audit | `jcheng-interfaces` | L0–L1 | pass (15 tests; Humble CI, local Jazzy build) | `docs/ecosystem/09-m2-execution.md`; tag `v0.1.0` (historical) |
 | Contract v0.2.0 rollout | `jcheng-interfaces` + 7 consumers | L1 | pass — signed tag verified; 7/8 consumers pin `afca22…`; perception not migrated | `docs/ecosystem/15-v020-alignment.md` |
 | Organization merge queue | all protected repositories | L0 | pass — 11 repositories merged `merge_group`; ruleset active; break-glass recorded | `break-glass/2026-11-27-merge-queue-bootstrap.md` (workspace root) |
-| Organization CI reuse | `.github` | L0 | **fail** — 6/7 reusable workflows are M1 skeletons; 0/12 repositories call them | `.github/workflows/reusable-*.yml` |
+| Lockfile module topology | `jcheng-system` | L0–L1 | pass — `release 2026.11.1` pins teleop 0.3.0, applications 0.1.0 and studio 0.7.0; `verify_lock --module-root` checks the pinned commits | `jcheng-system/locks/ecosystem.lock.yaml`; PR #37 |
+| Public system API version | `jcheng-system` | L0 | pass — `configs/api.yaml` defines `api_version 0.1.0`; module `system_api` ranges are checked against it | `jcheng-system/configs/api.yaml`; PR #39 |
+| Teleop probe and publisher pins | `jcheng-system`, `jcheng-teleop` | L0–L1 | pass — both probes read the lockfile; the test-only publisher default matches `capability.yaml` | PRs #38, #8 |
+| Organization CI reuse | `.github` | L0 | inconclusive — 3/7 reusable workflows are implemented (contract-check, security, release); 0/12 repositories reference them yet | `.github/workflows/reusable-{contract-check,security,release}.yml` |
 | Workspace path consistency | workspace root | L0 | **fail** — documents and `git_preflight.sh` still reference the removed `~/jcheng` root | `AGENTS.md`; `GIT-WORKSPACE-POLICY.md`; `scripts/git_preflight.sh` |
 | M3 mock stack and S1–S17 | `jcheng-system` | L2–L3 | pass (15 passed, 2 skipped, 0 required failures; 16 pytest) | `docs/ecosystem/10-m3-execution.md` |
 | M4 read-only hardware integration | `jcheng-system` | L5 | pass (1799/1799 `measured`, `writes=0`, 30 min) | `docs/ecosystem/evidence/m4-readonly-20261123/` |
@@ -64,6 +68,9 @@ verification JSON is in the local staging archive
 | The organization and repository rules exist and are enforced | L0 | 111/111 M1 API checks; branch protection |
 | Contract v0.2.0 builds, parses and passes parity checks | L0–L1 | `jcheng-interfaces` tag `v0.2.0`; hash `afca22…`; signed tag verified |
 | Seven runtime consumers pin the v0.2.0 contract | L0 | `jcheng-system`, mobile, learning, simulation, teleop, studio and applications declare `>=0.2,<0.3` and the `afca22…` hash |
+| The lockfile pins three module commits and verifies them | L0–L1 | `release 2026.11.1`; `verify_lock --module-root` reads `VERSION` and `capability.yaml` at each pinned commit; 94 tests |
+| The public system API version is defined and checked | L0 | `configs/api.yaml` `api_version 0.1.0`; module `system_api` ranges validated by `verify_lock` |
+| Three organization reusable workflows are implemented | L0 | contract-check, security and release; checkout + shell only; local shell checks pass |
 | The mock system has no bypass publisher and rejects invalid motion | L3 | S1–S17: 15 scenarios pass, 2 skipped, 0 required failures |
 | Read-only integration does not write to the robot | L5 | 30-minute run, `writes=0`, independent bus reads |
 | Supervised single-joint and gripper motion completes with bus verification | L5 | 505 vs 512 pulses; gripper 183→645 / 647→183 |
@@ -92,11 +99,9 @@ verification JSON is in the local staging archive
 | Operations reboot with drop-ins | Vendor boot sequence moves the arm; needs an operator | OOM settings take effect after restart only |
 | New L3/L4/BENCH/research hardware or motion claims | These repositories are offline/mock/scaffold only | No hardware or motion claim is made for them |
 | Ecosystem v1.0 acceptance | Not run | No v1.0 release claim |
-| Organization reusable CI | 6/7 workflows are M1 skeletons; 0/12 repositories call them | Gate logic is duplicated; organization-level contract checks cannot be enforced |
-| Lockfile module topology | `modules: {}`; release string is `2026.11.0-m3` | The reproducible combination covers only interfaces and the robot profile |
-| Perception contract migration | Still `>=0.1,<0.2`; manifest is not `capability-manifest.v1` | Perception is outside the v0.2.0 contract |
+| Organization reusable CI adoption | Three workflows are implemented; no repository references them yet | Reuse is not proven until a pilot passes in CI; gate logic is still duplicated |
+| Perception contract adoption | No runtime imports of `jcheng_interfaces`; explicit waiver recorded | Perception is outside the v0.2.0 contract by declaration, not by adoption |
 | Workspace path references | The former `~/jcheng` root no longer exists | Scripts and documents may fail or mislead |
-| Teleop probe contract constants | Two system probes and the test-only teleop publisher hard-code the v0.1.0 hash | Probes fail the v0.2.0 handshake |
 | License review | Pending; `jcheng-mobile` carries MIT from initialization (retained pending review), the other new repositories have no `LICENSE` | No uniform reuse position; the review must confirm or replace the mobile file |
 
 ## 5. Limitations
@@ -118,14 +123,15 @@ verification JSON is in the local staging archive
 - License status is not uniform: `jcheng-mobile` carries an MIT `LICENSE`,
   retained pending review, while the other new repositories have no `LICENSE`
   and grant no reuse until the review closes.
-- The lockfile does not yet express a module combination: `modules` is empty and
-  `release` still carries the M3 milestone string.
-- Organization CI is not actually reused: six reusable workflows are skeletons
-  and every product repository keeps its own gate.
+- The lockfile pins three modules (teleop, applications, studio) for the ArmPi
+  combination; `jcheng-mobile` and `jcheng-perception` are intentionally outside
+  it.
+- Three of seven reusable workflows are implemented, but no repository references
+  them yet; each product repository still keeps its own gate.
 - Workspace documentation and scripts still point at the removed `~/jcheng`
   root; path-sensitive commands need `JCHENG_ROOT` or an update.
-- `jcheng-perception` has not adopted contract v0.2.0 and its manifest does not
-  follow `capability-manifest.v1`.
+- `jcheng-perception` does not consume the interface contract at runtime; this
+  is recorded as an explicit waiver in its `ROADMAP.md` and `ACCEPTANCE.md`.
 
 ## 6. Sign-off
 
@@ -147,3 +153,9 @@ Its `reviewer` is `pending` and its `result` is `inconclusive`; it is a status
 record, not a signed acceptance. The 2026-11-26, 2026-11-25 and 2026-11-24
 reports are kept as history. Per-repository reports, when produced, must use the
 same schema.
+
+The 2026-11-27 snapshot was generated before the same-day merges of the lockfile
+modules (PR #37), the public API version (PR #39), the probe and publisher pins
+(PRs #38, #8), the perception waiver (PR #20) and the reusable CI workflows
+(PR #18). The tables above are the current status; the JSON remains the
+point-in-time record.

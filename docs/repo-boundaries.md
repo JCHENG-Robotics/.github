@@ -73,6 +73,14 @@
 | `jcheng-research` | RESEARCH | 文献、根因、实验设计、报告与决策 | 运行时代码、硬件、运动、第二套 plant | 无（离线） | 被运行时代码导入、声称产品验收 |
 | `jcheng-mobile-bench` | BENCH 沙箱 | 台架材料沙箱 | 发布、被依赖、版本化 | 无 | 被能力仓或运行时依赖、部署到机器人 |
 
+非产品检出（不单独拥有职责，不接入运行时）：
+
+- `jcheng-design`：`jcheng-manipulation` 的第二个 checkout，承载
+  `design/ecosystem-v1` 设计记录；不得作为运行时源。
+- `jcheng-system-r5`、`jcheng-system-v020`：`jcheng-system` 的重复检出；
+  不属于产品矩阵，不得作为部署源。
+- `jcheng-ecosystem-bootstrap`：M1 staging 与非仓库脚本，不发布。
+
 ## 4. Source of Truth Matrix（SOM）
 
 | 概念 | 唯一声明真源 | 允许的副本 | 一致性校验 |

@@ -14,7 +14,11 @@
 | `f7fd1e5` | 并入 scenarios 准入注册（原 `docs/scenarios-admission-20261127`；解决 taxonomy/ROADMAP 冲突，保留两仓） |
 | `6a2e5fd` | 新增 `docs/repo-boundaries.md` v1.0；更新 `docs/repo-taxonomy.md`、`profile/README.md`、`profile/README.zh-CN.md`、`CHANGELOG.md`、`ROADMAP.md` |
 | `cfef7c0` | 更新组织主页架构图：声明平面 / 意图平面 / 执行平面 |
-| 本次收尾提交 | 新增 `docs/boundary-consolidation/01…06、08`；修正边界规范门禁链接 |
+| `dd76f18` | 新增 `docs/boundary-consolidation/01…06、08` 与 `CHANGELOG` 条目 |
+| `d9a5f91` | 新增交付索引 `README.md`；边界规范补充非产品检出说明 |
+
+> 之后的提交只做元数据对齐（本表与回滚引用的 SHA），不改变交付内容；
+> 可回滚点仍以 `05-regression-baseline.md` §2 为准。
 
 新增文件：
 

@@ -19,7 +19,7 @@
 
 | 仓库 | 当前分支 | HEAD | 变更前基线 |
 |---|---|---|---|
-| `.github` | `docs/boundary-consolidation-20261127` | `cfef7c0` | `origin/main` `c298efb` |
+| `.github` | `docs/boundary-consolidation-20261127` | `d9a5f91` | `origin/main` `c298efb` |
 | `jcheng-devices` | `feat/admission-20261127` | `9026c16` | `029991f`（`fix/robot-profile-boundary-20261127`） |
 | `jcheng-scenarios` | `feat/admission-20261127` | `6ee7928` | `4390212`（`main`） |
 

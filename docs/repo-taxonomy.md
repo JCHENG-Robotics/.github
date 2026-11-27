@@ -21,6 +21,8 @@
 | RESEARCH | `jcheng-research` | 公开调研：文献、根因、实验设计、报告与决策 | 运行时代码、硬件访问、运动命令 |
 
 依赖方向：L4 -> L2 API；L3 -> L1 + L2 客户端；L2 -> L1；OPS -> 仅 HTTP 健康端点；L0 -> 所有（仅 CI）。
+本表只定义分层与依赖方向；**职责所有权、事实源、运行时权限、Schema 归属与评测归属**以
+[`repo-boundaries.md`](repo-boundaries.md) 为准。
 `jcheng-benchmark`、`jcheng-mobile-bench`、`jcheng-scenarios` 与 `jcheng-research`
 不在运行时依赖图中；`jcheng-simulation` 只使用域 43。
 `jcheng-studio`（L4，2026-11-26 准入，v0.7.0）只经系统网关的 HTTP/WS 接口
@@ -65,9 +67,11 @@ benchmark 与设备库只读取固定版本的声明文件，跨仓库消费前�
 ## 新仓库准入检查
 
 - [ ] 职责不与现有仓库重叠。
+- [ ] 在 `repo-boundaries.md` 的 Repository Ownership Matrix 与 Source of Truth Matrix 中登记。
 - [ ] 只通过 `jcheng-interfaces` 表达跨仓库契约。
 - [ ] 默认 `hardware_access: none`。
 - [ ] 有 `capability.yaml`、CI、失败语义、契约握手测试。
+- [ ] 有 `SCHEMA_OWNERSHIP.md`（Schema、版本、owner、消费者、contract/repo-local）。
 - [ ] 具备完整四件套文档（见上）。
 - [ ] 首次接入有受监督实机证据（如涉及运动）。
 - [ ] SCEN/声明式仓库：场景有唯一 ID、版本与 provenance；每个参数标注

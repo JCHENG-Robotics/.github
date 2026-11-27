@@ -12,6 +12,19 @@ versioned.
 
 ### Added
 
+- `docs/repo-boundaries.md` v1.0: the ecosystem responsibility-boundary
+  specification. It fixes the Repository Ownership, Source of Truth, Runtime
+  Authority, Schema Ownership and Evaluation Ownership matrices, the contract
+  change process, admission/exit rules, frozen-baseline rules and the
+  report-only boundary gate list. Ten decisions D-01…D-10 are recorded in the
+  appendix, including the device and scenario sources of truth and the rule
+  that `jcheng-system` keeps an independent safety overlay. Known deviations
+  DEV-01…DEV-10 are registered there for the migration plan.
+- `jcheng-devices` v0.1.0 is admitted to the repository map: an L3 offline
+  device library with an explicit registry (6 devices / 7 capabilities),
+  repository-local `device-profile.v1` / `capability-profile.v1` schemas, a
+  validator/CLI and CI. It has no device access, runtime node, DDS domain or
+  motion path; the system `robot-profile.v1` remains the deployment authority.
 - `jcheng-scenarios` v0.1.0: a SCEN-layer declarative scenario catalog with a
   registry, eight repository-local v1 JSON Schemas, an offline validator and
   the `ore_sorting` reference scenario. It is outside the runtime dependency

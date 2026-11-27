@@ -84,6 +84,8 @@ JCHENG Robotics 是一个面向低成本硬件、强调可靠性与可审计性�
 | 能力仓库 | `jcheng-mobile` v0.1.0 静态 `/scan`/`/odom`/`/map`；`jcheng-perception` v0.1.0 对齐深度 + split edge + 单次双视图 + 离线 ORE S0/S1；`jcheng-ops` v0.1.0 已部署 |
 | 学习 / 仿真 | `jcheng-learning` v0.2.0 M1 离线数据集基础设施；`jcheng-simulation` v0.1.0 域 43 上的离线多机器人被控对象（mock 已验证，Gazebo 部分验证） |
 | 遥操作 | `jcheng-teleop` v0.3.0 M0 设计 + M1 ROS-free 核心；系统 mock intake 与 ArmPi/Gate-2 仿真桥通过 L3；无硬件 |
+| 设备库 | `jcheng-devices` v0.1.0 离线注册表（6 设备 / 7 能力）、设备/能力描述 Schema、校验器与 CI；无设备访问、运行时或运动 |
+| 场景库 | `jcheng-scenarios` v0.1.0 SCEN 层声明式场景库（8 个仓库内 Schema 与 `ore_sorting` 参考场景）；仅离线校验；无消费方集成、评测或硬件 |
 | 操作台 / 编排 | `jcheng-studio` v0.7.0 控制台 + 只读 REST/WS + 会话/回放；`jcheng-applications` v0.1.0 M3 mock 运行 + S3 分支/tree/WAITING/derived；不加入 DDS、不执行运动 |
 | 调研 | `jcheng-research` v0.1.0，公开；草稿报告与 SAM3/AGX Orin 实验已记录，评审待做 |
 | 基准 | `jcheng-benchmark` v0.1.0 实验性；离线只读 runner 与合成自测；尚无可记录数据或硬件结果 |
@@ -137,6 +139,8 @@ Hardware plane          唯一发布者，厂商 DDS 域 0
 | [`JCHENG-Robotics/jcheng-benchmark`](https://github.com/JCHENG-Robotics/jcheng-benchmark) | 跨层只读基准工具 | v0.1.0 实验性；仅合成自测 |
 | [`JCHENG-Robotics/jcheng-learning`](https://github.com/JCHENG-Robotics/jcheng-learning) | L3 学习：数据集、训练、策略产物（离线） | v0.1.0；无运行时或策略 |
 | [`JCHENG-Robotics/jcheng-teleop`](https://github.com/JCHENG-Robotics/jcheng-teleop) | L3 遥操作：操作员输入到有界、受租约约束的意图（离线） | v0.1.0；仅准入 |
+| [`JCHENG-Robotics/jcheng-devices`](https://github.com/JCHENG-Robotics/jcheng-devices) | L3 设备库：声明式设备/能力描述与离线校验 | v0.1.0；仅离线注册表 |
+| [`JCHENG-Robotics/jcheng-scenarios`](https://github.com/JCHENG-Robotics/jcheng-scenarios) | SCEN 声明式场景库：环境、任务、评测与约束 Profile | v0.1.0；仅离线校验 |
 | [`JCHENG-Robotics/jcheng-simulation`](https://github.com/JCHENG-Robotics/jcheng-simulation) | 域 43 上的离线多机器人被控对象 | v0.1.0；mock 已验证，Gazebo 部分验证 |
 | [`JCHENG-Robotics/jcheng-studio`](https://github.com/JCHENG-Robotics/jcheng-studio) | L4 操作台 | v0.7.0 |
 | [`JCHENG-Robotics/jcheng-applications`](https://github.com/JCHENG-Robotics/jcheng-applications) | L4 任务编排 | v0.1.0 |
@@ -219,6 +223,8 @@ Hardware plane          唯一发布者，厂商 DDS 域 0
 | `jcheng-research` | 公开调研工作区：报告与决策 | v0.1.0；在运行时图之外 |
 | `jcheng-mobile-bench` | 台架材料沙箱 | 沙箱；不发布 |
 | `jcheng-teleop` | 遥操作意图：操作员输入到有界、受租约约束的意图 | 实验性；v0.1.0 仅准入骨架 |
+| `jcheng-devices` | 设备库：声明式设备/能力描述、型号建模与离线校验 | 实验性；v0.1.0 仅离线注册表 |
+| `jcheng-scenarios` | 声明式场景库：环境、任务、评测与约束 Profile | 实验性；v0.1.0 仅离线校验 |
 | `jcheng-studio` | 操作台：调试、诊断与实验记录 | 实验性；v0.7.0 控制台、REST/WS、会话、回放 |
 | `jcheng-applications` | 任务编排：配方校验、确定性规划与失败关闭的意图序列 | 实验性；v0.1.0 离线核心 + 只读传输 |
 

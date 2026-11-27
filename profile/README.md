@@ -92,6 +92,7 @@ and the S1–S17 scenarios exist to prove the no-bypass boundary before any supe
 | Learning / simulation | `jcheng-learning` v0.2.0 M1 offline dataset infrastructure; `jcheng-simulation` v0.1.0 offline multi-robot plant on domain 43 (mock verified, Gazebo partial) |
 | Teleoperation | `jcheng-teleop` v0.3.0 M0 design + M1 ROS-free core; system mock intake and ArmPi/Gate-2 simulation bridge pass L3; no hardware |
 | Device library | `jcheng-devices` v0.1.0 offline registry (6 devices / 7 capabilities), device/capability schemas, validator and CI; no device access, runtime or motion |
+| Scenario catalog | `jcheng-scenarios` v0.1.0 SCEN-layer declarative catalog (eight repo-local schemas and the `ore_sorting` reference); offline validation only; no consumer integration, evaluation or hardware |
 | Operator / orchestration | `jcheng-studio` v0.7.0 console + read-only REST/WS + sessions/replay; `jcheng-applications` v0.1.0 M3 mock run + S3 branches/tree/WAITING/derived; no DDS or motion |
 | Research | `jcheng-research` v0.1.0, public; draft reports and SAM3/AGX Orin experiments recorded, review pending |
 | Benchmark | `jcheng-benchmark` v0.1.0 experimental; offline, read-only harness and synthetic self-test only; no recorded or hardware result |
@@ -149,6 +150,7 @@ added independently versioned capability, operations and benchmark repositories:
 | [`JCHENG-Robotics/jcheng-learning`](https://github.com/JCHENG-Robotics/jcheng-learning) | L3 learning: datasets, training, policy artifacts (offline) | v0.1.0; no runtime or policy |
 | [`JCHENG-Robotics/jcheng-teleop`](https://github.com/JCHENG-Robotics/jcheng-teleop) | L3 teleoperation: operator input to bounded, lease-gated intent (offline) | v0.1.0; admission only |
 | [`JCHENG-Robotics/jcheng-devices`](https://github.com/JCHENG-Robotics/jcheng-devices) | L3 device library: declarative profiles, capability model and offline validation | v0.1.0; offline registry only |
+| [`JCHENG-Robotics/jcheng-scenarios`](https://github.com/JCHENG-Robotics/jcheng-scenarios) | SCEN declarative scenario catalog: environment, task, evaluation and constraint profiles | v0.1.0; offline validation only |
 | [`JCHENG-Robotics/jcheng-simulation`](https://github.com/JCHENG-Robotics/jcheng-simulation) | Offline multi-robot plant on domain 43 | v0.1.0; mock verified, Gazebo partial |
 | [`JCHENG-Robotics/jcheng-studio`](https://github.com/JCHENG-Robotics/jcheng-studio) | L4 operator console | v0.7.0 |
 | [`JCHENG-Robotics/jcheng-applications`](https://github.com/JCHENG-Robotics/jcheng-applications) | L4 task orchestration | v0.1.0 |

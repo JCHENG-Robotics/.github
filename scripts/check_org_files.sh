@@ -25,6 +25,8 @@ for f in \
   profile/README.md \
   profile/README.zh-CN.md \
   docs/repo-taxonomy.md \
+  docs/controlled-git-operations.md \
+  docs/incidents/2026-11-27-git-authority.md \
   docs/branch-protection.md \
   docs/release-train.md \
   docs/security-baseline.md \
@@ -44,7 +46,11 @@ for f in \
   ISSUE_TEMPLATE/bug.yml \
   ISSUE_TEMPLATE/feature.yml \
   ISSUE_TEMPLATE/design.yml \
-  ISSUE_TEMPLATE/config.yml
+  ISSUE_TEMPLATE/config.yml \
+  scripts/check_boundaries.py \
+  scripts/test_check_boundaries.py \
+  scripts/check_python_policy.sh \
+  scripts/test_python_policy.sh
 do
   require_file "$f"
 done
@@ -59,8 +65,8 @@ if find . -path ./.git -prune -o -name 'package.xml' -print -quit | grep -q .; t
   fail=1
 fi
 
-if find . -path ./.git -prune -o -type f -name '*.py' -print -quit | grep -q .; then
-  echo "ERROR: Python source found; M1 .github must not contain product code." >&2
+# Python is product code here, with a two-file governance allowlist.
+if ! bash scripts/check_python_policy.sh .; then
   fail=1
 fi
 

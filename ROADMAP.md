@@ -26,9 +26,10 @@
 | Application orchestration | Experimental | `jcheng-applications` v0.1.0; M2 read-only transport, M3 supervised run on the mock, S3 branches/tree/WAITING/derived-plan; no hardware |
 | Learning | Experimental | `jcheng-learning` v0.2.0; M1 offline dataset infrastructure and capture boundary; no runtime node, policy or hardware |
 | Teleoperation | Experimental | `jcheng-teleop` v0.3.0; M0 design and M1 ROS-free core complete; system mock intake and test-only ArmPi/Gate-2 simulation bridge pass L3; no hardware |
+| Device library | Experimental | `jcheng-devices` v0.1.0; offline registry (6 devices / 7 capabilities), `device-profile.v1` / `capability-profile.v1`, validator and CI; no adapter, runtime or hardware |
 | Simulation | Experimental | `jcheng-simulation` v0.1.0; offline multi-robot plant on domain 43; mock verified, Gazebo partial; no hardware |
 | Research workspace | Experimental | `jcheng-research` v0.1.0; public; draft reports (Ultralytics, RLinf/PiPER X) and SAM3/AGX Orin experiments recorded, review pending; no product/hardware claim |
-| License | Pending for most repositories | Frozen baseline and `jcheng-mobile` carry MIT (mobile retained pending review); `jcheng-interfaces`, `jcheng-system`, `jcheng-perception`, `jcheng-ops`, `jcheng-learning`, `jcheng-teleop`, `jcheng-simulation`, `jcheng-research`, `jcheng-benchmark`, `jcheng-studio`, `jcheng-applications` and `.github` have no `LICENSE` |
+| License | Pending for most repositories | Frozen baseline and `jcheng-mobile` carry MIT (mobile retained pending review); `jcheng-interfaces`, `jcheng-system`, `jcheng-perception`, `jcheng-ops`, `jcheng-learning`, `jcheng-teleop`, `jcheng-devices`, `jcheng-simulation`, `jcheng-research`, `jcheng-benchmark`, `jcheng-studio`, `jcheng-applications` and `.github` have no `LICENSE` |
 
 ## Milestones
 
@@ -42,7 +43,7 @@
 | M5.1 | Mock ROS services/actions, lease, safety, stop latch | Complete (2026-11-24) | 5 ROS tests; `m5-mock` green | `jcheng-system` `tests_ros/` |
 | M5.2 | Supervised single-joint and gripper execution | Complete, core (2026-11-24) | `COMPLETED` + `bus_verified`; stop latches | `docs/ecosystem/evidence/m52-final-20261124/` |
 | M6 | Baseline replay and G8 re-validation | In progress — S13 21/21 and S17 plan-only + real pass; S14 base and full G8 pending | S13/S17 pass; S14 base and full G8 re-run with landing evidence | `docs/ecosystem/evidence/m6-s13-20261124/`; `jcheng-system/deploy/armpi-ultra/docs/ACCEPTANCE-20261125.md` |
-| M7 | First integrated capability module on the system API | In progress — mobile static bring-up, perception split edge/dual-view; studio/applications/learning/teleop/simulation scaffolds admitted | A capability passes L3 and supervised L5 through the system boundary | `jcheng-mobile`, `jcheng-perception`, `jcheng-studio`, `jcheng-applications`, `jcheng-learning`, `jcheng-teleop`, `jcheng-simulation` roadmaps |
+| M7 | First integrated capability module on the system API | In progress — mobile static bring-up, perception split edge/dual-view; studio/applications/learning/teleop/simulation/devices scaffolds admitted | A capability passes L3 and supervised L5 through the system boundary | `jcheng-mobile`, `jcheng-perception`, `jcheng-studio`, `jcheng-applications`, `jcheng-learning`, `jcheng-teleop`, `jcheng-simulation`, `jcheng-devices` roadmaps |
 | M8 | Ecosystem v1.0: lockfile, SBOM, signed acceptance report | Planned | All repositories at declared versions; ecosystem acceptance passes | — |
 
 ## Next

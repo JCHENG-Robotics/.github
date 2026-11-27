@@ -52,6 +52,13 @@ versioned.
   The reserved `TeleopCommand` stream is documented but not published; there is
   no input adapter, device access, DDS domain or motion. The organization
   profile, roadmap, acceptance and repository taxonomy now include it.
+- `jcheng-devices` v0.1.0: the L3 device library with an explicit registry
+  (six device profiles, seven capability profiles), `device-profile.v1` and
+  `capability-profile.v1` schemas, an offline validator/CLI and a fail-closed
+  gate. It opens no device, joins no DDS domain and commands no motion; device
+  I/O remains with `jcheng-system` and each robot's `robot-profile.v1` remains
+  the runtime authority. The organization profile, roadmap and repository
+  taxonomy now include it.
 - `jcheng-simulation` v0.1.0: offline multi-robot plant engine on domain 43;
   deterministic mock verified, Gazebo Harmonic partially verified.
 - `jcheng-research` v0.1.0: public investigation workspace for reports and

@@ -73,6 +73,16 @@ versioned.
   checks the interfaces v0.2.0 tag, matching the lockfile.
 - The ecosystem `ROADMAP.md` and `docs/repo-taxonomy.md` now state the v0.2.0
   contract and the current teleop/applications surfaces instead of v0.1.0.
+- `jcheng-system` lockfile `release 2026.11.1` pins teleop 0.3.0, applications
+  0.1.0 and studio 0.7.0; `verify_lock --module-root` checks the pinned
+  commits, capability manifests and `system_api` ranges, and `configs/api.yaml`
+  defines the public API version `0.1.0`.
+- `jcheng-perception` records an explicit waiver: it does not consume the
+  interface contract at runtime.
+- The two system teleop probes read the contract hash from the lockfile, and the
+  test-only teleop publisher default matches `capability.yaml`.
+- The organization contract-check, security and release reusable workflows are
+  implemented; release creates drafts and 3 of 7 workflows remain skeletons.
 - `jcheng-research` is public on GitHub; its README, AGENTS.md, ACCEPTANCE.md,
   LICENSE-REVIEW.md, the repository taxonomy and the organization profile now
   state that instead of claiming a private repository.

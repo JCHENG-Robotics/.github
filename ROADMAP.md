@@ -59,12 +59,13 @@
 4. **Keep the image lock current.** Re-record
    `jcheng-system/deploy/armpi-ultra/container/image.lock` on every image
    change; the 2026-11-25 digest is the current reference.
-5. **Finish the v0.2.0 alignment follow-through.** The lockfile pins three
-   modules, the public API version is defined and three reusable workflows are
-   implemented. Remaining: merge the interfaces pilot (PR #15) so a repository
-   actually uses `reusable-contract-check`, and record a new acceptance
-   snapshot. The workspace path is covered by the restored `~/jcheng` symlink.
-   See the design record `docs/ecosystem/15-v020-alignment.md`.
+5. **Extend the v0.2.0 alignment adoption.** The lockfile pins three modules,
+   the public API version is defined, three reusable workflows are implemented
+   and `jcheng-interfaces` runs contract-check on `main`. Remaining: adopt
+   security and release in another repository, and keep the post-merge
+   acceptance snapshot current. The workspace path is covered by the restored
+   `~/jcheng` symlink. See the design record
+   `docs/ecosystem/15-v020-alignment.md`.
 
 ## Out of scope
 

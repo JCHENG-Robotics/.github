@@ -50,9 +50,25 @@ versioned.
   (English) and `**简体中文** | [English](README.md)` (Chinese) as the first line
   after the H1; the status block keeps one canonical sentence without a second
   link. `docs/documentation-standard.md` and both templates updated.
+- `acceptance/ecosystem-2026-11-27.json`: status report covering the v0.2.0
+  rollout (7/8 runtime consumers), the organization merge queue, and two failed
+  L0 gates (organization CI reuse, workspace-path consistency). Reviewer
+  pending; result `inconclusive`.
+- v0.2.0 alignment package in the design record
+  (`jcheng-design/docs/ecosystem/15-v020-alignment.md`): contract adoption
+  matrix, lockfile `modules` topology and drift register.
 
 ### Changed
 
+- `jcheng-interfaces` v0.2.0 is adopted by `jcheng-system`, `jcheng-mobile`,
+  `jcheng-learning`, `jcheng-simulation`, `jcheng-teleop`, `jcheng-studio` and
+  `jcheng-applications`; `jcheng-perception` remains on `>=0.1,<0.2`.
+- The organization merge queue is active on 11 protected repositories; the
+  review requirement was relaxed only for the recorded break-glass merges.
+- `jcheng-system/docs/OPERATIONS.md` now states that `verify_lock.py --remote`
+  checks the interfaces v0.2.0 tag, matching the lockfile.
+- The ecosystem `ROADMAP.md` and `docs/repo-taxonomy.md` now state the v0.2.0
+  contract and the current teleop/applications surfaces instead of v0.1.0.
 - `jcheng-research` is public on GitHub; its README, AGENTS.md, ACCEPTANCE.md,
   LICENSE-REVIEW.md, the repository taxonomy and the organization profile now
   state that instead of claiming a private repository.

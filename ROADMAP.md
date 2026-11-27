@@ -1,6 +1,7 @@
 # JCHENG ecosystem roadmap
 
-> Status: **M1–M5.2 complete; M6 in progress** as of 2026-11-26.
+> Status: **M1–M5.2 complete; M6 in progress; contract v0.2.0 adopted by 7 of 8
+> runtime consumers** as of 2026-11-27.
 > The ecosystem has not reached v1.0 and makes no v1.0 acceptance claim.
 > English canonical. Repository-local roadmaps live in each repository.
 
@@ -9,7 +10,7 @@
 | Item | State | Evidence |
 |---|---|---|
 | Organization and three founding repositories | Complete (M1) | 111/111 API checks; `jcheng-ecosystem-bootstrap/M1-VERIFICATION.json` |
-| Contracts `jcheng-interfaces` v0.1.0 | Complete (M2) | Contract hash `sha256:0b8d72ce…f24b42`; signed tag `v0.1.0` |
+| Contracts `jcheng-interfaces` v0.2.0 | Complete (R5, 2026-11-27) | Contract hash `sha256:afca22a4…35b1c`; signed tag `v0.2.0` verified; 7/8 runtime consumers adopted |
 | Mock system runtime `jcheng-system` | Complete (M3) | 15 scenarios pass, 2 skipped, 0 required failures; `main` `40a74ba` |
 | Read-only robot integration | Complete (M4) | 30 min, 1799/1799 `measured`, `writes=0` |
 | Mock ROS transport (lease, safety, ExecuteMotion, stop latch) | Complete (M5.1) | 5 ROS tests; CI `m5-mock` |
@@ -40,7 +41,7 @@
 | M4 | Read-only robot integration (no motion) | Complete (2026-11-23) | 30 min, `writes=0`, independent bus reads match | `docs/ecosystem/evidence/m4-readonly-20261123/` |
 | M5.1 | Mock ROS services/actions, lease, safety, stop latch | Complete (2026-11-24) | 5 ROS tests; `m5-mock` green | `jcheng-system` `tests_ros/` |
 | M5.2 | Supervised single-joint and gripper execution | Complete, core (2026-11-24) | `COMPLETED` + `bus_verified`; stop latches | `docs/ecosystem/evidence/m52-final-20261124/` |
-| M6 | Baseline replay and G8 re-validation | In progress — S13 21/21 and S17 plan-only + real pass; S14 base and full G8 pending | `docs/ecosystem/evidence/m6-s13-20261124/`; `jcheng-system/deploy/armpi-ultra/docs/ACCEPTANCE-20261125.md` |
+| M6 | Baseline replay and G8 re-validation | In progress — S13 21/21 and S17 plan-only + real pass; S14 base and full G8 pending | S13/S17 pass; S14 base and full G8 re-run with landing evidence | `docs/ecosystem/evidence/m6-s13-20261124/`; `jcheng-system/deploy/armpi-ultra/docs/ACCEPTANCE-20261125.md` |
 | M7 | First integrated capability module on the system API | In progress — mobile static bring-up, perception split edge/dual-view; studio/applications/learning/teleop/simulation scaffolds admitted | A capability passes L3 and supervised L5 through the system boundary | `jcheng-mobile`, `jcheng-perception`, `jcheng-studio`, `jcheng-applications`, `jcheng-learning`, `jcheng-teleop`, `jcheng-simulation` roadmaps |
 | M8 | Ecosystem v1.0: lockfile, SBOM, signed acceptance report | Planned | All repositories at declared versions; ecosystem acceptance passes | — |
 
@@ -58,6 +59,10 @@
 4. **Keep the image lock current.** Re-record
    `jcheng-system/deploy/armpi-ultra/container/image.lock` on every image
    change; the 2026-11-25 digest is the current reference.
+5. **Close the v0.2.0 alignment gaps.** The lockfile has no `modules` map, six
+   organization reusable workflows are skeletons, `jcheng-perception` is still
+   on `>=0.1,<0.2`, and the workspace path references need updating. See the
+   design record `docs/ecosystem/15-v020-alignment.md`.
 
 ## Out of scope
 
@@ -71,8 +76,8 @@
 
 ## Dependencies
 
-- `jcheng-interfaces` v0.1.0, contract hash
-  `sha256:0b8d72ced7f54d444d6851d8b99a51a78e2bed3f687324f51a15f76557f24b42`.
+- `jcheng-interfaces` v0.2.0, contract hash
+  `sha256:afca22a42f7163e0351d185d5a8577b0b51f2f3da4b92278f161a4a7d2c35b1c`.
 - `jcheng-system` `>=0.1,<0.4` for capability repositories; system API range
   declared per `capability.yaml`.
 - Every real-robot session requires separate, explicit operator authorization.

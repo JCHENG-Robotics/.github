@@ -12,6 +12,11 @@ versioned.
 
 ### Added
 
+- `jcheng-scenarios` v0.1.0: a SCEN-layer declarative scenario catalog with a
+  registry, eight repository-local v1 JSON Schemas, an offline validator and
+  the `ore_sorting` reference scenario. It is outside the runtime dependency
+  graph and has no DDS, device, task-execution or motion path. The repository
+  taxonomy now records the SCEN layer; no contract change.
 - Documentation standard v1.0 (`docs/documentation-standard.md`) and
   templates (`docs/templates/`); all product repositories now carry the same
   README / ROADMAP / CHANGELOG / ACCEPTANCE set.

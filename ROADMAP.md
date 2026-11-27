@@ -28,7 +28,8 @@
 | Teleoperation | Experimental | `jcheng-teleop` v0.3.0; M0 design and M1 ROS-free core complete; system mock intake and test-only ArmPi/Gate-2 simulation bridge pass L3; no hardware |
 | Simulation | Experimental | `jcheng-simulation` v0.1.0; offline multi-robot plant on domain 43; mock verified, Gazebo partial; no hardware |
 | Research workspace | Experimental | `jcheng-research` v0.1.0; public; draft reports (Ultralytics, RLinf/PiPER X) and SAM3/AGX Orin experiments recorded, review pending; no product/hardware claim |
-| License | Pending for most repositories | Frozen baseline and `jcheng-mobile` carry MIT (mobile retained pending review); `jcheng-interfaces`, `jcheng-system`, `jcheng-perception`, `jcheng-ops`, `jcheng-learning`, `jcheng-teleop`, `jcheng-simulation`, `jcheng-research`, `jcheng-benchmark`, `jcheng-studio`, `jcheng-applications` and `.github` have no `LICENSE` |
+| Scenario catalog | Experimental | `jcheng-scenarios` v0.1.0; SCEN-layer declarative catalog, eight repository-local schemas, offline validation and the `ore_sorting` reference; no consumer integration, evaluation or hardware |
+| License | Pending for most repositories | Frozen baseline and `jcheng-mobile` carry MIT (mobile retained pending review); `jcheng-interfaces`, `jcheng-system`, `jcheng-perception`, `jcheng-ops`, `jcheng-learning`, `jcheng-teleop`, `jcheng-simulation`, `jcheng-scenarios`, `jcheng-research`, `jcheng-benchmark`, `jcheng-studio`, `jcheng-applications` and `.github` have no `LICENSE` |
 
 ## Milestones
 

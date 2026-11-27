@@ -25,6 +25,19 @@ versioned.
   migration plan, regression baseline, admission report, file changelog and the
   report-only `check_boundaries` design. The audit is read-only; no other
   repository's implementation was changed.
+- `docs/controlled-git-operations.md` v1.0: the Controlled Git Operations
+  policy for the stabilization program. It authorizes branch/add/commit/
+  push-to-work-branch/PR/CI queries within scope and reserves merge, release,
+  force-push and history rewrite for the Board. The 2026-11-27 governance
+  incident is recorded in `docs/incidents/2026-11-27-git-authority.md`; the
+  stricter pre-authorization judgment is retained.
+- M1 Python allowlist: `scripts/check_python_policy.sh` permits only
+  `scripts/check_boundaries.py` and `scripts/test_check_boundaries.py`; all
+  other Python is rejected, including symlinks and near-miss names. The
+  allowlist has its own 8-case test and the org gate now calls it.
+- `scripts/check_boundaries.py` and its 17 unit tests: report-only boundary
+  checker (B1–B11). It never imports a target repository, joins DDS or touches a
+  device; findings do not block product CI.
 - `jcheng-devices` v0.1.0 is admitted to the repository map: an L3 offline
   device library with an explicit registry (6 devices / 7 capabilities),
   repository-local `device-profile.v1` / `capability-profile.v1` schemas, a

@@ -135,6 +135,8 @@ versioned.
 - `jcheng-interfaces` merged PR #15 and now runs
   `reusable-contract-check.yml@v1` on `main`; the organization CI-reuse gate
   passes (contract-check only; security, release and three skeletons remain).
+- The `v1` moving alias moved from `065e390` to `c298efb` to include the Action
+  pin fix for organization reusable workflow references (#23).
 - Restored the `~/jcheng` compatibility symlink to
   `/home/jerichocheng/01_Projects/jcheng-robotics`, so the documented paths and
   `git_preflight.sh` work again.

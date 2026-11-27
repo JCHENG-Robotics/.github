@@ -160,7 +160,20 @@ added independently versioned capability, operations and benchmark repositories:
 ### The single motion path
 
 ```text
-capability module
+declaration plane (offline; no runtime authority)
+  scenarios ── task, success and evaluation declarations ─┐
+  devices   ── device and capability profiles ─────────────┤
+  interfaces ── cross-repository contracts ────────────────┘
+        │ pinned version + hash; no runtime call
+        ▼
+intent plane
+  applications (recipe → plan) ─┐
+  teleop (operator intent) ─────┤
+  mobile (/cmd_vel chassis) ────┤
+  studio (observe / stop proxy) ┘
+        │ HTTP/WS, or a declared domain-42 intent topic
+        ▼
+system (sole runtime authority)
   → acquire lease
   → ExecuteMotion (contract + lease + idempotency checks)
   → safety validation
@@ -168,6 +181,11 @@ capability module
   → hardware bridge (the only publisher)
   → bus-verified result + evidence record
 ```
+
+`scenarios`, `devices`, `simulation`, `benchmark`, `learning` and `research` are
+outside the runtime dependency graph on purpose: they declare, simulate or
+measure, but they never execute. A declaration never overrides the system
+safety envelope; a mismatch is a release blocker, not a preference.
 
 Design decisions that follow from this boundary:
 

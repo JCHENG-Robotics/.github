@@ -149,7 +149,20 @@ Hardware plane          唯一发布者，厂商 DDS 域 0
 ### 单一运动路径
 
 ```text
-能力模块
+声明平面（离线；无运行时权限）
+  scenarios ── 任务、成功条件与评测声明 ─┐
+  devices   ── 设备与能力描述 ───────────┤
+  interfaces ── 跨仓库契约 ──────────────┘
+        │ 固定版本 + 哈希；不做运行时调用
+        ▼
+意图平面
+  applications（配方 → 计划） ─┐
+  teleop（操作员意图） ────────┤
+  mobile（/cmd_vel 底盘意图） ─┤
+  studio（观察 / 停止代理） ───┘
+        │ HTTP/WS，或已声明的域 42 意图话题
+        ▼
+system（唯一运行时权威）
   → 申请租约
   → ExecuteMotion（契约 + 租约 + 幂等检查）
   → 安全校验
@@ -157,6 +170,10 @@ Hardware plane          唯一发布者，厂商 DDS 域 0
   → 硬件桥（唯一发布者）
   → 总线确认的结果 + 证据记录
 ```
+
+`scenarios`、`devices`、`simulation`、`benchmark`、`learning` 与 `research`
+刻意位于运行时依赖图之外：它们只声明、仿真或测量，从不执行。声明不能覆盖
+system 的安全包络；不一致是发布阻断项，不是偏好问题。
 
 由这条边界导出的设计决策：
 

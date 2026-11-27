@@ -273,4 +273,4 @@ repo-local → contract 的提升走同一流程；提升前，其他仓不得�
 - [文档与验收标准](documentation-standard.md)
 - [迁移方案](boundary-consolidation/04-migration-plan.md)
 - [执行权限审计](boundary-consolidation/02-runtime-authority-audit.md)
-- [边界门禁设计](boundary-consolidation/06-check-boundaries-design.md)
+- [边界门禁设计](boundary-consolidation/08-check-boundaries-design.md)

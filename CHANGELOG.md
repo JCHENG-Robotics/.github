@@ -20,6 +20,11 @@ versioned.
   appendix, including the device and scenario sources of truth and the rule
   that `jcheng-system` keeps an independent safety overlay. Known deviations
   DEV-01…DEV-10 are registered there for the migration plan.
+- `docs/boundary-consolidation/`: the consolidation evidence set — source of
+  truth matrix, runtime authority audit, contract compatibility matrix,
+  migration plan, regression baseline, admission report, file changelog and the
+  report-only `check_boundaries` design. The audit is read-only; no other
+  repository's implementation was changed.
 - `jcheng-devices` v0.1.0 is admitted to the repository map: an L3 offline
   device library with an explicit registry (6 devices / 7 capabilities),
   repository-local `device-profile.v1` / `capability-profile.v1` schemas, a

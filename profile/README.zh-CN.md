@@ -78,12 +78,14 @@ JCHENG Robotics 是一个面向低成本硬件、强调可靠性与可审计性�
 |---|---|
 | 实验基线 | `jcheng-manipulation v1.0.0`，提交 `b3411e4`，已冻结；完整 G8 验收已记录 |
 | 生态里程碑 | **M1–M5.2 已完成**；M6 S13 与 S17 实机 MoveIt 已验证；S14 底盘与完整 G8 待做 |
-| 契约 | `jcheng-interfaces` v0.1.0：14 msg / 10 srv / 1 action，7 个 Schema，契约哈希已固定 |
+| 契约 | `jcheng-interfaces` v0.2.0（已签名标签）：14 msg / 10 srv / 1 action，7 个 Schema；v0.3.0 `intent_source` 评审中 |
 | 系统运行时 | `jcheng-system` 0.3.0-dev：13 个 ROS 包；M4 只读、M5.2 核心、M6 S13 + S17 实机已验证；S14/G8 待做 |
 | 运行时镜像 | `armpi-ultra:flatten-20261125`，7.1 GB arm64；20 节点 / 60 话题保持不变，重启后仍生效 |
 | 能力仓库 | `jcheng-mobile` v0.1.0 静态 `/scan`/`/odom`/`/map`；`jcheng-perception` v0.1.0 对齐深度 + split edge + 单次双视图 + 离线 ORE S0/S1；`jcheng-ops` v0.1.0 已部署 |
 | 学习 / 仿真 | `jcheng-learning` v0.2.0 M1 离线数据集基础设施；`jcheng-simulation` v0.1.0 域 43 上的离线多机器人被控对象（mock 已验证，Gazebo 部分验证） |
 | 遥操作 | `jcheng-teleop` v0.3.0 M0 设计 + M1 ROS-free 核心；系统 mock intake 与 ArmPi/Gate-2 仿真桥通过 L3；无硬件 |
+| 设备库 | `jcheng-devices` v0.1.0 离线注册表（6 设备 / 7 能力）、设备/能力描述 Schema、校验器与 CI；无设备访问、运行时或运动 |
+| 场景库 | `jcheng-scenarios` v0.1.0 SCEN 层声明式场景库（8 个仓库内 Schema 与 `ore_sorting` 参考场景）；仅离线校验；无消费方集成、评测或硬件 |
 | 操作台 / 编排 | `jcheng-studio` v0.7.0 控制台 + 只读 REST/WS + 会话/回放；`jcheng-applications` v0.1.0 M3 mock 运行 + S3 分支/tree/WAITING/derived；不加入 DDS、不执行运动 |
 | 调研 | `jcheng-research` v0.1.0，公开；草稿报告与 SAM3/AGX Orin 实验已记录，评审待做 |
 | 基准 | `jcheng-benchmark` v0.1.0 实验性；离线只读 runner 与合成自测；尚无可记录数据或硬件结果 |
@@ -129,7 +131,7 @@ Hardware plane          唯一发布者，厂商 DDS 域 0
 | 仓库 | 职责 | 当前状态 |
 |---|---|---|
 | [`JCHENG-Robotics/.github`](https://github.com/JCHENG-Robotics/.github) | 治理、模板、复用 CI、生态文档 | M1 完成；文档标准 v1.0 |
-| [`JCHENG-Robotics/jcheng-interfaces`](https://github.com/JCHENG-Robotics/jcheng-interfaces) | 契约、Schema、契约哈希 | v0.1.0，已签名标签 |
+| [`JCHENG-Robotics/jcheng-interfaces`](https://github.com/JCHENG-Robotics/jcheng-interfaces) | 契约、Schema、契约哈希 | v0.2.0，已签名标签 |
 | [`JCHENG-Robotics/jcheng-system`](https://github.com/JCHENG-Robotics/jcheng-system) | 特权运行时、安全、仲裁、网关 | 0.3.0-dev；M6 S13 + S17 实机 |
 | [`JCHENG-Robotics/jcheng-mobile`](https://github.com/JCHENG-Robotics/jcheng-mobile) | L3 移动底盘 | v0.1.0；静态 bring-up |
 | [`JCHENG-Robotics/jcheng-perception`](https://github.com/JCHENG-Robotics/jcheng-perception) | L3 感知 | v0.1.0；对齐深度 + 单次双视图 |
@@ -137,6 +139,8 @@ Hardware plane          唯一发布者，厂商 DDS 域 0
 | [`JCHENG-Robotics/jcheng-benchmark`](https://github.com/JCHENG-Robotics/jcheng-benchmark) | 跨层只读基准工具 | v0.1.0 实验性；仅合成自测 |
 | [`JCHENG-Robotics/jcheng-learning`](https://github.com/JCHENG-Robotics/jcheng-learning) | L3 学习：数据集、训练、策略产物（离线） | v0.1.0；无运行时或策略 |
 | [`JCHENG-Robotics/jcheng-teleop`](https://github.com/JCHENG-Robotics/jcheng-teleop) | L3 遥操作：操作员输入到有界、受租约约束的意图（离线） | v0.1.0；仅准入 |
+| [`JCHENG-Robotics/jcheng-devices`](https://github.com/JCHENG-Robotics/jcheng-devices) | L3 设备库：声明式设备/能力描述与离线校验 | v0.1.0；仅离线注册表 |
+| [`JCHENG-Robotics/jcheng-scenarios`](https://github.com/JCHENG-Robotics/jcheng-scenarios) | SCEN 声明式场景库：环境、任务、评测与约束 Profile | v0.1.0；仅离线校验 |
 | [`JCHENG-Robotics/jcheng-simulation`](https://github.com/JCHENG-Robotics/jcheng-simulation) | 域 43 上的离线多机器人被控对象 | v0.1.0；mock 已验证，Gazebo 部分验证 |
 | [`JCHENG-Robotics/jcheng-studio`](https://github.com/JCHENG-Robotics/jcheng-studio) | L4 操作台 | v0.7.0 |
 | [`JCHENG-Robotics/jcheng-applications`](https://github.com/JCHENG-Robotics/jcheng-applications) | L4 任务编排 | v0.1.0 |
@@ -145,7 +149,20 @@ Hardware plane          唯一发布者，厂商 DDS 域 0
 ### 单一运动路径
 
 ```text
-能力模块
+声明平面（离线；无运行时权限）
+  scenarios ── 任务、成功条件与评测声明 ─┐
+  devices   ── 设备与能力描述 ───────────┤
+  interfaces ── 跨仓库契约 ──────────────┘
+        │ 固定版本 + 哈希；不做运行时调用
+        ▼
+意图平面
+  applications（配方 → 计划） ─┐
+  teleop（操作员意图） ────────┤
+  mobile（/cmd_vel 底盘意图） ─┤
+  studio（观察 / 停止代理） ───┘
+        │ HTTP/WS，或已声明的域 42 意图话题
+        ▼
+system（唯一运行时权威）
   → 申请租约
   → ExecuteMotion（契约 + 租约 + 幂等检查）
   → 安全校验
@@ -153,6 +170,10 @@ Hardware plane          唯一发布者，厂商 DDS 域 0
   → 硬件桥（唯一发布者）
   → 总线确认的结果 + 证据记录
 ```
+
+`scenarios`、`devices`、`simulation`、`benchmark`、`learning` 与 `research`
+刻意位于运行时依赖图之外：它们只声明、仿真或测量，从不执行。声明不能覆盖
+system 的安全包络；不一致是发布阻断项，不是偏好问题。
 
 由这条边界导出的设计决策：
 
@@ -219,6 +240,8 @@ Hardware plane          唯一发布者，厂商 DDS 域 0
 | `jcheng-research` | 公开调研工作区：报告与决策 | v0.1.0；在运行时图之外 |
 | `jcheng-mobile-bench` | 台架材料沙箱 | 沙箱；不发布 |
 | `jcheng-teleop` | 遥操作意图：操作员输入到有界、受租约约束的意图 | 实验性；v0.1.0 仅准入骨架 |
+| `jcheng-devices` | 设备库：声明式设备/能力描述、型号建模与离线校验 | 实验性；v0.1.0 仅离线注册表 |
+| `jcheng-scenarios` | 声明式场景库：环境、任务、评测与约束 Profile | 实验性；v0.1.0 仅离线校验 |
 | `jcheng-studio` | 操作台：调试、诊断与实验记录 | 实验性；v0.7.0 控制台、REST/WS、会话、回放 |
 | `jcheng-applications` | 任务编排：配方校验、确定性规划与失败关闭的意图序列 | 实验性；v0.1.0 离线核心 + 只读传输 |
 

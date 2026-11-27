@@ -19,6 +19,7 @@
 | `jcheng-studio` | `feat/authority-hardening-20261127` | `ce7199b` | [#10](https://github.com/JCHENG-Robotics/jcheng-studio/pull/10) | ✅ 3/3 | ✅ PASS | **blocked: conflict with `main`** |
 | `jcheng-mobile` | `feat/authority-hardening-20261127` | `9cee52d` | [#6](https://github.com/JCHENG-Robotics/jcheng-mobile/pull/6) | ✅ 3/3 | earlier | **superseded by #7** |
 | `jcheng-mobile` | `feat/authority-hardening-port-20261127` | `dc93f4b` | [#7](https://github.com/JCHENG-Robotics/jcheng-mobile/pull/7) | ✅ 3/3 | ✅ PASS (port tree = `9cee52d`) | **delivered for review; no approval** |
+| `.github` | `docs/baseline-1-reports` | `0696c27` | [#29](https://github.com/JCHENG-Robotics/.github/pull/29) stacked on #28 | ✅ m1-gate | n/a (reports) | **delivered for review** |
 
 ## 2. Mobile conflict resolution (Decision 2)
 

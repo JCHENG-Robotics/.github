@@ -1,9 +1,10 @@
 # Phase 2 Design — Device and Scenario Sources of Truth
 
-> Status: **design only (2026-11-27)**. Implementation is gated on this round's
-> approved PR merges, cross-repository regression and independent QA. No source
-> files were migrated and no device/scenario consumer was changed in this
-> round.
+> Status: **design only; implementation NOT started (2026-11-27)**. The gate is
+> not met: several approved PRs are blocked by review/approval/conflict, so the
+> required post-merge regression and final independent QA cannot complete (see
+> reports 21 and 26). No source files were migrated and no device/scenario
+> consumer was changed in this round.
 
 ## 1. Scope
 

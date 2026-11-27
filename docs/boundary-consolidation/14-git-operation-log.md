@@ -30,6 +30,7 @@ Governance incident: [`../incidents/2026-11-27-git-authority.md`](../incidents/2
 | `jcheng-mobile` | `feat/authority-hardening-20261127` | same | `9cee52d` | intent channel + main merge | ✅ | [#6](https://github.com/JCHENG-Robotics/jcheng-mobile/pull/6) | ✅ 3/3 | earlier | **superseded by #7** |
 | `jcheng-mobile` | `feat/authority-hardening-port-20261127` | same | `dc93f4b` | manual port from main | ✅ | [#7](https://github.com/JCHENG-Robotics/jcheng-mobile/pull/7) | ✅ 3/3 | QA PASS | **delivered for review; no approval** |
 | `jcheng-studio` | `feat/authority-hardening-20261127` | same | `ce7199b` | legacy isolation + QA rework | ✅ | [#10](https://github.com/JCHENG-Robotics/jcheng-studio/pull/10) | ✅ 3/3 | QA PASS | **blocked: conflict with `main`** |
+| `.github` | `docs/baseline-1-reports` | same | `0696c27` | merge status/safety/Phase 2 reports | ✅ | [#29](https://github.com/JCHENG-Robotics/.github/pull/29) (stacked on #28) | ✅ m1-gate | n/a (reports) | close PR |
 
 ## 3. Commit inventory (implementation)
 

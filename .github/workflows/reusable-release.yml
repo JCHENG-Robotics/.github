@@ -1,32 +1,93 @@
 name: reusable-release
 
-# M1 skeleton. M2/M8 add lock verification, SBOM, checksums, signing and release.
+# Conservative release path: validate the tag/version/lockfile, write checksums
+# and create a DRAFT GitHub release. A human publishes it. SBOM generation and
+# signing stay an M8 item; they are not claimed here.
 on:
   workflow_call:
     inputs:
       version:
-        description: Release version
+        description: Release version without the leading v (e.g. 0.3.0)
         required: true
         type: string
       lockfile:
-        description: Lockfile path
+        description: Lockfile path to attach and checksum
         required: false
         type: string
         default: "locks/ecosystem.lock.yaml"
+      artifacts:
+        description: Newline-separated extra files to attach
+        required: false
+        type: string
+        default: ""
+      draft:
+        description: Create a draft release instead of publishing
+        required: false
+        type: boolean
+        default: true
 
 permissions:
   contents: read
 
 jobs:
-  skeleton:
-    name: release-skeleton
+  release:
+    name: release
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
+    permissions:
+      contents: write
     steps:
-      - name: Report skeleton inputs
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+      - name: Validate version, tag and lockfile
         shell: bash
         run: |
-          echo "M1 skeleton: reusable-release"
-          echo "version=${{ inputs.version }}"
-          echo "lockfile=${{ inputs.lockfile }}"
-          echo "M8 will add: verify lock, build, SBOM, checksums, signing, release."
+          set -euo pipefail
+          version="${{ inputs.version }}"
+          printf '%s' "$version" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$' || {
+            echo "version must be MAJOR.MINOR.PATCH" >&2
+            exit 1
+          }
+          if [ "${GITHUB_REF}" != "refs/tags/v${version}" ]; then
+            echo "workflow must run on tag refs/tags/v${version}, got ${GITHUB_REF}" >&2
+            exit 1
+          fi
+          if [ ! -f VERSION ] || [ "$(tr -d '[:space:]' < VERSION)" != "$version" ]; then
+            echo "VERSION does not match ${version}" >&2
+            exit 1
+          fi
+          if [ ! -f "${{ inputs.lockfile }}" ]; then
+            echo "missing lockfile: ${{ inputs.lockfile }}" >&2
+            exit 1
+          fi
+      - name: Checksums
+        shell: bash
+        run: |
+          set -euo pipefail
+          files=("${{ inputs.lockfile }}")
+          while IFS= read -r item; do
+            [ -n "$item" ] && files+=("$item")
+          done <<< "${{ inputs.artifacts }}"
+          for item in "${files[@]}"; do
+            [ -f "$item" ] || { echo "missing artifact: $item" >&2; exit 1; }
+          done
+          sha256sum "${files[@]}" > SHA256SUMS
+          cat SHA256SUMS
+      - name: Create draft release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag="v${{ inputs.version }}"
+          args=(release create "$tag" --verify-tag --generate-notes
+                --title "$tag" SHA256SUMS "${{ inputs.lockfile }}")
+          while IFS= read -r item; do
+            [ -n "$item" ] && args+=("$item")
+          done <<< "${{ inputs.artifacts }}"
+          if [ "${{ inputs.draft }}" = "true" ]; then
+            args+=(--draft)
+          fi
+          gh "${args[@]}"

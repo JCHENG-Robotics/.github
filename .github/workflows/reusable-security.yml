@@ -1,27 +1,69 @@
 name: reusable-security
 
-# M1 skeleton. M2 adds CodeQL, dependency review, secret scan and actionlint.
+# Baseline supply-chain checks that need no third-party action beyond checkout.
+# CodeQL and dependency review stay repository-local until their action pins are
+# approved; this workflow covers secrets, action pins and the license hold.
 on:
   workflow_call:
     inputs:
-      language:
-        description: Primary language
+      forbid-license:
+        description: Fail when a LICENSE file exists (org policy until the review closes)
         required: false
-        type: string
-        default: "python"
+        type: boolean
+        default: true
 
 permissions:
   contents: read
 
 jobs:
-  skeleton:
-    name: security-skeleton
+  security:
+    name: security-baseline
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Report skeleton inputs
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Secret patterns
         shell: bash
         run: |
-          echo "M1 skeleton: reusable-security"
-          echo "language=${{ inputs.language }}"
-          echo "M2 will add: CodeQL, dependency review, secret scan, actionlint, pin check."
+          set -euo pipefail
+          pattern='(-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----|ghp_[A-Za-z0-9]{36}|github_pat_[A-Za-z0-9_]{20,}|AKIA[0-9A-Z]{16})'
+          if grep -RInE \
+            --exclude-dir=.git \
+            --exclude-dir=node_modules \
+            --exclude-dir=build \
+            --exclude-dir=install \
+            --exclude-dir=log \
+            "$pattern" .; then
+            echo "potential secret material found" >&2
+            exit 1
+          fi
+          echo "secret scan OK"
+      - name: Action pin check
+        shell: bash
+        run: |
+          set -euo pipefail
+          bad=0
+          while IFS= read -r line; do
+            ref=$(printf '%s\n' "$line" | sed -E 's/.*uses:[[:space:]]*//; s/[[:space:]]*#.*$//')
+            case "$ref" in
+              ./*|docker://*) continue ;;
+            esac
+            if ! printf '%s' "$ref" | grep -Eq '@[0-9a-f]{40}$'; then
+              echo "unpinned action: $ref" >&2
+              bad=1
+            fi
+          done < <(grep -RInE '^[[:space:]]*(-[[:space:]]*)?uses:' .github/workflows || true)
+          exit "$bad"
+      - name: License hold
+        if: ${{ inputs.forbid-license }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if find . -path ./.git -prune -o \
+            \( -name LICENSE -o -name LICENSE.md -o -name LICENSE.txt \) \
+            -print -quit | grep -q .; then
+            echo "LICENSE present; the organization license review has not approved it" >&2
+            exit 1
+          fi
+          echo "license hold OK"

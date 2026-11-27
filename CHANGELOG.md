@@ -15,6 +15,10 @@ versioned.
 - Documentation standard v1.0 (`docs/documentation-standard.md`) and
   templates (`docs/templates/`); all product repositories now carry the same
   README / ROADMAP / CHANGELOG / ACCEPTANCE set.
+- The organization contract-check, security and release reusable workflows are
+  implemented. They use `actions/checkout` (full SHA) and shell only; the
+  release workflow creates drafts by default. CodeQL, dependency review, SBOM
+  and signing remain deferred.
 - Ecosystem-level `ROADMAP.md`, `CHANGELOG.md` and `ACCEPTANCE.md` in this
   repository; the organization profile now reflects the live repository map
   and M6 status.

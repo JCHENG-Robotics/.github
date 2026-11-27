@@ -11,16 +11,20 @@
 | L3 | `jcheng-learning` | 学习能力：数据集、训练、策略产物（离线） | 运行时节点、硬件访问、直接运动 |
 | L3 | `jcheng-simulation` | 离线多机器人被控对象，固定在域 43 | 打开设备、加入域 0/41/42、向真实系统发运动 |
 | L3 | `jcheng-teleop` | 遥操作意图：输入调理与 `TeleopCommand` 流（v0.3.0：离线核心；无运行时发布） | 发布厂商话题、打开串口、访问设备、加入硬件域、直接运动 |
+| L3 | `jcheng-devices` | 设备库：显式设备注册、声明式设备/能力描述、型号与能力建模、离线校验（v0.1.0 实验性） | 打开设备、发布厂商话题、加入 DDS 域、运动命令、独立控制通道 |
 | L4 | `jcheng-studio` | 操作台：连接诊断、关节调试、轨迹检查与实验记录；只调用网关 HTTP/WS | 加入 DDS 域、ROS 硬件话题、rclpy 直连、访问设备、执行运动 |
 | L4 | `jcheng-applications` | 任务编排：配方校验、确定性规划、失败关闭的网关意图序列（v0.1.0：离线核心 + 受监督 mock 网关意图） | ROS 硬件话题、rclpy 直连、加入 DDS 域、直接执行运动 |
 | OPS | `jcheng-ops` | 无人值守巡检、看门狗、服务自愈 | 发送运动命令、加入 DDS 图、访问设备 |
 | BENCH | `jcheng-benchmark` | 跨层只读基准：suite 声明、离线 runner、阈值与证据报告 | 运行时依赖、硬件访问、运动命令、生成测量数据 |
 | BENCH | `jcheng-mobile-bench` | 台架材料沙箱（不发布） | 被能力仓库或运行时依赖 |
+| SCEN | `jcheng-scenarios` | 声明式场景库：注册表、环境/语义/任务/能力/运行/评测 Profile、离线 Schema 校验（v0.1.0） | 运行时任务执行、DDS/ROS 节点、设备访问、控制指令、重复实现 applications/simulation/benchmark |
 | RESEARCH | `jcheng-research` | 公开调研：文献、根因、实验设计、报告与决策 | 运行时代码、硬件访问、运动命令 |
 
 依赖方向：L4 -> L2 API；L3 -> L1 + L2 客户端；L2 -> L1；OPS -> 仅 HTTP 健康端点；L0 -> 所有（仅 CI）。
-`jcheng-benchmark`、`jcheng-mobile-bench` 与 `jcheng-research` 不在运行时依赖图中；
-`jcheng-simulation` 只使用域 43。
+本表只定义分层与依赖方向；**职责所有权、事实源、运行时权限、Schema 归属与评测归属**以
+[`repo-boundaries.md`](repo-boundaries.md) 为准。
+`jcheng-benchmark`、`jcheng-mobile-bench`、`jcheng-scenarios` 与 `jcheng-research`
+不在运行时依赖图中；`jcheng-simulation` 只使用域 43。
 `jcheng-studio`（L4，2026-11-26 准入，v0.7.0）只经系统网关的 HTTP/WS 接口
 访问机器人，不加入任何 DDS 域，也不成为运动来源。
 `jcheng-applications`（L4，2026-11-26 准入，v0.1.0 离线核心 + 受监督 mock 网关意图）
@@ -28,6 +32,17 @@
 也不成为运动来源。
 `jcheng-teleop`（L3，2026-11-26 准入，v0.3.0 离线核心）计划在域 42 发布遥操作意图；
 当前无运行时节点、无输入适配器、无设备访问，也不发布运动命令。
+`jcheng-devices`（L3，2026-11-27 准入，v0.1.0 实验性）是生态设备库：显式注册表、
+设备与能力描述 Schema、离线校验器与 CLI。它不打开设备、不加入 DDS 域、没有
+运行时节点或控制通道；设备 I/O 与运动仍归 `jcheng-system`。每机器人的
+`robot-profile.v1` 仍是运行时权威，设备描述只用于能力匹配、规划与仿真配置；
+在 `jcheng-interfaces` 完成契约评审前，设备描述 Schema 只是仓库内数据。
+`jcheng-scenarios`（SCEN，2026-11-27 准入，v0.1.0）是离线声明式场景库：场景注册表、
+环境/语义/任务/能力/运行/评测 Profile 与仓库内 JSON Schema 校验器。它不加入任何
+DDS 域、不启动 ROS 2 节点、不打开设备、不执行任务，也不发布控制或运动意图。
+场景约束不能替代 `jcheng-system` 的运行时安全机制；applications、simulation、
+benchmark 与设备库只读取固定版本的声明文件，跨仓库消费前必须走
+`jcheng-interfaces` 评审。
 
 ## 文档要求
 
@@ -45,13 +60,21 @@
 与双语组织主页；`jcheng-mobile-bench` 只需 `README.md` 明确标注沙箱状态。
 `jcheng-benchmark` 是版本化的 BENCH 仓，自行维护完整四件套文档，但不因此成为产品仓，
 也不作出产品验收结论。`jcheng-research` 是公开调研仓，保留完整四件套，但不在运行时
-依赖图中，也不作出产品验收结论。
+依赖图中，也不作出产品验收结论。`jcheng-scenarios` 是 SCEN 仓，同样维护完整四件套
+文档，但不在运行时依赖图中，也不作出产品验收结论；其场景 Schema 在跨仓库消费前
+只是仓库内 v1 文档。
 
 ## 新仓库准入检查
 
 - [ ] 职责不与现有仓库重叠。
+- [ ] 在 `repo-boundaries.md` 的 Repository Ownership Matrix 与 Source of Truth Matrix 中登记。
 - [ ] 只通过 `jcheng-interfaces` 表达跨仓库契约。
 - [ ] 默认 `hardware_access: none`。
 - [ ] 有 `capability.yaml`、CI、失败语义、契约握手测试。
+- [ ] 有 `SCHEMA_OWNERSHIP.md`（Schema、版本、owner、消费者、contract/repo-local）。
 - [ ] 具备完整四件套文档（见上）。
 - [ ] 首次接入有受监督实机证据（如涉及运动）。
+- [ ] SCEN/声明式仓库：场景有唯一 ID、版本与 provenance；每个参数标注
+      `design_target` / `measured` / `derived` / `assumed`。
+- [ ] SCEN/声明式仓库：场景文件不写执行计划、设备兼容性结论或评测结果。
+- [ ] SCEN/声明式仓库：与设备能力词汇版本化对齐；跨仓库消费先提案。

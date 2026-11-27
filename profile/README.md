@@ -85,12 +85,14 @@ and the S1–S17 scenarios exist to prove the no-bypass boundary before any supe
 |---|---|
 | Experimental baseline | `jcheng-manipulation v1.0.0`, commit `b3411e4`, frozen; full G8 acceptance recorded |
 | Ecosystem milestones | **M1–M5.2 complete**; M6 S13 and S17 real MoveIt verified; S14 base and full G8 pending |
-| Contracts | `jcheng-interfaces` v0.1.0: 14 msg / 10 srv / 1 action, seven schemas, pinned contract hash |
+| Contracts | `jcheng-interfaces` v0.2.0 (signed tag): 14 msg / 10 srv / 1 action, seven schemas; v0.3.0 `intent_source` in review |
 | System runtime | `jcheng-system` 0.3.0-dev: 13 ROS packages; M4 read-only, M5.2 core, M6 S13 + S17 real verified; S14/G8 pending |
 | Runtime image | `armpi-ultra:flatten-20261125`, 7.1 GB arm64; 20 nodes / 60 topics preserved and reboot persistent |
 | Capability repositories | `jcheng-mobile` v0.1.0 static `/scan`/`/odom`/`/map`; `jcheng-perception` v0.1.0 aligned depth + split edge + one dual-view run + offline ORE S0/S1; `jcheng-ops` v0.1.0 deployed |
 | Learning / simulation | `jcheng-learning` v0.2.0 M1 offline dataset infrastructure; `jcheng-simulation` v0.1.0 offline multi-robot plant on domain 43 (mock verified, Gazebo partial) |
 | Teleoperation | `jcheng-teleop` v0.3.0 M0 design + M1 ROS-free core; system mock intake and ArmPi/Gate-2 simulation bridge pass L3; no hardware |
+| Device library | `jcheng-devices` v0.1.0 offline registry (6 devices / 7 capabilities), device/capability schemas, validator and CI; no device access, runtime or motion |
+| Scenario catalog | `jcheng-scenarios` v0.1.0 SCEN-layer declarative catalog (eight repo-local schemas and the `ore_sorting` reference); offline validation only; no consumer integration, evaluation or hardware |
 | Operator / orchestration | `jcheng-studio` v0.7.0 console + read-only REST/WS + sessions/replay; `jcheng-applications` v0.1.0 M3 mock run + S3 branches/tree/WAITING/derived; no DDS or motion |
 | Research | `jcheng-research` v0.1.0, public; draft reports and SAM3/AGX Orin experiments recorded, review pending |
 | Benchmark | `jcheng-benchmark` v0.1.0 experimental; offline, read-only harness and synthetic self-test only; no recorded or hardware result |
@@ -140,13 +142,15 @@ added independently versioned capability, operations and benchmark repositories:
 | Repository | Responsibility | Current state |
 |---|---|---|
 | [`JCHENG-Robotics/.github`](https://github.com/JCHENG-Robotics/.github) | Governance, templates, reusable CI, ecosystem documents | M1 complete; documentation standard v1.0 |
-| [`JCHENG-Robotics/jcheng-interfaces`](https://github.com/JCHENG-Robotics/jcheng-interfaces) | Contracts, schemas, contract hashes | v0.1.0, signed tag |
+| [`JCHENG-Robotics/jcheng-interfaces`](https://github.com/JCHENG-Robotics/jcheng-interfaces) | Contracts, schemas, contract hashes | v0.2.0, signed tag |
 | [`JCHENG-Robotics/jcheng-system`](https://github.com/JCHENG-Robotics/jcheng-system) | Privileged runtime, safety, arbitration, gateway | 0.3.0-dev; M6 S13 + S17 real |
 | [`JCHENG-Robotics/jcheng-mobile`](https://github.com/JCHENG-Robotics/jcheng-mobile) | L3 mobile base | v0.1.0; static bring-up |
 | [`JCHENG-Robotics/jcheng-perception`](https://github.com/JCHENG-Robotics/jcheng-perception) | L3 perception | v0.1.0; aligned depth + single dual-view run |
 | [`JCHENG-Robotics/jcheng-ops`](https://github.com/JCHENG-Robotics/jcheng-ops) | Cross-layer operations | v0.1.0 deployed |
 | [`JCHENG-Robotics/jcheng-learning`](https://github.com/JCHENG-Robotics/jcheng-learning) | L3 learning: datasets, training, policy artifacts (offline) | v0.1.0; no runtime or policy |
 | [`JCHENG-Robotics/jcheng-teleop`](https://github.com/JCHENG-Robotics/jcheng-teleop) | L3 teleoperation: operator input to bounded, lease-gated intent (offline) | v0.1.0; admission only |
+| [`JCHENG-Robotics/jcheng-devices`](https://github.com/JCHENG-Robotics/jcheng-devices) | L3 device library: declarative profiles, capability model and offline validation | v0.1.0; offline registry only |
+| [`JCHENG-Robotics/jcheng-scenarios`](https://github.com/JCHENG-Robotics/jcheng-scenarios) | SCEN declarative scenario catalog: environment, task, evaluation and constraint profiles | v0.1.0; offline validation only |
 | [`JCHENG-Robotics/jcheng-simulation`](https://github.com/JCHENG-Robotics/jcheng-simulation) | Offline multi-robot plant on domain 43 | v0.1.0; mock verified, Gazebo partial |
 | [`JCHENG-Robotics/jcheng-studio`](https://github.com/JCHENG-Robotics/jcheng-studio) | L4 operator console | v0.7.0 |
 | [`JCHENG-Robotics/jcheng-applications`](https://github.com/JCHENG-Robotics/jcheng-applications) | L4 task orchestration | v0.1.0 |
@@ -156,7 +160,20 @@ added independently versioned capability, operations and benchmark repositories:
 ### The single motion path
 
 ```text
-capability module
+declaration plane (offline; no runtime authority)
+  scenarios ── task, success and evaluation declarations ─┐
+  devices   ── device and capability profiles ─────────────┤
+  interfaces ── cross-repository contracts ────────────────┘
+        │ pinned version + hash; no runtime call
+        ▼
+intent plane
+  applications (recipe → plan) ─┐
+  teleop (operator intent) ─────┤
+  mobile (/cmd_vel chassis) ────┤
+  studio (observe / stop proxy) ┘
+        │ HTTP/WS, or a declared domain-42 intent topic
+        ▼
+system (sole runtime authority)
   → acquire lease
   → ExecuteMotion (contract + lease + idempotency checks)
   → safety validation
@@ -164,6 +181,11 @@ capability module
   → hardware bridge (the only publisher)
   → bus-verified result + evidence record
 ```
+
+`scenarios`, `devices`, `simulation`, `benchmark`, `learning` and `research` are
+outside the runtime dependency graph on purpose: they declare, simulate or
+measure, but they never execute. A declaration never overrides the system
+safety envelope; a mismatch is a release blocker, not a preference.
 
 Design decisions that follow from this boundary:
 
@@ -239,6 +261,7 @@ the design record is in `jcheng-manipulation` branch `design/ecosystem-v1` (`doc
 | `jcheng-research` | Public investigation workspace: reports and decisions | v0.1.0; outside runtime graph |
 | `jcheng-mobile-bench` | Bench material split out of `jcheng-mobile` | Sandbox; not released |
 | `jcheng-teleop` | Teleoperation intent: operator input to bounded, lease-gated intent | Experimental; v0.1.0 admission-only scaffold |
+| `jcheng-devices` | Device library: declarative device/capability profiles and offline validation | Experimental; v0.1.0 offline registry |
 | `jcheng-studio` | Operator console: debug, diagnostics and experiment records | Experimental; v0.7.0 console, REST/WS, sessions, replay |
 | `jcheng-applications` | Task orchestration: recipe validation, deterministic planning and fail-closed intent sequencing | Experimental; v0.1.0 offline core + read-only transport |
 

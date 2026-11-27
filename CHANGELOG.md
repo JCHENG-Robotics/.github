@@ -12,6 +12,29 @@ versioned.
 
 ### Added
 
+- `docs/repo-boundaries.md` v1.0: the ecosystem responsibility-boundary
+  specification. It fixes the Repository Ownership, Source of Truth, Runtime
+  Authority, Schema Ownership and Evaluation Ownership matrices, the contract
+  change process, admission/exit rules, frozen-baseline rules and the
+  report-only boundary gate list. Ten decisions D-01…D-10 are recorded in the
+  appendix, including the device and scenario sources of truth and the rule
+  that `jcheng-system` keeps an independent safety overlay. Known deviations
+  DEV-01…DEV-10 are registered there for the migration plan.
+- `docs/boundary-consolidation/`: the consolidation evidence set — source of
+  truth matrix, runtime authority audit, contract compatibility matrix,
+  migration plan, regression baseline, admission report, file changelog and the
+  report-only `check_boundaries` design. The audit is read-only; no other
+  repository's implementation was changed.
+- `jcheng-devices` v0.1.0 is admitted to the repository map: an L3 offline
+  device library with an explicit registry (6 devices / 7 capabilities),
+  repository-local `device-profile.v1` / `capability-profile.v1` schemas, a
+  validator/CLI and CI. It has no device access, runtime node, DDS domain or
+  motion path; the system `robot-profile.v1` remains the deployment authority.
+- `jcheng-scenarios` v0.1.0: a SCEN-layer declarative scenario catalog with a
+  registry, eight repository-local v1 JSON Schemas, an offline validator and
+  the `ore_sorting` reference scenario. It is outside the runtime dependency
+  graph and has no DDS, device, task-execution or motion path. The repository
+  taxonomy now records the SCEN layer; no contract change.
 - Documentation standard v1.0 (`docs/documentation-standard.md`) and
   templates (`docs/templates/`); all product repositories now carry the same
   README / ROADMAP / CHANGELOG / ACCEPTANCE set.
@@ -52,6 +75,13 @@ versioned.
   The reserved `TeleopCommand` stream is documented but not published; there is
   no input adapter, device access, DDS domain or motion. The organization
   profile, roadmap, acceptance and repository taxonomy now include it.
+- `jcheng-devices` v0.1.0: the L3 device library with an explicit registry
+  (six device profiles, seven capability profiles), `device-profile.v1` and
+  `capability-profile.v1` schemas, an offline validator/CLI and a fail-closed
+  gate. It opens no device, joins no DDS domain and commands no motion; device
+  I/O remains with `jcheng-system` and each robot's `robot-profile.v1` remains
+  the runtime authority. The organization profile, roadmap and repository
+  taxonomy now include it.
 - `jcheng-simulation` v0.1.0: offline multi-robot plant engine on domain 43;
   deterministic mock verified, Gazebo Harmonic partially verified.
 - `jcheng-research` v0.1.0: public investigation workspace for reports and

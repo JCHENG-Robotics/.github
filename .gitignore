@@ -1,0 +1,7 @@
+# Local-only raw audit evidence. Only redacted reports are committed.
+docs/boundary-consolidation/evidence/
+
+# Python caches from governance tooling.
+__pycache__/
+*.pyc
+.pytest_cache/

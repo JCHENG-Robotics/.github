@@ -32,6 +32,8 @@
 | [`24-phase2-source-of-truth-design.md`](24-phase2-source-of-truth-design.md) | Phase 2 Device/Scenario Design | MIG-01/02 + ArmPi×ore_sorting 设计（未实施） |
 | [`25-ecosystem-integration-baseline-1-manifest.md`](25-ecosystem-integration-baseline-1-manifest.md) | Baseline 1 Manifest | **INCOMPLETE**；main SHA/版本/风险 |
 | [`26-post-merge-regression-report.md`](26-post-merge-regression-report.md) | Post-Merge Regression | 实际 main 基线 + 分支证据；Baseline 未达成 |
+| [`27-mobile-conflict-resolution-report.md`](27-mobile-conflict-resolution-report.md) | Mobile Conflict Resolution | #6 → 新 main 分支移植；树等价；QA PASS；PR #7 |
+| [`28-phase2-implementation-status.md`](28-phase2-implementation-status.md) | Phase 2 Implementation Status | **未开始**；合并/回归/QA 门禁未满足 |
 
 ## 审批状态
 

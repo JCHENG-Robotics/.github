@@ -22,6 +22,9 @@ versioned.
 - The `v1` moving major alias tag for the reusable workflows (`065e390`). It
   moves only for CI security or fix changes and is never used for release
   builds.
+- `acceptance/ecosystem-2026-11-27b.json`: the post-merge revision of the
+  2026-11-27 status report; CI reuse and workspace-path pass, the lockfile
+  modules are recorded, and the hardware limitations are unchanged.
 - Ecosystem-level `ROADMAP.md`, `CHANGELOG.md` and `ACCEPTANCE.md` in this
   repository; the organization profile now reflects the live repository map
   and M6 status.
@@ -86,8 +89,9 @@ versioned.
   test-only teleop publisher default matches `capability.yaml`.
 - The organization contract-check, security and release reusable workflows are
   implemented; release creates drafts and 3 of 7 workflows remain skeletons.
-- `jcheng-interfaces` PR #15 pilots `reusable-contract-check.yml@v1`; its checks
-  pass and the PR is ready for review.
+- `jcheng-interfaces` merged PR #15 and now runs
+  `reusable-contract-check.yml@v1` on `main`; the organization CI-reuse gate
+  passes (contract-check only; security, release and three skeletons remain).
 - Restored the `~/jcheng` compatibility symlink to
   `/home/jerichocheng/01_Projects/jcheng-robotics`, so the documented paths and
   `git_preflight.sh` work again.

@@ -9,8 +9,8 @@
 > No motion commands were sent by this documentation change.
 > Since 2026-11-26 the contract moved to v0.2.0 and 7 of 8 runtime consumers
 > adopted it; the organization merge queue is active. No L0 gate fails.
-> Organization CI reuse is in progress: the interfaces pilot references `@v1`
-> and awaits merge (section 4).
+> Organization CI reuse is proven by the `jcheng-interfaces` pilot: it runs
+> `reusable-contract-check.yml@v1` on `main`.
 
 ## 1. How to read this report
 
@@ -37,7 +37,7 @@ verification JSON is in the local staging archive
 | Lockfile module topology | `jcheng-system` | L0–L1 | pass — `release 2026.11.1` pins teleop 0.3.0, applications 0.1.0 and studio 0.7.0; `verify_lock --module-root` checks the pinned commits | `jcheng-system/locks/ecosystem.lock.yaml`; PR #37 |
 | Public system API version | `jcheng-system` | L0 | pass — `configs/api.yaml` defines `api_version 0.1.0`; module `system_api` ranges are checked against it | `jcheng-system/configs/api.yaml`; PR #39 |
 | Teleop probe and publisher pins | `jcheng-system`, `jcheng-teleop` | L0–L1 | pass — both probes read the lockfile; the test-only publisher default matches `capability.yaml` | PRs #38, #8 |
-| Organization CI reuse | `.github` | L0 | inconclusive — 3/7 reusable workflows are implemented; the interfaces pilot (PR #15) references `@v1` but is not merged | `.github/workflows/reusable-{contract-check,security,release}.yml`; `jcheng-interfaces` PR #15 |
+| Organization CI reuse | `.github`, `jcheng-interfaces` | L0 | pass — `jcheng-interfaces` runs `reusable-contract-check.yml@v1` on `main`; contract-check, security and release are implemented | `.github/workflows/reusable-{contract-check,security,release}.yml`; `jcheng-interfaces` main `a64369e` |
 | Workspace path consistency | workspace root | L0 | pass — the `~/jcheng` compatibility symlink points at `/home/jerichocheng/01_Projects/jcheng-robotics`; documented paths and `git_preflight.sh` work again | `/home/jerichocheng/jcheng` symlink |
 | M3 mock stack and S1–S17 | `jcheng-system` | L2–L3 | pass (15 passed, 2 skipped, 0 required failures; 16 pytest) | `docs/ecosystem/10-m3-execution.md` |
 | M4 read-only hardware integration | `jcheng-system` | L5 | pass (1799/1799 `measured`, `writes=0`, 30 min) | `docs/ecosystem/evidence/m4-readonly-20261123/` |
@@ -71,6 +71,7 @@ verification JSON is in the local staging archive
 | The lockfile pins three module commits and verifies them | L0–L1 | `release 2026.11.1`; `verify_lock --module-root` reads `VERSION` and `capability.yaml` at each pinned commit; 94 tests |
 | The public system API version is defined and checked | L0 | `configs/api.yaml` `api_version 0.1.0`; module `system_api` ranges validated by `verify_lock` |
 | Three organization reusable workflows are implemented | L0 | contract-check, security and release; checkout + shell only; local shell checks pass |
+| A repository runs the organization contract-check | L0–L1 | `jcheng-interfaces` main `a64369e`: `m1-gate`, `m2-contract` and `org-contract-check / contract-check` all pass |
 | The mock system has no bypass publisher and rejects invalid motion | L3 | S1–S17: 15 scenarios pass, 2 skipped, 0 required failures |
 | Read-only integration does not write to the robot | L5 | 30-minute run, `writes=0`, independent bus reads |
 | Supervised single-joint and gripper motion completes with bus verification | L5 | 505 vs 512 pulses; gripper 183→645 / 647→183 |
@@ -99,7 +100,7 @@ verification JSON is in the local staging archive
 | Operations reboot with drop-ins | Vendor boot sequence moves the arm; needs an operator | OOM settings take effect after restart only |
 | New L3/L4/BENCH/research hardware or motion claims | These repositories are offline/mock/scaffold only | No hardware or motion claim is made for them |
 | Ecosystem v1.0 acceptance | Not run | No v1.0 release claim |
-| Organization reusable CI adoption | The interfaces pilot (PR #15) references `@v1`; no merged repository uses the workflows yet | Reuse is not proven until the pilot merges; gate logic is still duplicated |
+| Organization reusable CI breadth | Only `jcheng-interfaces` uses contract-check; security and release are implemented but unused, and three workflows remain skeletons | Adoption is one repository deep; gate logic is still duplicated elsewhere |
 | Perception contract adoption | No runtime imports of `jcheng_interfaces`; explicit waiver recorded | Perception is outside the v0.2.0 contract by declaration, not by adoption |
 | License review | Pending; `jcheng-mobile` carries MIT from initialization (retained pending review), the other new repositories have no `LICENSE` | No uniform reuse position; the review must confirm or replace the mobile file |
 
@@ -125,9 +126,9 @@ verification JSON is in the local staging archive
 - The lockfile pins three modules (teleop, applications, studio) for the ArmPi
   combination; `jcheng-mobile` and `jcheng-perception` are intentionally outside
   it.
-- Three of seven reusable workflows are implemented; the interfaces pilot
-  (PR #15) references `@v1`, but each product repository still keeps its own
-  gate until the pilot merges.
+- `jcheng-interfaces` runs `reusable-contract-check.yml@v1`; security and release
+  are implemented but not adopted, and three workflows remain skeletons, so most
+  repositories still keep their own gate.
 - The workspace is canonical at `/home/jerichocheng/01_Projects/jcheng-robotics`;
   the `~/jcheng` compatibility symlink is restored so the older documented paths
   keep working.
@@ -147,16 +148,12 @@ for either.
 
 ## 7. Machine-readable report
 
-[`acceptance/ecosystem-2026-11-27.json`](acceptance/ecosystem-2026-11-27.json)
+[`acceptance/ecosystem-2026-11-27b.json`](acceptance/ecosystem-2026-11-27b.json)
 follows `acceptance-report.v1` and validates against
 [`acceptance-report.v1.schema.json`](https://github.com/JCHENG-Robotics/jcheng-interfaces/blob/main/schemas/acceptance-report.v1.schema.json).
 Its `reviewer` is `pending` and its `result` is `inconclusive`; it is a status
-record, not a signed acceptance. The 2026-11-26, 2026-11-25 and 2026-11-24
-reports are kept as history. Per-repository reports, when produced, must use the
-same schema.
-
-The 2026-11-27 snapshot was generated before the same-day merges of the lockfile
-modules (PR #37), the public API version (PR #39), the probe and publisher pins
-(PRs #38, #8), the perception waiver (PR #20) and the reusable CI workflows
-(PR #18). The tables above are the current status; the JSON remains the
-point-in-time record.
+record, not a signed acceptance. It is the post-merge revision of the same day:
+the CI-reuse and workspace-path gates pass, the lockfile modules are recorded,
+and the hardware limitations are unchanged. The earlier `2026-11-27` snapshot
+and the 2026-11-26, 2026-11-25 and 2026-11-24 reports are kept as history.
+Per-repository reports, when produced, must use the same schema.

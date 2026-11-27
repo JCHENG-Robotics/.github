@@ -138,7 +138,8 @@ B10 生成式副本 provenance、B11 Git 审计。
 
 | 项 | 加固前 | 加固后 |
 |---|---|---|
-| open findings | 31 | **29** |
+| open findings | 31 | **28 open + 1 waived** |
+| Critical | 2 | **0 open + 1 waived**（studio legacy） |
 | mobile B4 `/cmd_vel` | Critical | **已消除**（发布 `/jcheng/intent/base`） |
 | studio B4 | `/motion/dispatch` 主路径 | 仅 `backend/app/legacy_motion.py`（默认 410/隔离） |
 | system B6 部署树 | High | High（部署未改，按批准保持） |
@@ -147,8 +148,9 @@ B10 生成式副本 provenance、B11 Git 审计。
 studio 的 B4 仍为 Critical 报告：代码仍存在，只是默认不可达；在 legacy
 被删除前，静态门禁不会把它当已消除。已登记正式豁免
 `W-2026-11-27-01`（`boundary-waivers.yaml`，到期 2026-12-31，owner
-`jcheng-studio`），报告状态为 waived，不是 eliminated。运行时可达性由
-studio 测试覆盖（410、双开关、stop 走 system）。
+`jcheng-studio`），报告状态为 waived，不是 eliminated。checker 现在校验
+waiver 的 rule/repo/evidence 与 expiry；过期或证据不匹配即不生效（20 tests）。
+运行时可达性由 studio 测试覆盖（410、双开关、stop 走 system）。
 
 ## Related
 

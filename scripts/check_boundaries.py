@@ -20,7 +20,7 @@ import re
 import subprocess
 import sys
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -699,6 +699,37 @@ def rule_b11(repo: Repo, audit_file: Path) -> list[Finding]:
     return findings
 
 
+def apply_waivers(findings: list[Finding], waiver_path: Path) -> list[dict[str, Any]]:
+    """Apply unexpired waivers that match rule, repo and evidence."""
+    entries: list[dict[str, Any]] = []
+    if waiver_path.is_file():
+        try:
+            data = yaml.safe_load(waiver_path.read_text(encoding="utf-8")) or {}
+        except Exception:  # noqa: BLE001
+            data = {}
+        for entry in data.get("waivers", []) or []:
+            if not isinstance(entry, dict):
+                continue
+            expires = entry.get("expires")
+            if expires:
+                try:
+                    if date.fromisoformat(str(expires)) < date.today():
+                        continue
+                except ValueError:
+                    continue
+            entries.append(entry)
+    for finding in findings:
+        for entry in entries:
+            if entry.get("rule") != finding.rule or entry.get("repo") != finding.repo:
+                continue
+            evidence = entry.get("evidence")
+            if evidence and str(evidence) not in finding.evidence:
+                continue
+            finding.waiver = entry.get("id")
+            break
+    return entries
+
+
 def check(root: Path, mode: str) -> dict[str, Any]:
     repos: dict[str, Repo] = {}
     for name in PRODUCT_REPOS:
@@ -724,17 +755,7 @@ def check(root: Path, mode: str) -> dict[str, Any]:
         findings += rule_b10(repo)
         findings += rule_b11(repo, audit_file)
 
-    waivers = {}
-    waiver_path = root / ".github/boundary-waivers.yaml"
-    if waiver_path.is_file():
-        try:
-            data = yaml.safe_load(waiver_path.read_text(encoding="utf-8")) or {}
-            for entry in data.get("waivers", []):
-                waivers[(entry.get("rule"), entry.get("repo"))] = entry.get("id")
-        except Exception:  # noqa: BLE001
-            waivers = {}
-    for finding in findings:
-        finding.waiver = waivers.get((finding.rule, finding.repo))
+    apply_waivers(findings, root / ".github/boundary-waivers.yaml")
 
     summary: dict[str, int] = {}
     for finding in findings:

@@ -18,16 +18,21 @@ system-only 的受监督单关节/夹爪运动也应在部署树对齐、P1 整�
 | 维度 | 状态 | 阻塞项 |
 |---|---|---|
 | 契约版本 | ❌ | 部署/开发/锁三平面不一致；六个仓旧 pin |
-| 执行权威 | ❌ | studio legacy 第二权威；mobile 无 base intake |
-| 停止覆盖 | ❌ | studio legacy stop 不锁存 system；两套停止不联通 |
-| 租约 | ❌ | studio 自签租约；DELETE 无 holder 校验 |
-| deadman | ❌ | 硬件路径未强制；仅 teleop 使用 |
-| DDS Action | ❌ | 无 token/SROS2；同域可 arm+lease+execute |
-| watchdog | ⚠️ | 硬件 watchdog 有；base 零输出 watchdog 未实现 |
-| 测试证据 | ⚠️ | 离线单测全绿（learning 缺 pyarrow）；无 L2 base 集成、无 Humble |
-| 独立 QA | ❌ | 未开始 |
+| 执行权威 | 🟡 | System HardwareAuthority + base intake 已离线实现；base 无真实硬件桥；cross-process 租约共享未实现 |
+| 停止覆盖 | 🟡 | studio legacy 默认 410；stop 唯一走 system；未实机验证 |
+| 租约 | 🟡 | holder/deadman/revoke 已实现；base 默认 `lease_source=none` fail-closed |
+| deadman | 🟡 | 默认强制（300 ms provisional）；显式 opt-out 需 manager flag |
+| DDS Action | 🟡 | 特权服务默认不创建；域 41+SROS2 标记门禁；ExecuteMotion 无 holder 字段 → fail-closed |
+| watchdog | 🟡 | base/watchdog core 已实现；未部署 systemd、未上机 |
+| 测试证据 | 🟡 | system 190 / mobile 50 / studio 13+222 / learning 68；无 Humble/实机 |
+| 独立 QA | 🟡 | 首轮 Rework 已修复，re-QA 进行中；Board 签核未完成 |
 | 冻结基线 | ✅ | `v1.0.0` tag/SHA 完整；HEAD 不作为基线 |
 | 新仓准入 | ✅ | devices/scenarios 57/62 passed |
+
+**2026-11-27 20:40 更新**：Phase 1 离线实现与 QA Rework 已提交（system
+`220b0ce`、mobile `cd491c5`、studio `63266a2`）。这不改变 **NOT READY**
+结论：base 硬件桥、跨进程租约共享、部署树对齐、Humble/台架验证、re-QA
+与 Board 签核仍未完成。
 
 ## 3. 恢复实机运行的前置条件（建议清单）
 

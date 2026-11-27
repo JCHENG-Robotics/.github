@@ -213,6 +213,84 @@ def test_b9_accepts_tag_reference(tmp_path):
     assert cb.rule_b9(repo) == []
 
 
+def test_waiver_applies_by_rule_repo_evidence(tmp_path):
+    path = tmp_path / "waivers.yaml"
+    path.write_text(
+        yaml.safe_dump(
+            {
+                "waivers": [
+                    {
+                        "id": "W1",
+                        "rule": "B4",
+                        "repo": "jcheng-studio",
+                        "evidence": "legacy_motion.py",
+                        "expires": "2099-01-01",
+                    }
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    finding = cb.Finding(
+        "B4", "Critical", "jcheng-studio",
+        "backend/app/legacy_motion.py: /motion/dispatch", "m", "s",
+    )
+    cb.apply_waivers([finding], path)
+    assert finding.waiver == "W1"
+
+
+def test_expired_waiver_is_ignored(tmp_path):
+    path = tmp_path / "waivers.yaml"
+    path.write_text(
+        yaml.safe_dump(
+            {
+                "waivers": [
+                    {
+                        "id": "W-expired",
+                        "rule": "B4",
+                        "repo": "jcheng-studio",
+                        "evidence": "legacy_motion.py",
+                        "expires": "2000-01-01",
+                    }
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    finding = cb.Finding(
+        "B4", "Critical", "jcheng-studio",
+        "backend/app/legacy_motion.py: /motion/dispatch", "m", "s",
+    )
+    cb.apply_waivers([finding], path)
+    assert finding.waiver is None
+
+
+def test_waiver_evidence_mismatch_is_ignored(tmp_path):
+    path = tmp_path / "waivers.yaml"
+    path.write_text(
+        yaml.safe_dump(
+            {
+                "waivers": [
+                    {
+                        "id": "W-other",
+                        "rule": "B4",
+                        "repo": "jcheng-studio",
+                        "evidence": "another_file.py",
+                        "expires": "2099-01-01",
+                    }
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    finding = cb.Finding(
+        "B4", "Critical", "jcheng-studio",
+        "backend/app/legacy_motion.py: /motion/dispatch", "m", "s",
+    )
+    cb.apply_waivers([finding], path)
+    assert finding.waiver is None
+
+
 def test_report_mode_writes_outputs_and_exits_zero(tmp_path):
     make_repo(tmp_path, "jcheng-scenarios", {}, v1_manifest())
     out = tmp_path / "out"

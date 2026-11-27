@@ -112,37 +112,38 @@ B10 生成式副本 provenance、B11 Git 审计。
 5. **B7 interfaces/perception/learning**：补 `SCHEMA_OWNERSHIP.md`。
 6. **B8 devices**：MIG-01 的生成式副本 + 引用。
 
-## 7. 治理门禁冲突（需批准）
+## 7. 治理门禁 allowlist（已批准并实现）
 
-`.github/scripts/check_org_files.sh:62-66` 当前拒绝 `.github` 中的**任何** `.py`：
+原 M1 gate 禁止 `.github` 中任何 `.py`。Decision C 批准最小 allowlist：
+`scripts/check_python_policy.sh` 只放行 `check_boundaries.py` 与其测试，
+包括 symlink、嵌套、隐藏文件与近似后缀的拒绝用例。**8/8 allowlist tests、
+17 checker tests、`org_gate=0`**；详见
+[15-m1-allowlist-test-report.md](15-m1-allowlist-test-report.md)。
 
-```bash
-if find . -path ./.git -prune -o -type f -name '*.py' -print -quit | grep -q .; then
-  echo "ERROR: Python source found; M1 .github must not contain product code." >&2
-```
+`check_boundaries` 仍为 report-only；未接入阻断式产品 CI。
 
-Phase 3 批准把 `check_boundaries` 放在 `.github/scripts`，与该 M1 规则冲突。
-在批准前：脚本保留为**未跟踪工作树文件**，不 commit；若直接提交，`org-health`
-会失败。两种解决方式：
+## 8. 实施与交付状态
 
-1. **允许治理脚本（推荐）**：把规则改为"禁止产品代码，允许 `scripts/` 下的
-   治理工具"，并用显式 allowlist 只放行两个文件：
-   ```bash
-   if find . -path ./.git -prune -o -type f -name '*.py' \
-      ! -path './scripts/check_boundaries.py' \
-      ! -path './scripts/test_check_boundaries.py' -print -quit | grep -q .; then
-   ```
-   同时保留 `package.xml` 禁止与 secret 扫描；脚本本身仍受 review。
-2. **移出 `.github`**：放到非产品治理位置或独立工具仓；不推荐，因为用户已批准
-   `.github/scripts`。
-
-在批准前，Phase 3 不接入 CI；`org_gate=1` 是本阶段已知状态，不是回归。
-
-## 8. 本轮未执行
-
-- 未接入 CI；未修改产品仓；未安装依赖；未启动机器人。
-- 未 commit/push；脚本与报告均为工作树未跟踪文件，供审查。
+- 脚本、allowlist 与本报告已提交到 `feat/controlled-git-20261127`，
+  PR #28（stacked on #27）。
+- 未修改产品仓实现；未接入阻断式 CI；未启动机器人。
 - 静态结果不构成运行时安全证明。
+
+## 9. 加固后重跑（2026-11-27）
+
+在 mobile/studio 离线实现提交后重跑：
+
+| 项 | 加固前 | 加固后 |
+|---|---|---|
+| open findings | 31 | **29** |
+| mobile B4 `/cmd_vel` | Critical | **已消除**（发布 `/jcheng/intent/base`） |
+| studio B4 | `/motion/dispatch` 主路径 | 仅 `backend/app/legacy_motion.py`（默认 410/隔离） |
+| system B6 部署树 | High | High（部署未改，按批准保持） |
+| 设备副本 B8/B10 | 5 组 | 5 组（Phase 2 处理） |
+
+studio 的 B4 仍为 Critical 报告：代码仍存在，只是默认不可达；在 legacy
+被删除前，静态门禁不会把它当已消除。运行时可达性由 studio 测试覆盖
+（410、双开关、stop 走 system）。
 
 ## Related
 

@@ -22,6 +22,9 @@ B10 生成式副本 provenance、B11 Git 审计。
 
 ## 2. 结果摘要
 
+> 本节是**加固前**快照（31 open / 2 Critical）。加固后的重跑见 §9
+> （29 open / 1 Critical，mobile B4 已消除，studio B4 已登记豁免）。
+
 | 严重度 | 数量 |
 |---|---|
 | Critical | 2 |
@@ -142,8 +145,10 @@ B10 生成式副本 provenance、B11 Git 审计。
 | 设备副本 B8/B10 | 5 组 | 5 组（Phase 2 处理） |
 
 studio 的 B4 仍为 Critical 报告：代码仍存在，只是默认不可达；在 legacy
-被删除前，静态门禁不会把它当已消除。运行时可达性由 studio 测试覆盖
-（410、双开关、stop 走 system）。
+被删除前，静态门禁不会把它当已消除。已登记正式豁免
+`W-2026-11-27-01`（`boundary-waivers.yaml`，到期 2026-12-31，owner
+`jcheng-studio`），报告状态为 waived，不是 eliminated。运行时可达性由
+studio 测试覆盖（410、双开关、stop 走 system）。
 
 ## Related
 

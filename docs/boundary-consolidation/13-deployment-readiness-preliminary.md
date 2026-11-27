@@ -29,10 +29,10 @@ system-only 的受监督单关节/夹爪运动也应在部署树对齐、P1 整�
 | 冻结基线 | ✅ | `v1.0.0` tag/SHA 完整；HEAD 不作为基线 |
 | 新仓准入 | ✅ | devices/scenarios 57/62 passed |
 
-**2026-11-27 20:40 更新**：Phase 1 离线实现与 QA Rework 已提交（system
-`220b0ce`、mobile `cd491c5`、studio `63266a2`）。这不改变 **NOT READY**
-结论：base 硬件桥、跨进程租约共享、部署树对齐、Humble/台架验证、re-QA
-与 Board 签核仍未完成。
+**2026-11-27 23:30 更新**：3 个 PR 已合并（`.github` #27、interfaces #19
+proposal、learning #5）；system #41、studio #10 与 main 冲突，devices #2/
+scenarios #1 缺审批，`.github` #28 审批被 dismiss 且最终 head 未 QA，mobile
+#7 已就绪但缺审批。**Baseline 1 仍未达成**；NOT READY 不变。
 
 ## 3. 恢复实机运行的前置条件（建议清单）
 

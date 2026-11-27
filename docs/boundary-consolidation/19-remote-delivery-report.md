@@ -1,72 +1,72 @@
 # Remote Delivery Report
 
-> Status: **partial (2026-11-27)**. All authorized branches are pushed and PRs
-> exist. **No PR is merged.** The mobile PR has a remote conflict and is
-> stopped under Controlled Git Operations A.3; no automatic resolution was
-> attempted.
+> Status: **partial (2026-11-27)**. Three PRs are merged to `main`; six remain
+> open and fail at least one merge gate. No merge was performed by this agent
+> in this round. No branch protection, required check or approval was bypassed.
+> No release, tag or deployment change.
 
 ## 1. Delivery table
 
-| Repository | Local / remote branch | HEAD | PR | CI | QA | Delivery |
+| Repository | Branch | HEAD | PR | CI | QA | Delivery |
 |---|---|---|---|---|---|---|
-| `.github` | `docs/boundary-consolidation-20261127` | `f523540` | [#27](https://github.com/JCHENG-Robotics/.github/pull/27) | ✅ m1-gate | n/a (docs) | delivered |
-| `.github` | `feat/controlled-git-20261127` | `5b0ddd8` | [#28](https://github.com/JCHENG-Robotics/.github/pull/28) stacked on #27 | ✅ m1-gate | n/a (governance) | delivered |
-| `jcheng-devices` | `feat/admission-20261127` | `9026c16` | [#2](https://github.com/JCHENG-Robotics/jcheng-devices/pull/2) | ✅ devices-gate | prior phase | delivered |
-| `jcheng-scenarios` | `feat/admission-20261127` | `6ee7928` | [#1](https://github.com/JCHENG-Robotics/jcheng-scenarios/pull/1) | ✅ scenarios-gate | prior phase | delivered |
-| `jcheng-interfaces` | `docs/base-intent-proposal-20261127` | `3e17add` | [#19](https://github.com/JCHENG-Robotics/jcheng-interfaces/pull/19) | ✅ contract/m1/security | n/a (proposal) | delivered |
-| `jcheng-learning` | `feat/regression-20261127` | `2d4ea30` | [#5](https://github.com/JCHENG-Robotics/jcheng-learning/pull/5) | ✅ learning-gate | prior phase | delivered |
-| `jcheng-system` | `feat/authority-hardening-20261127` | `220b0ce` | [#41](https://github.com/JCHENG-Robotics/jcheng-system/pull/41) | ✅ all completed checks success | ✅ PASS | delivered for review |
-| `jcheng-mobile` | `feat/authority-hardening-20261127` | `64dce1e` | [#6](https://github.com/JCHENG-Robotics/jcheng-mobile/pull/6) | ❌ **no CI: PR conflicts with `main`** | ✅ PASS (local) | **blocked** |
-| `jcheng-studio` | `feat/authority-hardening-20261127` | `ce7199b` | [#10](https://github.com/JCHENG-Robotics/jcheng-studio/pull/10) | ✅ studio/console/frontend success | ✅ PASS | delivered for review |
+| `.github` | `docs/boundary-consolidation-20261127` | `f523540` | [#27](https://github.com/JCHENG-Robotics/.github/pull/27) | ✅ | n/a | **merged** `e441b2d` |
+| `jcheng-interfaces` | `docs/base-intent-proposal-20261127` | `3e17add` | [#19](https://github.com/JCHENG-Robotics/jcheng-interfaces/pull/19) | ✅ | n/a | **merged** `1e6ecd0` (proposal only) |
+| `jcheng-learning` | `feat/regression-20261127` | `2d4ea30` | [#5](https://github.com/JCHENG-Robotics/jcheng-learning/pull/5) | ✅ | n/a | **merged** `6997825` |
+| `.github` | `feat/controlled-git-20261127` | `847f7c5` | [#28](https://github.com/JCHENG-Robotics/.github/pull/28) | ✅ | ❌ final head not QA'd | **blocked: review dismissed** |
+| `jcheng-devices` | `feat/admission-20261127` | `9026c16` | [#2](https://github.com/JCHENG-Robotics/jcheng-devices/pull/2) | ✅ | prior | **blocked: no approval** |
+| `jcheng-scenarios` | `feat/admission-20261127` | `6ee7928` | [#1](https://github.com/JCHENG-Robotics/jcheng-scenarios/pull/1) | ✅ | prior | **blocked: no approval** |
+| `jcheng-system` | `feat/authority-hardening-20261127` | `220b0ce` | [#41](https://github.com/JCHENG-Robotics/jcheng-system/pull/41) | ✅ 12/12 | ✅ PASS | **blocked: conflict with `main`** |
+| `jcheng-studio` | `feat/authority-hardening-20261127` | `ce7199b` | [#10](https://github.com/JCHENG-Robotics/jcheng-studio/pull/10) | ✅ 3/3 | ✅ PASS | **blocked: conflict with `main`** |
+| `jcheng-mobile` | `feat/authority-hardening-20261127` | `9cee52d` | [#6](https://github.com/JCHENG-Robotics/jcheng-mobile/pull/6) | ✅ 3/3 | earlier | **superseded by #7** |
+| `jcheng-mobile` | `feat/authority-hardening-port-20261127` | `dc93f4b` | [#7](https://github.com/JCHENG-Robotics/jcheng-mobile/pull/7) | ✅ 3/3 | ✅ PASS (port tree = `9cee52d`) | **delivered for review; no approval** |
 
-## 2. Mobile conflict — stopped, not resolved
+## 2. Mobile conflict resolution (Decision 2)
 
-`GET /repos/JCHENG-Robotics/jcheng-mobile/pulls/6` reports
-`mergeable=false`, `mergeable_state=dirty`. The hardening branch was based on
-`fix/m10-static-validation`; retargeting the PR to `main` exposed a conflict.
-
-Per CGO A.3, the agent **stopped writing to this repository**. No rebase,
-cherry-pick, force-push or automatic merge was performed. The branch remains
-pushed as evidence. Board options:
-
-1. Merge `fix/m10-static-validation` first, then retarget #6 to `main`.
-2. Approve a fresh branch from `main` with the hardening file set applied
-   manually (no history rewrite) and a new PR.
-3. Accept the feature-branch base and record that no PR CI ran.
+- Original #6 and its branch/evidence are preserved. The branch now contains a
+  `Merge origin/main` commit `9cee52d`; it was not rewritten.
+- New branch `feat/authority-hardening-port-20261127` was created from
+  `origin/main` `0972e4b`; the 19-file hardening delta was ported manually into
+  one commit `dc93f4b`.
+- `git diff dc93f4b 9cee52d` is **empty** — the port tree is identical to the
+  audited conflict-resolved tree.
+- 50 tests, colcon build, independent QA: PASS.
+- PR #7 links #6 and explains the conflict/port/equivalence. Close #6 only
+  after #7 is merged, marked "superseded by #7".
 
 ## 3. CI notes
 
-- System: `m1-gate`, `m3-mock`, `m4-readonly`, `m5-mock`, `m5-vendor`,
-  `m6-replay` all completed success. `mergeable_state=clean`.
-- Studio: `studio-gate`, `console-tests`, `frontend-build` success; blocked
-  only by the required review.
-- Mobile: no checks because the PR base after retarget has a conflict and the
-  workflow filters `pull_request` to `main`. Local tests are 50 passed.
-- `.github`, devices, scenarios, interfaces and learning checks are green.
+- Merged PRs: `m1-gate`, contract/security, `learning-gate` all green.
+- #28: `m1-gate` green, but a merge commit was added after QA and the review
+  was dismissed; it needs re-QA and re-approval.
+- #2/#1: checks green; no approving review.
+- #41/#10: checks green; `mergeable=false` against `main`.
+- #7: `mobile-gate`, `contract + no-hardware`, `ros build (humble)` green.
+- No PR has been merged by bypassing protection.
 
 ## 4. Merge and release
 
-**No merge, no auto-merge, no release.** The Board decides the merge order and
-whether to merge the stacked `.github` PR #28 after #27. No tag was created and
-no deployment was changed.
+**No merge, no auto-merge, no tag, no release, no deployment by this agent.**
+The Board/owner merged #27, #19 and #5 concurrently. The remaining merges need
+Board decisions:
+
+1. Re-approve #28 after re-QA of the final head.
+2. Approve #2 and #1.
+3. Decide the system/studio conflict path (merge base branch first, or
+   authorize a manual port onto `main`).
+4. Approve #7; then close #6 as superseded.
 
 ## 5. Rollback
 
 | Repository | Rollback suggestion |
 |---|---|
-| `.github` | close #28, then #27; no history rewrite |
-| devices / scenarios | close the PR; branch is isolated |
-| interfaces | close #19; proposal only |
-| learning | close #5; docs/evidence only |
-| system | close #41; Board may revert to `879b4b9` with a new commit |
-| mobile | close #6; Board decides the conflict path |
-| studio | close #10; Board may revert to `b5c99e8` with a new commit |
-
-Never rewrite a pushed branch or tag. Use a new reverting commit if the Board
-chooses to roll back code.
+| merged #27/#5/#19 | new reverting commit if needed; no history rewrite |
+| `.github` #28 | close PR |
+| devices/scenarios | close PR |
+| system #41 / studio #10 | close PR or Board-approved port |
+| mobile #7 | close PR; #6 remains as evidence |
 
 ## Related
 
+- [PR merge report](21-pr-merge-integration-report.md)
 - [Git operation log](14-git-operation-log.md)
-- [Independent QA](18-independent-qa-report.md)
-- [Deployment readiness](13-deployment-readiness-preliminary.md)
+- [Baseline manifest](25-ecosystem-integration-baseline-1-manifest.md)

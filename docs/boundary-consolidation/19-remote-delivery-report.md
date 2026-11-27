@@ -10,7 +10,7 @@
 | Repository | Local / remote branch | HEAD | PR | CI | QA | Delivery |
 |---|---|---|---|---|---|---|
 | `.github` | `docs/boundary-consolidation-20261127` | `f523540` | [#27](https://github.com/JCHENG-Robotics/.github/pull/27) | ✅ m1-gate | n/a (docs) | delivered |
-| `.github` | `feat/controlled-git-20261127` | `ce33df3` | [#28](https://github.com/JCHENG-Robotics/.github/pull/28) stacked on #27 | ✅ m1-gate | n/a (governance) | delivered |
+| `.github` | `feat/controlled-git-20261127` | `5b0ddd8` | [#28](https://github.com/JCHENG-Robotics/.github/pull/28) stacked on #27 | ✅ m1-gate | n/a (governance) | delivered |
 | `jcheng-devices` | `feat/admission-20261127` | `9026c16` | [#2](https://github.com/JCHENG-Robotics/jcheng-devices/pull/2) | ✅ devices-gate | prior phase | delivered |
 | `jcheng-scenarios` | `feat/admission-20261127` | `6ee7928` | [#1](https://github.com/JCHENG-Robotics/jcheng-scenarios/pull/1) | ✅ scenarios-gate | prior phase | delivered |
 | `jcheng-interfaces` | `docs/base-intent-proposal-20261127` | `3e17add` | [#19](https://github.com/JCHENG-Robotics/jcheng-interfaces/pull/19) | ✅ contract/m1/security | n/a (proposal) | delivered |

@@ -21,7 +21,7 @@ Governance incident: [`../incidents/2026-11-27-git-authority.md`](../incidents/2
 | Repository | Local branch | Remote branch | HEAD | Commit | Push | PR | CI | QA | Rollback |
 |---|---|---|---|---|---|---|---|---|---|
 | `.github` | `docs/boundary-consolidation-20261127` | same | `f523540` | phase-2 audit/design/readiness | ✅ | [#27](https://github.com/JCHENG-Robotics/.github/pull/27) | ✅ m1-gate | n/a (docs) | close PR; no history rewrite |
-| `.github` | `feat/controlled-git-20261127` | same | `108b926` | CGO + allowlist + checker + reports | ✅ | [#28](https://github.com/JCHENG-Robotics/.github/pull/28) (stacked on #27) | ✅ m1-gate | n/a (governance) | close PR |
+| `.github` | `feat/controlled-git-20261127` | same | `5b0ddd8` | CGO + allowlist + checker + reports | ✅ | [#28](https://github.com/JCHENG-Robotics/.github/pull/28) (stacked on #27) | ✅ m1-gate | n/a (governance) | close PR |
 | `jcheng-devices` | `feat/admission-20261127` | same | `9026c16` | device library admission | ✅ | [#2](https://github.com/JCHENG-Robotics/jcheng-devices/pull/2) | ✅ devices-gate | previous phase | close PR |
 | `jcheng-scenarios` | `feat/admission-20261127` | same | `6ee7928` | scenario catalog admission | ✅ | [#1](https://github.com/JCHENG-Robotics/jcheng-scenarios/pull/1) | ✅ scenarios-gate | previous phase | close PR |
 | `jcheng-interfaces` | `docs/base-intent-proposal-20261127` | same | `3e17add` | BaseIntent/lease-holder proposal | ✅ | [#19](https://github.com/JCHENG-Robotics/jcheng-interfaces/pull/19) | ✅ contract/m1/security | n/a (proposal) | close PR |

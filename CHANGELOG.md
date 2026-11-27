@@ -19,6 +19,9 @@ versioned.
   implemented. They use `actions/checkout` (full SHA) and shell only; the
   release workflow creates drafts by default. CodeQL, dependency review, SBOM
   and signing remain deferred.
+- The `v1` moving major alias tag for the reusable workflows (`065e390`). It
+  moves only for CI security or fix changes and is never used for release
+  builds.
 - Ecosystem-level `ROADMAP.md`, `CHANGELOG.md` and `ACCEPTANCE.md` in this
   repository; the organization profile now reflects the live repository map
   and M6 status.
@@ -83,6 +86,11 @@ versioned.
   test-only teleop publisher default matches `capability.yaml`.
 - The organization contract-check, security and release reusable workflows are
   implemented; release creates drafts and 3 of 7 workflows remain skeletons.
+- `jcheng-interfaces` PR #15 pilots `reusable-contract-check.yml@v1`; its checks
+  pass and the PR is ready for review.
+- Restored the `~/jcheng` compatibility symlink to
+  `/home/jerichocheng/01_Projects/jcheng-robotics`, so the documented paths and
+  `git_preflight.sh` work again.
 - `jcheng-research` is public on GitHub; its README, AGENTS.md, ACCEPTANCE.md,
   LICENSE-REVIEW.md, the repository taxonomy and the organization profile now
   state that instead of claiming a private repository.

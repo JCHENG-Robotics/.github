@@ -61,10 +61,10 @@
    change; the 2026-11-25 digest is the current reference.
 5. **Finish the v0.2.0 alignment follow-through.** The lockfile pins three
    modules, the public API version is defined and three reusable workflows are
-   implemented. Remaining: adopt `reusable-contract-check` in a pilot
-   repository, fix the workspace path references, and record a new acceptance
-   snapshot after the merges. See the design record
-   `docs/ecosystem/15-v020-alignment.md`.
+   implemented. Remaining: merge the interfaces pilot (PR #15) so a repository
+   actually uses `reusable-contract-check`, and record a new acceptance
+   snapshot. The workspace path is covered by the restored `~/jcheng` symlink.
+   See the design record `docs/ecosystem/15-v020-alignment.md`.
 
 ## Out of scope
 

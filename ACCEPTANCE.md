@@ -8,9 +8,9 @@
 > baseline, capability, L4, benchmark, research and operations repositories).
 > No motion commands were sent by this documentation change.
 > Since 2026-11-26 the contract moved to v0.2.0 and 7 of 8 runtime consumers
-> adopted it; the organization merge queue is active. One L0 gate still fails:
-> workspace-path consistency. Organization CI reuse is implemented but not yet
-> adopted by a repository (section 4).
+> adopted it; the organization merge queue is active. No L0 gate fails.
+> Organization CI reuse is in progress: the interfaces pilot references `@v1`
+> and awaits merge (section 4).
 
 ## 1. How to read this report
 
@@ -37,8 +37,8 @@ verification JSON is in the local staging archive
 | Lockfile module topology | `jcheng-system` | L0–L1 | pass — `release 2026.11.1` pins teleop 0.3.0, applications 0.1.0 and studio 0.7.0; `verify_lock --module-root` checks the pinned commits | `jcheng-system/locks/ecosystem.lock.yaml`; PR #37 |
 | Public system API version | `jcheng-system` | L0 | pass — `configs/api.yaml` defines `api_version 0.1.0`; module `system_api` ranges are checked against it | `jcheng-system/configs/api.yaml`; PR #39 |
 | Teleop probe and publisher pins | `jcheng-system`, `jcheng-teleop` | L0–L1 | pass — both probes read the lockfile; the test-only publisher default matches `capability.yaml` | PRs #38, #8 |
-| Organization CI reuse | `.github` | L0 | inconclusive — 3/7 reusable workflows are implemented (contract-check, security, release); 0/12 repositories reference them yet | `.github/workflows/reusable-{contract-check,security,release}.yml` |
-| Workspace path consistency | workspace root | L0 | **fail** — documents and `git_preflight.sh` still reference the removed `~/jcheng` root | `AGENTS.md`; `GIT-WORKSPACE-POLICY.md`; `scripts/git_preflight.sh` |
+| Organization CI reuse | `.github` | L0 | inconclusive — 3/7 reusable workflows are implemented; the interfaces pilot (PR #15) references `@v1` but is not merged | `.github/workflows/reusable-{contract-check,security,release}.yml`; `jcheng-interfaces` PR #15 |
+| Workspace path consistency | workspace root | L0 | pass — the `~/jcheng` compatibility symlink points at `/home/jerichocheng/01_Projects/jcheng-robotics`; documented paths and `git_preflight.sh` work again | `/home/jerichocheng/jcheng` symlink |
 | M3 mock stack and S1–S17 | `jcheng-system` | L2–L3 | pass (15 passed, 2 skipped, 0 required failures; 16 pytest) | `docs/ecosystem/10-m3-execution.md` |
 | M4 read-only hardware integration | `jcheng-system` | L5 | pass (1799/1799 `measured`, `writes=0`, 30 min) | `docs/ecosystem/evidence/m4-readonly-20261123/` |
 | M5.1 mock ROS transport | `jcheng-system` | L2–L3 | pass (5 ROS tests; CI `m5-mock`) | `jcheng-system/tests_ros/` |
@@ -99,9 +99,8 @@ verification JSON is in the local staging archive
 | Operations reboot with drop-ins | Vendor boot sequence moves the arm; needs an operator | OOM settings take effect after restart only |
 | New L3/L4/BENCH/research hardware or motion claims | These repositories are offline/mock/scaffold only | No hardware or motion claim is made for them |
 | Ecosystem v1.0 acceptance | Not run | No v1.0 release claim |
-| Organization reusable CI adoption | Three workflows are implemented; no repository references them yet | Reuse is not proven until a pilot passes in CI; gate logic is still duplicated |
+| Organization reusable CI adoption | The interfaces pilot (PR #15) references `@v1`; no merged repository uses the workflows yet | Reuse is not proven until the pilot merges; gate logic is still duplicated |
 | Perception contract adoption | No runtime imports of `jcheng_interfaces`; explicit waiver recorded | Perception is outside the v0.2.0 contract by declaration, not by adoption |
-| Workspace path references | The former `~/jcheng` root no longer exists | Scripts and documents may fail or mislead |
 | License review | Pending; `jcheng-mobile` carries MIT from initialization (retained pending review), the other new repositories have no `LICENSE` | No uniform reuse position; the review must confirm or replace the mobile file |
 
 ## 5. Limitations
@@ -126,10 +125,12 @@ verification JSON is in the local staging archive
 - The lockfile pins three modules (teleop, applications, studio) for the ArmPi
   combination; `jcheng-mobile` and `jcheng-perception` are intentionally outside
   it.
-- Three of seven reusable workflows are implemented, but no repository references
-  them yet; each product repository still keeps its own gate.
-- Workspace documentation and scripts still point at the removed `~/jcheng`
-  root; path-sensitive commands need `JCHENG_ROOT` or an update.
+- Three of seven reusable workflows are implemented; the interfaces pilot
+  (PR #15) references `@v1`, but each product repository still keeps its own
+  gate until the pilot merges.
+- The workspace is canonical at `/home/jerichocheng/01_Projects/jcheng-robotics`;
+  the `~/jcheng` compatibility symlink is restored so the older documented paths
+  keep working.
 - `jcheng-perception` does not consume the interface contract at runtime; this
   is recorded as an explicit waiver in its `ROADMAP.md` and `ACCEPTANCE.md`.
 

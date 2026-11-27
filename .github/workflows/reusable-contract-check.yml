@@ -35,13 +35,15 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           fetch-depth: 0
-      - name: Ensure PyYAML
+      - name: Ensure contract tooling
         shell: bash
         run: |
           set -euo pipefail
-          python3 -c "import yaml" 2>/dev/null || \
-            python3 -m pip install --user --break-system-packages --disable-pip-version-check pyyaml || \
-            python3 -m pip install --user --disable-pip-version-check pyyaml
+          python3 -c "import yaml, jsonschema, pytest" 2>/dev/null || \
+            python3 -m pip install --user --break-system-packages --disable-pip-version-check \
+              'pyyaml==6.0.2' 'jsonschema==4.23.0' 'pytest==8.3.4' || \
+            python3 -m pip install --user --disable-pip-version-check \
+              'pyyaml==6.0.2' 'jsonschema==4.23.0' 'pytest==8.3.4'
       - name: Manifest, schemas and hardware primitives
         working-directory: ${{ inputs.interfaces-path }}
         shell: bash

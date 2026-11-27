@@ -85,7 +85,7 @@ and the S1–S17 scenarios exist to prove the no-bypass boundary before any supe
 |---|---|
 | Experimental baseline | `jcheng-manipulation v1.0.0`, commit `b3411e4`, frozen; full G8 acceptance recorded |
 | Ecosystem milestones | **M1–M5.2 complete**; M6 S13 and S17 real MoveIt verified; S14 base and full G8 pending |
-| Contracts | `jcheng-interfaces` v0.1.0: 14 msg / 10 srv / 1 action, seven schemas, pinned contract hash |
+| Contracts | `jcheng-interfaces` v0.2.0 (signed tag): 14 msg / 10 srv / 1 action, seven schemas; v0.3.0 `intent_source` in review |
 | System runtime | `jcheng-system` 0.3.0-dev: 13 ROS packages; M4 read-only, M5.2 core, M6 S13 + S17 real verified; S14/G8 pending |
 | Runtime image | `armpi-ultra:flatten-20261125`, 7.1 GB arm64; 20 nodes / 60 topics preserved and reboot persistent |
 | Capability repositories | `jcheng-mobile` v0.1.0 static `/scan`/`/odom`/`/map`; `jcheng-perception` v0.1.0 aligned depth + split edge + one dual-view run + offline ORE S0/S1; `jcheng-ops` v0.1.0 deployed |
@@ -142,7 +142,7 @@ added independently versioned capability, operations and benchmark repositories:
 | Repository | Responsibility | Current state |
 |---|---|---|
 | [`JCHENG-Robotics/.github`](https://github.com/JCHENG-Robotics/.github) | Governance, templates, reusable CI, ecosystem documents | M1 complete; documentation standard v1.0 |
-| [`JCHENG-Robotics/jcheng-interfaces`](https://github.com/JCHENG-Robotics/jcheng-interfaces) | Contracts, schemas, contract hashes | v0.1.0, signed tag |
+| [`JCHENG-Robotics/jcheng-interfaces`](https://github.com/JCHENG-Robotics/jcheng-interfaces) | Contracts, schemas, contract hashes | v0.2.0, signed tag |
 | [`JCHENG-Robotics/jcheng-system`](https://github.com/JCHENG-Robotics/jcheng-system) | Privileged runtime, safety, arbitration, gateway | 0.3.0-dev; M6 S13 + S17 real |
 | [`JCHENG-Robotics/jcheng-mobile`](https://github.com/JCHENG-Robotics/jcheng-mobile) | L3 mobile base | v0.1.0; static bring-up |
 | [`JCHENG-Robotics/jcheng-perception`](https://github.com/JCHENG-Robotics/jcheng-perception) | L3 perception | v0.1.0; aligned depth + single dual-view run |

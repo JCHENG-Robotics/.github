@@ -62,7 +62,7 @@ check_boundaries.py  ── static readers ──► findings[]
 {
   "schema_version": "check-boundaries.v1",
   "generated_at": "2026-11-27T19:45:00+08:00",
-  "root": "/home/jerichocheng/jcheng",
+  "root": "<workspace>",
   "mode": "report",
   "repos": [
     {"name": "jcheng-system", "layer": "L2", "manifest": null, "findings": 2}

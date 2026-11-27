@@ -6,7 +6,7 @@
 
 ## 1. 快照
 
-- 工作区：`/home/jerichocheng/jcheng`，18 个 git 检出（15 个产品仓 + 3 个重复检出）。
+- 工作区：`<workspace>`，18 个 git 检出（15 个产品仓 + 3 个重复检出）。
 - 两新仓已于 2026-11-27 19:20 前完成并发写入；本矩阵基于 19:30 的稳定快照。
 - 判据：`git status`、`capability.yaml`、`registry`、`schema`、文档与代码交叉引用。
 

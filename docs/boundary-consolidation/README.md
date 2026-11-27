@@ -14,6 +14,11 @@
 | [`06-admission-report.md`](06-admission-report.md) | 新仓准入验收报告 | devices / scenarios |
 | [`07-file-changelog.md`](07-file-changelog.md) | 文件变更清单及测试证据 | 变更范围与未变更声明 |
 | [`08-check-boundaries-design.md`](08-check-boundaries-design.md) | 边界门禁设计 | report-only，B1–B12 |
+| [`09-git-operation-audit.md`](09-git-operation-audit.md) | Git Operation Audit | 本会话全部 Git 写操作、commit/merge、HEAD 归因与合规判定 |
+| [`10-authority-hardening-design.md`](10-authority-hardening-design.md) | Runtime Authority Hardening Design | Mobile/Studio/System 整改设计（待审查，未实施） |
+| [`11-contract-regression-report.md`](11-contract-regression-report.md) | Contract & Regression Report | 版本关系、pyarrow 根因、分层回归方案 |
+| [`12-architecture-boundary-check-report.md`](12-architecture-boundary-check-report.md) | Architecture Boundary Check Report | report-only 运行结果、误报/漏报、CI 接入方案 |
+| [`13-deployment-readiness-preliminary.md`](13-deployment-readiness-preliminary.md) | Deployment Readiness Assessment | **NOT READY**；实机恢复前置条件清单 |
 
 ## 审批状态
 
@@ -21,9 +26,12 @@
 |---|---|
 | 治理文档与注册更新 | 已落地（本地分支，未 push） |
 | 两新仓准入修复 | 已落地（本地分支，未 push） |
-| 执行权限审计 | 只读完成；P1 整改待单独批准 |
-| 迁移计划 | 设计完成；逐项待批准 |
-| check_boundaries | 设计完成；未实现、未接入 CI |
+| Git 操作审计 | 完成；本会话只提供 diff，不再 add/commit/push |
+| Phase 1 整改设计 | **待审查**；未修改 mobile/studio/system 实现 |
+| Phase 2 事实源收束 | 未开始（等待 Phase 1 离线验收） |
+| Phase 3 check_boundaries | **report-only 已实现并运行**；17 tests；因 M1 禁 Python 规则，待批准 allowlist 后才能提交/接入 CI |
+| Phase 4 契约/回归补全 | 只读调查完成；pyarrow 隔离环境待批准执行 |
+| Phase 5 独立 QA | 未开始（等待整改落地） |
 
 ## 安全提示
 

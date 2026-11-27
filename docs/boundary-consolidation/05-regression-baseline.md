@@ -7,7 +7,7 @@
 
 | 项 | 值 |
 |---|---|
-| 工作区 | `/home/jerichocheng/jcheng`（多仓，无根 git） |
+| 工作区 | `<workspace>`（多仓，无根 git） |
 | git 检出 | 18 |
 | 产品仓 | 15：applications、benchmark、devices、interfaces、learning、manipulation、mobile、ops、perception、research、scenarios、simulation、studio、system、teleop |
 | 重复检出 | 3：`jcheng-design`（manipulation 的第二个 checkout）、`jcheng-system-r5`、`jcheng-system-v020` |

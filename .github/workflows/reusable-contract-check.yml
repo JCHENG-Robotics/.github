@@ -1,33 +1,77 @@
 name: reusable-contract-check
 
-# M1 skeleton. M2 fills in IDL build, manifest, schema parity and SemVer diff.
+# Contract gate for the interfaces repository (and any repository that vendors
+# the same contract files). The caller owns the trigger; this workflow only
+# performs deterministic, offline checks.
 on:
   workflow_call:
     inputs:
       base-ref:
-        description: Base tag/commit for compatibility comparison
+        description: Base tag/commit for the VERSION-bump guard; empty disables it
         required: false
         type: string
         default: ""
       interfaces-path:
-        description: Path to the interfaces repository
+        description: Path to the checked-out interfaces repository
         required: false
         type: string
         default: "."
+      run-tests:
+        description: Run the contract pytest suite
+        required: false
+        type: boolean
+        default: true
 
 permissions:
   contents: read
 
 jobs:
-  skeleton:
-    name: contract-skeleton
+  contract:
+    name: contract-check
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
-      - name: Report skeleton inputs
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+      - name: Ensure PyYAML
         shell: bash
         run: |
-          echo "M1 skeleton: reusable-contract-check"
-          echo "base-ref=${{ inputs.base-ref }}"
-          echo "interfaces-path=${{ inputs.interfaces-path }}"
-          echo "M2 will add: colcon build, interface_manifest.json, schema parity, SemVer diff."
+          set -euo pipefail
+          python3 -c "import yaml" 2>/dev/null || \
+            python3 -m pip install --user --break-system-packages --disable-pip-version-check pyyaml || \
+            python3 -m pip install --user --disable-pip-version-check pyyaml
+      - name: Manifest, schemas and hardware primitives
+        working-directory: ${{ inputs.interfaces-path }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/generate_manifest.py --check
+          python3 tools/check_schemas.py
+          python3 tools/check_no_hardware.py
+      - name: Contract tests
+        if: ${{ inputs.run-tests }}
+        working-directory: ${{ inputs.interfaces-path }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pytest -q
+      - name: VERSION-bump guard
+        if: ${{ inputs.base-ref != '' }}
+        working-directory: ${{ inputs.interfaces-path }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="${{ inputs.base-ref }}"
+          git rev-parse --verify "${base}^{commit}" >/dev/null
+          changed=$(git diff --name-only "${base}" HEAD -- \
+            ros2_ws/src/jcheng_interfaces schemas || true)
+          if [ -n "$changed" ]; then
+            if git diff --quiet "${base}" HEAD -- VERSION; then
+              echo "contract files changed without a VERSION bump:" >&2
+              echo "$changed" >&2
+              exit 1
+            fi
+          fi
+          echo "contract guard OK against ${base}"

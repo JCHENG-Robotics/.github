@@ -43,6 +43,7 @@
 | [`35-baseline-manifest-updated.md`](35-baseline-manifest-updated.md) | Baseline Manifest Updated | **INCOMPLETE**；main SHAs/tests |
 | [`36-deployment-readiness-updated.md`](36-deployment-readiness-updated.md) | Deployment Readiness Updated | **NOT READY**；deployment FAIL |
 | [`37-armpi-ore-sorting-reference-result.md`](37-armpi-ore-sorting-reference-result.md) | ArmPi × ore_sorting Reference Result | 组件通过；真实工件 fail-closed；Baseline 未达成 |
+| [`38-independent-integration-qa-report.md`](38-independent-integration-qa-report.md) | Independent Integration QA | Development/Main PASS；Deployment FAIL |
 
 ## 审批状态
 

@@ -44,6 +44,7 @@
 | [`36-deployment-readiness-updated.md`](36-deployment-readiness-updated.md) | Deployment Readiness Updated | **NOT READY**；deployment FAIL |
 | [`37-armpi-ore-sorting-reference-result.md`](37-armpi-ore-sorting-reference-result.md) | ArmPi × ore_sorting Reference Result | 组件通过；真实工件 fail-closed；Baseline 未达成 |
 | [`38-independent-integration-qa-report.md`](38-independent-integration-qa-report.md) | Independent Integration QA | Development/Main PASS；Deployment FAIL |
+| [`39-developer-handover-report.md`](39-developer-handover-report.md) | Developer Handover | **DEVELOPMENT READY**；offline integration/deployment not |
 
 ## 审批状态
 
@@ -52,6 +53,8 @@
 | Wave 1–4 PRs | **已合并**（#27/#28/#29/#2/#1/#5/#19/#41/#10/#7；#6 closed superseded） |
 | Main 集成 QA | **PASS**（Development/Main；Deployment FAIL） |
 | Phase 2 MIG-01/02 | 组件实现完成（Draft PR devices #3、scenarios #2、applications #18） |
+| Multi-device registration | devices PR #4（ArmPi/PiPER X/AR5 placeholder） |
+| Developer handover | **DEVELOPMENT READY**；guide + dev entries + first task |
 | ArmPi × ore_sorting | fixture 路径通过；真实 CLI 工件 fail-closed（37） |
 | Baseline 1 | **INCOMPLETE**（artifact schema/vocabulary 未收敛） |
 | 实机/部署 | **NOT READY / 未授权** |

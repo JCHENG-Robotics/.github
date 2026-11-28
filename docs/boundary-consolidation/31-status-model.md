@@ -5,6 +5,17 @@
 > deployed image. No finding is called "resolved" across planes without
 > evidence at that plane.
 
+## 0. Readiness states
+
+| State | Result | Basis |
+|---|---|---|
+| **DEVELOPMENT READY** | **YES** (optional gaps) | env check, build interfaces, system/devices/scenarios tests, mock gateway health, simulation mock topics; see [39](39-developer-handover-report.md) |
+| **OFFLINE INTEGRATION READY** | **NO** | real device/scenario artifacts fail closed (TD-17/18/19) |
+| **DEPLOYMENT READY** | **NO** | deployed tree, base bridge, lease sharing, bench/hardware absent |
+
+Human development proceeds under DEVELOPMENT READY; it does not wait for
+deployment readiness.
+
 ## 1. Planes
 
 | Plane | Meaning | Snapshot |

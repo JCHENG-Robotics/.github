@@ -1,8 +1,10 @@
 # Deployment Readiness — Updated (2026-11-28)
 
-> Status: **NOT READY**. This is the deployment-plane assessment; it does not
-> repeat the main-integration PASS. A green main and a passing mock suite do not
-> authorize real-robot motion.
+> Status: **NOT READY** for deployment. **DEVELOPMENT READY** (offline) is a
+> separate state and is YES; see [39](39-developer-handover-report.md).
+> This is the deployment-plane assessment; it does not repeat the
+> main-integration PASS. A green main and a passing mock suite do not authorize
+> real-robot motion.
 
 ## 1. Three-plane status
 

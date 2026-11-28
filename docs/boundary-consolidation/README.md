@@ -33,20 +33,28 @@
 | [`25-ecosystem-integration-baseline-1-manifest.md`](25-ecosystem-integration-baseline-1-manifest.md) | Baseline 1 Manifest | **INCOMPLETE**；main SHA/版本/风险 |
 | [`26-post-merge-regression-report.md`](26-post-merge-regression-report.md) | Post-Merge Regression | 实际 main 基线 + 分支证据；Baseline 未达成 |
 | [`27-mobile-conflict-resolution-report.md`](27-mobile-conflict-resolution-report.md) | Mobile Conflict Resolution | #6 → 新 main 分支移植；树等价；QA PASS；PR #7 |
-| [`28-phase2-implementation-status.md`](28-phase2-implementation-status.md) | Phase 2 Implementation Status | **未开始**；合并/回归/QA 门禁未满足 |
+| [`28-phase2-implementation-status.md`](28-phase2-implementation-status.md) | Phase 2 Implementation Status | 设计完成；实现在本轮启动 |
+| [`29-system-conflict-resolution-report.md`](29-system-conflict-resolution-report.md) | System Conflict Resolution | #41 已合并；本地树=main；191 tests |
+| [`30-studio-conflict-resolution-report.md`](30-studio-conflict-resolution-report.md) | Studio Conflict Resolution | #10 已合并；本地树=main；13+222 tests |
+| [`31-status-model.md`](31-status-model.md) | Status Model | Development / Main / Deployment 三平面 |
+| [`32-technical-debt-register.md`](32-technical-debt-register.md) | Technical Debt Register | 16 项；blockers 与 closure |
+| [`33-board-review-packet.md`](33-board-review-packet.md) | Board Review Packet | 全部 Wave PR 已合并；无 pending approval |
+| [`34-boundary-report-main.md`](34-boundary-report-main.md) | Boundary Report — Main | 12 open + 1 waived；0 open Critical |
+| [`35-baseline-manifest-updated.md`](35-baseline-manifest-updated.md) | Baseline Manifest Updated | **INCOMPLETE**；main SHAs/tests |
+| [`36-deployment-readiness-updated.md`](36-deployment-readiness-updated.md) | Deployment Readiness Updated | **NOT READY**；deployment FAIL |
+| [`37-armpi-ore-sorting-reference-result.md`](37-armpi-ore-sorting-reference-result.md) | ArmPi × ore_sorting Reference Result | 组件通过；真实工件 fail-closed；Baseline 未达成 |
+| [`38-independent-integration-qa-report.md`](38-independent-integration-qa-report.md) | Independent Integration QA | Development/Main PASS；Deployment FAIL |
 
 ## 审批状态
 
 | 项 | 状态 |
 |---|---|
-| 治理文档与注册更新 | 已落地（本地分支，未 push） |
-| 两新仓准入修复 | 已落地（本地分支，未 push） |
-| Git 操作审计 | 完成；本会话只提供 diff，不再 add/commit/push |
-| Phase 1 整改设计 | **待审查**；未修改 mobile/studio/system 实现 |
-| Phase 2 事实源收束 | 未开始（等待 Phase 1 离线验收） |
-| Phase 3 check_boundaries | **report-only 已实现并运行**；17 tests；因 M1 禁 Python 规则，待批准 allowlist 后才能提交/接入 CI |
-| Phase 4 契约/回归补全 | 只读调查完成；pyarrow 隔离环境待批准执行 |
-| Phase 5 独立 QA | 未开始（等待整改落地） |
+| Wave 1–4 PRs | **已合并**（#27/#28/#29/#2/#1/#5/#19/#41/#10/#7；#6 closed superseded） |
+| Main 集成 QA | **PASS**（Development/Main；Deployment FAIL） |
+| Phase 2 MIG-01/02 | 组件实现完成（Draft PR devices #3、scenarios #2、applications #18） |
+| ArmPi × ore_sorting | fixture 路径通过；真实 CLI 工件 fail-closed（37） |
+| Baseline 1 | **INCOMPLETE**（artifact schema/vocabulary 未收敛） |
+| 实机/部署 | **NOT READY / 未授权** |
 
 ## 安全提示
 

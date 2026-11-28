@@ -35,9 +35,9 @@
 | Lock | 0.2.0, `afca22…` |
 | Device reference | `hiwonder.armpi-ultra`, 0.1.0, hash `99d4631a…` |
 | Scenario reference | `ore_sorting`, 0.1.0, hash `43d15c21…` |
-| Device SoT implementation | **not merged** (Phase 2 in progress) |
-| Scenario SoT implementation | **not merged** (Phase 2 in progress) |
-| Reference integration | **not merged** (Phase 2 in progress) |
+| Device SoT implementation | component complete on Draft PR #3; not merged |
+| Scenario SoT implementation | component complete on Draft PR #2; not merged |
+| Reference integration | harness complete on Draft PR #18; real CLI artifacts fail closed ([37](37-armpi-ore-sorting-reference-result.md)) |
 
 ## 3. Decision 9 exit criteria
 
@@ -46,11 +46,11 @@
 | 1 | Necessary governance/hardening PRs merged | ✅ |
 | 2 | Actual-main integration regression | ✅ PASS |
 | 3 | Independent integration QA | ✅ Development/Main PASS |
-| 4 | Devices/Scenarios first SoT consolidation | ❌ not merged |
-| 5 | ArmPi × ore_sorting offline vertical | ❌ not merged |
-| 6 | Accurate security/debt status + evidence | ✅ 31/32/34 |
+| 4 | Devices/Scenarios first SoT consolidation | ❌ components on Draft PRs; artifact schema/vocabulary not converged |
+| 5 | ArmPi × ore_sorting offline vertical | ❌ fixture path passes; real artifacts fail closed |
+| 6 | Accurate security/debt status + evidence | ✅ 31/32/34/37 |
 | 7 | Fixed SHAs/contract/device/scenario in manifest | ✅ this file |
-| 8 | Repeatable build/test/offline entry | ❌ Phase 2 reference pending |
+| 8 | Repeatable build/test/offline entry | ❌ runnable entry exists; real artifacts do not complete |
 
 ## 4. Merged PR set
 

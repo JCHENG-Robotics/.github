@@ -1,8 +1,10 @@
 # ArmPi Ultra × ore_sorting Reference Integration Result
 
-> Status: **mechanism validated on fixtures; real CLI artifacts fail closed**.
-> This is an honest negative integration result. The harness was not weakened to
-> force a pass. Baseline 1 remains **INCOMPLETE**.
+> Status: **superseded for the TD-17/18/19 outcome by [40](40-td-contract-convergence-report.md)**.
+> The original negative result below remains the record of the pre-convergence
+> run. On the convergence branches the real artifacts now complete with
+> `matched_with_unverified`; main is unchanged until #5/#3/#19 merge. Baseline 1
+> remains **INCOMPLETE** as a main-plane claim.
 
 ## 1. Component results
 
@@ -81,6 +83,20 @@ It does **not** prove that the real devices/scenarios artifacts are compatible.
    explicit `UNVERIFIED` classification, with `deployable: false` until data is
    verified.
 4. Do not merge the Draft PRs as Baseline-complete until this passes.
+
+## 6. Convergence update (2026-11-28)
+
+The three mismatches were resolved without weakening the hash check:
+
+- `source_hash` (profile) and `content_hash` (artifact) are now distinct.
+- Device snapshot `attributes` declare role and DOF; a missing fact is null.
+- Scenario requirements carry `role`, `interface` and a numeric `threshold`;
+  algorithm requirements carry `deferred_to`.
+- The consumer composes arm + gripper + camera snapshots by role and reports
+  `matched_with_unverified` for the real cell.
+
+See [40](40-td-contract-convergence-report.md) for commands, per-requirement
+outcomes, tests and the plane-by-plane readiness.
 
 ## Related
 

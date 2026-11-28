@@ -46,11 +46,11 @@
 | 1 | Necessary governance/hardening PRs merged | ✅ |
 | 2 | Actual-main integration regression | ✅ PASS |
 | 3 | Independent integration QA | ✅ Development/Main PASS |
-| 4 | Devices/Scenarios first SoT consolidation | ❌ components on Draft PRs; artifact schema/vocabulary not converged |
-| 5 | ArmPi × ore_sorting offline vertical | ❌ fixture path passes; real artifacts fail closed |
+| 4 | Devices/Scenarios first SoT consolidation | ✅ **on convergence branches** (#5/#3); main pending merge |
+| 5 | ArmPi × ore_sorting offline vertical | ✅ **on convergence branches** (`matched_with_unverified`); main pending |
 | 6 | Accurate security/debt status + evidence | ✅ 31/32/34/37 |
 | 7 | Fixed SHAs/contract/device/scenario in manifest | ✅ this file |
-| 8 | Repeatable build/test/offline entry | ❌ runnable entry exists; real artifacts do not complete |
+| 8 | Repeatable build/test/offline entry | ✅ **on convergence branches**; main pending merge/QA |
 
 ## 4. Merged PR set
 

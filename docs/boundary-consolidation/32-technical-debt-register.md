@@ -22,9 +22,9 @@
 | TD-14 | No Humble/Gazebo/hardware regression | High | Deployment | all | container + bench plan | evidence at each layer |
 | TD-15 | Stale open PRs (.github #25/#26, devices #1, interfaces #17, studio #3) | Low | Main | Board | close/retire explicitly | no stale PRs |
 | TD-16 | Frontend still calls 410 legacy endpoints | Low | Main | studio | frontend copy/disable | UI has no legacy motion affordance |
-| TD-17 | Cross-repo artifact schema not converged (hash semantics, parameter/feedback/joint representation) | **High** | Main | devices/scenarios/applications | canonical artifact schema | real CLI artifacts parse and match |
-| TD-18 | Cell-level capability composition missing (scenario requires arm+gripper+camera; device snapshot is one arm) | **High** | Main | scenarios/devices/applications | cell composition/vocabulary | positive `matched` or explicit `UNVERIFIED` |
-| TD-19 | Device vs algorithm capability split (`perception.*` mixed into device requirements) | Medium | Main | scenarios | classify by owner | algorithm requirements deferred to owner |
+| TD-17 | Cross-repo artifact schema not converged (hash semantics, parameter/feedback/joint representation) | **High** | Dev branches | devices/scenarios/applications | canonical artifact schema | **Closed on branches** (#6/#4/#19): `source_hash` vs self `content_hash`; real artifacts parse (40) |
+| TD-18 | Cell-level capability composition missing (scenario requires arm+gripper+camera; device snapshot is one arm) | **High** | Dev branches | scenarios/devices/applications | cell composition/vocabulary | **Closed on branches**: role composition + `matched_with_unverified` (40) |
+| TD-19 | Device vs algorithm capability split (`perception.*` mixed into device requirements) | Medium | Dev branches | scenarios | classify by owner | **Closed on branches**: owner split + `deferred_to` (40) |
 
 ## Rules
 

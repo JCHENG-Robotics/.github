@@ -42,7 +42,8 @@
 | [`34-boundary-report-main.md`](34-boundary-report-main.md) | Boundary Report — Main | 12 open + 1 waived；0 open Critical |
 | [`35-baseline-manifest-updated.md`](35-baseline-manifest-updated.md) | Baseline Manifest Updated | **INCOMPLETE**；main SHAs/tests |
 | [`36-deployment-readiness-updated.md`](36-deployment-readiness-updated.md) | Deployment Readiness Updated | **NOT READY**；deployment FAIL |
-| [`37-armpi-ore-sorting-reference-result.md`](37-armpi-ore-sorting-reference-result.md) | ArmPi × ore_sorting Reference Result | 组件通过；真实工件 fail-closed；Baseline 未达成 |
+| [`37-armpi-ore-sorting-reference-result.md`](37-armpi-ore-sorting-reference-result.md) | ArmPi × ore_sorting Reference Result | 原始负结果记录；收敛结果见 40 |
+| [`40-td-contract-convergence-report.md`](40-td-contract-convergence-report.md) | TD-17/18/19 Convergence | 分支通过 `matched_with_unverified`；main 待合并/QA |
 | [`38-independent-integration-qa-report.md`](38-independent-integration-qa-report.md) | Independent Integration QA | Development/Main PASS；Deployment FAIL |
 
 ## 审批状态
@@ -51,9 +52,9 @@
 |---|---|
 | Wave 1–4 PRs | **已合并**（#27/#28/#29/#2/#1/#5/#19/#41/#10/#7；#6 closed superseded） |
 | Main 集成 QA | **PASS**（Development/Main；Deployment FAIL） |
-| Phase 2 MIG-01/02 | 组件实现完成（Draft PR devices #3、scenarios #2、applications #18） |
-| ArmPi × ore_sorting | fixture 路径通过；真实 CLI 工件 fail-closed（37） |
-| Baseline 1 | **INCOMPLETE**（artifact schema/vocabulary 未收敛） |
+| Phase 2 MIG-01/02 | 已合并（devices #3、scenarios #2、applications #18）；收敛 PR devices #6、scenarios #4、applications #19 |
+| ArmPi × ore_sorting | 收敛分支真实工件通过（`matched_with_unverified`，40）；main 待合并 |
+| Baseline 1 | **INCOMPLETE**（main 未合并收敛 PR #6/#4/#19） |
 | 实机/部署 | **NOT READY / 未授权** |
 
 ## 安全提示

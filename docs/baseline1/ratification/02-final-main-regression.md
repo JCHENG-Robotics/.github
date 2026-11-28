@@ -8,9 +8,9 @@
 | Repository | main SHA |
 |---|---|
 | `.github` | `f9e77eb8b309ab705c20f08a34bb28be68ff8ce7` |
-| interfaces | `a142641b4fb256aa2368abe778bb6c5b010d1c23` |
-| devices | `a006f5f2a3e71522f23b8aa6af6a363d0bd57174` |
-| scenarios | `eac6dda1e7cdd8a80063fe8365518cf20bf2f65a` |
+| interfaces | `426f3713e8f3bfbc024982a2f1372c555a82fa92` |
+| devices | `c4be89747794fa6aca1a5fd101a999d7e75be14b` |
+| scenarios | `1c218858fd4e90792cd9de9b5a45af25c8faa4f9` |
 | applications | `0be306e7d7ebf7b8a7e6b47aa5fb0c518358d90c` |
 | system | `72b2ce25266d3463d4590e871f6a2905fd938704` |
 | mobile | `f96cfee2a3330d6a830f9807f92dc0539ee5d7be` |
@@ -29,7 +29,7 @@
 | Repository | Result | Gate |
 |---|---|---|
 | interfaces | 22 passed | OK |
-| devices | 122 passed | OK |
+| devices | 123 passed | OK |
 | scenarios | 116 passed | OK |
 | applications | 218 passed, 5 skipped | OK |
 | system | 191 passed | OK |
@@ -81,6 +81,7 @@ finding was introduced. Report-only; findings do not fail the command.
 
 ## 6. Not in this main run
 
-The AR5L/AR5R unit registration (#8), vocabulary status (#5) and contract
-ratification (#21) are separate, unmerged PRs. Their candidate checks pass, but
-they are not part of the fixed main evidence above.
+The AR5L/AR5R registration (#8), vocabulary (#5) and contract ratification (#21)
+are merged into the fixed main above. The nine-device registry and the
+`contracted` requirements are part of this evidence; only the freeze record PR
+remains unmerged.

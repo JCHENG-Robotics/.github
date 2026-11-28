@@ -7,20 +7,21 @@
 
 | # | PR | Why | Required check |
 |---|---|---|---|
-| 1 | `.github` #39 | final record correction (ratified-main SHAs/hashes, COMPLETE status) | m1-gate |
+| 1 | `.github` #40 | final record (ratified-main SHAs/hashes, COMPLETE status) | m1-gate |
 
 Already merged: interfaces #21 (`426f371`, Accepted 1.0.0), scenarios #5
 (`1c21885`, vocabulary `contracted`), devices #8 (`c4be897`, AR5L/AR5R, 9
 devices), freeze record #38 (`bf866d6`). Only the record correction remains.
 
-## 2. After merge (required before COMPLETE)
+## 2. Publication step
 
-1. Approve/merge #39.
+1. Approve/merge #40.
 2. The post-merge acceptance on the ratified mains is already recorded in 02/04
-   (new requirements hashes and 9-device registry).
-3. Confirm the final QA on the freeze record; then change the four statuses to
-   DEVELOPMENT READY YES / OFFLINE INTEGRATION READY YES / BASELINE 1 COMPLETE
-   YES / DEPLOYMENT READY NO. No artifact hash is computed over the record.
+   (new requirements hashes and 9-device registry); the final independent QA is
+   in 03.
+3. The four statuses are already recorded as DEVELOPMENT READY YES / OFFLINE
+   INTEGRATION READY YES / BASELINE 1 COMPLETE YES / DEPLOYMENT READY NO. No
+   artifact hash is computed over the record.
 
 ## 3. Do not approve as part of this freeze
 
@@ -32,5 +33,5 @@ devices), freeze record #38 (`bf866d6`). Only the record correction remains.
 
 ## 4. Current status if approvals are not given
 
-Baseline 1 stays **INCOMPLETE**. The technical evidence is green; only human
-review/merge and the final post-merge rerun are missing.
+No technical gate remains. Until #40 merges, main still shows #38's earlier
+INCOMPLETE text; merge #40 to publish the final COMPLETE record.

@@ -58,7 +58,7 @@ BENCHMARK_ROOT=... SIMULATION_ROOT=... OUT=... \
 .github/dev/baseline1-acceptance.sh
 ```
 
-Result on fixed main (`/tmp/b1-evidence/final-main-f9e77eb`):
+Result on fixed main (`/tmp/b1-evidence/final-main-ratified`):
 
 - reference `matched_with_unverified`, 2 steps, mock SUCCEEDED,
   benchmark inconclusive, simulation not_checked;

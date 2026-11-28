@@ -1,4 +1,4 @@
-# Independent Final QA Report — Ratification
+# Independent Final QA Report — Ratified Main
 
 > Reviewer: independent read-only QA agent, separate from implementation.
 > Date: 2026-11-28. No tracked file was modified; no commit/push/merge/tag; no
@@ -6,60 +6,54 @@
 
 ## 1. Verdict
 
-**PASS WITH FINDINGS** — no P1. Four P2 items and five P3 notes were raised.
-The P2s are fixed in the ratification delivery; the P3s are recorded here or in
-the technical debt register. The freeze remains **INCOMPLETE** because the
-ratification PRs have no approvals and are unmerged.
+**Substantive ratification: PASS.** The contract, vocabulary, AR5L/R
+registration and post-merge acceptance are confirmed on main.
 
-## 2. Independently verified
+The final record PR #40 needed corrections before approval: it still referenced
+closed PR #39, contained contradictory COMPLETE/INCOMPLETE text, and its QA
+section described the pre-merge state. Those P1 record-integrity findings are
+fixed in this revision. After #40 is approved and merged, Baseline 1 may be
+marked COMPLETE; the record itself is the publication step.
 
-- Fixed main SHAs for all 15 repositories match remote; `manipulation` annotated
-  tag `v1.0.0` resolves to `b3411e4`.
-- Ratification PRs: interfaces #21 `f656d69`, scenarios #5 `a6fbc28`, devices
-  #8 `1b35057`; all CI green, zero reviews.
-- interfaces #20 was genuinely APPROVED by CODEOWNER `JerichoSwaine` at
-  2026-11-28T06:27:30Z and merged `a142641`.
-- Contract #21 changes only docs; scope is offline artifacts, excludes ROS
-  IDL/DDS/HTTP/runtime profiles; golden vectors 6/6 and interfaces 22/22 pass.
-- Vocabulary #5 changes only the YAML field plus docs/tests; new requirements
-  hashes were independently recomputed; no schema/IDL change.
-- AR5 #8 adds AR5L/AR5R as planned/`data_status: missing`, no invented
-  kinematics; family `rokae.ar5` is explicitly not a unit; 9 devices / 7
-  capabilities, 123 tests, gate OK.
-- Fresh acceptance run from fixed main: `matched_with_unverified`, 8/8 cases,
-  benchmark inconclusive/pass/fail, gates false for deployment/motion.
-- Regression counts match: interfaces 22, devices 122, scenarios 116,
-  applications 218+5, system 191, mobile 50, studio 13+222, perception 107,
-  learning 68, teleop 218, simulation 86+2, benchmark 61, ops 9, `.github` 20.
-- Boundary 25 open + 1 waived; no new Baseline 1 finding.
-- Frozen manifest lists fixed source SHAs and does not hash itself; COMPLETE is
-  correctly withheld.
+## 2. Verified on main
 
-## 3. P2 findings and disposition
+| Item | Result |
+|---|---|
+| interfaces `426f371` | contract **Accepted** in `CONTRACT.md`; offline scope only; docs-only diff; no schema/IDL |
+| scenarios `1c21885` | `vocabulary_status: contracted`; approval reference corrected; no schema/IDL |
+| devices `c4be897` | **9 devices / 7 capabilities**; `rokae.ar5l`/`rokae.ar5r`; 123 tests; gate OK |
+| applications `0be306e` | 218 + 5 skipped; unchanged |
+| interfaces / scenarios | 22 / 116 tests; gates OK |
+| Boundary | 25 open + 1 waived |
+| Ratified-main acceptance | `/tmp/b1-evidence/final-main-ratified`: `matched_with_unverified`; 8/8 cases; benchmark inconclusive/pass/fail; requirements `36151275…` / `d79dae2f…`; AR5L `ad97bc5f…/f94e376d…`; AR5R `166bd3c5…/31f9b10a…` |
+| Freeze record #38 | merged `bf866d6`; it contains the earlier pre-ratification text |
+| Record #40 | clean main-based docs-only commit; this revision fixes the QA findings |
+
+## 3. P1 findings and disposition
 
 | ID | Finding | Disposition |
 |---|---|---|
-| P2-1 | scenarios docs said "PR #21 approval"; #21 has no review | **Fixed** in scenarios #5 (`d73e998`): "PR #20 approval recorded in #21" |
-| P2-2 | Missing deliverable 03 | **Fixed**: this report |
-| P2-3 | Freeze package untracked/no reviewable head | **Fixed**: committed and opened as the freeze PR |
-| P2-4 | scenarios #5 has no independent reviewer scheduled (CODEOWNERS only names the author) | **Action**: independent reviewer requested, but the scenarios CODEOWNERS names only the author. The owner must add a second CODEOWNER (e.g. `@JerichoSwaine`) or use an approved admin path; otherwise #5 cannot be approved without self-approval and Baseline stays INCOMPLETE |
+| P1-1 | #40 referenced closed #39 as the remaining record | **Fixed**: all references now #40 |
+| P1-2 | #40 declared COMPLETE while saying the record must merge before COMPLETE | **Fixed**: status is "COMPLETE, effective on merge of this record"; the publication language no longer contradicts it |
+| P1-3 | 03 described #21/#5/#8 as unmerged | **Fixed**: this post-merge report |
+| P1-4 | 01 said vocabulary "not on main yet" | **Fixed**: vocabulary is contracted on main |
 
-## 4. P3 notes (recorded, non-blocking)
+## 4. P2/P3 notes
 
-- Device README/ACCEPTANCE/ROADMAP counts were stale ("six"); updated to nine in
-  devices #8 (`0bbbc18`).
-- AR5 family/unit distinction is prose-only; no machine-readable family marker.
-  The family entry is retained for provenance and must not be deployed.
-- `docs/baseline1/42-baseline1-manifest.md` records the pre-ratification main;
-  the freeze manifest 04 supersedes its source SHAs (artifact hashes still
-  match).
-- `NO_DEVICE_FOR_ROLE` is verified by a manual CLI negative run, not an
-  automated pytest; recorded rather than adding a new test framework.
-- Studio's 222 backend tests need the out-of-tree main venv; the count requires
-  that environment note. The repo gate still passes.
+- `02` now points to `/tmp/b1-evidence/final-main-ratified`.
+- `04` records `.github bf866d6` and explains `f9e77eb` as the pre-record
+  source baseline; no self-referential hash.
+- Main `.github bf866d6` still carries #38's earlier INCOMPLETE text until #40
+  merges; this is expected and is the reason #40 exists.
+- `NO_DEVICE_FOR_ROLE` is manually verified; no new automated test was added in
+  this record-only PR.
+- Studio backend 222 requires the out-of-tree main venv; learning needs
+  `UV_PROJECT_ENVIRONMENT` outside the repo.
+- AR5 family/unit distinction remains prose-only; the family entry is not a
+  deployable unit.
 
 ## 5. No-modification statement
 
-The reviewer modified no tracked files, made no remote change, and did not start
-a robot, send motion, join a DDS/ROS graph or access hardware. No secret was
-printed.
+The reviewer modified no tracked files, made no remote change, and did not
+start a robot, send motion, join a DDS/ROS graph or access hardware. No secret
+was printed.

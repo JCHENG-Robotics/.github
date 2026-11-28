@@ -8,7 +8,7 @@
 
 | Repository | main SHA | Version |
 |---|---|---|
-| `.github` | `f9e77eb8b309ab705c20f08a34bb28be68ff8ce7` | n/a |
+| `.github` | `bf866d69bc67ea0d6705745b10d96d3c9a70637d` (freeze record merge; pre-record source `f9e77eb`) | n/a |
 | interfaces | `426f3713e8f3bfbc024982a2f1372c555a82fa92` | 0.2.0 |
 | devices | `c4be89747794fa6aca1a5fd101a999d7e75be14b` | 0.1.0 |
 | scenarios | `1c218858fd4e90792cd9de9b5a45af25c8faa4f9` | 0.1.0 |
@@ -97,6 +97,7 @@ python3 scripts/check_boundaries.py --root <16-repo-workspace> --mode report
 
 ## 8. Freeze rule
 
-The substantive PRs (#8/#5/#21) are merged and the post-merge acceptance
-passes. This freeze record itself still needs approval/merge before COMPLETE is
-declared. No self-referential hash is used.
+The substantive PRs (#8/#5/#21) plus the freeze record (#38) are merged and the
+post-merge acceptance passes. This record (#40) is the publication step that
+replaces #38's pre-ratification text; no technical or approval gate remains.
+No self-referential hash is used.

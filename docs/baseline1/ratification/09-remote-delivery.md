@@ -19,7 +19,7 @@ All were approved by `JerichoSwaine` and merged through the protected branch.
 | scenarios | #5 | merged `1c21885` | vocabulary contracted |
 | devices | #8 | merged `c4be897` | AR5L/AR5R, 9 devices |
 | `.github` | #38 | merged `bf866d6` | freeze record (pre-ratification text) |
-| `.github` | #39 | final record correction | review required |
+| `.github` | #40 | final record publication | review required |
 
 ## 3. Closed / superseded earlier
 

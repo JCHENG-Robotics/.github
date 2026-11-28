@@ -55,11 +55,11 @@ runtime robot profiles or real motion authority.
   vocabulary (jcheng-scenarios PR #5).
 - Still not contracted: runtime/ROS interfaces.
 
-The vocabulary PR is CI green and review-required; it is not on main yet.
+The vocabulary PR is merged; `contracted` is on main.
 
 ## 5. Ratification gaps
 
 1. interfaces #21 and scenarios #5 are merged; the contract is Accepted and the
    offline vocabulary is `contracted` on main;
-2. only the freeze record PR remains unmerged; Baseline 1 stays INCOMPLETE
-   until it is approved/merged and the post-merge record is finalized.
+2. the only remaining publication step is this record PR (#40); no technical or
+   approval gate remains.

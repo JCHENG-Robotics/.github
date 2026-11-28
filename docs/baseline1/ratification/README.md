@@ -2,7 +2,7 @@
 
 > Status: **COMPLETE**. Contract Accepted, vocabulary contracted, AR5L/R
 > registered, freeze record merged, and the ratified-main acceptance/review
-> passes. The final record correction is PR #39. No release or tag was created;
+> passes. The final publication step is PR #40. No release or tag was created;
 > deployment remains NOT READY.
 
 ## Deliverables
@@ -31,5 +31,5 @@
 
 ## Required human actions
 
-Only the final record correction PR #39 remains to be approved/merged. No code
-or artifact change is involved. No self-approval, no force-push, no release.
+Only the final publication PR #40 remains to be approved/merged. No code or
+artifact change is involved. No self-approval, no force-push, no release.

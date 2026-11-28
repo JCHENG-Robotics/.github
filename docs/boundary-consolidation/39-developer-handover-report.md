@@ -53,7 +53,7 @@ No file was deleted or migrated. Existing branches/worktrees/build dirs remain.
 | Test | `dev/test.sh scenarios` | 114 passed + gate (phase2 branch) |
 | Mock gateway | `dev/mock-launch.sh dev-token 8788` | `/v1/health` 200: status ok, contract 0.2.0, DISARMED |
 | Simulation mock | `dev/sim-launch.sh` | 4 `/sim/*` topics on domain 43 |
-| Reference | `dev/reference-integration.sh` | **fail-closed** (TD-17/18/19) |
+| Reference | `dev/reference-integration.sh` | **passes on convergence branches** (`matched_with_unverified`); fail-closed on main (40) |
 
 ## 4. Multi-device registration
 

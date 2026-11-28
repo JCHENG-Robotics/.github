@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="780" viewBox="0 0 1600 780" role="img" aria-labelledby="title desc"><title id="title">Single motion authorization path</title><desc id="desc">Intent passes a gateway, a lease, ExecuteMotion, the safety veto, the arbiter and the only hardware publisher; measured state returns from the bus. A second path is forbidden.</desc><style>text{font-family:Inter, "Segoe UI", "Helvetica Neue", Arial, sans-serif;} .mono{font-family:"JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;}</style>
+<rect x="0" y="0" width="1600" height="780" rx="8" fill="#FFFFFF" opacity="1.0"/>
+<line x1="0" y1="0" x2="0" y2="780" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="80" y1="0" x2="80" y2="780" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="160" y1="0" x2="160" y2="780" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="240" y1="0" x2="240" y2="780" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="320" y1="0" x2="320" y2="780" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="400" y1="0" x2="400" y2="780" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="480" y1="0" x2="480" y2="780" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="560" y1="0" x2="560" y2="780" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="640" y1="0" x2="640" y2="780" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="720" y1="0" x2="720" y2="780" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="800" y1="0" x2="800" y2="780" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="880" y1="0" x2="880" y2="780" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="960" y1="0" x2="960" y2="780" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1040" y1="0" x2="1040" y2="780" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1120" y1="0" x2="1120" y2="780" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1200" y1="0" x2="1200" y2="780" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1280" y1="0" x2="1280" y2="780" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1360" y1="0" x2="1360" y2="780" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1440" y1="0" x2="1440" y2="780" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1520" y1="0" x2="1520" y2="780" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1600" y1="0" x2="1600" y2="780" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="0" x2="1600" y2="0" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="80" x2="1600" y2="80" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="160" x2="1600" y2="160" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="240" x2="1600" y2="240" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="320" x2="1600" y2="320" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="400" x2="1600" y2="400" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="480" x2="1600" y2="480" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="560" x2="1600" y2="560" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="640" x2="1600" y2="640" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="720" x2="1600" y2="720" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<text x="64" y="54" font-size="10.5" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" letter-spacing="1.8" opacity="1.0">AUTHORITY  /  ONE PATH</text>
+<text x="64" y="94" font-size="30" fill="#0F1720" font-weight="720" text-anchor="start" opacity="1.0">Every motion passes the same boundary</text>
+<text x="64" y="122" font-size="13.5" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">The system layer is the only execution point. Everything else proposes, observes or declares.</text>
+<line x1="64" y1="154" x2="96" y2="154" stroke="#1F5FE0" stroke-width="2.2" opacity="1.0"/>
+<text x="104" y="158" font-size="10" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">command path</text>
+<line x1="220" y1="154" x2="252" y2="154" stroke="#1A7F37" stroke-width="1.6" stroke-dasharray="5 4" opacity="1.0"/>
+<text x="260" y="158" font-size="10" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">measured state</text>
+<line x1="390" y1="154" x2="422" y2="154" stroke="#B42318" stroke-width="1.6" stroke-dasharray="4 4" opacity="1.0"/>
+<text x="430" y="158" font-size="10" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">stop / forbidden</text>
+<rect x="64" y="210" width="180" height="118" rx="10" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="78" y="232" font-size="9" fill="#8B97A6" font-weight="700" text-anchor="start" class="mono" letter-spacing="1.2" opacity="1.0">01</text>
+<text x="78" y="256" font-size="15" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Intent</text>
+<text x="78" y="278" font-size="9.6" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">applications · teleop</text>
+<text x="78" y="294" font-size="9.6" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">studio: stop proxy only</text>
+<marker id="arr-p" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1F5FE0"/></marker>
+<line x1="247" y1="269.0" x2="265" y2="269.0" stroke="#1F5FE0" stroke-width="1.8" opacity="1.0" marker-end="url(#arr-p)"/>
+<rect x="268" y="210" width="180" height="118" rx="10" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="282" y="232" font-size="9" fill="#8B97A6" font-weight="700" text-anchor="start" class="mono" letter-spacing="1.2" opacity="1.0">02</text>
+<text x="282" y="256" font-size="15" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Gateway</text>
+<text x="282" y="278" font-size="9.6" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">HTTP / WebSocket</text>
+<text x="282" y="294" font-size="9.6" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">no DDS from L4</text>
+<line x1="451" y1="269.0" x2="469" y2="269.0" stroke="#1F5FE0" stroke-width="1.8" opacity="1.0" marker-end="url(#arr-p)"/>
+<rect x="472" y="210" width="180" height="118" rx="10" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="486" y="232" font-size="9" fill="#8B97A6" font-weight="700" text-anchor="start" class="mono" letter-spacing="1.2" opacity="1.0">03</text>
+<text x="486" y="256" font-size="15" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Lease</text>
+<text x="486" y="278" font-size="9.6" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">single holder</text>
+<text x="486" y="294" font-size="9.6" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">TTL · deadman · revoke</text>
+<line x1="655" y1="269.0" x2="673" y2="269.0" stroke="#1F5FE0" stroke-width="1.8" opacity="1.0" marker-end="url(#arr-p)"/>
+<rect x="676" y="210" width="180" height="118" rx="10" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="690" y="232" font-size="9" fill="#8B97A6" font-weight="700" text-anchor="start" class="mono" letter-spacing="1.2" opacity="1.0">04</text>
+<text x="690" y="256" font-size="15" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">ExecuteMotion</text>
+<text x="690" y="278" font-size="9.6" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">contract + idempotency</text>
+<text x="690" y="294" font-size="9.6" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">scope + priority check</text>
+<line x1="859" y1="269.0" x2="877" y2="269.0" stroke="#1F5FE0" stroke-width="1.8" opacity="1.0" marker-end="url(#arr-p)"/>
+<rect x="880" y="210" width="180" height="118" rx="10" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="894" y="232" font-size="9" fill="#8B97A6" font-weight="700" text-anchor="start" class="mono" letter-spacing="1.2" opacity="1.0">05</text>
+<text x="894" y="256" font-size="15" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Safety veto</text>
+<text x="894" y="278" font-size="9.6" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">validates, does not execute</text>
+<text x="894" y="294" font-size="9.6" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">limits · workspace · freshness</text>
+<line x1="1063" y1="269.0" x2="1081" y2="269.0" stroke="#1F5FE0" stroke-width="1.8" opacity="1.0" marker-end="url(#arr-p)"/>
+<rect x="1084" y="210" width="180" height="118" rx="10" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="1098" y="232" font-size="9" fill="#8B97A6" font-weight="700" text-anchor="start" class="mono" letter-spacing="1.2" opacity="1.0">06</text>
+<text x="1098" y="256" font-size="15" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Arbiter</text>
+<text x="1098" y="278" font-size="9.6" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">one executor</text>
+<text x="1098" y="294" font-size="9.6" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">in-flight stop</text>
+<line x1="1267" y1="269.0" x2="1285" y2="269.0" stroke="#1F5FE0" stroke-width="1.8" opacity="1.0" marker-end="url(#arr-p)"/>
+<rect x="1288" y="210" width="180" height="118" rx="10" fill="#E8F0FF" stroke="#1F5FE0" stroke-width="1.8" opacity="1.0"/>
+<text x="1302" y="232" font-size="9" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" letter-spacing="1.2" opacity="1.0">07</text>
+<text x="1302" y="256" font-size="15" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Hardware bridge</text>
+<text x="1302" y="278" font-size="9.6" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">ONLY PUBLISHER</text>
+<text x="1302" y="294" font-size="9.6" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">vendor bus / CAN</text>
+<marker id="arr-g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1A7F37"/></marker>
+<path d="M 1378 210 L 1378 190 L 970 190 L 970 210" fill="none" stroke="#1A7F37" stroke-width="1.6" stroke-dasharray="5 4" opacity="1.0" marker-end="url(#arr-g)"/>
+<text x="1040" y="178" font-size="9.2" fill="#1A7F37" font-weight="400" text-anchor="start" class="mono" opacity="1.0">measured state  ·  bus / CAN read-back is the completion authority</text>
+<rect x="880" y="374" width="588" height="34" rx="7" fill="#FDE8E6" stroke="#B42318" stroke-width="1.2" opacity="1.0"/>
+<text x="898" y="396" font-size="9.8" fill="#B42318" font-weight="700" text-anchor="start" class="mono" opacity="1.0">STOP LATCH  ·  software stop  ·  immediate  ·  rejects new commands</text>
+<line x1="970" y1="328" x2="970" y2="374" stroke="#B42318" stroke-width="1.4" stroke-dasharray="4 4" opacity="1.0"/>
+<circle cx="970" cy="374" r="3" fill="#B42318"/>
+<line x1="1174" y1="328" x2="1174" y2="374" stroke="#B42318" stroke-width="1.4" stroke-dasharray="4 4" opacity="1.0"/>
+<circle cx="1174" cy="374" r="3" fill="#B42318"/>
+<line x1="1378" y1="328" x2="1378" y2="374" stroke="#B42318" stroke-width="1.4" stroke-dasharray="4 4" opacity="1.0"/>
+<circle cx="1378" cy="374" r="3" fill="#B42318"/>
+<rect x="64" y="480" width="700" height="118" rx="10" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<rect x="64" y="480" width="3" height="118" rx="1.5" fill="#0B6BCB" opacity="1.0"/>
+<text x="84" y="504" font-size="15" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">ArmPi Ultra  ·  frozen platform</text>
+<rect x="560" y="490" width="49" height="20" rx="10.0" fill="#FFFFFF" opacity="1.0"/>
+<text x="568" y="503.24" font-size="9" fill="#0B6BCB" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">FROZEN</text>
+<text x="84" y="530" font-size="9.6" fill="#5A6675" font-weight="400" text-anchor="start" class="mono" opacity="1.0">M4  1799/1799 measured · writes=0</text>
+<text x="84" y="548" font-size="9.6" fill="#5A6675" font-weight="400" text-anchor="start" class="mono" opacity="1.0">M5.2  joint 505 vs 512 · gripper 183→645 / 647→183 · stop 0.266 ms</text>
+<text x="84" y="566" font-size="9.6" fill="#5A6675" font-weight="400" text-anchor="start" class="mono" opacity="1.0">M6  S13 21/21 · S17 real MoveIt plan-only · 8-point plan</text>
+<text x="84" y="586" font-size="8.8" fill="#8B97A6" font-weight="400" text-anchor="start" class="mono" opacity="1.0">Revocation of motion authority is pending operator action; read-only demo retained.</text>
+<rect x="800" y="480" width="736" height="118" rx="10" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<rect x="800" y="480" width="3" height="118" rx="1.5" fill="#1F5FE0" opacity="1.0"/>
+<text x="820" y="504" font-size="15" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">PiPER X  ·  fixed cell</text>
+<rect x="1270" y="490" width="82" height="20" rx="10.0" fill="#FFFFFF" opacity="1.0"/>
+<text x="1278" y="503.24" font-size="9" fill="#1F5FE0" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">P2 READ-ONLY</text>
+<rect x="1382" y="490" width="71" height="20" rx="10.0" fill="#FFFFFF" opacity="1.0"/>
+<text x="1390" y="503.24" font-size="9" fill="#8B97A6" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">P3 PLANNED</text>
+<text x="820" y="530" font-size="9.6" fill="#5A6675" font-weight="400" text-anchor="start" class="mono" opacity="1.0">P2  two candleLight CAN channels · leader read-only · follower not commanded</text>
+<text x="820" y="548" font-size="9.6" fill="#5A6675" font-weight="400" text-anchor="start" class="mono" opacity="1.0">P3  teach capture → offline replay → supervised JOINT_TRAJECTORY execution</text>
+<text x="820" y="566" font-size="9.6" fill="#5A6675" font-weight="400" text-anchor="start" class="mono" opacity="1.0">Every frame confirmed on CAN; stop aborts the in-flight frame.</text>
+<text x="820" y="586" font-size="8.8" fill="#8B97A6" font-weight="400" text-anchor="start" class="mono" opacity="1.0">No PiPER motion authority exists today. ArmPi results do not transfer.</text>
+<rect x="64" y="628" width="1472" height="84" rx="10" fill="#FDE8E6" stroke="#B42318" stroke-width="1.2" stroke-dasharray="5 4" opacity="1.0"/>
+<text x="84" y="654" font-size="10.5" fill="#B42318" font-weight="700" text-anchor="start" class="mono" letter-spacing="1.6" opacity="1.0">NO SECOND PATH</text>
+<text x="84" y="678" font-size="10.2" fill="#0F1720" font-weight="400" text-anchor="start" opacity="1.0">MoveIt plans; the arbiter executes  ·  the leader arm is read-only  ·  Studio proxies stop and never dispatches</text>
+<text x="84" y="696" font-size="10.2" fill="#0F1720" font-weight="400" text-anchor="start" opacity="1.0">Capabilities do not publish vendor topics  ·  declarations never override the safety envelope  ·  CI never triggers motion</text>
+<line x1="48" y1="738" x2="1552" y2="738" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="48" y="756" font-size="10" fill="#8B97A6" font-weight="400" text-anchor="start" class="mono" opacity="1.0">Source: ADR-0002 (single motion entry) · ADR-0006 (MoveIt plan-only) · ADR-0007 (fixed cell) · jcheng-system docs/SAFETY.md.</text>
+<text x="1552" y="756" font-size="10" fill="#8B97A6" font-weight="400" text-anchor="end" class="mono" opacity="1.0">JCHENG ROBOTICS  /  AUTHORITY</text>
+</svg>

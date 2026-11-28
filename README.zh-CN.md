@@ -30,7 +30,30 @@
 详细记录见 [`docs/baseline1/ratification/`](docs/baseline1/ratification/README.md)。
 本轮不创建 Release/Tag。
 
+## 平台转向（2026-11-28）
+
+所有者于 2026-11-28 批准平台转向。它改变硬件计划，不改变 Baseline 1 记录：
+
+- **ArmPi Ultra：`Frozen`。** 只读演示、部署文件、镜像摘要与回滚路径保留；
+  运动权威撤销待操作员执行。不要重启厂商容器。
+- **后继为固定单元 PiPER X。** P2 只读进行中（两路 CAN；leader 只读；
+  follower 未下发）。生产执行 P3，计划中。
+- **AR5 需通过六项身份门禁**（厂商/型号、控制器拓扑、SDK 与许可、
+  EtherCAT/实时性、URDF/关节符号/限位、夹爪接口）。
+- **移动化 P7 推迟。** `jcheng-mobile` 保持休眠。
+- **M6 S14 与生态 G8 复验随平台退役**，不是推迟；S13/S17 仍是有效的
+  ArmPi 证据。
+- **契约：** `jcheng-interfaces` v0.3.0 于 2026-11-28 发布（robot-profile v2、
+  `chain_id`、夹爪单位；`8bc92d18…`）。已签名的 v0.2.0（`afca22…`）仍是当前
+  运行时的部署 pin，迁移进行中。设备库现有 10 个设备 profile / 7 个能力
+  profile。
+
+公开摘要见 [`docs/platform-transition.md`](docs/platform-transition.md)；架构见
+[`docs/architecture.md`](docs/architecture.md)。不承诺日期。
+
 ## 上一状态（2026-11-26）
+
+> 历史快照。当前平台状态见上节“平台转向”；当前版本以各仓 `VERSION` 为准。
 
 - M1–M5.2 已完成；M6 S13 回放 21/21 与 S17 实机 MoveIt plan-only 已通过；
   S14 底盘与完整 G8 复跑待做。
@@ -64,6 +87,12 @@
 | 文档 | 内容 |
 |---|---|
 | [profile/README.md](profile/README.md) | 生态主页（英文主文档） |
+| [profile/README.zh-CN.md](profile/README.zh-CN.md) | 生态主页（中文对照） |
+| [profile/assets/README.md](profile/assets/README.md) | 主页 SVG/照片来源与维护 |
+| [docs/architecture.md](docs/architecture.md) | 分层、仓库职责、依赖规则与单一运动路径 |
+| [docs/evidence.md](docs/evidence.md) | 状态词表、证据等级、冻结基线与 Baseline 1 |
+| [docs/platform-transition.md](docs/platform-transition.md) | ArmPi 冻结、PiPER X、AR5 门禁与 P0–P7 |
+| [docs/safety-and-limitations.md](docs/safety-and-limitations.md) | 安全 non-claims、局限、许可证与治理 |
 | [docs/baseline1/ratification/README.md](docs/baseline1/ratification/README.md) | Baseline 1 验收、Manifest、QA 与冻结记录 |
 | [ROADMAP.md](ROADMAP.md) | 生态里程碑 M0–M8、Baseline 1 与当前状态 |
 | [CHANGELOG.md](CHANGELOG.md) | 生态级变更记录 |

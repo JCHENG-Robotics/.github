@@ -12,6 +12,12 @@
 > adopted it; the organization merge queue is active. No L0 gate fails.
 > Organization CI reuse is proven by the `jcheng-interfaces` pilot: it runs
 > `reusable-contract-check.yml@v1` on `main`.
+>
+> **Platform pivot (2026-11-28).** ArmPi Ultra is Frozen; PiPER X is in P2
+> read-only; AR5 is planned; mobile is P7, deferred. M6 S14 and the ecosystem G8
+> re-run are retired with the platform. `jcheng-interfaces` v0.3.0 is released;
+> v0.2.0 remains the signed deployed pin. This does not change the Baseline 1
+> status: technical PASS, formal COMPLETE after #40, deployment NOT READY.
 
 ## 1. How to read this report
 
@@ -120,6 +126,20 @@ verification JSON is in the local staging archive
 The ArmPi reach, payload, gripper aperture and camera resolution remain
 unverified. AR5 L/R variant kinematics/SDK/calibration are absent. The mock
 task is not a real grasp. No release or tag exists.
+
+## 4b. Platform pivot and contract v0.3.0 (2026-11-28)
+
+| Item | Result | Evidence |
+|---|---|---|
+| Platform pivot | ArmPi Ultra **Frozen**; PiPER X **P2 read-only in progress**; AR5 **planned**; mobile **P7 deferred** | [`docs/platform-transition.md`](docs/platform-transition.md) |
+| M6 S14 / ecosystem G8 | **Retired with the platform**, not deferred | ArmPi freeze record |
+| Contract v0.3.0 | Released 2026-11-28 (`sha256:8bc92d18…`): robot-profile v2, `chain_id`, gripper units; annotated tag; v0.2.0 remains the signed deployed pin; migration in progress | interfaces #22/#23 |
+| Device registry | **10 profiles / 7 capabilities** at final check (the Baseline 1 record lists 9; `agilex.agx-gripper` was added later) | `jcheng-devices/registry/` |
+| Deployment | **NO** — no real motion or hardware output authorized | Baseline 1 §4a; this section |
+
+The pivot changes the platform plan, not the Baseline 1 acceptance. The
+Baseline 1 record remains an offline integration result; it is not a hardware
+acceptance and not a deployment authorization.
 
 ## 5. Limitations
 

@@ -1,344 +1,267 @@
 # JCHENG Robotics
 
-**English** | [简体中文](README.zh-CN.md)
+**English** | [简体中文](https://github.com/JCHENG-Robotics/.github/blob/main/profile/README.zh-CN.md)
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/banner-en-light.svg#gh-light-mode-only" alt="JCHENG Robotics — measured motion, bounded authority" width="100%">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/banner-en-dark.svg#gh-dark-mode-only" alt="JCHENG Robotics — measured motion, bounded authority" width="100%">
+</p>
 
 **Reproducible, safety-bounded robot manipulation.**  
-From a measured 5-DoF manipulation baseline to an independently versioned robotics ecosystem.
+An engineering organization for measured motion, explicit contracts and auditable evidence — from a frozen 5-DoF baseline to a fixed-cell PiPER X platform.
 
-
-**Status:** Baseline 1 technical acceptance complete · final record #40 pending · 2026-11-28 · English canonical  
-**Start here:** [Ecosystem roadmap](https://github.com/JCHENG-Robotics/.github/blob/main/ROADMAP.md) ·
-[Acceptance report](https://github.com/JCHENG-Robotics/.github/blob/main/ACCEPTANCE.md) ·
-[Frozen baseline](https://github.com/JerichoCheng/jcheng-manipulation)
-
-**Contents:** [Overview](#overview) · [Why](#why-this-exists) · [Method](#method) ·
-[Status](#status-at-a-glance) · [Evidence](#evidence-foundation) · [Architecture](#architecture) ·
-[Safety](#safety-model-and-non-claims) · [Quality](#quality-and-reproducibility) ·
-[Repositories](#repository-map) · [Roadmap](#roadmap) · [Acceptance](https://github.com/JCHENG-Robotics/.github/blob/main/ACCEPTANCE.md) ·
-[Governance](#governance) · [Limitations](#limitations-and-threats-to-validity) · [License](#license)
+**Status data:** 2026-11-28 · **Frozen baseline:** `jcheng-manipulation v1.0.0` · **Deployment:** not ready<br>
+**Start here:** [Current status](#current-status) · [Architecture](#ecosystem-architecture) · [Evidence](#experimental-evidence) · [Roadmap](#research--development-roadmap) · [Developer resources](#developer-resources)
 
 ---
 
-## Overview
+## Project Overview
 
-JCHENG Robotics is an engineering organization for reliable, auditable robot manipulation on
-low-cost hardware. It grew out of a project-based master's research project on a five-degree-of-freedom
-ArmPi Ultra platform and is being developed into a multi-repository ecosystem with explicit contracts,
-versioning, safety boundaries and reproducible evidence.
+JCHENG Robotics builds robot-manipulation systems whose claims can be traced to evidence. The work began as a long-term personal development project on a low-cost 5-DoF ArmPi Ultra and now spans an independently versioned ecosystem: contracts, a privileged runtime, capability modules, operator tooling, simulation, benchmarks and governance.
 
-The work is guided by two commitments:
+Two rules have not changed:
 
-1. **Every claim is traceable to evidence.** Results are reported with commands, logs, datasets or
-   machine-readable reports; unmeasured quantities are labelled as such.
-2. **Every real-robot motion passes one boundary.** Motion intents are validated and arbitrated before
-   any hardware command is published. New modules do not receive a second path to the actuators.
+1. **Every claim is traceable.** Results carry a command, log, dataset or machine-readable report. Unmeasured quantities are labelled.
+2. **Every real-robot motion passes one boundary.** Intent is validated and arbitrated before any hardware command is published. No module gets a second path to the actuators.
 
-The program is organized around three questions:
-
-1. **Measurement.** What accuracy and reliability are achievable when every transform, joint limit,
-   camera frame and failure mode is measured rather than assumed?
-2. **Reliability.** Which corrections and interventions survive pre-registered, paired real-robot
-   trials rather than a single successful demonstration?
-3. **Architecture.** How can new capabilities be added without creating a second path to the
-   actuators or weakening the evidence chain?
-
-This README is written as an engineering portfolio: problem definition, method, evidence, limitations
-and reproducibility are stated explicitly. The English version is canonical; the Chinese version is a
-translation.
-
-## Why this exists
-
-Low-cost 5-DoF arms are capable enough for table-top grasping, but their integration surfaces are
-fragile. In the frozen `v1.0.0` baseline, the same platform had **six distinct motion write paths**,
-four limit profiles with different runtime consumers, and at least four places where joint limits or
-servo mappings were duplicated. The safety supervisor vetoed the MoveIt CLI path only; the fast path
-was documented as bypassing it by design; the command cache could be mistaken for measured state.
-
-The baseline solved the scientific question — what accuracy and reliability are achievable when every
-transform, limit and failure mode is measured rather than assumed. The ecosystem addresses the
-engineering question that follows: **how can new capabilities be added without weakening the safety,
-reproducibility or evidence boundaries that made the baseline trustworthy?**
-
-## Method
-
-The baseline and the ecosystem follow the same measurement-first method:
-
-- **Measure the platform before modelling it.** Joint stops, TF frames, camera extrinsics, gripper
-  travel and bus behaviour were surveyed on the physical robot.
-- **Prefer independent checks.** Checkerboard hand–eye validation, AprilTag scale checks, bus-register
-  completion and a separate front camera are used instead of trusting a single source.
-- **Pre-register comparisons.** The paired trials fixed the hypothesis, sample size and analysis
-  before data collection; protocol deviations are recorded rather than hidden.
-- **Report failed bounds.** The 6 mm error-budget bound is reported as failed instead of being
-  reframed through a more favourable statistic.
-- **Freeze the evidence.** `v1.0.0` is an immutable baseline; new work is versioned separately and
-  cannot rewrite its tags, evidence or experimental history.
-- **Separate plan from execution.** Planning, validation and execution are distinct stages with
-  separate owners and evidence.
-
-The new ecosystem adds one more rule: **the architecture itself must be testable**. The M3 mock stack
-and the S1–S17 scenarios exist to prove the no-bypass boundary before any supervised hardware work.
-
-## Status at a glance
-
-| Item | Status |
+| This is | This is not |
 |---|---|
-| **Baseline 1** | **Offline integration technically complete**; contract 1.0.0 Accepted, vocabulary `contracted`, 9 device profiles, real CLI + 8-case mock task + benchmark; final record #40 pending. **DEPLOYMENT NOT READY.** |
-| Experimental baseline | `jcheng-manipulation v1.0.0`, commit `b3411e4`, frozen; full G8 acceptance recorded |
-| Ecosystem milestones | **Baseline 1 technical complete**; M1–M5.2 complete, M6 S13/S17 real verified; S14/G8 and deployment pending |
-| Contracts | Runtime `jcheng-interfaces` v0.2.0 (signed tag); offline artifact contract 1.0.0 Accepted; vocabulary `contracted` |
-| System runtime | `jcheng-system` 0.3.0-dev: 13 ROS packages; M4 read-only, M5.2 core, M6 S13 + S17 real verified; S14/G8 pending |
-| Runtime image | `armpi-ultra:flatten-20261125`, 7.1 GB arm64; 20 nodes / 60 topics preserved and reboot persistent |
-| Capability repositories | `jcheng-mobile` v0.1.0 static `/scan`/`/odom`/`/map`; `jcheng-perception` v0.1.0 aligned depth + split edge + one dual-view run + offline ORE S0/S1; `jcheng-ops` v0.1.0 deployed |
-| Learning / simulation | `jcheng-learning` v0.2.0 M1 offline dataset infrastructure; `jcheng-simulation` v0.1.0 offline multi-robot plant on domain 43 (mock verified, Gazebo partial) |
-| Teleoperation | `jcheng-teleop` v0.3.0 M0 design + M1 ROS-free core; system mock intake and ArmPi/Gate-2 simulation bridge pass L3; no hardware |
-| Device library | `jcheng-devices` v0.1.0 offline registry (9 devices / 7 capabilities), including ArmPi 5, PiPER X 6 and ROKAE AR5L/AR5R 7; no device access, runtime or motion |
-| Scenario catalog | `jcheng-scenarios` v0.1.0 SCEN-layer catalog with `ore_sorting` reference and **contracted** offline vocabulary; offline validation and applications matching; no hardware |
-| Operator / orchestration | `jcheng-studio` v0.8.0 console + read-only REST/WS; `jcheng-applications` v0.1.0 reference + 8-case mock ore-sorting task + M3 mock run; no DDS or real motion |
-| Research | `jcheng-research` v0.1.0, public; draft reports and SAM3/AGX Orin experiments recorded, review pending |
-| Benchmark | `jcheng-benchmark` v0.1.0 experimental; offline, read-only harness and synthetic self-test only; no recorded or hardware result |
-| Real-robot motion in the new ecosystem | Supervised single-joint and gripper motions passed (M5.2); M6 S17 real plan-only passed without execution; full G8 re-run pending |
-| Documentation | Unified README / ROADMAP / CHANGELOG / ACCEPTANCE set; English canonical, Chinese README |
-| License | **Pending** for most new repositories; `jcheng-mobile` carries MIT from initialization; the review must resolve the exception |
+| A research-grade engineering portfolio with a working offline/mock ecosystem | A certified safety system, a production deployment or a general-purpose robot platform |
+| A frozen baseline with scoped hardware evidence on one ArmPi Ultra | A population-level reliability claim, or evidence that transfers to PiPER X / AR5 |
+| An offline-first ecosystem with explicit contracts and evidence classes | A finished v1.0 ecosystem: Baseline 1 is technically complete but formal completion awaits #40, and deployment is not ready |
 
-## Evidence foundation
+## Engineering Highlights
 
-The following results are reported in the frozen baseline. They are **baseline results**, not results
-of the new ecosystem, which does not yet execute motion.
+| | |
+|---|---|
+| **One motion authority.** `jcheng-system` owns the lease, safety veto, arbitration, execution and the only hardware publisher. MoveIt plans; the arbiter executes. | **Contract-first.** `jcheng-interfaces` v0.3.0 released the multi-chain profile on 2026-11-28; the signed v0.2.0 pin still serves 7 of 8 runtime consumers while migration proceeds; perception carries an explicit waiver. |
+| **Evidence before claims.** The baseline reports its failed 6 mm error-budget bound next to the 3.080 mm empirical mean — a different statistic, not a pass. | **Measured, not assumed.** 14-pose hand–eye calibration (2.94 mm / 0.39°), 0.449 mm RMS repeatability, 1.117 mm backlash, bus-verified motion. |
+| **Platform transition.** ArmPi Ultra was frozen on 2026-11-28. The successor is a fixed-cell PiPER X; AR5 is gated on six identity facts; mobile manipulation is deferred. | **Offline by default.** Devices, scenarios, simulation, learning, benchmark and research declare or measure; they never execute. |
+
+## Current Status
+
+> **Verification is platform-scoped.** ArmPi results do not transfer to PiPER X or AR5. `Hardware verified` means the named scope passed on the named platform — not that the repository or the ecosystem is deployment-ready.
+
+| Area | State | Evidence / next step |
+|---|---|---|
+| **Frozen baseline** | **Frozen** — `jcheng-manipulation v1.0.0` @ `b3411e4`; MIT; baseline full G8 recorded 2026-11-23 | Scoped L5 hardware evidence on one ArmPi Ultra; the platform as a whole was never validated end to end. [Evidence](#experimental-evidence) |
+| **Platform** | **ArmPi Ultra: Frozen** (2026-11-28) · **PiPER X: P2 read-only in progress** · **AR5: planned / identity gate** | Pivot approved; publication of the freeze record is in progress. [Transition](https://github.com/JCHENG-Robotics/.github/blob/main/docs/platform-transition.md) |
+| **Ecosystem Baseline 1** | **Offline integration: technical acceptance PASS; formal COMPLETE after record #40 is approved/merged** | `BASELINE 1 COMPLETE: NO — pending #40` · `DEPLOYMENT READY: NO`. [Record](https://github.com/JCHENG-Robotics/.github/blob/main/docs/baseline1/README.md) |
+| **Contracts** | `jcheng-interfaces v0.3.0` released 2026-11-28 (robot-profile v2, `chain_id`, gripper units); **v0.2.0 remains the signed deployed pin** for 7/8 consumers; migration in progress | Baseline 1 was recorded against v0.2.0; perception is on `>=0.1,<0.2` with a waiver. [Contracts](https://github.com/JCHENG-Robotics/jcheng-interfaces) |
+| **Runtime** | `jcheng-system 0.3.0-dev0` — 14 ROS packages; ArmPi M4/M5.2/S13/S17 verified; PiPER read-only backend implemented; acceptance pending | No PiPER motion; no production deployment. [System](https://github.com/JCHENG-Robotics/jcheng-system) |
+| **Capabilities** | Perception, mobile, learning, teleop, devices, scenarios, simulation, studio, applications — **Experimental** | Strongest evidence per repository is in the [capability matrix](#core-capabilities). |
+| **Deployment** | **Not ready** — no cross-process lease source, no base hardware bridge, no certificate-based DDS authority | This is not a production system. |
+| **Safety** | **No certification.** No e-stop, brake, independent encoder, torque sensing or self-collision model | A software stop is a hold/zero command, not a safety-rated stop. |
+
+**Status vocabulary:** `Frozen` · `Hardware verified` · `Offline verified` · `Experimental` · `Planned` · `Dormant` · `Conditional` · `Not ready`. Definitions and evidence classes are in [docs/evidence.md](https://github.com/JCHENG-Robotics/.github/blob/main/docs/evidence.md#2-status-vocabulary).
+
+## Ecosystem Architecture
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/architecture-light.svg#gh-light-mode-only" alt="JCHENG ecosystem architecture: L0 governance, L1 contracts, L2 system authority, L3 capabilities, L4 applications, side planes and a hardware plane" width="100%">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/architecture-dark.svg#gh-dark-mode-only" alt="JCHENG ecosystem architecture: L0 governance, L1 contracts, L2 system authority, L3 capabilities, L4 applications, side planes and a hardware plane" width="100%">
+</p>
+<p align="center"><sub><a href="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/architecture-light.svg">Open full-size architecture</a></sub></p>
+
+The architecture separates **declarations**, **contracts**, **privileged execution**, **capabilities** and **applications**. Only L2 publishes motion.
+
+| Layer | Repositories | Responsibility |
+|---|---|---|
+| **L0 Governance** | `.github` | Policy, templates, reusable CI, ecosystem records |
+| **L1 Contracts** | `jcheng-interfaces` | ROS IDL, HTTP/WS schemas, contract hashes |
+| **L2 System** | `jcheng-system` | Safety, lease, arbitration, execution, hardware bridge, gateway |
+| **L3 Capabilities** | `jcheng-manipulation` (frozen), `jcheng-perception`, `jcheng-teleop`, `jcheng-learning`, `jcheng-devices`, `jcheng-mobile` (dormant) | Perception, intent, learning, device declarations |
+| **L4 Applications** | `jcheng-studio`, `jcheng-applications` | Operator console, task orchestration |
+| **Side planes** | `jcheng-simulation`, `jcheng-scenarios`, `jcheng-benchmark`, `jcheng-ops`, `jcheng-research` | Simulate, declare, measure, operate, investigate |
+
+**Dependency rule:** L4 → L2 API; L3 → L1 + L2 client; L2 → L1; L0 → all (CI only). Declaration repositories are outside the runtime graph. A declaration never overrides the system safety envelope; a mismatch is a release blocker, not a preference.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/dependencies-light.svg#gh-light-mode-only" alt="Dependency graph: declaration, contracts, system authority, intent, advisory, operations, offline measurement and hardware; forbidden bypass edges are marked" width="100%">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/dependencies-dark.svg#gh-dark-mode-only" alt="Dependency graph: declaration, contracts, system authority, intent, advisory, operations, offline measurement and hardware; forbidden bypass edges are marked" width="100%">
+</p>
+<p align="center"><sub><a href="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/dependencies-light.svg">Open full-size dependency graph</a></sub></p>
+
+### The single motion path
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/motion-path-light.svg#gh-light-mode-only" alt="Single motion path: intent, gateway, lease, ExecuteMotion, safety veto, arbiter and the only hardware publisher, with measured state returning from the bus" width="100%">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/motion-path-dark.svg#gh-dark-mode-only" alt="Single motion path: intent, gateway, lease, ExecuteMotion, safety veto, arbiter and the only hardware publisher, with measured state returning from the bus" width="100%">
+</p>
+<p align="center"><sub><a href="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/motion-path-light.svg">Open full-size motion path</a></sub></p>
+
+Intent becomes a command only inside `jcheng-system`: the gateway accepts HTTP/WS, the lease names one holder, `ExecuteMotion` checks the contract and idempotency, the safety supervisor vetoes, the arbiter executes, and the hardware bridge is the only publisher. Bus read-back — not cached `/joint_states` — is the completion authority. A stop request latches and rejects new commands; it is a software stop, not a safety-rated stop.
+
+<details>
+<summary><strong>Repository index</strong> — 16 repositories, their role and current state</summary>
+
+| Repository | Layer | Role | State |
+|---|---|---|---|
+| [`.github`](https://github.com/JCHENG-Robotics/.github) | L0 | Governance, templates, reusable CI, ecosystem records | M1 complete; documentation standard v1.0 |
+| [`jcheng-interfaces`](https://github.com/JCHENG-Robotics/jcheng-interfaces) | L1 | ROS IDL, HTTP/WS schemas, contract hashes | v0.3.0 released; v0.2.0 signed pin; 7/8 consumers |
+| [`jcheng-system`](https://github.com/JCHENG-Robotics/jcheng-system) | L2 | Safety, authority, motion, hardware bridge, gateway | 0.3.0-dev0; ArmPi scopes verified; PiPER P2 read-only |
+| [`jcheng-manipulation`](https://github.com/JCHENG-Robotics/jcheng-manipulation) | L3 | Frozen `v1.0.0` experimental baseline and evidence | Frozen; MIT; read-only reference |
+| [`jcheng-mobile`](https://github.com/JCHENG-Robotics/jcheng-mobile) | L3 | Mobile base: laser odometry, SLAM, Nav2 intent | v0.1.0; static bring-up; dormant |
+| [`jcheng-perception`](https://github.com/JCHENG-Robotics/jcheng-perception) | L3 | Distributed edge/GPU perception, advisory poses | v0.1.0; partial; one dual-view run |
+| [`jcheng-learning`](https://github.com/JCHENG-Robotics/jcheng-learning) | L3 | Datasets, offline training and policy artifacts | v0.2.0; M1 offline infrastructure |
+| [`jcheng-teleop`](https://github.com/JCHENG-Robotics/jcheng-teleop) | L3 | Operator input to bounded, lease-gated intent | v0.3.0; M0/M1 + mock intake; no hardware |
+| [`jcheng-devices`](https://github.com/JCHENG-Robotics/jcheng-devices) | L3 | Declarative device and capability profiles | v0.1.0; 10 profiles / 7 capabilities; offline |
+| [`jcheng-studio`](https://github.com/JCHENG-Robotics/jcheng-studio) | L4 | Operator console, sessions, replay, intent forwarding | v0.8.0; offline/mock verified; no hardware acceptance |
+| [`jcheng-applications`](https://github.com/JCHENG-Robotics/jcheng-applications) | L4 | Recipe validation, deterministic planning, fail-closed intent | v0.1.0; M3 mock run; no hardware |
+| [`jcheng-simulation`](https://github.com/JCHENG-Robotics/jcheng-simulation) | SIM | Multi-robot plant on domain 43 | v0.1.0; mock verified, Gazebo partial |
+| [`jcheng-scenarios`](https://github.com/JCHENG-Robotics/jcheng-scenarios) | SCEN | Declarative scenario catalog and validation | v0.1.0; 8 schemas; offline only |
+| [`jcheng-benchmark`](https://github.com/JCHENG-Robotics/jcheng-benchmark) | BENCH | Read-only benchmark harness and reports | v0.1.0; synthetic self-test; inconclusive |
+| [`jcheng-ops`](https://github.com/JCHENG-Robotics/jcheng-ops) | OPS | Health checks, watchdog, service self-healing | v0.1.0; deployed on ArmPi; probes legacy |
+| [`jcheng-research`](https://github.com/JCHENG-Robotics/jcheng-research) | RESEARCH | Literature, root cause, experiment design and reports | v0.1.0; draft reports; no product claim |
+
+`jcheng-design`, `jcheng-system-r5`, `jcheng-system-v020` and `jcheng-ecosystem-bootstrap` are working checkouts or staging; `jcheng-mobile-bench` is a non-git bench sandbox. None is a repository in the runtime or release matrix.
+
+</details>
+
+## Core Capabilities
+
+Status is scoped to the **strongest evidence**, not the intended use. A capability that has passed a mock test is not hardware-verified; a partial hardware run is not an acceptance.
+
+| Capability | Repository | Version | Strongest evidence | Status |
+|---|---|---|---|---|
+| Manipulation baseline | `jcheng-manipulation` | 1.0.0 | L5 full G8 on ArmPi; intervention 24/24 in both paired trials | **Frozen baseline** |
+| System runtime | `jcheng-system` | 0.3.0-dev0 | L5 M4/M5.2/S13/S17 on ArmPi; PiPER P2 read-only (no motion) | **Experimental · scoped hardware** |
+| Contracts | `jcheng-interfaces` | 0.3.0 | v0.3.0 released; v0.2.0 signed pin still deployed by 7 consumers | **Verified contract · migration** |
+| Perception | `jcheng-perception` | 0.1.0 | One dual-view run; S1 offline synthetic + public | **Experimental · partial** |
+| Mobile base | `jcheng-mobile` | 0.1.0 | Static `/scan`, `/odom`, `/map` | **Experimental · dormant** |
+| Learning | `jcheng-learning` | 0.2.0 | M1 dataset contract and LeRobot round-trip | **Experimental · offline** |
+| Teleoperation | `jcheng-teleop` | 0.3.0 | M1 ROS-free core; mock/simulation L3 | **Experimental · offline** |
+| Device library | `jcheng-devices` | 0.1.0 | 10 profiles / 7 capabilities; validator and CI | **Experimental · offline** |
+| Scenario catalog | `jcheng-scenarios` | 0.1.0 | 8 schemas; `ore_sorting` reference | **Experimental · offline** |
+| Simulation | `jcheng-simulation` | 0.1.0 | Domain 43; mock verified, Gazebo partial | **Experimental · offline** |
+| Operator console | `jcheng-studio` | 0.8.0 | Read-only REST/WS, sessions, replay | **Experimental · no hardware** |
+| Task orchestration | `jcheng-applications` | 0.1.0 | M3 mock run; 181 tests | **Experimental · no hardware** |
+| Benchmark | `jcheng-benchmark` | 0.1.0 | Synthetic self-test; one migrated host snapshot | **Inconclusive** |
+| Operations | `jcheng-ops` | 0.1.0 | Guards installed and verified; watchdog never fired | **Deployed · legacy** |
+| Research | `jcheng-research` | 0.1.0 | Draft reports and unreviewed experiments | **Experimental · no product claim** |
+
+### Data collection and robot learning
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/learning-workflow-light.svg#gh-light-mode-only" alt="Learning workflow: teach capture, capture core, dataset contract, offline training, policy artifact and system-gated intent" width="100%">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/learning-workflow-dark.svg#gh-dark-mode-only" alt="Learning workflow: teach capture, capture core, dataset contract, offline training, policy artifact and system-gated intent" width="100%">
+</p>
+<p align="center"><sub><a href="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/learning-workflow-light.svg">Open full-size learning workflow</a></sub></p>
+
+The path is offline-first: a hand-guided PiPER leader records demonstrations, the teleop capture core seals provenance, `jcheng-learning` validates an immutable dataset and round-trips LeRobot v3, and a policy may only **propose** intent. Training, policy artifacts and the hardware loop are not implemented. No own-robot dataset has been captured, and no policy has run on hardware.
+
+## Hardware & Demonstrations
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/photos/armpi-first-grasp.jpg" alt="ArmPi Ultra holding a 39.4 mm wooden cube on the floor" width="46%">
+</p>
+<p align="center"><sub><strong>ArmPi Ultra — first real grasp (2026-11-18).</strong> The arm holds a 39.4 mm wooden cube on the floor. The fully autonomous pick–lift–place followed on 2026-11-19.</sub></p>
+
+| <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/photos/armpi-debug-studio.jpg" alt="ArmPi Debug Studio read-only dashboard, G1 scope" width="100%"> | <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/photos/ore-s1-public-overlay.jpg" alt="Offline ore-scene S1 overlay on a public Mendeley 40–70 mm image" width="100%"> |
+|---|---|
+| **ArmPi Debug Studio (2026-11-18).** The frozen baseline console in read-only G1 scope; hardware motion is disabled and the page says so. | **Ore-scene S1 overlay (offline).** A qualitative overlay on the public Mendeley `40–70 mm` subset (CC BY 4.0). It is a domain-gap baseline, not real-ore accuracy. |
+| **PiPER X fixed cell — no photo yet.** P2 has two CAN channels up, the leader/follower split recorded, and a read-only decoder. The follower is never commanded. | **What is not shown here.** There is no PiPER motion video, no AR5 hardware and no production cell. The absence is deliberate. |
+
+**Asset entry points:** [baseline evidence index](https://github.com/JCHENG-Robotics/jcheng-manipulation/tree/main/evidence) · [ArmPi Debug Studio screenshots](https://github.com/JCHENG-Robotics/jcheng-manipulation/tree/main/evidence/studio_g5) · [perception hardware evidence](https://github.com/JCHENG-Robotics/jcheng-perception/tree/main/evidence) · [legacy 8-week Panda simulation](https://github.com/JCHENG-Robotics/jcheng-manipulation/blob/main/docs/demo.gif) (archived; not ArmPi hardware).
+
+<sub>Ore overlay source: Mendeley Data, “benchmark for rock blasting”, `40_70mm` subset, CC BY 4.0. The overlay is generated offline by `jcheng-perception`; it is not a metric input.</sub>
+
+## Experimental Evidence
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/evidence-light.svg#gh-light-mode-only" alt="Frozen baseline evidence: paired trials, error budget with the failed 6 mm bound, and capability metrics" width="100%">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/evidence-dark.svg#gh-dark-mode-only" alt="Frozen baseline evidence: paired trials, error budget with the failed 6 mm bound, and capability metrics" width="100%">
+</p>
+<p align="center"><sub><a href="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/evidence-light.svg">Open full-size evidence plate</a></sub></p>
 
 | Evaluation | Reported result | Interpretation |
 |---|---|---|
 | Hand–eye calibration | 2.94 mm / 0.39° across 14 poses; hold-out 3.29 mm / 0.43° | Independent checkerboard validation, not vendor defaults |
-| Paired fixed-site trial | 12/24 vs **24/24**, McNemar p = 0.00049 | Constant low-configuration correction, pre-registered |
-| Random-placement trial | 9/24 vs **24/24**, McNemar p = 6.1 × 10⁻⁵ | Free placement, wrist/front-camera locate, base approach |
-| Error budget | Translation RSS **13.325 mm** vs a 6 mm bound (fails); empirical placement mean **3.080 mm** | The bound is not met; the empirical mean is inside 6 mm |
+| Fixed-site paired trial | 12/24 → **24/24**, McNemar p = 0.00049 | Constant low-configuration correction, pre-registered |
+| Random-placement trial | 9/24 → **24/24**, McNemar p = 6.1 × 10⁻⁵ | Free placement, wrist/front-camera locate, base approach |
+| Error budget | Translation RSS **13.325 mm** vs a 6 mm bound (fails); empirical placement mean **3.080 mm** | The bound is not met; the empirical mean is a different statistic |
 | Fast motion | Grasp + put-back **11.67 s → 8.94 s**; G8 fast landing **2.27 mm** | S-curve 4.0 rad/s / 20 rad/s², bus-verified |
+| Repeatability / backlash | 0.449 mm RMS / 1.017 mm max; backlash 1.117 mm | 30 visits; joint4 ±0.1 rad |
 
-The baseline also records repeatability (0.449 mm RMS / 1.017 mm max), backlash (1.117 mm), a
-±9 mm gripper tolerance envelope, and a full failure-mode taxonomy. The evidence index is in
-[`jcheng-manipulation`](https://github.com/JerichoCheng/jcheng-manipulation).
+**Critical reading.** The 6 mm error-budget bound is **not** satisfied by the RSS aggregation. The reported placement mean is inside 6 mm, but that is a different statistic. The fast path was validated in one direction. None of these results constitutes a safety certification. The evidence comes from one platform, one site and a small number of supervised sessions.
 
-**Critical reading:** the 6 mm error-budget bound is *not* satisfied by the RSS aggregation. The
-reported placement mean is inside 6 mm, but that is a different statistic. The fast path was validated
-in one direction. None of these results constitute a safety certification.
+**Separate gate.** Ecosystem Baseline 1 — the offline integration of the new repositories — has **technical acceptance PASS** (independent QA PASS WITH FINDINGS, P2 fixed). Formal completion awaits record #40 approval/merge: `BASELINE 1 COMPLETE: NO — pending #40`, `DEPLOYMENT READY: NO`. Its evidence is in [docs/baseline1/](https://github.com/JCHENG-Robotics/.github/blob/main/docs/baseline1/README.md); it is not a hardware result.
 
-## Architecture
+## Research & Development Roadmap
 
-The target architecture separates **contracts**, **privileged execution**, **capabilities** and
-**applications**:
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/roadmap-light.svg#gh-light-mode-only" alt="Roadmap: P0–P7 fixed-cell platform plan and S0–S8 ore-sorting stages" width="100%">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/roadmap-dark.svg#gh-dark-mode-only" alt="Roadmap: P0–P7 fixed-cell platform plan and S0–S8 ore-sorting stages" width="100%">
+</p>
+<p align="center"><sub><a href="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/roadmap-light.svg">Open full-size roadmap</a></sub></p>
 
-```text
-L4  Applications        task orchestration · operator UI · evidence review
-L3  Capabilities        manipulation · teleop · learning · mobile
-L2  System              authority · safety · motion · gateway · telemetry · guard
-L1  Contracts           ROS IDL · OpenAPI/WS · configuration and evidence schemas
-L0  Governance          org profile · templates · reusable CI · branch protection
+The approved 2026-11-28 pivot freezes ArmPi Ultra and moves the platform to a **fixed cell**: PiPER X as the production execution arm, AR5 as a gated dual-arm successor, and mobile manipulation deferred to a separate P7 project.
 
-Hardware plane          one publisher, vendor DDS domain 0
-```
+- **Current gate:** Baseline 1 offline integration is conditional; deployment is not ready.
+- **In progress:** P0 (ArmPi freeze and motion-authority revocation) and P2 (PiPER X read-only). P1 (contracts v0.3.0) is the next contract gate.
+- **Ore sorting:** S0–S1 are offline; S1 is partially verified on synthetic and public data, with real-ore accuracy unverified. S8 closed-loop sorting is blocked on P2/P3/P6. No ArmPi result transfers.
 
-The founding repositories were deliberately small; the ecosystem has since
-added independently versioned capability, operations and benchmark repositories:
+No dates are promised. Phases are ordered by dependency, not calendar. See [docs/platform-transition.md](https://github.com/JCHENG-Robotics/.github/blob/main/docs/platform-transition.md) for the phase table, the ArmPi freeze record and the AR5 identity gate.
 
-| Repository | Responsibility | Current state |
+<details>
+<summary><strong>Phase index</strong> — scope, state and exit evidence</summary>
+
+| Phase | Scope | State | Exit evidence |
+|---|---|---|---|
+| **P0** | ArmPi Ultra freeze; motion-authority revocation | **In progress** | Freeze record; read-only demo; publisher set recorded |
+| **P1** | Contracts v0.3.0: robot-profile v2, `chain_id`, gripper ranges | **Planned** | v1/v2 load; all gates green; mock runs a v2 profile |
+| **P2** | PiPER X read-only: two CAN channels, zero writes | **In progress** | 30 min read-only; `writes=0`; SDK agreement |
+| **P3** | PiPER X production: teach → replay → supervised execution | **Planned** | One pick-place; per-frame CAN confirmation; stop ≤100 ms |
+| **P4** | AR5 identity gate: six facts | **Planned** (parallel with P1–P3) | Every fact sourced or explicitly unknown |
+| **P5** | AR5 read-only and dual-arm | **Gated** | Dual-arm read-only; plan-only; single-arm L5 |
+| **P6** | Fixed-cell close: lock, evidence, release notes | **Planned** | Per-platform evidence and a new lock |
+| **P7** | Mobile manipulation | **Deferred** | Separate project charter |
+
+| Ore stage | Scope | State |
 |---|---|---|
-| [`JCHENG-Robotics/.github`](https://github.com/JCHENG-Robotics/.github) | Governance, templates, reusable CI, ecosystem documents | M1 complete; documentation standard v1.0 |
-| [`JCHENG-Robotics/jcheng-interfaces`](https://github.com/JCHENG-Robotics/jcheng-interfaces) | Contracts, schemas, contract hashes | v0.2.0, signed tag |
-| [`JCHENG-Robotics/jcheng-system`](https://github.com/JCHENG-Robotics/jcheng-system) | Privileged runtime, safety, arbitration, gateway | 0.3.0-dev; M6 S13 + S17 real |
-| [`JCHENG-Robotics/jcheng-mobile`](https://github.com/JCHENG-Robotics/jcheng-mobile) | L3 mobile base | v0.1.0; static bring-up |
-| [`JCHENG-Robotics/jcheng-perception`](https://github.com/JCHENG-Robotics/jcheng-perception) | L3 perception | v0.1.0; aligned depth + single dual-view run |
-| [`JCHENG-Robotics/jcheng-ops`](https://github.com/JCHENG-Robotics/jcheng-ops) | Cross-layer operations | v0.1.0 deployed |
-| [`JCHENG-Robotics/jcheng-learning`](https://github.com/JCHENG-Robotics/jcheng-learning) | L3 learning: datasets, training, policy artifacts (offline) | v0.1.0; no runtime or policy |
-| [`JCHENG-Robotics/jcheng-teleop`](https://github.com/JCHENG-Robotics/jcheng-teleop) | L3 teleoperation: operator input to bounded, lease-gated intent (offline) | v0.1.0; admission only |
-| [`JCHENG-Robotics/jcheng-devices`](https://github.com/JCHENG-Robotics/jcheng-devices) | L3 device library: declarative profiles, capability model and offline validation | v0.1.0; offline registry only |
-| [`JCHENG-Robotics/jcheng-scenarios`](https://github.com/JCHENG-Robotics/jcheng-scenarios) | SCEN declarative scenario catalog: environment, task, evaluation and constraint profiles | v0.1.0; offline validation only |
-| [`JCHENG-Robotics/jcheng-simulation`](https://github.com/JCHENG-Robotics/jcheng-simulation) | Offline multi-robot plant on domain 43 | v0.1.0; mock verified, Gazebo partial |
-| [`JCHENG-Robotics/jcheng-studio`](https://github.com/JCHENG-Robotics/jcheng-studio) | L4 operator console | v0.7.0 |
-| [`JCHENG-Robotics/jcheng-applications`](https://github.com/JCHENG-Robotics/jcheng-applications) | L4 task orchestration | v0.1.0 |
-| [`JCHENG-Robotics/jcheng-research`](https://github.com/JCHENG-Robotics/jcheng-research) | Public investigation workspace | v0.1.0; outside runtime graph |
-| [`JCHENG-Robotics/jcheng-benchmark`](https://github.com/JCHENG-Robotics/jcheng-benchmark) | Cross-layer read-only benchmark harness | v0.1.0 experimental; synthetic self-test only |
+| **S0** | Research and dataset survey | **Complete** |
+| **S1** | Offline segmentation, synthetic + public baseline | **Partial** — real-ore accuracy unverified |
+| **S2–S7** | 3D geometry, scene state, multi-view, active view, graspability, integration | **Planned / re-plan** on the fixed cell |
+| **S8** | Closed-loop sorting | **Blocked** on P2/P3/P6 |
 
-### The single motion path
+</details>
 
-```text
-declaration plane (offline; no runtime authority)
-  scenarios ── task, success and evaluation declarations ─┐
-  devices   ── device and capability profiles ─────────────┤
-  interfaces ── cross-repository contracts ────────────────┘
-        │ pinned version + hash; no runtime call
-        ▼
-intent plane
-  applications (recipe → plan) ─┐
-  teleop (operator intent) ─────┤
-  mobile (/cmd_vel chassis) ────┤
-  studio (observe / stop proxy) ┘
-        │ HTTP/WS, or a declared domain-42 intent topic
-        ▼
-system (sole runtime authority)
-  → acquire lease
-  → ExecuteMotion (contract + lease + idempotency checks)
-  → safety validation
-  → motion executor
-  → hardware bridge (the only publisher)
-  → bus-verified result + evidence record
-```
 
-`scenarios`, `devices`, `simulation`, `benchmark`, `learning` and `research` are
-outside the runtime dependency graph on purpose: they declare, simulate or
-measure, but they never execute. A declaration never overrides the system
-safety envelope; a mismatch is a release blocker, not a preference.
+## Developer Resources
 
-Design decisions that follow from this boundary:
+| Start here | Build and test | Contribute | Governance |
+|---|---|---|---|
+| [Ecosystem roadmap](https://github.com/JCHENG-Robotics/.github/blob/main/ROADMAP.md) | [Baseline 1 acceptance script](https://github.com/JCHENG-Robotics/.github/blob/main/dev/baseline1-acceptance.sh) | [Contributing](https://github.com/JCHENG-Robotics/.github/blob/main/CONTRIBUTING.md) | [Repository boundaries](https://github.com/JCHENG-Robotics/.github/blob/main/docs/repo-boundaries.md) |
+| [Acceptance report](https://github.com/JCHENG-Robotics/.github/blob/main/ACCEPTANCE.md) | `jcheng-system` mock stack (no hardware) | [Code of conduct](https://github.com/JCHENG-Robotics/.github/blob/main/CODE_OF_CONDUCT.md) | [Documentation standard](https://github.com/JCHENG-Robotics/.github/blob/main/docs/documentation-standard.md) |
+| [Baseline 1 record](https://github.com/JCHENG-Robotics/.github/blob/main/docs/baseline1/README.md) | `jcheng-learning` dataset CLI (offline) | [Security policy](https://github.com/JCHENG-Robotics/.github/blob/main/SECURITY.md) | [Repository taxonomy](https://github.com/JCHENG-Robotics/.github/blob/main/docs/repo-taxonomy.md) |
+| [Architecture](https://github.com/JCHENG-Robotics/.github/blob/main/docs/architecture.md) · [Evidence](https://github.com/JCHENG-Robotics/.github/blob/main/docs/evidence.md) · [Safety](https://github.com/JCHENG-Robotics/.github/blob/main/docs/safety-and-limitations.md) | ROS 2 Humble (robot) / Jazzy (host); Python 3.12 | Issue and design templates | [Governance](https://github.com/JCHENG-Robotics/.github/blob/main/GOVERNANCE.md) |
 
-- **A lease, not a UI session, grants control.** Leases carry scope, priority, TTL, deadman and
-  revocation semantics; they can be audited and preempted.
-- **The safety supervisor vetoes; it does not execute.** It validates state freshness, joint limits,
-  trajectory rates, start state, workspace and table clearance, and latches a stop on violation.
-- **The hardware bridge is the only publisher.** Capability modules join an unprivileged DDS domain;
-  the vendor domain is reachable only through the bridge.
-- **MoveIt plans; the arbiter executes.** The controller execution chain is not exposed as a second
-  motion entry.
-- **Measured state is not command echo.** `GetBusServoState` is the completion authority; cached
-  `/joint_states` is labelled `commanded`.
-- **Failure is fail-closed.** A missing safety heartbeat, stale measured state, bus-read failure or
-  unknown outcome latches a stop; it is not retried automatically.
+## Safety, Limitations & Governance
 
-## Safety model and non-claims
+### Safety model and non-claims
 
-The platform has **no hardware e-stop, brake, independent encoder, torque sensing or self-collision
-model**. The base is open-loop with no odometry. A software stop is a hold/zero command, not a
-safety-rated stop.
-
-Consequently:
+The platform has **no hardware e-stop, brake, independent encoder, torque sensing or self-collision model**. The base is open-loop with no odometry. A software stop is a hold/zero command, not a safety-rated stop. The ecosystem is **not safety-certified** and claims no SIL/PL compliance.
 
 - All real-robot work is supervised and requires **separate, explicit authorization** per session.
 - The UI and documentation say “software stop” or “stop request”, never “emergency stop”.
-- Vendor container restarts can move the arm (`startup_check`); the system does not restart the vendor
-  container automatically.
-- The new ecosystem is not safety-certified and does not claim SIL/PL compliance.
+- Vendor container restarts can move the arm (`startup_check`); the system does not restart the vendor container automatically.
+- The ArmPi platform is frozen. Motion-authority revocation is **pending operator action**; the read-only gateway and rollback path are retained.
 
-The runtime now exists, so the boundary is enforced rather than only declared.
-M4 proved that the read-only path publishes telemetry and no commands
-(`writes=0`, 30 minutes). M5.1 exercised lease, safety and stop semantics over
-ROS services/actions against the mock stack; M5.2 connected the same path to
-the supervised hardware bridge for one joint and the gripper. S7 (stale-state
-injection) and S9 (runtime publisher detection) remain unverified on hardware,
-and every real-robot session still requires separate, explicit authorization.
+### Limitations and threats to validity
 
-## Quality and reproducibility
-
-| Gate | Current state |
-|---|---|
-| Repository checks | M1 **111/111** API checks; M2–M6 CI gates in the three founding repositories |
-| Branch protection | PR + CODEOWNERS + per-repository required checks; admins restricted; no force-push/delete |
-| Contract integrity | Contract hash + `interface_manifest.json`, v0.1.0, verified tag |
-| Dependency locking | `ecosystem.lock.yaml` pins commits, contract hash, profile hash and interfaces v0.1.0 |
-| Test levels | L0 contract → L1 unit → L2 mock integration → L3 mock E2E → L4 replay → L5 supervised hardware |
-| No-bypass verification | S1–S17: 15 scenarios pass, 2 skipped, 0 required failures; M5.1 adds 5 ROS transport tests |
-| Hardware evidence | M4 read-only 1799/1799 `measured`, `writes=0`; M5.2 joint/gripper with bus verification and stop latch; M6 S17 real MoveIt `SUCCESS`; 7.1 GB image preserves 20 nodes / 60 topics |
-| Evidence | Per-run records with versions, hashes, commands, observations and limitations |
-| Documentation | Standard v1.0; every product repository carries the four-document set |
-
-Current status and evidence are aggregated in the
-[ecosystem roadmap](https://github.com/JCHENG-Robotics/.github/blob/main/ROADMAP.md) and
-[acceptance report](https://github.com/JCHENG-Robotics/.github/blob/main/ACCEPTANCE.md). The M1
-verification JSON is kept in the local staging archive `jcheng-ecosystem-bootstrap/M1-VERIFICATION.json`;
-the design record is in `jcheng-manipulation` branch `design/ecosystem-v1` (`docs/ecosystem/`).
-
-## Repository map
-
-| Repository | Role | State |
-|---|---|---|
-| `.github` | Organization governance, templates, reusable CI, ecosystem documents | M1 complete; documentation standard v1.0 |
-| `jcheng-interfaces` | ROS IDL, HTTP/WS schemas, contract hashes | v0.1.0 |
-| `jcheng-system` | Safety, authority, motion, hardware bridge, gateway | 0.3.0-dev; M6 S13 + S17 real |
-| `jcheng-manipulation` | Frozen `v1.0.0` experimental baseline and evidence | Read-only reference |
-| `jcheng-mobile` | Mobile-base capability (M10, SLAM, Nav2 intent) | v0.1.0; static `/scan`/`/odom`/`/map`; motion unverified |
-| `jcheng-perception` | Distributed edge/GPU perception | v0.1.0; aligned depth, split edge, one dual-view run; repeatability unverified |
-| `jcheng-ops` | Unattended operations, watchdog and recovery | v0.1.0 deployed |
-| `jcheng-benchmark` | Cross-layer read-only benchmark harness and evidence reports | v0.1.0 experimental; no recorded or hardware result |
-| `jcheng-simulation` | Offline multi-robot plant on domain 43 | v0.1.0; mock verified, Gazebo partial |
-| `jcheng-learning` | Datasets, training and policy artifacts (offline) | v0.1.0; no runtime or policy |
-| `jcheng-research` | Public investigation workspace: reports and decisions | v0.1.0; outside runtime graph |
-| `jcheng-mobile-bench` | Bench material split out of `jcheng-mobile` | Sandbox; not released |
-| `jcheng-teleop` | Teleoperation intent: operator input to bounded, lease-gated intent | Experimental; v0.1.0 admission-only scaffold |
-| `jcheng-devices` | Device library: declarative device/capability profiles and offline validation | Experimental; v0.1.0 offline registry |
-| `jcheng-studio` | Operator console: debug, diagnostics and experiment records | Experimental; v0.7.0 console, REST/WS, sessions, replay |
-| `jcheng-applications` | Task orchestration: recipe validation, deterministic planning and fail-closed intent sequencing | Experimental; v0.1.0 offline core + read-only transport |
-
-## Roadmap
-
-| Milestone | Scope | State |
-|---|---|---|
-| M0 | Architecture review and approval | Complete |
-| M1 | Organization, three repositories, templates, CI skeleton | **Complete** |
-| M2 | Contract audit; `jcheng-interfaces` v0.1.0 | **Complete** |
-| M3 | `jcheng-system` mock stack; lease, safety, arbitration, gateway | **Complete** |
-| M4 | Read-only robot integration (no motion) | **Complete** |
-| M5 | Supervised single-joint and gripper execution | **Complete** (M5.1 mock, M5.2 hardware core) |
-| **B1** | **Baseline 1 offline integration and handover** | **Technical complete; #40 record pending** — real CLI cell, 8-case mock task, benchmark, 15-repo regression, QA |
-| M6 | Baseline replay and G8 re-validation | **In progress** — S13 21/21, S17 plan-only and S17 real MoveIt pass; S14 base and full G8 pending |
-| M7 | First integrated capability module | **In progress** — mobile static bring-up; perception split edge/dual-view; learning, teleop, simulation, studio and applications scaffolds admitted |
-| M8 | Ecosystem v1.0 release with lockfile, SBOM and acceptance report | Planned |
-
-M6 is the current gate. The decision replay matches the baseline (21/21), and
-the S17 plan-only contract now passes against real MoveIt 2.5.10 without
-execution; what remains is the S14 base, a full G8 re-run and landing evidence.
-Each requires separate, explicit authorization. M5.2 also leaves S7
-(stale-state injection) and S9 (runtime publisher detection) unverified.
-
-## Governance
-
-- `main` is protected on every repository: pull request, independent review, CODEOWNERS, linear
-  history, no force-push or deletion. Required checks are per repository — `m1-gate` for governance
-  and perception, `m1-gate` + `m2-contract` for interfaces, five gates for the system runtime,
-  `ops-gate` for operations, and `benchmark-gate` for the benchmark harness.
-- The single-account phase ended with a second reviewer (`@JerichoSwaine`), who has maintain access
-  and is a CODEOWNER on every repository. `main` changes require one author and one reviewer;
-  a documented break-glass procedure is not the default.
-- Any real-robot motion requires the operator's explicit authorization; CI and automation never
-  trigger motion.
-- Security reports follow [`SECURITY.md`](https://github.com/JCHENG-Robotics/.github/blob/main/SECURITY.md);
-  do not disclose exploit details or credentials publicly.
-- Contributions follow [`CONTRIBUTING.md`](https://github.com/JCHENG-Robotics/.github/blob/main/CONTRIBUTING.md)
-  and the design-change template.
-
-## Limitations and threats to validity
-
-- **Single platform and site.** Results come from one ArmPi Ultra, one table setup and a small number
-  of supervised sessions. They are not a population-level reliability claim.
-- **No hardware safety chain.** No e-stop, brake, independent encoder, torque sensing or odometry.
-- **TCP-only geometric guards.** Workspace and table checks use the tool point; link and gripper
-  collision are outside the model.
-- **Open-loop base.** Any base motion invalidates the table calibration; the base has no odometry.
+- **Single platform and site.** Results come from one ArmPi Ultra, one table setup and a small number of supervised sessions.
+- **Failed bound.** The 6 mm RSS error-budget bound is not met; the 3.080 mm placement mean is a different statistic.
 - **Fast path scope.** The 4.0/20 profile is bus-verified but was validated in one direction.
-- **Error-budget bound.** The 6 mm RSS bound is not met; the empirical placement mean is a different
-  statistic and should not be read as passing the bound.
-- **New ecosystem maturity.** M6 is incomplete: S14 and a full G8 re-run remain,
-  and S7/S9 are unverified. Mobile has only a static bring-up; perception has
-  one dual-view run and a wrist depth reader that can still wedge. No motion
-  claim is made for either capability.
-- **Operations coverage.** The watchdog has never fired in a real wedge; the
-  reboot path has not been exercised because the vendor boot sequence moves the
-  arm.
-- **License status.** The baseline and `jcheng-mobile` carry MIT; the other new
-  repositories have no `LICENSE` and grant no reuse until the review closes.
-  The mobile file is retained pending review, not a precedent.
+- **M6 not complete.** S14 and the ecosystem G8 re-run were never started; the platform freeze retires them, not defers them. The baseline’s own full G8 is a separate, frozen result.
+- **Residual unverified items.** S7 stale-state injection and S9 runtime publisher detection remain unverified.
+- **Partial capabilities.** Mobile has only a static bring-up and is dormant; perception has one dual-view run and a wrist depth reader that can still wedge; benchmark has no suite result; ops has never fired its watchdog in a real wedge.
+- **License status.** The frozen baseline and `jcheng-mobile` carry MIT (mobile retained pending review). **14 repositories — including this one — have no `LICENSE`** and grant no reuse until the review closes. See [license status](https://github.com/JCHENG-Robotics/.github/blob/main/docs/safety-and-limitations.md#8-license-status).
 
-## License
+### Governance
 
-The frozen `jcheng-manipulation v1.0.0` baseline is MIT-licensed. `jcheng-mobile`
-was initialized with an MIT `LICENSE`. The other new repositories (`.github`,
-`jcheng-interfaces`, `jcheng-system`, `jcheng-perception`, `jcheng-ops`,
-`jcheng-benchmark`) have **no
-`LICENSE` file**: the third-party dependency and copyright review is pending.
-Until that review is approved, no MIT grant is made for those repositories, and
-vendor assets are not redistributed. The `jcheng-mobile` file is **retained
-pending the review** (see its `LICENSE-REVIEW.md`); it is not a precedent for
-adding licenses elsewhere. See
-[`license-review.md`](https://github.com/JCHENG-Robotics/.github/blob/main/docs/license-review.md).
+`main` is protected on every repository: pull request, independent review, CODEOWNERS, linear history, no force-push or deletion, and an organization merge queue. A second reviewer (`@JerichoSwaine`) holds maintain access and is a CODEOWNER. Security reports follow [`SECURITY.md`](https://github.com/JCHENG-Robotics/.github/blob/main/SECURITY.md); do not disclose exploit details or credentials publicly.
 
-## Citation
+## Citation & Contact
 
 If you reference the experimental baseline, please cite:
 
@@ -348,15 +271,12 @@ If you reference the experimental baseline, please cite:
   title   = {JCHENG Manipulation: A ROS 2-Based Robotic Manipulation System with Quantitative Reliability Evaluation},
   year    = {2026},
   version = {1.0.0},
-  url     = {https://github.com/JerichoCheng/jcheng-manipulation}
+  url     = {https://github.com/JCHENG-Robotics/jcheng-manipulation}
 }
 ```
 
-## Contact
+- **Design and contract questions:** open a `design` issue in the relevant repository.
+- **Security:** follow `SECURITY.md`; do not open a public exploit issue.
+- **Real-robot work:** coordinated with the operator; no remote motion requests.
 
-- Design and contract questions: open a `design` issue in the relevant repository.
-- Security: follow `SECURITY.md`; do not open a public exploit issue.
-- Real-robot work: coordinated with the operator; no remote motion requests.
-
-The baseline evidence index, failure taxonomy and full experimental record remain the authoritative
-reference for the platform's measured behaviour.
+The baseline evidence index, failure taxonomy and full experimental record remain the authoritative reference for the platform’s measured behaviour.

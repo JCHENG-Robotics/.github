@@ -1,310 +1,269 @@
 # JCHENG Robotics
 
-**简体中文** | [English](README.md)
+**简体中文** | [English](https://github.com/JCHENG-Robotics/.github/blob/main/profile/README.md)
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/banner-zh-light.svg#gh-light-mode-only" alt="JCHENG Robotics — 可测量的运动，有边界的权限" width="100%">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/banner-zh-dark.svg#gh-dark-mode-only" alt="JCHENG Robotics — 可测量的运动，有边界的权限" width="100%">
+</p>
 
 **可复现、受安全边界约束的机器人操作。**  
-从经过实测的五自由度操作基线，走向独立版本化的机器人生态。
+一个以实测运动、明确契约与可审计证据为核心的工程组织 —— 从冻结的五自由度基线，走向固定单元 PiPER X 平台。
 
-
-> 本文为英文主文档的中文对照；如有歧义，以英文版为准。
-
-**状态：** Baseline 1 技术验收完成 · 最终记录 #40 待批准 · 2026-11-28 · 英文为主文档  
-**从这里开始：** [生态路线图](https://github.com/JCHENG-Robotics/.github/blob/main/ROADMAP.md) ·
-[验收报告](https://github.com/JCHENG-Robotics/.github/blob/main/ACCEPTANCE.md) ·
-[冻结基线](https://github.com/JerichoCheng/jcheng-manipulation)
-
-**目录：** [概览](#概览) · [为什么](#为什么做这件事) · [方法](#方法) ·
-[当前状态](#当前状态) · [证据基础](#证据基础) · [架构](#架构) ·
-[安全](#安全模型与不声称的能力) · [质量](#质量与可复现性) · [仓库](#仓库地图) ·
-[路线图](#路线图) · [验收](https://github.com/JCHENG-Robotics/.github/blob/main/ACCEPTANCE.md) · [治理](#治理) ·
-[局限](#局限与有效性威胁) · [许可证](#许可证)
+**状态数据：** 2026-11-28 · **冻结基线：** `jcheng-manipulation v1.0.0` · **部署：** 未就绪<br>
+**从这里开始：** [当前状态](#当前状态) · [生态架构](#生态架构) · [实验证据](#实验证据) · [路线图](#研发路线图) · [开发者资源](#开发者资源)
 
 ---
 
-## 概览
+## 项目概览
 
-JCHENG Robotics 是一个面向低成本硬件、强调可靠性与可审计性的机器人操作工程组织。
-它源自一项基于五自由度 ArmPi Ultra 平台的项目制硕士研究，目前正在演化为一个由明确契约、
-版本管理、安全边界和可复现证据支撑的多仓库生态。
+JCHENG Robotics 构建的机器人操作系统，要求每一项结论都能追溯到证据。工作始于低成本五自由度 ArmPi Ultra 上的一项长期个人发展项目，现已发展为一个独立版本化的生态：契约、特权运行时、能力模块、操作工具、仿真、基准与治理。
 
-这项工作遵循两条承诺：
+两条规则始终未变：
 
-1. **每个结论都可追溯到证据。** 结果附有命令、日志、数据或机器可读报告；未测量的量会明确标注。
-2. **每个实机运动都经过同一道边界。** 运动意图先经过校验与仲裁，之后才允许发布硬件命令；
-   新模块不会获得第二条通往执行器的路径。
+1. **每个结论都可追溯。** 结果附有命令、日志、数据或机器可读报告；未测量的量会明确标注。
+2. **每个实机运动都经过同一道边界。** 运动意图先经过校验与仲裁，之后才允许发布硬件命令；任何模块都不会获得第二条通往执行器的路径。
 
-本计划围绕三个问题组织：
+| 这是 | 这不是 |
+|---|---|
+| 一个研究级工程作品集，以及可运行的离线 / Mock 生态 | 经过认证的安全系统、生产部署或通用机器人平台 |
+| 一个冻结基线，以及单台 ArmPi Ultra 上范围明确的硬件证据 | 总体可靠性结论，或可迁移到 PiPER X / AR5 的证据 |
+| 一个契约与证据等级明确的离线优先生态 | 已完成的 v1.0 生态：基线 1 技术已完成，但正式完成待 #40，部署未就绪 |
 
-1. **测量。** 当每一个变换、关节限位、相机坐标系和失效模式都被实测而不是假设时，
-   系统能达到怎样的精度与可靠性？
-2. **可靠性。** 哪些修正与干预能通过预注册的配对实机试验，而不是只靠一次成功演示？
-3. **架构。** 如何在不新增执行器通路、不削弱证据链的前提下持续增加新能力？
+## 工程要点
 
-本文按工程作品集的标准组织：问题定义、方法、证据、局限与可复现性都明确写出。
-英文版为主文档，中文版为对照译文。
-
-## 为什么做这件事
-
-低成本五自由度机械臂足以完成桌面抓取，但其集成面很脆弱。在冻结的 `v1.0.0` 基线中，
-同一平台存在**六条不同的运动写入路径**、四套运行时消费者不同的限幅配置，以及至少四处重复的
-关节限位或伺服映射。安全监督器只否决 MoveIt CLI 路径；快速路径被明确记录为设计上绕过它；
-命令缓存可能被误认为实测状态。
-
-基线解决了科学问题：当每一个变换、限位和失效模式都被实测而不是假设时，系统能达到怎样的
-精度与可靠性。生态要解决随之而来的工程问题：**如何在不削弱安全、可复现性和证据边界的前提下，
-持续增加新能力？**
-
-## 方法
-
-基线与生态遵循同一套“测量优先”的方法：
-
-- **先测量平台，再建立模型。** 关节止挡、TF 坐标系、相机外参、夹爪行程与总线行为都在实机上
-  普查，而不是沿用默认值。
-- **优先独立验证。** 棋盘格手眼、AprilTag 尺度检查、总线寄存器完成判定与独立前视相机，
-  用来避免单一来源自证。
-- **预注册比较。** 配对试验在采集数据前固定假设、样本量与分析方法；协议偏差被记录，
-  而不是被隐藏。
-- **如实报告失败的门限。** 6 mm 误差预算门限未通过，就报告为未通过，不用更有利的统计量
-  重新表述。
-- **冻结证据。** `v1.0.0` 是不可变基线；新工作独立版本化，不能重写它的标签、证据或实验历史。
-- **规划与执行分离。** 规划、校验、执行是不同阶段，有不同责任人与证据。
-
-新生态再加一条规则：**架构本身必须可测试。** M3 的 Mock 栈与 S1–S17 场景，是为了在任何
-受监督实机工作之前证明“不可绕过”的边界。
+| | |
+|---|---|
+| **单一运动权威。** `jcheng-system` 拥有租约、安全否决、仲裁、执行与唯一的硬件发布者。MoveIt 只规划，仲裁器负责执行。 | **契约优先。** `jcheng-interfaces` 于 2026-11-28 发布 v0.3.0 多链契约；已签名的 v0.2.0 仍是 7/8 运行时消费方的部署 pin，迁移进行中；感知仓有明确豁免。 |
+| **先证据，后结论。** 基线同时报告未通过的 6 mm 误差预算门限，以及 3.080 mm 的实测放置均值 —— 后者是另一个统计量，不是通过。 | **实测，而非假设。** 14 位姿手眼标定（2.94 mm / 0.39°）、0.449 mm RMS 重复性、1.117 mm 回差、总线确认的运动。 |
+| **平台转向。** ArmPi Ultra 于 2026-11-28 冻结。后继平台是固定单元 PiPER X；AR5 需通过六项身份事实门禁；移动化推迟。 | **默认离线。** 设备、场景、仿真、学习、基准与调研只做声明或测量，从不执行。 |
 
 ## 当前状态
 
-| 项 | 状态 |
-|---|---|
-| **Baseline 1** | **离线集成技术完成**；契约 1.0.0 Accepted、vocabulary `contracted`、9 个设备 profile、真实 CLI + 8 场景 Mock 任务 + benchmark；最终记录 #40 待批准。**部署 NOT READY。** |
-| 实验基线 | `jcheng-manipulation v1.0.0`，提交 `b3411e4`，已冻结；完整 G8 验收已记录 |
-| 生态里程碑 | **Baseline 1 技术完成**；M1–M5.2 完成，M6 S13/S17 实机已验证；S14/G8 与部署待做 |
-| 契约 | 运行时 `jcheng-interfaces` v0.2.0（已签名）；离线工件契约 1.0.0 Accepted；vocabulary `contracted` |
-| 系统运行时 | `jcheng-system` 0.3.0-dev：13 个 ROS 包；M4 只读、M5.2 核心、M6 S13 + S17 实机已验证；S14/G8 待做 |
-| 运行时镜像 | `armpi-ultra:flatten-20261125`，7.1 GB arm64；20 节点 / 60 话题保持不变，重启后仍生效 |
-| 能力仓库 | `jcheng-mobile` v0.1.0 静态 `/scan`/`/odom`/`/map`；`jcheng-perception` v0.1.0 对齐深度 + split edge + 单次双视图 + 离线 ORE S0/S1；`jcheng-ops` v0.1.0 已部署 |
-| 学习 / 仿真 | `jcheng-learning` v0.2.0 M1 离线数据集基础设施；`jcheng-simulation` v0.1.0 域 43 上的离线多机器人被控对象（mock 已验证，Gazebo 部分验证） |
-| 遥操作 | `jcheng-teleop` v0.3.0 M0 设计 + M1 ROS-free 核心；系统 mock intake 与 ArmPi/Gate-2 仿真桥通过 L3；无硬件 |
-| 设备库 | `jcheng-devices` v0.1.0 离线注册表（9 设备 / 7 能力），含 ArmPi 5、PiPER X 6 与 ROKAE AR5L/AR5R 7；无设备访问、运行时或运动 |
-| 场景库 | `jcheng-scenarios` v0.1.0 SCEN 层声明式场景库（8 个仓库内 Schema 与 `ore_sorting` 参考场景）；仅离线校验；无消费方集成、评测或硬件 |
-| 操作台 / 编排 | `jcheng-studio` v0.7.0 控制台 + 只读 REST/WS + 会话/回放；`jcheng-applications` v0.1.0 M3 mock 运行 + S3 分支/tree/WAITING/derived；不加入 DDS、不执行运动 |
-| 调研 | `jcheng-research` v0.1.0，公开；草稿报告与 SAM3/AGX Orin 实验已记录，评审待做 |
-| 基准 | `jcheng-benchmark` v0.1.0 实验性；离线只读 runner 与合成自测；尚无可记录数据或硬件结果 |
-| 新生态中的实机运动 | 受监督单关节与夹爪运动已通过（M5.2）；M6 S17 实机 plan-only 通过但未执行；完整 G8 复验待做 |
-| 文档 | 统一 README / ROADMAP / CHANGELOG / ACCEPTANCE；英文为主，中文 README 对照 |
-| 许可证 | 多数新仓库**进行中**；`jcheng-mobile` 初始化时带有 MIT；审查需解决该例外 |
+> **验证按平台限定。** ArmPi 的结果不会迁移到 PiPER X 或 AR5。`硬件已验证` 指指定范围在指定平台上通过 —— 不代表仓库或整个生态已可部署。
 
-## 证据基础
-
-以下结果来自冻结基线。它们是**基线结果**，不是新生态的结果；新生态目前还不执行运动。
-
-| 评估 | 报告结果 | 解读 |
+| 领域 | 状态 | 证据 / 下一步 |
 |---|---|---|
-| 手眼标定 | 14 个位姿 2.94 mm / 0.39°；留出位姿 3.29 mm / 0.43° | 独立棋盘格验证，不依赖厂商默认值 |
-| 固定点配对试验 | 12/24 对 **24/24**，McNemar p = 0.00049 | 预注册的低构型常数修正 |
-| 随机落点试验 | 9/24 对 **24/24**，McNemar p = 6.1 × 10⁻⁵ | 自由摆放、腕部/前视相机定位、底盘接近 |
-| 误差预算 | 平移 RSS **13.325 mm**，6 mm 门限未通过；实测放置均值 **3.080 mm** | 门限未满足；实测均值是另一个统计量 |
-| 快速运动 | 抓取+放回 **11.67 s → 8.94 s**；G8 快路径落点 **2.27 mm** | S 曲线 4.0 rad/s / 20 rad/s²，总线确认 |
+| **冻结基线** | **Frozen** —— `jcheng-manipulation v1.0.0` @ `b3411e4`；MIT；基线完整 G8 记录于 2026-11-23 | 单台 ArmPi Ultra 上的范围限定 L5 硬件证据；平台整体从未做过端到端验证。[证据](#实验证据) |
+| **平台** | **ArmPi Ultra：Frozen**（2026-11-28）· **PiPER X：P2 只读进行中** · **AR5：计划中 / 身份门禁** | 转向已批准；冻结记录的发布仍在进行。[平台转向](https://github.com/JCHENG-Robotics/.github/blob/main/docs/platform-transition.md) |
+| **生态基线 1** | **离线集成：技术验收 PASS；正式 COMPLETE 待记录 #40 批准/合并** | `BASELINE 1 COMPLETE: NO — 待 #40` · `DEPLOYMENT READY: NO`。[记录](https://github.com/JCHENG-Robotics/.github/blob/main/docs/baseline1/README.md) |
+| **契约** | `jcheng-interfaces v0.3.0` 于 2026-11-28 发布（robot-profile v2、`chain_id`、夹爪单位）；**v0.2.0 仍是已签名的部署 pin**，7/8 消费方；迁移进行中 | 基线 1 使用 v0.2.0 记录；感知仓固定在 `>=0.1,<0.2`，并有已记录豁免。[契约仓](https://github.com/JCHENG-Robotics/jcheng-interfaces) |
+| **运行时** | `jcheng-system 0.3.0-dev0` —— 14 个 ROS 包；ArmPi M4/M5.2/S13/S17 已验证；PiPER 只读后端已实现 | 无 PiPER 运动；无生产部署。[系统仓](https://github.com/JCHENG-Robotics/jcheng-system) |
+| **能力** | 感知、移动、学习、遥操作、设备、场景、仿真、操作台、任务编排 —— **实验性** | 每个仓库的最强证据见[能力矩阵](#核心能力)。 |
+| **部署** | **未就绪** —— 无跨进程租约源、无底盘硬件桥、DDS 权威未基于证书 | 这不是生产系统。 |
+| **安全** | **未认证。** 无急停、抱闸、独立编码器、力矩感知或自碰撞模型 | 软件停止是保持 / 零指令，不是安全等级停止。 |
 
-基线还记录了重复性（0.449 mm RMS / 1.017 mm max）、回差（1.117 mm）、夹爪 ±9 mm 容差包络，
-以及完整的失效模式分类。证据索引见
-[`jcheng-manipulation`](https://github.com/JerichoCheng/jcheng-manipulation)。
+**状态词表：** `Frozen` · `Hardware verified` · `Offline verified` · `Experimental` · `Planned` · `Dormant` · `Conditional` · `Not ready`。定义与证据等级见 [docs/evidence.md](https://github.com/JCHENG-Robotics/.github/blob/main/docs/evidence.md#2-status-vocabulary)。
 
-**批判性解读：** RSS 聚合**没有**满足 6 mm 误差预算门限；报告的放置均值在 6 mm 内，但那是不同的
-统计量。快速路径只在一个方向上完成验证。以上结果都不构成安全认证。
+## 生态架构
 
-## 架构
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/architecture-light.svg#gh-light-mode-only" alt="JCHENG 生态架构：L0 治理、L1 契约、L2 系统权威、L3 能力、L4 应用、侧翼平面与硬件平面" width="100%">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/architecture-dark.svg#gh-dark-mode-only" alt="JCHENG 生态架构：L0 治理、L1 契约、L2 系统权威、L3 能力、L4 应用、侧翼平面与硬件平面" width="100%">
+</p>
+<p align="center"><sub><a href="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/architecture-light.svg">打开全尺寸架构图</a></sub></p>
 
-目标架构把**契约**、**特权执行**、**能力模块**与**应用**分开：
+架构把**声明**、**契约**、**特权执行**、**能力**与**应用**分开。只有 L2 发布运动。
 
-```text
-L4  Applications        任务编排 · 操作界面 · 证据审阅
-L3  Capabilities        操作 · 遥操作 · 学习 · 移动
-L2  System              控制权 · 安全 · 运动 · 网关 · 遥测 · 守卫
-L1  Contracts           ROS IDL · OpenAPI/WS · 配置与证据 Schema
-L0  Governance          组织主页 · 模板 · 复用 CI · 分支保护
-
-Hardware plane          唯一发布者，厂商 DDS 域 0
-```
-
-首批仓库有意保持精简；此后生态增加了独立版本化的能力、运维与基准仓库：
-
-| 仓库 | 职责 | 当前状态 |
+| 层 | 仓库 | 职责 |
 |---|---|---|
-| [`JCHENG-Robotics/.github`](https://github.com/JCHENG-Robotics/.github) | 治理、模板、复用 CI、生态文档 | M1 完成；文档标准 v1.0 |
-| [`JCHENG-Robotics/jcheng-interfaces`](https://github.com/JCHENG-Robotics/jcheng-interfaces) | 契约、Schema、契约哈希 | v0.2.0，已签名标签 |
-| [`JCHENG-Robotics/jcheng-system`](https://github.com/JCHENG-Robotics/jcheng-system) | 特权运行时、安全、仲裁、网关 | 0.3.0-dev；M6 S13 + S17 实机 |
-| [`JCHENG-Robotics/jcheng-mobile`](https://github.com/JCHENG-Robotics/jcheng-mobile) | L3 移动底盘 | v0.1.0；静态 bring-up |
-| [`JCHENG-Robotics/jcheng-perception`](https://github.com/JCHENG-Robotics/jcheng-perception) | L3 感知 | v0.1.0；对齐深度 + 单次双视图 |
-| [`JCHENG-Robotics/jcheng-ops`](https://github.com/JCHENG-Robotics/jcheng-ops) | 跨层运维 | v0.1.0 已部署 |
-| [`JCHENG-Robotics/jcheng-benchmark`](https://github.com/JCHENG-Robotics/jcheng-benchmark) | 跨层只读基准工具 | v0.1.0 实验性；仅合成自测 |
-| [`JCHENG-Robotics/jcheng-learning`](https://github.com/JCHENG-Robotics/jcheng-learning) | L3 学习：数据集、训练、策略产物（离线） | v0.1.0；无运行时或策略 |
-| [`JCHENG-Robotics/jcheng-teleop`](https://github.com/JCHENG-Robotics/jcheng-teleop) | L3 遥操作：操作员输入到有界、受租约约束的意图（离线） | v0.1.0；仅准入 |
-| [`JCHENG-Robotics/jcheng-devices`](https://github.com/JCHENG-Robotics/jcheng-devices) | L3 设备库：声明式设备/能力描述与离线校验 | v0.1.0；仅离线注册表 |
-| [`JCHENG-Robotics/jcheng-scenarios`](https://github.com/JCHENG-Robotics/jcheng-scenarios) | SCEN 声明式场景库：环境、任务、评测与约束 Profile | v0.1.0；仅离线校验 |
-| [`JCHENG-Robotics/jcheng-simulation`](https://github.com/JCHENG-Robotics/jcheng-simulation) | 域 43 上的离线多机器人被控对象 | v0.1.0；mock 已验证，Gazebo 部分验证 |
-| [`JCHENG-Robotics/jcheng-studio`](https://github.com/JCHENG-Robotics/jcheng-studio) | L4 操作台 | v0.7.0 |
-| [`JCHENG-Robotics/jcheng-applications`](https://github.com/JCHENG-Robotics/jcheng-applications) | L4 任务编排 | v0.1.0 |
-| [`JCHENG-Robotics/jcheng-research`](https://github.com/JCHENG-Robotics/jcheng-research) | 公开调研工作区 | v0.1.0；在运行时图之外 |
+| **L0 治理** | `.github` | 策略、模板、复用 CI、生态记录 |
+| **L1 契约** | `jcheng-interfaces` | ROS IDL、HTTP/WS Schema、契约哈希 |
+| **L2 系统** | `jcheng-system` | 安全、租约、仲裁、执行、硬件桥、网关 |
+| **L3 能力** | `jcheng-manipulation`（冻结）、`jcheng-perception`、`jcheng-teleop`、`jcheng-learning`、`jcheng-devices`、`jcheng-mobile`（休眠） | 感知、意图、学习、设备声明 |
+| **L4 应用** | `jcheng-studio`、`jcheng-applications` | 操作台、任务编排 |
+| **侧翼平面** | `jcheng-simulation`、`jcheng-scenarios`、`jcheng-benchmark`、`jcheng-ops`、`jcheng-research` | 仿真、声明、测量、运维、调研 |
+
+**依赖方向：** L4 → L2 API；L3 → L1 + L2 客户端；L2 → L1；L0 → 所有（仅 CI）。声明类仓库不在运行时依赖图中。声明不能覆盖系统安全包络；出现不一致即为发布阻断，而不是偏好问题。
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/dependencies-light.svg#gh-light-mode-only" alt="依赖图：声明、契约、系统权威、意图、建议、运维、离线测量与硬件；禁止的绕过边被标出" width="100%">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/dependencies-dark.svg#gh-dark-mode-only" alt="依赖图：声明、契约、系统权威、意图、建议、运维、离线测量与硬件；禁止的绕过边被标出" width="100%">
+</p>
+<p align="center"><sub><a href="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/dependencies-light.svg">打开全尺寸依赖图</a></sub></p>
 
 ### 单一运动路径
 
-```text
-声明平面（离线；无运行时权限）
-  scenarios ── 任务、成功条件与评测声明 ─┐
-  devices   ── 设备与能力描述 ───────────┤
-  interfaces ── 跨仓库契约 ──────────────┘
-        │ 固定版本 + 哈希；不做运行时调用
-        ▼
-意图平面
-  applications（配方 → 计划） ─┐
-  teleop（操作员意图） ────────┤
-  mobile（/cmd_vel 底盘意图） ─┤
-  studio（观察 / 停止代理） ───┘
-        │ HTTP/WS，或已声明的域 42 意图话题
-        ▼
-system（唯一运行时权威）
-  → 申请租约
-  → ExecuteMotion（契约 + 租约 + 幂等检查）
-  → 安全校验
-  → 运动执行器
-  → 硬件桥（唯一发布者）
-  → 总线确认的结果 + 证据记录
-```
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/motion-path-light.svg#gh-light-mode-only" alt="单一运动路径：意图、网关、租约、ExecuteMotion、安全否决、仲裁与唯一硬件发布者；测量状态从总线返回" width="100%">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/motion-path-dark.svg#gh-dark-mode-only" alt="单一运动路径：意图、网关、租约、ExecuteMotion、安全否决、仲裁与唯一硬件发布者；测量状态从总线返回" width="100%">
+</p>
+<p align="center"><sub><a href="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/motion-path-light.svg">打开全尺寸运动路径图</a></sub></p>
 
-`scenarios`、`devices`、`simulation`、`benchmark`、`learning` 与 `research`
-刻意位于运行时依赖图之外：它们只声明、仿真或测量，从不执行。声明不能覆盖
-system 的安全包络；不一致是发布阻断项，不是偏好问题。
+意图只有在 `jcheng-system` 内部才会变成命令：网关接受 HTTP/WS，租约指定唯一持有者，`ExecuteMotion` 检查契约与幂等性，安全监督器否决，仲裁器执行，硬件桥是唯一发布者。完成判定以总线读回为准，而不是缓存的 `/joint_states`。停止请求会锁存并拒绝新命令；它是软件停止，不是安全等级停止。
 
-由这条边界导出的设计决策：
+<details>
+<summary><strong>仓库索引</strong> —— 16 个仓库的职责与当前状态</summary>
 
-- **控制权来自租约，而不是 UI 会话。** 租约包含作用域、优先级、TTL、deadman 与撤销语义，
-  可审计、可抢占。
-- **安全监督器只否决，不执行。** 它校验状态新鲜度、关节限位、轨迹速率、起点、工作空间与桌面
-  间隙，并在违规时锁存停止。
-- **硬件桥是唯一发布者。** 能力模块加入非特权 DDS 域；厂商域只能通过硬件桥到达。
-- **MoveIt 只规划，仲裁器执行。** 控制器执行链路不作为第二条运动入口暴露。
-- **实测状态不是命令回显。** `GetBusServoState` 是完成判定的权威；缓存的 `/joint_states`
-  标注为 `commanded`。
-- **失败关闭。** 安全心跳缺失、实测状态过期、总线读失败或结果未知都会锁存停止，不自动重试。
+| 仓库 | 层 | 职责 | 状态 |
+|---|---|---|---|
+| [`.github`](https://github.com/JCHENG-Robotics/.github) | L0 | 治理、模板、复用 CI、生态记录 | M1 完成；文档标准 v1.0 |
+| [`jcheng-interfaces`](https://github.com/JCHENG-Robotics/jcheng-interfaces) | L1 | ROS IDL、HTTP/WS Schema、契约哈希 | v0.3.0 已发布；v0.2.0 签名 pin；7/8 消费方 |
+| [`jcheng-system`](https://github.com/JCHENG-Robotics/jcheng-system) | L2 | 安全、权威、运动、硬件桥、网关 | 0.3.0-dev0；ArmPi 范围已验证；PiPER P2 只读 |
+| [`jcheng-manipulation`](https://github.com/JCHENG-Robotics/jcheng-manipulation) | L3 | 冻结的 `v1.0.0` 实验基线与证据 | 冻结；MIT；只读参考 |
+| [`jcheng-mobile`](https://github.com/JCHENG-Robotics/jcheng-mobile) | L3 | 移动底盘：激光里程计、SLAM、Nav2 意图 | v0.1.0；静态启动；休眠 |
+| [`jcheng-perception`](https://github.com/JCHENG-Robotics/jcheng-perception) | L3 | 边云分布式感知、建议位姿 | v0.1.0；部分验证；单次双视图 |
+| [`jcheng-learning`](https://github.com/JCHENG-Robotics/jcheng-learning) | L3 | 数据集、离线训练与策略产物 | v0.2.0；M1 离线基础设施 |
+| [`jcheng-teleop`](https://github.com/JCHENG-Robotics/jcheng-teleop) | L3 | 操作员输入到有界、租约门控的意图 | v0.3.0；M0/M1 + Mock 接入；无硬件 |
+| [`jcheng-devices`](https://github.com/JCHENG-Robotics/jcheng-devices) | L3 | 声明式设备与能力描述 | v0.1.0；10 个设备 / 7 个能力；离线 |
+| [`jcheng-studio`](https://github.com/JCHENG-Robotics/jcheng-studio) | L4 | 操作台、会话、回放、意图转发 | v0.8.0；离线 / Mock 验证；无硬件验收 |
+| [`jcheng-applications`](https://github.com/JCHENG-Robotics/jcheng-applications) | L4 | 配方校验、确定性规划、失败关闭意图 | v0.1.0；M3 Mock 运行；无硬件 |
+| [`jcheng-simulation`](https://github.com/JCHENG-Robotics/jcheng-simulation) | SIM | 域 43 上的多机器人被控对象 | v0.1.0；Mock 已验证，Gazebo 部分 |
+| [`jcheng-scenarios`](https://github.com/JCHENG-Robotics/jcheng-scenarios) | SCEN | 声明式场景库与校验 | v0.1.0；8 个 Schema；仅离线 |
+| [`jcheng-benchmark`](https://github.com/JCHENG-Robotics/jcheng-benchmark) | BENCH | 只读基准框架与报告 | v0.1.0；合成自测；结论不确定 |
+| [`jcheng-ops`](https://github.com/JCHENG-Robotics/jcheng-ops) | OPS | 健康检查、看门狗、服务自愈 | v0.1.0；ArmPi 已部署；探针为 legacy |
+| [`jcheng-research`](https://github.com/JCHENG-Robotics/jcheng-research) | RESEARCH | 文献、根因、实验设计与报告 | v0.1.0；草稿报告；无产品结论 |
 
-## 安全模型与不声称的能力
+`jcheng-design`、`jcheng-system-r5`、`jcheng-system-v020` 与 `jcheng-ecosystem-bootstrap` 是工作检出或暂存目录；`jcheng-mobile-bench` 是非 git 台架沙箱。它们都不属于运行时或发布矩阵中的仓库。
 
-平台**没有**硬件急停、抱闸、独立编码器、力矩传感或自碰撞模型。底盘开环、无里程计。
-软件停止是保持/置零命令，不是安全等级停止。
+</details>
 
-因此：
+## 核心能力
 
-- 所有实机工作都在监督下进行，并且每次会话都需要**单独、明确**的授权。
-- UI 与文档只写“软件停止”或“停止请求”，不写“急停”。
-- 厂商容器重启可能移动机械臂（`startup_check`）；系统不会自动重启厂商容器。
-- 新生态不是安全认证系统，不声称满足 SIL/PL。
+状态以**最强证据**为准，而不是预期用途。通过 Mock 测试不等于硬件验证；部分硬件运行不等于验收。
 
-运行时已经存在，因此这条边界是**被执行**的，而不只是声明。M4 证明了只读链路只发布遥测、
-不发布命令（`writes=0`，30 分钟）。M5.1 在 Mock 栈上通过 ROS 服务/action 验证了租约、
-安全与停止语义；M5.2 把同一条路径接到受监督硬件桥，完成单关节与夹爪运动。S7（状态过期注入）
-与 S9（运行时发布者检测）仍未在实机单独验证，每次实机会话仍需单独、明确的授权。
+| 能力 | 仓库 | 版本 | 最强证据 | 状态 |
+|---|---|---|---|---|
+| 操作基线 | `jcheng-manipulation` | 1.0.0 | ArmPi 上 L5 完整 G8；两组配对试验干预均为 24/24 | **冻结基线** |
+| 系统运行时 | `jcheng-system` | 0.3.0-dev0 | ArmPi 上 L5 M4/M5.2/S13/S17；PiPER P2 只读（无运动） | **实验性 · 范围硬件验证** |
+| 契约 | `jcheng-interfaces` | 0.3.0 | v0.3.0 已发布；v0.2.0 签名 pin 仍服务 7 个消费方 | **契约已验证 · 迁移中** |
+| 感知 | `jcheng-perception` | 0.1.0 | 单次双视图；S1 离线合成 + 公开数据 | **实验性 · 部分** |
+| 移动底盘 | `jcheng-mobile` | 0.1.0 | 静态 `/scan`、`/odom`、`/map` | **实验性 · 休眠** |
+| 学习 | `jcheng-learning` | 0.2.0 | M1 数据集契约与 LeRobot 往返 | **实验性 · 离线** |
+| 遥操作 | `jcheng-teleop` | 0.3.0 | M1 ROS-free 核心；Mock / 仿真 L3 | **实验性 · 离线** |
+| 设备库 | `jcheng-devices` | 0.1.0 | 10 个设备 / 7 个能力；校验器与 CI | **实验性 · 离线** |
+| 场景库 | `jcheng-scenarios` | 0.1.0 | 8 个 Schema；`ore_sorting` 参考场景 | **实验性 · 离线** |
+| 仿真 | `jcheng-simulation` | 0.1.0 | 域 43；Mock 已验证，Gazebo 部分 | **实验性 · 离线** |
+| 操作台 | `jcheng-studio` | 0.8.0 | 只读 REST/WS、会话、回放 | **实验性 · 无硬件** |
+| 任务编排 | `jcheng-applications` | 0.1.0 | M3 Mock 运行；181 项测试 | **实验性 · 无硬件** |
+| 基准 | `jcheng-benchmark` | 0.1.0 | 合成自测；一次迁移的主机快照 | **结论不确定** |
+| 运维 | `jcheng-ops` | 0.1.0 | 守护已安装并验证；看门狗从未真实触发 | **已部署 · legacy** |
+| 调研 | `jcheng-research` | 0.1.0 | 草稿报告与未评审实验 | **实验性 · 无产品结论** |
 
-## 质量与可复现性
+### 数据采集与机器人学习
 
-| 门禁 | 当前状态 |
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/learning-workflow-light.svg#gh-light-mode-only" alt="学习工作流：示教采集、采集核心、数据集契约、离线训练、策略产物与系统门控意图" width="100%">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/learning-workflow-dark.svg#gh-dark-mode-only" alt="学习工作流：示教采集、采集核心、数据集契约、离线训练、策略产物与系统门控意图" width="100%">
+</p>
+<p align="center"><sub><a href="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/learning-workflow-light.svg">打开全尺寸学习工作流</a></sub></p>
+
+路径默认离线：手扶 PiPER leader 录制示教，遥操作采集核心封存 provenance，`jcheng-learning` 校验不可变数据集并完成 LeRobot v3 往返，策略只能**提议**意图。训练、策略产物与硬件闭环尚未实现。尚未采集自有机器人数据集，也没有任何策略在硬件上运行。
+
+## 硬件与演示
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/photos/armpi-first-grasp.jpg" alt="ArmPi Ultra 在地面上夹持 39.4 mm 木块" width="46%">
+</p>
+<p align="center"><sub><strong>ArmPi Ultra —— 首次实机抓取（2026-11-18）。</strong> 机械臂在地面上夹持 39.4 mm 木块；完整自主抓取—抬升—放置于 2026-11-19 完成。</sub></p>
+
+| <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/photos/armpi-debug-studio.jpg" alt="ArmPi Debug Studio 只读仪表盘，G1 范围" width="100%"> | <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/photos/ore-s1-public-overlay.jpg" alt="公开 Mendeley 40–70 mm 图像上的离线矿石场景 S1 叠加" width="100%"> |
 |---|---|
-| 仓库检查 | M1 **111/111** 项 API 检查；三个创始仓库的 M2–M6 CI 门禁 |
-| 分支保护 | PR + CODEOWNERS + 各仓库必需检查；管理员受限；禁止 force-push/删除 |
-| 契约完整性 | 契约哈希 + `interface_manifest.json`，v0.1.0，标签已验证 |
-| 依赖锁定 | `ecosystem.lock.yaml` 固定提交、契约哈希、profile 哈希与 interfaces v0.1.0 |
-| 测试层级 | L0 契约 → L1 单元 → L2 Mock 集成 → L3 Mock E2E → L4 回放 → L5 受监督实机 |
-| 防绕过验证 | S1–S17：15 个场景通过、2 个按计划跳过、必选失败 0；M5.1 另有 5 项 ROS 传输测试 |
-| 实机证据 | M4 只读 1799/1799 `measured`、`writes=0`；M5.2 单关节/夹爪总线复核与停止锁存 |
-| 证据 | 每次运行记录版本、哈希、命令、观察与限制 |
-| 文档 | 标准 v1.0；每个产品仓库具备四件套 |
+| **ArmPi Debug Studio（2026-11-18）。** 冻结基线的操作台，处于只读 G1 范围；硬件运动被禁用，页面明确标注。 | **矿石场景 S1 叠加（离线）。** 在公开 Mendeley `40–70 mm` 子集（CC BY 4.0）上的定性叠加；这是域差基线，不是真实矿石精度。 |
+| **PiPER X 固定单元 —— 尚无照片。** P2 已接通两路 CAN，记录 leader/follower 分工，并有只读解码器；follower 从未被下发指令。 | **这里没有展示的内容。** 没有 PiPER 运动视频、没有 AR5 硬件、没有生产单元。这种缺失是刻意的。 |
 
-当前状态与证据汇总见[生态路线图](https://github.com/JCHENG-Robotics/.github/blob/main/ROADMAP.md)与
-[验收报告](https://github.com/JCHENG-Robotics/.github/blob/main/ACCEPTANCE.md)。M1 验证 JSON 保存在
-本地暂存归档 `jcheng-ecosystem-bootstrap/M1-VERIFICATION.json`；设计记录位于
-`jcheng-manipulation` 的 `design/ecosystem-v1` 分支（`docs/ecosystem/`）。
+**资产入口：** [基线证据索引](https://github.com/JCHENG-Robotics/jcheng-manipulation/tree/main/evidence) · [ArmPi Debug Studio 截图](https://github.com/JCHENG-Robotics/jcheng-manipulation/tree/main/evidence/studio_g5) · [感知硬件证据](https://github.com/JCHENG-Robotics/jcheng-perception/tree/main/evidence) · [早期 8 周 Panda 仿真](https://github.com/JCHENG-Robotics/jcheng-manipulation/blob/main/docs/demo.gif)（归档；不是 ArmPi 硬件）。
 
-## 仓库地图
+<sub>矿石叠加来源：Mendeley Data，“benchmark for rock blasting”，`40_70mm` 子集，CC BY 4.0。叠加由 `jcheng-perception` 离线生成，不作为指标输入。</sub>
 
-| 仓库 | 角色 | 状态 |
+## 实验证据
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/evidence-light.svg#gh-light-mode-only" alt="冻结基线证据：配对试验、未通过 6 mm 门限的误差预算与能力指标" width="100%">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/evidence-dark.svg#gh-dark-mode-only" alt="冻结基线证据：配对试验、未通过 6 mm 门限的误差预算与能力指标" width="100%">
+</p>
+<p align="center"><sub><a href="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/evidence-light.svg">打开全尺寸证据图</a></sub></p>
+
+| 评估 | 报告结果 | 解读 |
 |---|---|---|
-| `.github` | 组织治理、模板、复用 CI、生态文档 | M1 完成；文档标准 v1.0 |
-| `jcheng-interfaces` | ROS IDL、HTTP/WS Schema、契约哈希 | v0.1.0 |
-| `jcheng-system` | 安全、控制权、运动、硬件桥、网关 | 0.3.0-dev；M6 S13 + S17 实机 |
-| `jcheng-manipulation` | 冻结的 `v1.0.0` 实验基线与证据 | 只读参考 |
-| `jcheng-mobile` | 移动底盘能力（M10、SLAM、Nav2 意图） | v0.1.0；静态 `/scan`/`/odom`/`/map`；运动未验证 |
-| `jcheng-perception` | 边云分布式感知 | v0.1.0；对齐深度、split edge、单次双视图；重复性未验证 |
-| `jcheng-ops` | 无人值守运维、看门狗与恢复 | v0.1.0 已部署 |
-| `jcheng-benchmark` | 跨层只读基准工具与证据报告 | v0.1.0 实验性；无可记录数据或硬件结果 |
-| `jcheng-simulation` | 域 43 上的离线多机器人被控对象 | v0.1.0；mock 已验证，Gazebo 部分验证 |
-| `jcheng-learning` | 数据集、训练与策略产物（离线） | v0.1.0；无运行时或策略 |
-| `jcheng-research` | 公开调研工作区：报告与决策 | v0.1.0；在运行时图之外 |
-| `jcheng-mobile-bench` | 台架材料沙箱 | 沙箱；不发布 |
-| `jcheng-teleop` | 遥操作意图：操作员输入到有界、受租约约束的意图 | 实验性；v0.1.0 仅准入骨架 |
-| `jcheng-devices` | 设备库：声明式设备/能力描述、型号建模与离线校验 | 实验性；v0.1.0 仅离线注册表 |
-| `jcheng-scenarios` | 声明式场景库：环境、任务、评测与约束 Profile | 实验性；v0.1.0 仅离线校验 |
-| `jcheng-studio` | 操作台：调试、诊断与实验记录 | 实验性；v0.7.0 控制台、REST/WS、会话、回放 |
-| `jcheng-applications` | 任务编排：配方校验、确定性规划与失败关闭的意图序列 | 实验性；v0.1.0 离线核心 + 只读传输 |
+| 手眼标定 | 14 个位姿 2.94 mm / 0.39°；留出 3.29 mm / 0.43° | 独立棋盘格验证，不依赖厂商默认值 |
+| 固定点配对试验 | 12/24 → **24/24**，McNemar p = 0.00049 | 预注册的低构型常数修正 |
+| 随机落点试验 | 9/24 → **24/24**，McNemar p = 6.1 × 10⁻⁵ | 自由摆放、腕部 / 前视相机定位、底盘接近 |
+| 误差预算 | 平移 RSS **13.325 mm**，6 mm 门限未通过；实测放置均值 **3.080 mm** | 门限未满足；实测均值是另一个统计量 |
+| 快速运动 | 抓取 + 放回 **11.67 s → 8.94 s**；G8 快路径落点 **2.27 mm** | S 曲线 4.0 rad/s / 20 rad/s²，总线确认 |
+| 重复性 / 回差 | 0.449 mm RMS / 1.017 mm max；回差 1.117 mm | 30 次访问；joint4 ±0.1 rad |
 
-## 路线图
+**批判性解读。** RSS 聚合**没有**满足 6 mm 误差预算门限。报告的放置均值在 6 mm 内，但那是不同的统计量。快速路径只在一个方向上完成验证。以上结果都不构成安全认证。证据来自一台平台、一个场地和少量受监督会话。
 
-| 里程碑 | 范围 | 状态 |
+**独立门禁。** 生态基线 1 —— 新仓库的离线集成 —— **技术验收 PASS**（独立 QA PASS WITH FINDINGS，P2 已修复）。正式完成待记录 #40 批准/合并：`BASELINE 1 COMPLETE: NO — 待 #40`、`DEPLOYMENT READY: NO`。其证据在 [docs/baseline1/](https://github.com/JCHENG-Robotics/.github/blob/main/docs/baseline1/README.md)，不是硬件结果。
+
+## 研发路线图
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/roadmap-light.svg#gh-light-mode-only" alt="路线图：P0–P7 固定单元平台计划与 S0–S8 矿石分拣阶段" width="100%">
+  <img src="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/roadmap-dark.svg#gh-dark-mode-only" alt="路线图：P0–P7 固定单元平台计划与 S0–S8 矿石分拣阶段" width="100%">
+</p>
+<p align="center"><sub><a href="https://raw.githubusercontent.com/JCHENG-Robotics/.github/main/profile/assets/roadmap-light.svg">打开全尺寸路线图</a></sub></p>
+
+2026-11-28 批准的转向冻结 ArmPi Ultra，并把平台迁往**固定单元**：PiPER X 作为生产执行臂，AR5 作为需门禁的双臂后继，移动化推迟为独立的 P7 项目。
+
+- **当前门禁：** 基线 1 离线集成为有条件；部署未就绪。
+- **进行中：** P0（ArmPi 冻结与运动权威撤销）与 P2（PiPER X 只读）。P1（契约 v0.3.0）是下一个契约门禁。
+- **矿石分拣：** S0–S1 为离线；S1 在合成与公开数据上部分验证，真实矿石精度未验证。S8 闭环分拣受 P2/P3/P6 阻断。ArmPi 结果不迁移。
+
+不承诺日期。阶段按依赖排序，而不是按日历排序。阶段表、ArmPi 冻结记录与 AR5 身份门禁见 [docs/platform-transition.md](https://github.com/JCHENG-Robotics/.github/blob/main/docs/platform-transition.md)。
+
+<details>
+<summary><strong>阶段索引</strong> —— 范围、状态与出口证据</summary>
+
+| 阶段 | 范围 | 状态 | 出口证据 |
+|---|---|---|---|
+| **P0** | ArmPi Ultra 冻结；运动权威撤销 | **进行中** | 冻结记录；只读演示；发布者集合记录 |
+| **P1** | 契约 v0.3.0：robot-profile v2、`chain_id`、夹爪范围 | **计划中** | v1/v2 可加载；全部门禁通过；Mock 跑 v2 profile |
+| **P2** | PiPER X 只读：两路 CAN、零写入 | **进行中** | 30 分钟只读；`writes=0`；与 SDK 一致 |
+| **P3** | PiPER X 生产：示教 → 回放 → 受监督执行 | **计划中** | 一次抓放；逐帧 CAN 确认；停止 ≤100 ms |
+| **P4** | AR5 身份门禁：六项事实 | **计划中**（可与 P1–P3 并行） | 每项事实有出处或明确未知 |
+| **P5** | AR5 只读与双臂 | **门禁中** | 双臂只读；plan-only；单臂 L5 |
+| **P6** | 固定单元收尾：锁、证据、发布说明 | **计划中** | 每平台证据与新锁 |
+| **P7** | 移动操作 | **推迟** | 单独立项 |
+
+| 矿石阶段 | 范围 | 状态 |
 |---|---|---|
-| M0 | 架构评审与批准 | 完成 |
-| M1 | 组织、三个仓库、模板、CI 骨架 | **完成** |
-| M2 | 契约审计；`jcheng-interfaces` v0.1.0 | **完成** |
-| M3 | `jcheng-system` Mock 栈；租约、安全、仲裁、网关 | **完成** |
-| M4 | 机器人只读接入（不运动） | **完成** |
-| M5 | 受监督的单关节与夹爪执行 | **完成**（M5.1 Mock，M5.2 实机核心） |
-| M6 | 基线回放与 G8 复验 | **进行中**——S13 21/21、S17 plan-only 与 S17 实机 MoveIt 通过；S14 底盘、完整 G8 待做 |
-| M7 | 首个集成能力模块 | **进行中**——mobile 静态 bring-up；perception 对齐深度、split edge 与单次双视图；learning、teleop、simulation、studio、applications 骨架已准入 |
-| M8 | 生态 v1.0 发布：锁文件、SBOM、验收报告 | 计划中 |
+| **S0** | 调研与数据集普查 | **完成** |
+| **S1** | 离线分割，合成 + 公开基线 | **部分** —— 真实矿石精度未验证 |
+| **S2–S7** | 3D 几何、场景状态、多视图、主动视角、可抓取性、集成 | **计划 / 重新推导**（固定单元） |
+| **S8** | 闭环分拣 | **受 P2/P3/P6 阻断** |
 
-M6 是当前门禁。决策回放已与基线一致（21/21），S17 plan-only 契约已对真实
-MoveIt 2.5.10 通过且未执行；剩下的是 S14 底盘、完整 G8 复跑与落点证据。
-每一项都需要单独、明确的授权。M5.2 还留下 S7（状态过期注入）与 S9（运行时发布者检测）未验证。
+</details>
 
-## 治理
 
-- 所有仓库的 `main` 均受保护：PR、独立评审、CODEOWNERS、线性历史、禁止 force-push 与删除。
-  必需检查按仓库配置——治理与 perception 为 `m1-gate`；interfaces 为 `m1-gate` +
-  `m2-contract`；系统运行时为五个门禁；operations 为 `ops-gate`；基准工具为
-  `benchmark-gate`。
-- 组织已结束单账号阶段：第二评审人 `@JerichoSwaine` 已具备 maintain 权限，并在所有仓库中
-  都是 CODEOWNER。`main` 变更需要一名作者与一名评审人；break-glass 不是默认路径。
-- 任何实机运动都需要操作员明确授权；CI 与自动化不会触发运动。
-- 安全报告遵循 [`SECURITY.md`](https://github.com/JCHENG-Robotics/.github/blob/main/SECURITY.md)；
-  不要在公开 issue 中披露利用细节或凭据。
-- 贡献流程遵循 [`CONTRIBUTING.md`](https://github.com/JCHENG-Robotics/.github/blob/main/CONTRIBUTING.md)
-  与设计变更模板。
+## 开发者资源
 
-## 局限与有效性威胁
+| 从这里开始 | 构建与测试 | 参与贡献 | 治理 |
+|---|---|---|---|
+| [生态路线图](https://github.com/JCHENG-Robotics/.github/blob/main/ROADMAP.md) | [基线 1 验收脚本](https://github.com/JCHENG-Robotics/.github/blob/main/dev/baseline1-acceptance.sh) | [贡献指南](https://github.com/JCHENG-Robotics/.github/blob/main/CONTRIBUTING.md) | [仓库边界](https://github.com/JCHENG-Robotics/.github/blob/main/docs/repo-boundaries.md) |
+| [验收报告](https://github.com/JCHENG-Robotics/.github/blob/main/ACCEPTANCE.md) | `jcheng-system` Mock 栈（无硬件） | [行为准则](https://github.com/JCHENG-Robotics/.github/blob/main/CODE_OF_CONDUCT.md) | [文档标准](https://github.com/JCHENG-Robotics/.github/blob/main/docs/documentation-standard.md) |
+| [基线 1 记录](https://github.com/JCHENG-Robotics/.github/blob/main/docs/baseline1/README.md) | `jcheng-learning` 数据集 CLI（离线） | [安全策略](https://github.com/JCHENG-Robotics/.github/blob/main/SECURITY.md) | [仓库分类](https://github.com/JCHENG-Robotics/.github/blob/main/docs/repo-taxonomy.md) |
+| [架构](https://github.com/JCHENG-Robotics/.github/blob/main/docs/architecture.md) · [证据](https://github.com/JCHENG-Robotics/.github/blob/main/docs/evidence.md) · [安全](https://github.com/JCHENG-Robotics/.github/blob/main/docs/safety-and-limitations.md) | ROS 2 Humble（机器人）/ Jazzy（主机）；Python 3.12 | Issue 与设计模板 | [治理](https://github.com/JCHENG-Robotics/.github/blob/main/GOVERNANCE.md) |
 
-- **单一平台与场地。** 结果来自一台 ArmPi Ultra、一张桌面和少量受监督会话，不构成群体级
-  可靠性结论。
-- **没有硬件安全链。** 无急停、抱闸、独立编码器、力矩传感或里程计。
-- **仅 TCP 几何守卫。** 工作空间与桌面检查针对工具点；连杆与夹爪碰撞不在模型内。
-- **底盘开环。** 任何底盘运动都会使桌面标定失效；底盘没有里程计。
-- **快速路径范围。** 4.0/20 档有总线确认，但只在一个方向上完成验证。
-- **误差预算门限。** 6 mm RSS 门限未满足；实测放置均值是另一个统计量，不能解读为通过门限。
-- **新生态成熟度。** M6 尚未完成：S14 与完整 G8 复跑待做，S7/S9 未验证。mobile 只有
-  静态 bring-up；perception 只有单次双视图，且腕部深度 reader 仍可能卡死。不对两者做运动声明。
-- **运维覆盖。** 看门狗尚未在真实卡死中触发；整机重启路径未演练，因为厂商启动序列会移动机械臂。
-- **许可证状态。** 基线与 `jcheng-mobile` 为 MIT；其余新仓库没有 `LICENSE`，审查完成前
-  不授予复用许可。mobile 的文件保留待审查，不构成先例。
+## 安全、局限与治理
 
-## 许可证
+### 安全模型与不声称的能力
 
-冻结的 `jcheng-manipulation v1.0.0` 基线为 MIT。`jcheng-mobile` 在初始化时已带有一份
-MIT `LICENSE`。其余新仓库（`.github`、`jcheng-interfaces`、`jcheng-system`、
-`jcheng-perception`、`jcheng-ops`、`jcheng-benchmark`）**没有 `LICENSE`**：第三方依赖与版权审查仍在进行。
-审查批准前，这些仓库不授予 MIT 许可，厂商资产不参与再分发。`jcheng-mobile` 的文件
-**保留待审查**（见其 `LICENSE-REVIEW.md`），不构成给其他仓库添加许可证的先例。详见
-[`license-review.md`](https://github.com/JCHENG-Robotics/.github/blob/main/docs/license-review.md)。
+平台**没有硬件急停、抱闸、独立编码器、力矩感知或自碰撞模型**。底盘为开环，没有里程计。软件停止是保持 / 零指令，不是安全等级停止。生态**未通过安全认证**，不声称 SIL/PL 合规。
 
-## 引用
+- 所有实机工作都受监督，并且每次会话都需要**单独、明确的授权**。
+- UI 与文档使用“软件停止”或“停止请求”，不使用“急停”。
+- 厂商容器重启可能移动机械臂（`startup_check`）；系统不会自动重启厂商容器。
+- ArmPi 平台已冻结。运动权威撤销**仍待操作员执行**；只读网关与回滚路径保留。
 
-如需引用实验基线，请使用：
+### 局限与有效性威胁
+
+- **单一平台与场地。** 结果来自一台 ArmPi Ultra、一个桌面设置和少量受监督会话。
+- **未通过的门限。** 6 mm RSS 误差预算门限未满足；3.080 mm 放置均值是另一个统计量。
+- **快速路径范围。** 4.0/20 配置经过总线确认，但只在一个方向上验证。
+- **M6 未完成。** S14 与生态 G8 复验从未开始；平台冻结是退役，不是推迟。基线自身的完整 G8 是另一个已冻结结果。
+- **残余未验证项。** S7 陈旧状态注入与 S9 运行时发布者检测仍未验证。
+- **能力仍部分。** 移动只有静态启动并已休眠；感知只有一次双视图运行，腕部深度读取仍可能卡死；基准没有套件结果；运维看门狗从未在真实卡死中触发。
+- **许可证状态。** 冻结基线与 `jcheng-mobile` 带有 MIT（移动仓保留待审）。**包括本仓在内的 14 个仓库没有 `LICENSE`**，在审查结束前不授予复用。详见[许可证状态](https://github.com/JCHENG-Robotics/.github/blob/main/docs/safety-and-limitations.md#8-license-status)。
+
+### 治理
+
+每个仓库的 `main` 都受保护：Pull Request、独立评审、CODEOWNERS、线性历史、禁止 force-push 或删除，并启用组织合并队列。第二位评审人（`@JerichoSwaine`）拥有维护权限，并在每个仓库担任 CODEOWNER。安全报告遵循 [`SECURITY.md`](https://github.com/JCHENG-Robotics/.github/blob/main/SECURITY.md)；不要在公开 Issue 中披露利用细节或凭据。
+
+## 引用与联系
+
+如果引用该实验基线，请使用：
 
 ```bibtex
 @software{jcheng_manipulation_2026,
@@ -312,14 +271,12 @@ MIT `LICENSE`。其余新仓库（`.github`、`jcheng-interfaces`、`jcheng-syst
   title   = {JCHENG Manipulation: A ROS 2-Based Robotic Manipulation System with Quantitative Reliability Evaluation},
   year    = {2026},
   version = {1.0.0},
-  url     = {https://github.com/JerichoCheng/jcheng-manipulation}
+  url     = {https://github.com/JCHENG-Robotics/jcheng-manipulation}
 }
 ```
 
-## 联系
+- **设计与契约问题：** 在相关仓库提交 `design` Issue。
+- **安全：** 遵循 `SECURITY.md`；不要提交公开的利用 Issue。
+- **实机工作：** 与操作员协调；不接受远程运动请求。
 
-- 设计与契约问题：在对应仓库开 `design` issue。
-- 安全：遵循 `SECURITY.md`；不要公开提交利用细节。
-- 实机工作：与操作员协调；不接受远程运动请求。
-
-基线的证据索引、失效模式分类与完整实验记录，仍是该平台实测行为的权威参考。
+基线证据索引、失效模式分类与完整实验记录，仍是该平台实测行为的权威参考。

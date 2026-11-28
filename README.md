@@ -9,7 +9,30 @@ and the ecosystem-level README, ROADMAP, CHANGELOG and acceptance report.
 
 Organization profile: [profile/README.md](profile/README.md) | [profile/README.zh-CN.md](profile/README.zh-CN.md)
 
-## Current state (2026-11-26)
+## Baseline 1 (2026-11-28)
+
+The ecosystem has completed its first **offline integration baseline**:
+
+- **DEVELOPMENT READY: YES.**
+- **OFFLINE INTEGRATION READY: YES.**
+- **BASELINE 1 COMPLETE: technical conditions met; final record #40 pending
+  Board approval/merge** (main still shows the earlier #38 text).
+- **DEPLOYMENT READY: NO.**
+
+| Baseline 1 result | Evidence |
+|---|---|
+| Contract `jcheng.offline-artifact-contract.v1` 1.0.0 **Accepted**; offline vocabulary `contracted` | interfaces PR #20/#21 (`426f371`); scenarios #5 (`1c21885`) |
+| Real CLI cell integration | arm + gripper + camera; `matched_with_unverified`; DOF 5≥4; reach/payload/aperture/resolution unverified |
+| Eight-case synthetic mock ore-sorting task | 8/8 classifications; only `normal` succeeds; benchmark INCONCLUSIVE / test PASS / test FAIL |
+| Three-arm registration | ArmPi Ultra 5-DOF reference; PiPER X 6-DOF candidate; ROKAE **AR5L/AR5R** 7-DOF planned dual-arm pair |
+| Final main regression | interfaces 22, devices 123, scenarios 116, applications 218+5, system 191, mobile 50, studio 13+222, perception 107, learning 68, teleop 218, simulation 86+2, benchmark 61, ops 9, `.github` 20 |
+| Developer handover | `QUICKSTART.md`, `DEVELOPER_GUIDE.md`, `.github/dev/baseline1-acceptance.sh`, first R&D task |
+| Deployment | **NOT READY**; no real motion or hardware output authorized |
+
+The detailed record is in [`docs/baseline1/ratification/`](docs/baseline1/ratification/README.md).
+This is not a v1.0 release claim and no release/tag has been created.
+
+## Previous state (2026-11-26)
 
 - M1–M5.2 are complete; M6 S13 replay (21/21) and S17 real MoveIt plan-only
   pass. S14 base and a full G8 re-run remain.
@@ -51,7 +74,8 @@ Organization profile: [profile/README.md](profile/README.md) | [profile/README.z
 | Document | Content |
 |---|---|
 | [profile/README.md](profile/README.md) | Organization profile (English canonical) |
-| [ROADMAP.md](ROADMAP.md) | Ecosystem milestones M0–M8 and current state |
+| [docs/baseline1/ratification/README.md](docs/baseline1/ratification/README.md) | Baseline 1 acceptance, manifest, QA, freeze record |
+| [ROADMAP.md](ROADMAP.md) | Ecosystem milestones M0–M8, Baseline 1 and current state |
 | [CHANGELOG.md](CHANGELOG.md) | Ecosystem-level change record |
 | [ACCEPTANCE.md](ACCEPTANCE.md) | Ecosystem acceptance status and evidence |
 | [acceptance/ecosystem-2026-11-26.json](acceptance/ecosystem-2026-11-26.json) | Current machine-readable acceptance (schema v1; reviewer pending) |

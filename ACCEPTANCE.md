@@ -1,9 +1,10 @@
 # Ecosystem acceptance report
 
-> Status: **inconclusive** as of 2026-11-27. This report records milestone-gate
-> status; it is **not** a signed v1.0 acceptance. No ecosystem v1.0 acceptance
-> run has been attempted.
-> Operator: JerichoCheng. Reviewer: pending.
+> Status: **Baseline 1: technical acceptance PASS; final record #40 pending
+> Board approval/merge** (2026-11-28). This is an offline integration baseline,
+> **not** a signed v1.0 ecosystem acceptance and not a deployment authorization.
+> Operator: JerichoCheng. Independent QA: PASS WITH FINDINGS, P2 fixed. Reviewer
+> for the final record: pending.
 > Scope: the whole ecosystem (governance, contracts, system runtime, frozen
 > baseline, capability, L4, benchmark, research and operations repositories).
 > No motion commands were sent by this documentation change.
@@ -30,6 +31,9 @@ verification JSON is in the local staging archive
 
 | Gate | Repository | Level | Result | Evidence |
 |---|---|---|---|---|
+| **Baseline 1 offline integration** | devices, scenarios, applications, interfaces, .github | L0–L3 | **PASS (technical)** — real CLI cell `matched_with_unverified`; 8/8 mock cases; benchmark INCONCLUSIVE / test PASS/FAIL; 15-repo regression; QA PASS WITH FINDINGS | `docs/baseline1/ratification/`; `/tmp/b1-evidence/final-main-ratified` |
+| **Offline artifact contract 1.0.0** | interfaces, scenarios, devices, applications | L0–L1 | **Accepted** (offline only); vocabulary `contracted`; golden vectors | interfaces #21 `426f371`; scenarios #5 `1c21885` |
+| **Three-arm registration** | devices | L0 | 9 profiles: ArmPi 5, PiPER X 6, AR5 family + AR5L/AR5R 7 | devices #7 `a006f5f`; #8 `c4be897`; 123 tests |
 | M1 organization and repository initialization | `.github`, interfaces, system | L0 | pass (111/111 API checks) | `jcheng-ecosystem-bootstrap/M1-VERIFICATION.json` |
 | M2 contract definition and audit | `jcheng-interfaces` | L0–L1 | pass (15 tests; Humble CI, local Jazzy build) | `docs/ecosystem/09-m2-execution.md`; tag `v0.1.0` (historical) |
 | Contract v0.2.0 rollout | `jcheng-interfaces` + 7 consumers | L1 | pass — signed tag verified; 7/8 consumers pin `afca22…`; perception not migrated | `docs/ecosystem/15-v020-alignment.md` |
@@ -103,6 +107,19 @@ verification JSON is in the local staging archive
 | Organization reusable CI breadth | Only `jcheng-interfaces` uses contract-check; security and release are implemented but unused, and three workflows remain skeletons | Adoption is one repository deep; gate logic is still duplicated elsewhere |
 | Perception contract adoption | No runtime imports of `jcheng_interfaces`; explicit waiver recorded | Perception is outside the v0.2.0 contract by declaration, not by adoption |
 | License review | Pending; `jcheng-mobile` carries MIT from initialization (retained pending review), the other new repositories have no `LICENSE` | No uniform reuse position; the review must confirm or replace the mobile file |
+
+## 4a. Baseline 1 status and non-claims
+
+| Status | Result |
+|---|---|
+| DEVELOPMENT READY | **YES** |
+| OFFLINE INTEGRATION READY | **YES** |
+| BASELINE 1 COMPLETE | **Technical yes; formal COMPLETE after #40 is approved/merged** |
+| DEPLOYMENT READY | **NO** |
+
+The ArmPi reach, payload, gripper aperture and camera resolution remain
+unverified. AR5 L/R variant kinematics/SDK/calibration are absent. The mock
+task is not a real grasp. No release or tag exists.
 
 ## 5. Limitations
 

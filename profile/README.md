@@ -6,7 +6,7 @@
 From a measured 5-DoF manipulation baseline to an independently versioned robotics ecosystem.
 
 
-**Status:** M1–M5.2 complete · M6 in progress · 2026-11-25 · English canonical  
+**Status:** Baseline 1 technical acceptance complete · final record #40 pending · 2026-11-28 · English canonical  
 **Start here:** [Ecosystem roadmap](https://github.com/JCHENG-Robotics/.github/blob/main/ROADMAP.md) ·
 [Acceptance report](https://github.com/JCHENG-Robotics/.github/blob/main/ACCEPTANCE.md) ·
 [Frozen baseline](https://github.com/JerichoCheng/jcheng-manipulation)
@@ -83,17 +83,18 @@ and the S1–S17 scenarios exist to prove the no-bypass boundary before any supe
 
 | Item | Status |
 |---|---|
+| **Baseline 1** | **Offline integration technically complete**; contract 1.0.0 Accepted, vocabulary `contracted`, 9 device profiles, real CLI + 8-case mock task + benchmark; final record #40 pending. **DEPLOYMENT NOT READY.** |
 | Experimental baseline | `jcheng-manipulation v1.0.0`, commit `b3411e4`, frozen; full G8 acceptance recorded |
-| Ecosystem milestones | **M1–M5.2 complete**; M6 S13 and S17 real MoveIt verified; S14 base and full G8 pending |
-| Contracts | `jcheng-interfaces` v0.2.0 (signed tag): 14 msg / 10 srv / 1 action, seven schemas; v0.3.0 `intent_source` in review |
+| Ecosystem milestones | **Baseline 1 technical complete**; M1–M5.2 complete, M6 S13/S17 real verified; S14/G8 and deployment pending |
+| Contracts | Runtime `jcheng-interfaces` v0.2.0 (signed tag); offline artifact contract 1.0.0 Accepted; vocabulary `contracted` |
 | System runtime | `jcheng-system` 0.3.0-dev: 13 ROS packages; M4 read-only, M5.2 core, M6 S13 + S17 real verified; S14/G8 pending |
 | Runtime image | `armpi-ultra:flatten-20261125`, 7.1 GB arm64; 20 nodes / 60 topics preserved and reboot persistent |
 | Capability repositories | `jcheng-mobile` v0.1.0 static `/scan`/`/odom`/`/map`; `jcheng-perception` v0.1.0 aligned depth + split edge + one dual-view run + offline ORE S0/S1; `jcheng-ops` v0.1.0 deployed |
 | Learning / simulation | `jcheng-learning` v0.2.0 M1 offline dataset infrastructure; `jcheng-simulation` v0.1.0 offline multi-robot plant on domain 43 (mock verified, Gazebo partial) |
 | Teleoperation | `jcheng-teleop` v0.3.0 M0 design + M1 ROS-free core; system mock intake and ArmPi/Gate-2 simulation bridge pass L3; no hardware |
-| Device library | `jcheng-devices` v0.1.0 offline registry (6 devices / 7 capabilities), device/capability schemas, validator and CI; no device access, runtime or motion |
-| Scenario catalog | `jcheng-scenarios` v0.1.0 SCEN-layer declarative catalog (eight repo-local schemas and the `ore_sorting` reference); offline validation only; no consumer integration, evaluation or hardware |
-| Operator / orchestration | `jcheng-studio` v0.7.0 console + read-only REST/WS + sessions/replay; `jcheng-applications` v0.1.0 M3 mock run + S3 branches/tree/WAITING/derived; no DDS or motion |
+| Device library | `jcheng-devices` v0.1.0 offline registry (9 devices / 7 capabilities), including ArmPi 5, PiPER X 6 and ROKAE AR5L/AR5R 7; no device access, runtime or motion |
+| Scenario catalog | `jcheng-scenarios` v0.1.0 SCEN-layer catalog with `ore_sorting` reference and **contracted** offline vocabulary; offline validation and applications matching; no hardware |
+| Operator / orchestration | `jcheng-studio` v0.8.0 console + read-only REST/WS; `jcheng-applications` v0.1.0 reference + 8-case mock ore-sorting task + M3 mock run; no DDS or real motion |
 | Research | `jcheng-research` v0.1.0, public; draft reports and SAM3/AGX Orin experiments recorded, review pending |
 | Benchmark | `jcheng-benchmark` v0.1.0 experimental; offline, read-only harness and synthetic self-test only; no recorded or hardware result |
 | Real-robot motion in the new ecosystem | Supervised single-joint and gripper motions passed (M5.2); M6 S17 real plan-only passed without execution; full G8 re-run pending |
@@ -275,6 +276,7 @@ the design record is in `jcheng-manipulation` branch `design/ecosystem-v1` (`doc
 | M3 | `jcheng-system` mock stack; lease, safety, arbitration, gateway | **Complete** |
 | M4 | Read-only robot integration (no motion) | **Complete** |
 | M5 | Supervised single-joint and gripper execution | **Complete** (M5.1 mock, M5.2 hardware core) |
+| **B1** | **Baseline 1 offline integration and handover** | **Technical complete; #40 record pending** — real CLI cell, 8-case mock task, benchmark, 15-repo regression, QA |
 | M6 | Baseline replay and G8 re-validation | **In progress** — S13 21/21, S17 plan-only and S17 real MoveIt pass; S14 base and full G8 pending |
 | M7 | First integrated capability module | **In progress** — mobile static bring-up; perception split edge/dual-view; learning, teleop, simulation, studio and applications scaffolds admitted |
 | M8 | Ecosystem v1.0 release with lockfile, SBOM and acceptance report | Planned |

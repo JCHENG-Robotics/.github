@@ -1,14 +1,18 @@
 # JCHENG ecosystem roadmap
 
-> Status: **M1–M5.2 complete; M6 in progress; contract v0.2.0 adopted by 7 of 8
-> runtime consumers** as of 2026-11-27.
-> The ecosystem has not reached v1.0 and makes no v1.0 acceptance claim.
+> Status: **Baseline 1 technical acceptance complete (2026-11-28)**; final
+> record #40 pending Board approval/merge. Contract v0.2.0 runtime and the
+> separate offline artifact contract 1.0.0 are in use. M6 hardware items and
+> deployment remain open. No v1.0 release claim; no release/tag.
 > English canonical. Repository-local roadmaps live in each repository.
 
 ## Current state
 
 | Item | State | Evidence |
 |---|---|---|
+| **Baseline 1 offline integration** | **Technically complete; record #40 pending** | `docs/baseline1/ratification/`; real CLI cell + 8-case mock task + benchmark; 15-repo regression |
+| **Offline artifact contract 1.0.0** | **Accepted** (offline only) | interfaces #20/#21 `426f371`; scenarios #5 `1c21885`; golden vectors |
+| **Device registration** | 9 profiles | ArmPi 5, PiPER X 6, AR5 family + **AR5L/AR5R** 7; devices #7/#8 |
 | Organization and three founding repositories | Complete (M1) | 111/111 API checks; `jcheng-ecosystem-bootstrap/M1-VERIFICATION.json` |
 | Contracts `jcheng-interfaces` v0.2.0 | Complete (R5, 2026-11-27) | Contract hash `sha256:afca22a4…35b1c`; signed tag `v0.2.0` verified; 7/8 runtime consumers adopted |
 | Mock system runtime `jcheng-system` | Complete (M3) | 15 scenarios pass, 2 skipped, 0 required failures; `main` `40a74ba` |
@@ -45,29 +49,23 @@
 | M5.2 | Supervised single-joint and gripper execution | Complete, core (2026-11-24) | `COMPLETED` + `bus_verified`; stop latches | `docs/ecosystem/evidence/m52-final-20261124/` |
 | M6 | Baseline replay and G8 re-validation | In progress — S13 21/21 and S17 plan-only + real pass; S14 base and full G8 pending | S13/S17 pass; S14 base and full G8 re-run with landing evidence | `docs/ecosystem/evidence/m6-s13-20261124/`; `jcheng-system/deploy/armpi-ultra/docs/ACCEPTANCE-20261125.md` |
 | M7 | First integrated capability module on the system API | In progress — mobile static bring-up, perception split edge/dual-view; studio/applications/learning/teleop/simulation/devices scaffolds admitted | A capability passes L3 and supervised L5 through the system boundary | `jcheng-mobile`, `jcheng-perception`, `jcheng-studio`, `jcheng-applications`, `jcheng-learning`, `jcheng-teleop`, `jcheng-simulation`, `jcheng-devices` roadmaps |
+| **B1** | **Baseline 1 offline integration and developer handover** | **Technical complete; #40 approval pending** | Real CLI cell, 8-case mock task, benchmark, regression, independent QA | `docs/baseline1/` |
 | M8 | Ecosystem v1.0: lockfile, SBOM, signed acceptance report | Planned | All repositories at declared versions; ecosystem acceptance passes | — |
 
-## Next
+## Next — Human-Led Robotics R&D
 
-1. **Finish M6.** S17 real MoveIt plan-only passed on 2026-11-25; S14 base
-   acceptance, full G8 re-run and landing evidence remain. Prerequisites:
-   separate explicit authorization and an operator present.
-2. **Integrate one capability end to end.** Mobile has a static `/scan`,
-   `/odom` and `/map` bring-up; perception has aligned depth, split edge and a
-   single dual-view run. Both still need their own accuracy/repeatability work,
-   then a supervised path through `jcheng-system`.
-3. **Close the residual M5.2 items.** S7 stale-state injection and S9 runtime
-   publisher detection need a supervised hardware session.
-4. **Keep the image lock current.** Re-record
-   `jcheng-system/deploy/armpi-ultra/container/image.lock` on every image
-   change; the 2026-11-25 digest is the current reference.
-5. **Extend the v0.2.0 alignment adoption.** The lockfile pins three modules,
-   the public API version is defined, three reusable workflows are implemented
-   and `jcheng-interfaces` runs contract-check on `main`. Remaining: adopt
-   security and release in another repository, and keep the post-merge
-   acceptance snapshot current. The workspace path is covered by the restored
-   `~/jcheng` symlink. See the design record
-   `docs/ecosystem/15-v020-alignment.md`.
+Baseline 1 closes the centralized ecosystem-building phase. The next work is
+human-led:
+
+1. **First R&D task:** Ore Target Localization & Grasp Target Generation.
+   Start at `jcheng-perception/.../jcheng_perception_scene/types.py`; spec in
+   `dev/TASK_ore_target_localization_20261128.md`.
+2. **Keep the Baseline 1 record current** after #40 merges; the agent provides
+   test/review/documentation support only.
+3. **Deployment is separate and NOT READY.** M6 hardware items, base bridge,
+   lease sharing, watchdog and bench evidence require explicit authorization.
+4. **Do not start Baseline 2** or add a new architecture programme.
+5. Non-blocking debt stays in `docs/boundary-consolidation/32-technical-debt-register.md`.
 
 ## Out of scope
 

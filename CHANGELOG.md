@@ -144,6 +144,38 @@ versioned.
   LICENSE-REVIEW.md, the repository taxonomy and the organization profile now
   state that instead of claiming a private repository.
 
+## 2026-11-28 — Baseline 1 ratification and developer handover
+
+### Added
+
+- **Baseline 1 offline integration**: device snapshots, scenario requirements,
+  role-composed cell, capability matching, two-step reference and an eight-case
+  synthetic mock ore-sorting task. Real CLI result is `matched_with_unverified`
+  for the ArmPi cell; only the `normal` mock case succeeds; benchmark observed
+  is INCONCLUSIVE with labelled test PASS/FAIL discrimination.
+- Offline artifact contract `jcheng.offline-artifact-contract.v1` 1.0.0,
+  **Accepted** for offline artifacts only; capability vocabulary `contracted`.
+  Golden vectors and dual hash semantics (`source_hash` vs `content_hash`).
+- Device registration: ArmPi Ultra 5-DOF reference, PiPER X 6-DOF candidate,
+  ROKAE **AR5L/AR5R** 7-DOF planned dual-arm pair (9 profiles total).
+- Developer handover: `QUICKSTART.md`, `DEVELOPER_GUIDE.md`,
+  `.github/dev/baseline1-acceptance.sh` and the first human-led task
+  (Ore Target Localization & Grasp Target Generation).
+
+### Changed
+
+- Final main regression: interfaces 22, devices 123, scenarios 116,
+  applications 218+5, system 191, mobile 50, studio 13+222, perception 107,
+  learning 68, teleop 218, simulation 86+2, benchmark 61, ops 9, `.github` 20.
+- Boundary report: 25 open + 1 waived; no new Baseline 1 blocker.
+
+### Safety
+
+- **DEPLOYMENT READY: NO.** No robot, real motion, DDS/ROS graph, production
+  deployment or hardware output. No release or tag was created.
+- Baseline 1 becomes formally COMPLETE when the final record PR #40 is
+  approved/merged; main still shows the earlier #38 text until then.
+
 ## 2026-11-26 — teleop, S3/ORE progress and repository registration
 
 ### Added

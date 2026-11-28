@@ -8,7 +8,7 @@
 | # | PR | Why | Required check |
 |---|---|---|---|
 | 1 | jcheng-interfaces #21 | Contract Accepted/1.0.0 record; offline scope only | m1-gate, m2-contract, org checks |
-| 2 | jcheng-scenarios #5 | vocabulary `contracted` after contract approval | scenarios gates |
+| 2 | jcheng-scenarios #5 | vocabulary `contracted` after contract approval | scenarios gates; **add a second CODEOWNER first** — current CODEOWNERS names only the author, so self-approval is impossible |
 | 3 | jcheng-devices #8 | AR5L/AR5R dual-arm units; 9 devices | devices-gate |
 | 4 | `.github` freeze PR | manifest, acceptance, QA, release notes | m1-gate |
 

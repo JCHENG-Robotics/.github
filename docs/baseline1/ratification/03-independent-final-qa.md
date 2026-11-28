@@ -42,7 +42,7 @@ ratification PRs have no approvals and are unmerged.
 | P2-1 | scenarios docs said "PR #21 approval"; #21 has no review | **Fixed** in scenarios #5 (`d73e998`): "PR #20 approval recorded in #21" |
 | P2-2 | Missing deliverable 03 | **Fixed**: this report |
 | P2-3 | Freeze package untracked/no reviewable head | **Fixed**: committed and opened as the freeze PR |
-| P2-4 | scenarios #5 has no independent reviewer scheduled (CODEOWNERS only names the author) | **Action**: independent reviewer requested; merge still requires a real approval. If no independent reviewer is available, #5 stays unmerged and Baseline stays INCOMPLETE |
+| P2-4 | scenarios #5 has no independent reviewer scheduled (CODEOWNERS only names the author) | **Action**: independent reviewer requested, but the scenarios CODEOWNERS names only the author. The owner must add a second CODEOWNER (e.g. `@JerichoSwaine`) or use an approved admin path; otherwise #5 cannot be approved without self-approval and Baseline stays INCOMPLETE |
 
 ## 4. P3 notes (recorded, non-blocking)
 

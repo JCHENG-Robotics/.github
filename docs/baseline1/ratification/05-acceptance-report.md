@@ -28,7 +28,7 @@
 ## 3. Exact remaining human actions
 
 1. Approve and merge devices #8 (AR5L/AR5R units).
-2. Approve and merge scenarios #5 (vocabulary `contracted`).
+2. Approve and merge scenarios #5 (vocabulary `contracted`). **Prerequisite:** the scenarios CODEOWNERS currently names only the author, so a second CODEOWNER (for example `@JerichoSwaine`) must be added by the owner, or the Board must use an approved admin path; self-approval is not allowed.
 3. Approve and merge interfaces #21 (contract Accepted 1.0.0).
 4. Approve and merge this freeze PR.
 5. Rerun fixed-main acceptance/regression and the independent QA on the final

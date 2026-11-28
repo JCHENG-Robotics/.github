@@ -7,23 +7,21 @@
 
 | # | PR | Why | Required check |
 |---|---|---|---|
-| 1 | jcheng-interfaces #21 | Contract Accepted/1.0.0 record; offline scope only | m1-gate, m2-contract, org checks |
-| 2 | jcheng-scenarios #5 | vocabulary `contracted` after contract approval | scenarios gates; **add a second CODEOWNER first** — current CODEOWNERS names only the author, so self-approval is impossible |
-| 3 | jcheng-devices #8 | AR5L/AR5R dual-arm units; 9 devices | devices-gate |
-| 4 | `.github` freeze PR | manifest, acceptance, QA, release notes | m1-gate |
+| 1 | `.github` #40 | final record (ratified-main SHAs/hashes, COMPLETE status) | m1-gate |
 
-Order 1→2 is logical (contract then vocabulary). #8 and the docs PR are
-independent but should merge before the final manifest regeneration.
+Already merged: interfaces #21 (`426f371`, Accepted 1.0.0), scenarios #5
+(`1c21885`, vocabulary `contracted`), devices #8 (`c4be897`, AR5L/AR5R, 9
+devices), freeze record #38 (`bf866d6`). Only the record correction remains.
 
-## 2. After merge (required before COMPLETE)
+## 2. Publication step
 
-1. Regenerate artifact hashes (scenario requirements change with vocabulary).
-2. Rerun `.github/dev/baseline1-acceptance.sh` on the final main SHAs.
-3. Rerun the 16-repository regression and this independent QA on the final SHAs.
-4. Update the frozen manifest with merge SHAs and new artifact hashes.
-5. Change the four statuses to DEVELOPMENT READY YES / OFFLINE INTEGRATION READY
-   YES / BASELINE 1 COMPLETE YES / DEPLOYMENT READY NO, and commit the final
-   freeze record (no self-referential hash).
+1. Approve/merge #40.
+2. The post-merge acceptance on the ratified mains is already recorded in 02/04
+   (new requirements hashes and 9-device registry); the final independent QA is
+   in 03.
+3. The four statuses are already recorded as DEVELOPMENT READY YES / OFFLINE
+   INTEGRATION READY YES / BASELINE 1 COMPLETE YES / DEPLOYMENT READY NO. No
+   artifact hash is computed over the record.
 
 ## 3. Do not approve as part of this freeze
 
@@ -35,5 +33,5 @@ independent but should merge before the final manifest regeneration.
 
 ## 4. Current status if approvals are not given
 
-Baseline 1 stays **INCOMPLETE**. The technical evidence is green; only human
-review/merge and the final post-merge rerun are missing.
+No technical gate remains. Until #40 merges, main still shows #38's earlier
+INCOMPLETE text; merge #40 to publish the final COMPLETE record.

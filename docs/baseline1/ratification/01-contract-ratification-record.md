@@ -1,8 +1,9 @@
 # Contract Ratification Record — Offline Artifact Contract v1
 
-> Status: **approval evidence exists; ratification PR #21 is unmerged**. The
-> contract is not yet reflected on `main`, so the frozen manifest cannot treat
-> it as the accepted main state.
+> Status: **Accepted on main** (2026-11-28). Interfaces #21 merged as
+> `426f3713e8f3bfbc024982a2f1372c555a82fa92`; scenarios #5 merged as
+> `1c218858fd4e90792cd9de9b5a45af25c8faa4f9`. The ratification covers offline
+> artifacts only.
 
 ## 1. Contract identity
 
@@ -14,8 +15,8 @@
 | Owner | `jcheng-interfaces` for lifecycle; producers keep content ownership |
 | Proposal | `jcheng-interfaces/docs/proposals/offline-artifact-contract-v1.md` |
 | Ratification PR | jcheng-interfaces #21, head `f656d69`, base `a142641` |
-| Status on main | **Proposed** (ratification not merged) |
-| Status in PR #21 | **Accepted**, offline artifacts only |
+| Status on main | **Accepted** (offline artifacts only) |
+| Ratification merge | `426f3713e8f3bfbc024982a2f1372c555a82fa92` |
 
 ## 2. Real approval evidence
 
@@ -54,11 +55,11 @@ runtime robot profiles or real motion authority.
   vocabulary (jcheng-scenarios PR #5).
 - Still not contracted: runtime/ROS interfaces.
 
-The vocabulary PR is CI green and review-required; it is not on main yet.
+The vocabulary PR is merged; `contracted` is on main.
 
 ## 5. Ratification gaps
 
-1. interfaces #21 needs a real reviewer approval and merge;
-2. scenarios #5 needs a real reviewer approval and merge;
-3. only after both are on main can the manifest record the contract as
-   accepted/contracted. Until then Baseline 1 remains **INCOMPLETE**.
+1. interfaces #21 and scenarios #5 are merged; the contract is Accepted and the
+   offline vocabulary is `contracted` on main;
+2. the only remaining publication step is this record PR (#40); no technical or
+   approval gate remains.

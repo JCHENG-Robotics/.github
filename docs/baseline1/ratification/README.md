@@ -1,8 +1,9 @@
 # Baseline 1 Ratification & Freeze
 
-> Status: **INCOMPLETE pending human approvals/merges**. Technical evidence on
-> the fixed main and candidate PRs is green. No release or tag was created.
-> Deployment remains NOT READY.
+> Status: **COMPLETE**. Contract Accepted, vocabulary contracted, AR5L/R
+> registered, freeze record merged, and the ratified-main acceptance/review
+> passes. The final publication step is PR #40. No release or tag was created;
+> deployment remains NOT READY.
 
 ## Deliverables
 
@@ -18,6 +19,7 @@
 | 8 | Board Approval Checklist | [08](08-board-approval-checklist.md) |
 | 9 | Remote Delivery Report | [09](09-remote-delivery.md) |
 | 10 | Baseline 1 Release Notes Draft | [10](10-release-notes-draft.md) |
+| 11 | Final Handover Report | [11](11-final-handover.md) |
 
 ## Four statuses
 
@@ -25,11 +27,10 @@
 |---|---|
 | DEVELOPMENT READY | **YES** |
 | OFFLINE INTEGRATION READY | **YES** |
-| BASELINE 1 COMPLETE | **NO — pending #21/#5/#8 and this freeze PR** |
+| BASELINE 1 COMPLETE | **YES** |
 | DEPLOYMENT READY | **NO** |
 
 ## Required human actions
 
-Approve/merge interfaces #21 → scenarios #5 → devices #8 → this freeze PR, then
-rerun acceptance/regression/QA on the final merge SHAs and regenerate the
-manifest. No self-approval, no force-push, no release.
+Only the final publication PR #40 remains to be approved/merged. No code or
+artifact change is involved. No self-approval, no force-push, no release.

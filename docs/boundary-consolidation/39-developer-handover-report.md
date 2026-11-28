@@ -3,7 +3,9 @@
 > Status: **DEVELOPMENT READY** (offline; optional tool gaps). **OFFLINE
 > INTEGRATION READY: no. DEPLOYMENT READY: no.**
 > Handover date: 2026-11-28. No robot, production deployment or real hardware
-> output was touched.
+> output was touched. **Update:** TD-17/18/19 converged on development branches
+> the same day; the real cell now completes with `matched_with_unverified`.
+> `main` remains NO until #5/#3/#19 merge; see [40](40-td-contract-convergence-report.md).
 
 ## 1. Environment (measured)
 
@@ -80,7 +82,7 @@ implementation is intentionally left to you.
 | State | Result | Meaning |
 |---|---|---|
 | DEVELOPMENT READY | **YES** (optional gaps) | edit/build/test/debug/mock/validate/experiment offline |
-| OFFLINE INTEGRATION READY | **NO** | real artifacts do not complete the ArmPi×ore reference (TD-17/18/19) |
+| OFFLINE INTEGRATION READY | **NO on main** / **YES on convergence branches** | real artifacts complete with `matched_with_unverified` on #5/#3/#19; main awaits merge/QA (40) |
 | DEPLOYMENT READY | **NO** | deployed tree, base bridge, lease sharing, bench/hardware absent |
 
 You can start development now; do not wait for DEPLOYMENT READY.

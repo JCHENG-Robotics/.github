@@ -19,6 +19,13 @@
 | [`11-contract-regression-report.md`](11-contract-regression-report.md) | Contract & Regression Report | 版本关系、pyarrow 根因、分层回归方案 |
 | [`12-architecture-boundary-check-report.md`](12-architecture-boundary-check-report.md) | Architecture Boundary Check Report | report-only 运行结果、误报/漏报、CI 接入方案 |
 | [`13-deployment-readiness-preliminary.md`](13-deployment-readiness-preliminary.md) | Deployment Readiness Assessment | **NOT READY**；实机恢复前置条件清单 |
+| [`14-git-operation-log.md`](14-git-operation-log.md) | Git Operation Log | 受控 Git 操作、commit、push、PR、CI |
+| [`15-m1-allowlist-test-report.md`](15-m1-allowlist-test-report.md) | M1 Allowlist Test Report | 8/8 allowlist cases；checker 20 tests；gate OK |
+| [`16-learning-regression-report.md`](16-learning-regression-report.md) | Learning Regression Report | 隔离环境 68 passed；PR #5 |
+| [`17-authority-hardening-implementation-report.md`](17-authority-hardening-implementation-report.md) | Runtime Authority Implementation | System/Mobile/Studio 实现、状态机、16 项故障矩阵 |
+| [`18-independent-qa-report.md`](18-independent-qa-report.md) | Independent QA Report | **PASS**；Rework 关闭；可 push/PR，不可 merge |
+| [`19-remote-delivery-report.md`](19-remote-delivery-report.md) | Remote Delivery Report | 9 个 PR；mobile #6 冲突阻塞；未 merge |
+| [`20-file-changes-and-rollback.md`](20-file-changes-and-rollback.md) | File Changes & Rollback | 文件/测试/回滚 SHA 汇总 |
 
 ## 审批状态
 

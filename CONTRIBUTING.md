@@ -17,6 +17,10 @@
   `fix(system): latch UNKNOWN on dispatch timeout`
   `docs(governance): clarify hardware authorization`
 - 一个 PR 只做一件事；不混合重构与行为变化。
+- Agent 在已批准专项内遵循
+  [`docs/controlled-git-operations.md`](docs/controlled-git-operations.md)：
+  可建分支、add、commit、push 工作分支、开 PR；合并、发布、force-push 与历史
+  改写保留给 Board。未经任务授权的仓库不得写入。
 
 ## 契约变更
 

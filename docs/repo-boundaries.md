@@ -282,3 +282,5 @@ repo-local → contract 的提升走同一流程；提升前，其他仓不得�
 - [迁移方案](boundary-consolidation/04-migration-plan.md)
 - [执行权限审计](boundary-consolidation/02-runtime-authority-audit.md)
 - [边界门禁设计](boundary-consolidation/08-check-boundaries-design.md)
+- [受控 Git 操作](controlled-git-operations.md)
+- [2026-11-27 Git 治理事件](incidents/2026-11-27-git-authority.md)

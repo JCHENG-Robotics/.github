@@ -1,0 +1,16 @@
+# Boundary-check waivers. A waiver records a known residual; it does not
+# eliminate the finding. Critical safety rules are not waived silently: the
+# reason, owner and expiry are reviewed by the Board.
+schema_version: 1
+waivers:
+  - id: W-2026-11-27-01
+    rule: B4
+    repo: jcheng-studio
+    evidence: backend/app/legacy_motion.py
+    reason: >-
+      Legacy motion is default-disabled (HTTP 410 unless ARMPI_MODE=legacy and
+      ARMPI_ENABLE_LEGACY_MOTION=1). The code is isolated in
+      backend/app/legacy_motion.py and is not on the default backend path.
+      Removal is scheduled; the waiver expires 2026-12-31.
+    owner: jcheng-studio
+    expires: "2026-12-31"

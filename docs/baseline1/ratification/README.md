@@ -19,6 +19,7 @@
 | 8 | Board Approval Checklist | [08](08-board-approval-checklist.md) |
 | 9 | Remote Delivery Report | [09](09-remote-delivery.md) |
 | 10 | Baseline 1 Release Notes Draft | [10](10-release-notes-draft.md) |
+| 11 | Final Handover Report | [11](11-final-handover.md) |
 
 ## Four statuses
 

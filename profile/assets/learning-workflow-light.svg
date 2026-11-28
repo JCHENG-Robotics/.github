@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="760" viewBox="0 0 1600 760" role="img" aria-labelledby="title desc"><title id="title">Data collection and robot learning workflow</title><desc id="desc">Teach capture, dataset contract, LeRobot import/export, offline training, policy artifact and a system-gated intent. No policy has run on hardware.</desc><style>text{font-family:Inter, "Segoe UI", "Helvetica Neue", Arial, sans-serif;} .mono{font-family:"JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;}</style>
+<rect x="0" y="0" width="1600" height="760" rx="8" fill="#FFFFFF" opacity="1.0"/>
+<line x1="0" y1="0" x2="0" y2="760" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="80" y1="0" x2="80" y2="760" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="160" y1="0" x2="160" y2="760" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="240" y1="0" x2="240" y2="760" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="320" y1="0" x2="320" y2="760" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="400" y1="0" x2="400" y2="760" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="480" y1="0" x2="480" y2="760" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="560" y1="0" x2="560" y2="760" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="640" y1="0" x2="640" y2="760" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="720" y1="0" x2="720" y2="760" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="800" y1="0" x2="800" y2="760" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="880" y1="0" x2="880" y2="760" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="960" y1="0" x2="960" y2="760" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1040" y1="0" x2="1040" y2="760" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1120" y1="0" x2="1120" y2="760" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1200" y1="0" x2="1200" y2="760" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1280" y1="0" x2="1280" y2="760" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1360" y1="0" x2="1360" y2="760" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1440" y1="0" x2="1440" y2="760" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1520" y1="0" x2="1520" y2="760" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1600" y1="0" x2="1600" y2="760" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="0" x2="1600" y2="0" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="80" x2="1600" y2="80" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="160" x2="1600" y2="160" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="240" x2="1600" y2="240" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="320" x2="1600" y2="320" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="400" x2="1600" y2="400" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="480" x2="1600" y2="480" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="560" x2="1600" y2="560" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="640" x2="1600" y2="640" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="720" x2="1600" y2="720" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<text x="64" y="54" font-size="10.5" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" letter-spacing="1.8" opacity="1.0">DATA  /  LEARNING  /  AUTHORITY</text>
+<text x="64" y="94" font-size="30" fill="#0F1720" font-weight="720" text-anchor="start" opacity="1.0">From demonstration to bounded intent</text>
+<text x="64" y="122" font-size="13.5" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Offline-first by design: data, training and evaluation never touch the robot. Only the system layer can execute.</text>
+<circle cx="70" cy="154" r="4" fill="#1F5FE0"/>
+<text x="80" y="158" font-size="10" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">offline verified</text>
+<circle cx="200" cy="154" r="4" fill="#8A5A00"/>
+<text x="210" y="158" font-size="10" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">planned / partial</text>
+<circle cx="340" cy="154" r="4" fill="#B42318"/>
+<text x="350" y="158" font-size="10" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">not implemented</text>
+<rect x="64" y="200" width="200" height="156" rx="10" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="78" y="222" font-size="9" fill="#8A5A00" font-weight="700" text-anchor="start" class="mono" opacity="1.0">01</text>
+<text x="78" y="246" font-size="14" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Teach capture</text>
+<text x="78" y="266.0" font-size="9.2" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">PiPER leader,</text>
+<text x="78" y="278.42" font-size="9.2" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">hand-guided. Leader is</text>
+<text x="78" y="290.84" font-size="9.2" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">read-only; capture runs</text>
+<text x="78" y="303.26" font-size="9.2" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">operator-side.</text>
+<rect x="78" y="328" width="79" height="18" rx="9.0" fill="#FFFFFF" opacity="1.0"/>
+<text x="86" y="340.06" font-size="8.5" fill="#8A5A00" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">PLANNED · P3</text>
+<marker id="arr-w" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1F5FE0"/></marker>
+<line x1="267" y1="278.0" x2="285" y2="278.0" stroke="#1F5FE0" stroke-width="1.8" opacity="1.0" marker-end="url(#arr-w)"/>
+<rect x="288" y="200" width="200" height="156" rx="10" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="302" y="222" font-size="9" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" opacity="1.0">02</text>
+<text x="302" y="246" font-size="14" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Capture core</text>
+<text x="302" y="266.0" font-size="9.2" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Provenance gate,</text>
+<text x="302" y="278.42" font-size="9.2" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">non-blocking writer,</text>
+<text x="302" y="290.84" font-size="9.2" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">seal/verify. Mock CLI</text>
+<text x="302" y="303.26" font-size="9.2" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">runs recorded.</text>
+<rect x="302" y="328" width="100" height="18" rx="9.0" fill="#FFFFFF" opacity="1.0"/>
+<text x="310" y="340.06" font-size="8.5" fill="#1F5FE0" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">OFFLINE · v0.3.0</text>
+<line x1="491" y1="278.0" x2="509" y2="278.0" stroke="#1F5FE0" stroke-width="1.8" opacity="1.0" marker-end="url(#arr-w)"/>
+<rect x="512" y="200" width="200" height="156" rx="10" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="526" y="222" font-size="9" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" opacity="1.0">03</text>
+<text x="526" y="246" font-size="14" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Dataset contract</text>
+<text x="526" y="266.0" font-size="9.2" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Immutable dataset,</text>
+<text x="526" y="278.42" font-size="9.2" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">hashes,</text>
+<text x="526" y="290.84" font-size="9.2" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">commanded/measured</text>
+<text x="526" y="303.26" font-size="9.2" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">split, DQ-* validation.</text>
+<rect x="526" y="328" width="79" height="18" rx="9.0" fill="#FFFFFF" opacity="1.0"/>
+<text x="534" y="340.06" font-size="8.5" fill="#1F5FE0" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">OFFLINE · M1</text>
+<line x1="715" y1="278.0" x2="733" y2="278.0" stroke="#1F5FE0" stroke-width="1.8" opacity="1.0" marker-end="url(#arr-w)"/>
+<rect x="736" y="200" width="200" height="156" rx="10" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="750" y="222" font-size="9" fill="#8A5A00" font-weight="700" text-anchor="start" class="mono" opacity="1.0">04</text>
+<text x="750" y="246" font-size="14" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Train / evaluate</text>
+<text x="750" y="266.0" font-size="9.2" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">M2 plan and frozen</text>
+<text x="750" y="278.42" font-size="9.2" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">evaluation protocol. No</text>
+<text x="750" y="290.84" font-size="9.2" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">formal run yet.</text>
+<rect x="750" y="328" width="79" height="18" rx="9.0" fill="#FFFFFF" opacity="1.0"/>
+<text x="758" y="340.06" font-size="8.5" fill="#8A5A00" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">PLANNED · M2</text>
+<line x1="939" y1="278.0" x2="957" y2="278.0" stroke="#1F5FE0" stroke-width="1.8" opacity="1.0" marker-end="url(#arr-w)"/>
+<rect x="960" y="200" width="200" height="156" rx="10" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="974" y="222" font-size="9" fill="#B42318" font-weight="700" text-anchor="start" class="mono" opacity="1.0">05</text>
+<text x="974" y="246" font-size="14" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Policy artifact</text>
+<text x="974" y="266.0" font-size="9.2" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Versioned artifact and</text>
+<text x="974" y="278.42" font-size="9.2" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">policy card. No policy</text>
+<text x="974" y="290.84" font-size="9.2" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">exists in v0.2.0.</text>
+<rect x="974" y="328" width="95" height="18" rx="9.0" fill="#FFFFFF" opacity="1.0"/>
+<text x="982" y="340.06" font-size="8.5" fill="#B42318" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">NOT IMPLEMENTED</text>
+<line x1="1163" y1="278.0" x2="1181" y2="278.0" stroke="#8B97A6" stroke-width="1.8" opacity="1.0" marker-end="url(#arr-w)"/>
+<rect x="1184" y="200" width="200" height="156" rx="10" fill="#E8F0FF" stroke="#1F5FE0" stroke-width="1.6" opacity="1.0"/>
+<text x="1198" y="222" font-size="9" fill="#B42318" font-weight="700" text-anchor="start" class="mono" opacity="1.0">06</text>
+<text x="1198" y="246" font-size="14" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Intent proposal</text>
+<text x="1198" y="266.0" font-size="9.2" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">A policy may propose;</text>
+<text x="1198" y="278.42" font-size="9.2" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">the system lease, limits</text>
+<text x="1198" y="290.84" font-size="9.2" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">and stop latch decide.</text>
+<rect x="1198" y="328" width="95" height="18" rx="9.0" fill="#FFFFFF" opacity="1.0"/>
+<text x="1206" y="340.06" font-size="8.5" fill="#B42318" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">NOT IMPLEMENTED</text>
+<marker id="arr-m2" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#5A6675"/></marker>
+<path d="M 592 356 L 592 386 L 692 386 L 692 402" fill="none" stroke="#5A6675" stroke-width="1.4" stroke-dasharray="5 4" opacity="1.0" marker-end="url(#arr-m2)"/>
+<rect x="492" y="402" width="400" height="104" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="506" y="424" font-size="13" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">LeRobot v3 import / export</text>
+<text x="506" y="444" font-size="9" fill="#5A6675" font-weight="400" text-anchor="start" class="mono" opacity="1.0">public data, read-only adapters</text>
+<text x="506" y="464" font-size="9" fill="#5A6675" font-weight="400" text-anchor="start" class="mono" opacity="1.0">PushT 206 eps / 25,650 frames</text>
+<text x="506" y="480" font-size="9" fill="#5A6675" font-weight="400" text-anchor="start" class="mono" opacity="1.0">SO-101 50 eps / 11,939 frames</text>
+<rect x="774" y="416" width="73" height="18" rx="9.0" fill="#E6F4EA" opacity="1.0"/>
+<text x="782" y="428.06" font-size="8.5" fill="#1A7F37" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">M1 VERIFIED</text>
+<rect x="1184" y="402" width="352" height="150" rx="10" fill="#E8F0FF" stroke="#1F5FE0" stroke-width="1.6" opacity="1.0"/>
+<text x="1200" y="426" font-size="9" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" letter-spacing="1.2" opacity="1.0">SYSTEM AUTHORITY</text>
+<text x="1200" y="450" font-size="13" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">The policy never moves the robot</text>
+<text x="1200" y="472.0" font-size="9.3" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">A proposed skill becomes intent. The</text>
+<text x="1200" y="484.555" font-size="9.3" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">lease, safety veto, workspace check and</text>
+<text x="1200" y="497.11" font-size="9.3" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">stop latch remain the only path to the</text>
+<text x="1200" y="509.665" font-size="9.3" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">bridge.</text>
+<text x="1200" y="530" font-size="9" fill="#1F5FE0" font-weight="400" text-anchor="start" class="mono" opacity="1.0">jcheng-system  ·  ExecuteMotion</text>
+<rect x="64" y="580" width="1472" height="90" rx="10" fill="#FDE8E6" stroke="#B42318" stroke-width="1.2" opacity="1.0"/>
+<text x="84" y="606" font-size="10" fill="#B42318" font-weight="700" text-anchor="start" class="mono" letter-spacing="1.4" opacity="1.0">CURRENT REALITY</text>
+<text x="84" y="632" font-size="12" fill="#0F1720" font-weight="600" text-anchor="start" opacity="1.0">No own-robot dataset has been captured  ·  no policy has been trained  ·  no policy has run on hardware</text>
+<text x="84" y="652" font-size="9.5" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">M1 is dataset infrastructure, not a learning result. Public-dataset round-trips are verified; real-robot generalisation is unverified.</text>
+<line x1="48" y1="718" x2="1552" y2="718" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="48" y="736" font-size="10" fill="#8B97A6" font-weight="400" text-anchor="start" class="mono" opacity="1.0">Source: jcheng-learning v0.2.0 · docs/m1 · ACCEPTANCE; jcheng-teleop v0.3.0 capture core; ADR-0007 (leader read-only).</text>
+<text x="1552" y="736" font-size="10" fill="#8B97A6" font-weight="400" text-anchor="end" class="mono" opacity="1.0">JCHENG ROBOTICS  /  LEARNING</text>
+</svg>

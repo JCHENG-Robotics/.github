@@ -32,7 +32,36 @@ The ecosystem has completed its first **offline integration baseline**:
 The detailed record is in [`docs/baseline1/ratification/`](docs/baseline1/ratification/README.md).
 This is not a v1.0 release claim and no release/tag has been created.
 
+## Platform pivot (2026-11-28)
+
+The owner approved a platform pivot on 2026-11-28. It changes the hardware plan,
+not the Baseline 1 record:
+
+- **ArmPi Ultra is `Frozen`.** The read-only demo, deployment files, image
+  digest and rollback path are retained; motion-authority revocation is pending
+  operator action. Do not restart the vendor container.
+- **The successor is a fixed-cell PiPER X.** P2 is read-only in progress (two
+  CAN channels; leader read-only; follower not commanded). Production execution
+  is P3, planned.
+- **AR5 is gated** on six identity facts (vendor/model, controller topology, SDK
+  and license, EtherCAT/real-time, URDF/joint signs/limits, gripper interface).
+- **Mobile manipulation is P7, deferred.** `jcheng-mobile` stays dormant.
+- **M6 S14 and the ecosystem G8 re-run are retired** with the platform, not
+  deferred. S13/S17 remain valid ArmPi evidence.
+- **Contracts:** `jcheng-interfaces` v0.3.0 was released on 2026-11-28
+  (robot-profile v2, `chain_id`, gripper units; `8bc92d18…`). The signed v0.2.0
+  pin (`afca22…`) remains the deployed contract for the current runtime;
+  migration is in progress. The device registry now holds 10 device profiles /
+  7 capability profiles.
+
+The public summary is [`docs/platform-transition.md`](docs/platform-transition.md);
+the architecture is [`docs/architecture.md`](docs/architecture.md). No dates are
+promised.
+
 ## Previous state (2026-11-26)
+
+> Historical snapshot. Current platform state is in “Platform pivot” above and
+> the current versions are in the repository `VERSION` files.
 
 - M1–M5.2 are complete; M6 S13 replay (21/21) and S17 real MoveIt plan-only
   pass. S14 base and a full G8 re-run remain.
@@ -74,6 +103,12 @@ This is not a v1.0 release claim and no release/tag has been created.
 | Document | Content |
 |---|---|
 | [profile/README.md](profile/README.md) | Organization profile (English canonical) |
+| [profile/README.zh-CN.md](profile/README.zh-CN.md) | Organization profile (Chinese translation) |
+| [profile/assets/README.md](profile/assets/README.md) | Profile SVG/photo provenance and maintenance |
+| [docs/architecture.md](docs/architecture.md) | Layers, repository responsibilities, dependency rules and the single motion path |
+| [docs/evidence.md](docs/evidence.md) | Status vocabulary, evidence classes, frozen baseline and Baseline 1 |
+| [docs/platform-transition.md](docs/platform-transition.md) | ArmPi freeze, PiPER X, AR5 gate and P0–P7 |
+| [docs/safety-and-limitations.md](docs/safety-and-limitations.md) | Safety non-claims, limitations, license and governance |
 | [docs/baseline1/ratification/README.md](docs/baseline1/ratification/README.md) | Baseline 1 acceptance, manifest, QA, freeze record |
 | [ROADMAP.md](ROADMAP.md) | Ecosystem milestones M0–M8, Baseline 1 and current state |
 | [CHANGELOG.md](CHANGELOG.md) | Ecosystem-level change record |
@@ -90,6 +125,7 @@ This is not a v1.0 release claim and no release/tag has been created.
 ```text
 profile/README.md                 Organization profile (English)
 profile/README.zh-CN.md           Organization profile (Chinese translation)
+profile/assets/                   Self-contained SVG and photo assets
 ROADMAP.md                        Ecosystem roadmap
 CHANGELOG.md                      Ecosystem changelog
 ACCEPTANCE.md                     Ecosystem acceptance report
@@ -101,7 +137,8 @@ CODEOWNERS.template               Copied into each repository
 .github/workflows/                Reusable workflows + organization health check
 actions/                          Composite Actions
 ISSUE_TEMPLATE/                   Issue, feature, design and config templates
-docs/                             Organization policies, document standard and templates
+docs/                             Organization policies, architecture, evidence,
+                                  platform transition, safety and templates
 ```
 
 ## Constraints

@@ -12,6 +12,26 @@ versioned.
 
 ### Added
 
+- Organization profile redesign: a 12-section bilingual portal with a hero
+  banner, architecture, dependency graph, single motion path, capability matrix,
+  hardware/demonstration gallery, frozen-baseline evidence, learning workflow
+  and P0–P7 / S0–S8 roadmap. English is canonical; the Chinese README is a full
+  translation.
+- `profile/assets/`: 16 self-contained SVG assets with light/dark variants plus
+  three real assets — the ArmPi first-grasp photograph, the frozen ArmPi Debug
+  Studio screenshot and the public-data ore S1 overlay (CC BY 4.0, attributed).
+- `docs/architecture.md`, `docs/evidence.md`, `docs/platform-transition.md` and
+  `docs/safety-and-limitations.md`: the supporting detail behind the profile.
+- Platform pivot (2026-11-28): ArmPi Ultra `Frozen`; fixed-cell PiPER X first
+  (P2 read-only in progress); AR5 behind a six-fact identity gate; mobile P7
+  deferred; M6 S14 and the ecosystem G8 re-run retired with the platform.
+- `jcheng-interfaces` v0.3.0: multi-chain contract (robot-profile v2, `chain_id`,
+  gripper units; manifest `sha256:8bc92d18…`). The tag is annotated; the signed
+  v0.2.0 tag remains the deployed pin, and migration is in progress.
+- `jcheng-devices` registry now holds 10 device profiles / 7 capability
+  profiles (`agilex.agx-gripper` added; the #41 record lists 9); offline
+  validation only.
+
 - `docs/repo-boundaries.md` v1.0: the ecosystem responsibility-boundary
   specification. It fixes the Repository Ownership, Source of Truth, Runtime
   Authority, Schema Ownership and Evaluation Ownership matrices, the contract
@@ -113,6 +133,14 @@ versioned.
 
 ### Changed
 
+- The organization profile no longer frames the work as a degree capstone; it is
+  described as a long-term personal development project. The profile corrects
+  the repository map: `jcheng-scenarios` is included, `jcheng-mobile-bench` is a
+  non-git sandbox, and `jcheng-design`/`jcheng-system-r5`/`jcheng-system-v020`
+  are working checkouts rather than public repositories.
+- Version/status corrections: studio 0.8.0, learning 0.2.0, teleop 0.3.0,
+  interfaces 0.3.0 (v0.2.0 deployed pin), system 14 ROS packages, devices
+  10 device profiles / 7 capability profiles.
 - `jcheng-interfaces` v0.2.0 is adopted by `jcheng-system`, `jcheng-mobile`,
   `jcheng-learning`, `jcheng-simulation`, `jcheng-teleop`, `jcheng-studio` and
   `jcheng-applications`; `jcheng-perception` remains on `>=0.1,<0.2`.

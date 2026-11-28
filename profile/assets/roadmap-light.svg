@@ -1,0 +1,236 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc"><title id="title">Platform and ore-sorting roadmap</title><desc id="desc">P0 to P7 fixed-cell platform plan and S0 to S8 ore-sorting stages, with current status and dependencies.</desc><style>text{font-family:Inter, "Segoe UI", "Helvetica Neue", Arial, sans-serif;} .mono{font-family:"JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;}</style>
+<rect x="0" y="0" width="1600" height="900" rx="8" fill="#FFFFFF" opacity="1.0"/>
+<line x1="0" y1="0" x2="0" y2="900" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="80" y1="0" x2="80" y2="900" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="160" y1="0" x2="160" y2="900" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="240" y1="0" x2="240" y2="900" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="320" y1="0" x2="320" y2="900" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="400" y1="0" x2="400" y2="900" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="480" y1="0" x2="480" y2="900" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="560" y1="0" x2="560" y2="900" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="640" y1="0" x2="640" y2="900" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="720" y1="0" x2="720" y2="900" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="800" y1="0" x2="800" y2="900" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="880" y1="0" x2="880" y2="900" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="960" y1="0" x2="960" y2="900" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1040" y1="0" x2="1040" y2="900" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1120" y1="0" x2="1120" y2="900" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1200" y1="0" x2="1200" y2="900" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1280" y1="0" x2="1280" y2="900" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1360" y1="0" x2="1360" y2="900" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1440" y1="0" x2="1440" y2="900" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1520" y1="0" x2="1520" y2="900" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="1600" y1="0" x2="1600" y2="900" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="0" x2="1600" y2="0" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="80" x2="1600" y2="80" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="160" x2="1600" y2="160" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="240" x2="1600" y2="240" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="320" x2="1600" y2="320" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="400" x2="1600" y2="400" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="480" x2="1600" y2="480" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="560" x2="1600" y2="560" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="640" x2="1600" y2="640" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="720" x2="1600" y2="720" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="800" x2="1600" y2="800" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<line x1="0" y1="880" x2="1600" y2="880" stroke="#E7ECF2" stroke-width="1" opacity="0.14"/>
+<text x="64" y="54" font-size="10.5" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" letter-spacing="1.8" opacity="1.0">ROADMAP  /  PLATFORM + ORE SORTING</text>
+<text x="64" y="94" font-size="30" fill="#0F1720" font-weight="720" text-anchor="start" opacity="1.0">From a frozen baseline to a fixed cell</text>
+<text x="64" y="122" font-size="13.5" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Approved 2026-11-28. No dates are promised; phases are ordered by dependency, not calendar.</text>
+<circle cx="64" cy="152" r="4" fill="#1A7F37"/>
+<text x="74" y="156" font-size="9.5" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">complete</text>
+<circle cx="204" cy="152" r="4" fill="#8A5A00"/>
+<text x="214" y="156" font-size="9.5" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">in progress</text>
+<circle cx="344" cy="152" r="4" fill="#8B97A6"/>
+<text x="354" y="156" font-size="9.5" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">planned</text>
+<circle cx="484" cy="152" r="4" fill="#B42318"/>
+<text x="494" y="156" font-size="9.5" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">blocked / gated</text>
+<circle cx="624" cy="152" r="4" fill="#8B97A6"/>
+<text x="634" y="156" font-size="9.5" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">deferred</text>
+<text x="64" y="206" font-size="10" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" letter-spacing="1.4" opacity="1.0">PLATFORM</text>
+<text x="64" y="224" font-size="10" fill="#8B97A6" font-weight="400" text-anchor="start" opacity="1.0">P0–P7  ·  fixed cell first</text>
+<line x1="230" y1="270" x2="1560" y2="270" stroke="#D5DDE6" stroke-width="1.4" opacity="1.0"/>
+<circle cx="238" cy="270" r="4.5" fill="#8A5A00" stroke="#FFFFFF" stroke-width="2"/>
+<rect x="230" y="286" width="150" height="132" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<rect x="230" y="286" width="3" height="132" rx="1.5" fill="#8A5A00" opacity="1.0"/>
+<text x="242" y="306" font-size="8.5" fill="#8A5A00" font-weight="700" text-anchor="start" class="mono" letter-spacing="1" opacity="1.0">P0</text>
+<text x="242" y="326" font-size="12.5" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">ArmPi freeze</text>
+<text x="242" y="344.0" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Frozen platform;</text>
+<text x="242" y="354.92" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">revocation pending.</text>
+<text x="242" y="365.84000000000003" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Read-only demo</text>
+<text x="242" y="376.76" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">retained.</text>
+<rect x="242" y="394" width="69" height="17" rx="8.5" fill="#FFFFFF" opacity="1.0"/>
+<text x="250" y="405.308" font-size="7.8" fill="#8A5A00" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">IN PROGRESS</text>
+<circle cx="406" cy="270" r="4.5" fill="#8A5A00" stroke="#FFFFFF" stroke-width="2"/>
+<rect x="398" y="286" width="150" height="132" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<rect x="398" y="286" width="3" height="132" rx="1.5" fill="#8A5A00" opacity="1.0"/>
+<text x="410" y="306" font-size="8.5" fill="#8A5A00" font-weight="700" text-anchor="start" class="mono" letter-spacing="1" opacity="1.0">P1</text>
+<text x="410" y="326" font-size="12.5" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Contracts v0.3.0</text>
+<text x="410" y="344.0" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">v0.3.0 released;</text>
+<text x="410" y="354.92" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">consumers migrate from</text>
+<text x="410" y="365.84000000000003" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">the v0.2.0 pin.</text>
+<rect x="410" y="394" width="69" height="17" rx="8.5" fill="#FFFFFF" opacity="1.0"/>
+<text x="418" y="405.308" font-size="7.8" fill="#8A5A00" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">IN PROGRESS</text>
+<circle cx="574" cy="270" r="4.5" fill="#8A5A00" stroke="#FFFFFF" stroke-width="2"/>
+<rect x="566" y="286" width="150" height="132" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<rect x="566" y="286" width="3" height="132" rx="1.5" fill="#8A5A00" opacity="1.0"/>
+<text x="578" y="306" font-size="8.5" fill="#8A5A00" font-weight="700" text-anchor="start" class="mono" letter-spacing="1" opacity="1.0">P2</text>
+<text x="578" y="326" font-size="12.5" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">PiPER read-only</text>
+<text x="578" y="344.0" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Two CAN channels;</text>
+<text x="578" y="354.92" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">leader/follower split;</text>
+<text x="578" y="365.84000000000003" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">zero writes.</text>
+<rect x="578" y="394" width="69" height="17" rx="8.5" fill="#FFFFFF" opacity="1.0"/>
+<text x="586" y="405.308" font-size="7.8" fill="#8A5A00" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">IN PROGRESS</text>
+<circle cx="742" cy="270" r="4.5" fill="#8B97A6" stroke="#FFFFFF" stroke-width="2"/>
+<rect x="734" y="286" width="150" height="132" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<rect x="734" y="286" width="3" height="132" rx="1.5" fill="#8B97A6" opacity="1.0"/>
+<text x="746" y="306" font-size="8.5" fill="#8B97A6" font-weight="700" text-anchor="start" class="mono" letter-spacing="1" opacity="1.0">P3</text>
+<text x="746" y="326" font-size="12.5" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">PiPER production</text>
+<text x="746" y="344.0" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Teach → replay →</text>
+<text x="746" y="354.92" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">supervised</text>
+<text x="746" y="365.84000000000003" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">JOINT_TRAJECTORY.</text>
+<rect x="746" y="394" width="49" height="17" rx="8.5" fill="#FFFFFF" opacity="1.0"/>
+<text x="754" y="405.308" font-size="7.8" fill="#8B97A6" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">PLANNED</text>
+<circle cx="910" cy="270" r="4.5" fill="#8B97A6" stroke="#FFFFFF" stroke-width="2"/>
+<rect x="902" y="286" width="150" height="132" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<rect x="902" y="286" width="3" height="132" rx="1.5" fill="#8B97A6" opacity="1.0"/>
+<text x="914" y="306" font-size="8.5" fill="#8B97A6" font-weight="700" text-anchor="start" class="mono" letter-spacing="1" opacity="1.0">P4</text>
+<text x="914" y="326" font-size="12.5" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">AR5 identity gate</text>
+<text x="914" y="344.0" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Six facts: vendor,</text>
+<text x="914" y="354.92" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">controller, SDK,</text>
+<text x="914" y="365.84000000000003" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">EtherCAT, URDF,</text>
+<text x="914" y="376.76" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">gripper.</text>
+<rect x="914" y="394" width="49" height="17" rx="8.5" fill="#FFFFFF" opacity="1.0"/>
+<text x="922" y="405.308" font-size="7.8" fill="#8B97A6" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">PLANNED</text>
+<text x="1042" y="306" font-size="8" fill="#8B97A6" font-weight="400" text-anchor="end" class="mono" opacity="1.0">∥ P1–P3</text>
+<circle cx="1078" cy="270" r="4.5" fill="#B42318" stroke="#FFFFFF" stroke-width="2"/>
+<rect x="1070" y="286" width="150" height="132" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<rect x="1070" y="286" width="3" height="132" rx="1.5" fill="#B42318" opacity="1.0"/>
+<text x="1082" y="306" font-size="8.5" fill="#B42318" font-weight="700" text-anchor="start" class="mono" letter-spacing="1" opacity="1.0">P5</text>
+<text x="1082" y="326" font-size="12.5" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">AR5 dual-arm</text>
+<text x="1082" y="344.0" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Read-only, plan-only,</text>
+<text x="1082" y="354.92" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">then supervised</text>
+<text x="1082" y="365.84000000000003" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">single-arm.</text>
+<rect x="1082" y="394" width="40" height="17" rx="8.5" fill="#FFFFFF" opacity="1.0"/>
+<text x="1090" y="405.308" font-size="7.8" fill="#B42318" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">GATED</text>
+<circle cx="1246" cy="270" r="4.5" fill="#8B97A6" stroke="#FFFFFF" stroke-width="2"/>
+<rect x="1238" y="286" width="150" height="132" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<rect x="1238" y="286" width="3" height="132" rx="1.5" fill="#8B97A6" opacity="1.0"/>
+<text x="1250" y="306" font-size="8.5" fill="#8B97A6" font-weight="700" text-anchor="start" class="mono" letter-spacing="1" opacity="1.0">P6</text>
+<text x="1250" y="326" font-size="12.5" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Fixed-cell close</text>
+<text x="1250" y="344.0" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Lock, per-platform</text>
+<text x="1250" y="354.92" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">evidence, release</text>
+<text x="1250" y="365.84000000000003" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">notes.</text>
+<rect x="1250" y="394" width="49" height="17" rx="8.5" fill="#FFFFFF" opacity="1.0"/>
+<text x="1258" y="405.308" font-size="7.8" fill="#8B97A6" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">PLANNED</text>
+<circle cx="1414" cy="270" r="4.5" fill="#8B97A6" stroke="#FFFFFF" stroke-width="2"/>
+<rect x="1406" y="286" width="150" height="132" rx="9" fill="#F6F8FA" stroke="#8B97A6" stroke-width="1.4" stroke-dasharray="5 4" opacity="1.0"/>
+<rect x="1406" y="286" width="3" height="132" rx="1.5" fill="#8B97A6" opacity="1.0"/>
+<text x="1418" y="306" font-size="8.5" fill="#8B97A6" font-weight="700" text-anchor="start" class="mono" letter-spacing="1" opacity="1.0">P7</text>
+<text x="1418" y="326" font-size="12.5" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Mobile</text>
+<text x="1418" y="344.0" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Mobile manipulation is</text>
+<text x="1418" y="354.92" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">a separate project.</text>
+<rect x="1418" y="394" width="54" height="17" rx="8.5" fill="#FFFFFF" opacity="1.0"/>
+<text x="1426" y="405.308" font-size="7.8" fill="#8B97A6" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">DEFERRED</text>
+<text x="64" y="432" font-size="10" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" letter-spacing="1.4" opacity="1.0">ORE SORTING</text>
+<text x="64" y="450" font-size="10" fill="#8B97A6" font-weight="400" text-anchor="start" opacity="1.0">S0–S8  ·  scenario-led</text>
+<line x1="230" y1="496" x2="1560" y2="496" stroke="#D5DDE6" stroke-width="1.4" opacity="1.0"/>
+<circle cx="238" cy="496" r="4.5" fill="#1A7F37" stroke="#FFFFFF" stroke-width="2"/>
+<rect x="230" y="512" width="132" height="140" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<rect x="230" y="512" width="3" height="140" rx="1.5" fill="#1A7F37" opacity="1.0"/>
+<text x="242" y="532" font-size="8.5" fill="#1A7F37" font-weight="700" text-anchor="start" class="mono" letter-spacing="1" opacity="1.0">S0</text>
+<text x="242" y="552" font-size="12.5" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Research</text>
+<text x="242" y="570.0" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Design and dataset</text>
+<text x="242" y="580.92" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">survey.</text>
+<rect x="242" y="628" width="54" height="17" rx="8.5" fill="#FFFFFF" opacity="1.0"/>
+<text x="250" y="639.308" font-size="7.8" fill="#1A7F37" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">COMPLETE</text>
+<circle cx="385" cy="496" r="4.5" fill="#8A5A00" stroke="#FFFFFF" stroke-width="2"/>
+<rect x="377" y="512" width="132" height="140" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<rect x="377" y="512" width="3" height="140" rx="1.5" fill="#8A5A00" opacity="1.0"/>
+<text x="389" y="532" font-size="8.5" fill="#8A5A00" font-weight="700" text-anchor="start" class="mono" letter-spacing="1" opacity="1.0">S1</text>
+<text x="389" y="552" font-size="12.5" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Offline S1</text>
+<text x="389" y="570.0" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Synthetic + public</text>
+<text x="389" y="580.92" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">baseline; real ore</text>
+<text x="389" y="591.84" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">unverified.</text>
+<rect x="389" y="628" width="49" height="17" rx="8.5" fill="#FFFFFF" opacity="1.0"/>
+<text x="397" y="639.308" font-size="7.8" fill="#8A5A00" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">PARTIAL</text>
+<circle cx="532" cy="496" r="4.5" fill="#8B97A6" stroke="#FFFFFF" stroke-width="2"/>
+<rect x="524" y="512" width="132" height="140" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<rect x="524" y="512" width="3" height="140" rx="1.5" fill="#8B97A6" opacity="1.0"/>
+<text x="536" y="532" font-size="8.5" fill="#8B97A6" font-weight="700" text-anchor="start" class="mono" letter-spacing="1" opacity="1.0">S2</text>
+<text x="536" y="552" font-size="12.5" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Instance 3D</text>
+<text x="536" y="570.0" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Re-run on the fixed</text>
+<text x="536" y="580.92" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">cell; new mount</text>
+<text x="536" y="591.84" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">calibration.</text>
+<rect x="536" y="628" width="49" height="17" rx="8.5" fill="#FFFFFF" opacity="1.0"/>
+<text x="544" y="639.308" font-size="7.8" fill="#8B97A6" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">PLANNED</text>
+<circle cx="679" cy="496" r="4.5" fill="#1F5FE0" stroke="#FFFFFF" stroke-width="2"/>
+<rect x="671" y="512" width="132" height="140" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<rect x="671" y="512" width="3" height="140" rx="1.5" fill="#1F5FE0" opacity="1.0"/>
+<text x="683" y="532" font-size="8.5" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" letter-spacing="1" opacity="1.0">S3</text>
+<text x="683" y="552" font-size="12.5" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Scene state</text>
+<text x="683" y="570.0" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Offline schema;</text>
+<text x="683" y="580.92" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">cross-repo contract</text>
+<text x="683" y="591.84" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">still needed.</text>
+<rect x="683" y="628" width="49" height="17" rx="8.5" fill="#FFFFFF" opacity="1.0"/>
+<text x="691" y="639.308" font-size="7.8" fill="#1F5FE0" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">OFFLINE</text>
+<circle cx="826" cy="496" r="4.5" fill="#8A5A00" stroke="#FFFFFF" stroke-width="2"/>
+<rect x="818" y="512" width="132" height="140" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<rect x="818" y="512" width="3" height="140" rx="1.5" fill="#8A5A00" opacity="1.0"/>
+<text x="830" y="532" font-size="8.5" fill="#8A5A00" font-weight="700" text-anchor="start" class="mono" letter-spacing="1" opacity="1.0">S4</text>
+<text x="830" y="552" font-size="12.5" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Multi-view</text>
+<text x="830" y="570.0" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Fixed external +</text>
+<text x="830" y="580.92" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">optional wrist;</text>
+<text x="830" y="591.84" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">re-plan.</text>
+<rect x="830" y="628" width="49" height="17" rx="8.5" fill="#FFFFFF" opacity="1.0"/>
+<text x="838" y="639.308" font-size="7.8" fill="#8A5A00" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">RE-PLAN</text>
+<circle cx="973" cy="496" r="4.5" fill="#8B97A6" stroke="#FFFFFF" stroke-width="2"/>
+<rect x="965" y="512" width="132" height="140" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<rect x="965" y="512" width="3" height="140" rx="1.5" fill="#8B97A6" opacity="1.0"/>
+<text x="977" y="532" font-size="8.5" fill="#8B97A6" font-weight="700" text-anchor="start" class="mono" letter-spacing="1" opacity="1.0">S5</text>
+<text x="977" y="552" font-size="12.5" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Active view</text>
+<text x="977" y="570.0" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">NBV in PiPER</text>
+<text x="977" y="580.92" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">simulation; motion</text>
+<text x="977" y="591.84" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">stays system-owned.</text>
+<rect x="977" y="628" width="49" height="17" rx="8.5" fill="#FFFFFF" opacity="1.0"/>
+<text x="985" y="639.308" font-size="7.8" fill="#8B97A6" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">PLANNED</text>
+<circle cx="1120" cy="496" r="4.5" fill="#8A5A00" stroke="#FFFFFF" stroke-width="2"/>
+<rect x="1112" y="512" width="132" height="140" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<rect x="1112" y="512" width="3" height="140" rx="1.5" fill="#8A5A00" opacity="1.0"/>
+<text x="1124" y="532" font-size="8.5" fill="#8A5A00" font-weight="700" text-anchor="start" class="mono" letter-spacing="1" opacity="1.0">S6</text>
+<text x="1124" y="552" font-size="12.5" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Graspability</text>
+<text x="1124" y="570.0" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Re-derive for 6-DoF</text>
+<text x="1124" y="580.92" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">and a parallel</text>
+<text x="1124" y="591.84" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">gripper.</text>
+<rect x="1124" y="628" width="59" height="17" rx="8.5" fill="#FFFFFF" opacity="1.0"/>
+<text x="1132" y="639.308" font-size="7.8" fill="#8A5A00" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">RE-DERIVE</text>
+<circle cx="1267" cy="496" r="4.5" fill="#8B97A6" stroke="#FFFFFF" stroke-width="2"/>
+<rect x="1259" y="512" width="132" height="140" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<rect x="1259" y="512" width="3" height="140" rx="1.5" fill="#8B97A6" opacity="1.0"/>
+<text x="1271" y="532" font-size="8.5" fill="#8B97A6" font-weight="700" text-anchor="start" class="mono" letter-spacing="1" opacity="1.0">S7</text>
+<text x="1271" y="552" font-size="12.5" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Integration</text>
+<text x="1271" y="570.0" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Applications,</text>
+<text x="1271" y="580.92" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">learning and</text>
+<text x="1271" y="591.84" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">benchmark</text>
+<text x="1271" y="602.76" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">consumers.</text>
+<rect x="1271" y="628" width="49" height="17" rx="8.5" fill="#FFFFFF" opacity="1.0"/>
+<text x="1279" y="639.308" font-size="7.8" fill="#8B97A6" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">PLANNED</text>
+<circle cx="1414" cy="496" r="4.5" fill="#B42318" stroke="#FFFFFF" stroke-width="2"/>
+<rect x="1406" y="512" width="132" height="140" rx="9" fill="#F6F8FA" stroke="#B42318" stroke-width="1.4" stroke-dasharray="5 4" opacity="1.0"/>
+<rect x="1406" y="512" width="3" height="140" rx="1.5" fill="#B42318" opacity="1.0"/>
+<text x="1418" y="532" font-size="8.5" fill="#B42318" font-weight="700" text-anchor="start" class="mono" letter-spacing="1" opacity="1.0">S8</text>
+<text x="1418" y="552" font-size="12.5" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">Closed loop</text>
+<text x="1418" y="570.0" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Blocked on</text>
+<text x="1418" y="580.92" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">P2/P3/P6; no ArmPi</text>
+<text x="1418" y="591.84" font-size="8.4" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">result transfers.</text>
+<rect x="1418" y="628" width="49" height="17" rx="8.5" fill="#FFFFFF" opacity="1.0"/>
+<text x="1426" y="639.308" font-size="7.8" fill="#B42318" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">BLOCKED</text>
+<rect x="64" y="680" width="1472" height="96" rx="10" fill="#E8F0FF" stroke="#1F5FE0" stroke-width="1.2" opacity="1.0"/>
+<text x="84" y="706" font-size="10" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" letter-spacing="1.4" opacity="1.0">CURRENT GATE  /  BASELINE 1</text>
+<text x="84" y="732" font-size="12" fill="#0F1720" font-weight="650" text-anchor="start" class="mono" opacity="1.0">Offline integration: CONDITIONAL   ·   BASELINE 1 COMPLETE: NO   ·   DEPLOYMENT READY: NO</text>
+<text x="84" y="752" font-size="9.5" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Technical checks pass on the candidate tree; required PRs are unmerged. P1–P3 are the next evidence-producing phases.</text>
+<text x="64" y="804" font-size="9" fill="#8B97A6" font-weight="400" text-anchor="start" class="mono" opacity="1.0">P4 may run in parallel with P1–P3 (document-only). P5 stays gated until every AR5 identity fact has a source.</text>
+<text x="64" y="824" font-size="9" fill="#8B97A6" font-weight="400" text-anchor="start" class="mono" opacity="1.0">Mobile manipulation (P7) is deferred: jcheng-mobile stays Experimental and dormant. No dates are promised.</text>
+<line x1="48" y1="858" x2="1552" y2="858" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="48" y="876" font-size="10" fill="#8B97A6" font-weight="400" text-anchor="start" class="mono" opacity="1.0">Source: approved platform-pivot record and ADR-0007 (2026-11-28); jcheng-scenarios PLATFORM_PIVOT_20261128.</text>
+<text x="1552" y="876" font-size="10" fill="#8B97A6" font-weight="400" text-anchor="end" class="mono" opacity="1.0">JCHENG ROBOTICS  /  ROADMAP</text>
+</svg>

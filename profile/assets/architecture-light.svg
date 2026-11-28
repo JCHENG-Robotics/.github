@@ -1,0 +1,228 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1020" viewBox="0 0 1600 1020" role="img" aria-labelledby="title desc"><title id="title">JCHENG Robotics ecosystem architecture</title><desc id="desc">Five layers plus side planes: governance, contracts, one system authority, capabilities, applications, and a hardware plane with ArmPi frozen, PiPER X read-only and AR5 planned.</desc><style>text{font-family:Inter, "Segoe UI", "Helvetica Neue", Arial, sans-serif;} .mono{font-family:"JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;}</style>
+<rect x="0" y="0" width="1600" height="1020" rx="8" fill="#FFFFFF" opacity="1.0"/>
+<line x1="0" y1="0" x2="0" y2="1020" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="80" y1="0" x2="80" y2="1020" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="160" y1="0" x2="160" y2="1020" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="240" y1="0" x2="240" y2="1020" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="320" y1="0" x2="320" y2="1020" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="400" y1="0" x2="400" y2="1020" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="480" y1="0" x2="480" y2="1020" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="560" y1="0" x2="560" y2="1020" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="640" y1="0" x2="640" y2="1020" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="720" y1="0" x2="720" y2="1020" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="800" y1="0" x2="800" y2="1020" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="880" y1="0" x2="880" y2="1020" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="960" y1="0" x2="960" y2="1020" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="1040" y1="0" x2="1040" y2="1020" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="1120" y1="0" x2="1120" y2="1020" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="1200" y1="0" x2="1200" y2="1020" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="1280" y1="0" x2="1280" y2="1020" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="1360" y1="0" x2="1360" y2="1020" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="1440" y1="0" x2="1440" y2="1020" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="1520" y1="0" x2="1520" y2="1020" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="1600" y1="0" x2="1600" y2="1020" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="0" y1="0" x2="1600" y2="0" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="0" y1="80" x2="1600" y2="80" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="0" y1="160" x2="1600" y2="160" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="0" y1="240" x2="1600" y2="240" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="0" y1="320" x2="1600" y2="320" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="0" y1="400" x2="1600" y2="400" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="0" y1="480" x2="1600" y2="480" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="0" y1="560" x2="1600" y2="560" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="0" y1="640" x2="1600" y2="640" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="0" y1="720" x2="1600" y2="720" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="0" y1="800" x2="1600" y2="800" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="0" y1="880" x2="1600" y2="880" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<line x1="0" y1="960" x2="1600" y2="960" stroke="#E7ECF2" stroke-width="1" opacity="0.18"/>
+<text x="64" y="54" font-size="10.5" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" letter-spacing="1.8" opacity="1.0">ECOSYSTEM MAP  /  STATUS 2026-11-28</text>
+<text x="64" y="92" font-size="32" fill="#0F1720" font-weight="720" text-anchor="start" opacity="1.0">Architecture</text>
+<text x="64" y="120" font-size="14" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Declarations, contracts, one execution authority, capabilities and applications.</text>
+<line x1="64" y1="150" x2="96" y2="150" stroke="#1F5FE0" stroke-width="2" opacity="1.0"/>
+<text x="104" y="154" font-size="10" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">runtime dependency</text>
+<line x1="248" y1="150" x2="280" y2="150" stroke="#5A6675" stroke-width="1.6" stroke-dasharray="5 4" opacity="1.0"/>
+<text x="288" y="154" font-size="10" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">declaration / read-only</text>
+<circle cx="470" cy="150" r="4" fill="#1A7F37"/>
+<text x="480" y="154" font-size="10" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">hardware verified</text>
+<circle cx="600" cy="150" r="4" fill="#8A5A00"/>
+<text x="610" y="154" font-size="10" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">partially verified</text>
+<circle cx="740" cy="150" r="4" fill="#1F5FE0"/>
+<text x="750" y="154" font-size="10" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">offline verified</text>
+<circle cx="860" cy="150" r="4" fill="#8B97A6"/>
+<text x="870" y="154" font-size="10" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">planned / dormant</text>
+<line x1="140" y1="184" x2="140" y2="276" stroke="#D5DDE6" stroke-width="1.2" opacity="1.0"/>
+<text x="64" y="206" font-size="17" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" opacity="1.0">L4</text>
+<text x="64" y="224" font-size="11" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Applications</text>
+<line x1="140" y1="292" x2="140" y2="488" stroke="#D5DDE6" stroke-width="1.2" opacity="1.0"/>
+<text x="64" y="314" font-size="17" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" opacity="1.0">L3</text>
+<text x="64" y="332" font-size="11" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Capabilities</text>
+<line x1="140" y1="504" x2="140" y2="664" stroke="#D5DDE6" stroke-width="1.2" opacity="1.0"/>
+<text x="64" y="526" font-size="17" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" opacity="1.0">L2</text>
+<text x="64" y="544" font-size="11" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">System</text>
+<line x1="140" y1="680" x2="140" y2="752" stroke="#D5DDE6" stroke-width="1.2" opacity="1.0"/>
+<text x="64" y="702" font-size="17" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" opacity="1.0">L1</text>
+<text x="64" y="720" font-size="11" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Contracts</text>
+<line x1="140" y1="768" x2="140" y2="832" stroke="#D5DDE6" stroke-width="1.2" opacity="1.0"/>
+<text x="64" y="790" font-size="17" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" opacity="1.0">L0</text>
+<text x="64" y="808" font-size="11" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Governance</text>
+<line x1="140" y1="852" x2="140" y2="952" stroke="#D5DDE6" stroke-width="1.2" opacity="1.0"/>
+<text x="64" y="874" font-size="17" fill="#8B97A6" font-weight="700" text-anchor="start" class="mono" opacity="1.0">—</text>
+<text x="64" y="892" font-size="11" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Side planes</text>
+<rect x="160" y="198" width="494" height="64" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="173" y="220" font-size="14.5" fill="#0F1720" font-weight="650" text-anchor="start" opacity="1.0">jcheng-studio</text>
+<text x="641" y="220" font-size="9.5" fill="#8B97A6" font-weight="400" text-anchor="end" class="mono" opacity="1.0">0.8.0</text>
+<text x="173" y="238" font-size="9.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">operator console · sessions · replay</text>
+<circle cx="176" cy="248" r="3.5" fill="#1F5FE0"/>
+<text x="186" y="252" font-size="8.8" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" letter-spacing="0.5" opacity="1.0">OFFLINE VERIFIED</text>
+<rect x="670" y="198" width="510" height="64" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="683" y="220" font-size="14.5" fill="#0F1720" font-weight="650" text-anchor="start" opacity="1.0">jcheng-applications</text>
+<text x="1167" y="220" font-size="9.5" fill="#8B97A6" font-weight="400" text-anchor="end" class="mono" opacity="1.0">0.1.0</text>
+<text x="683" y="238" font-size="9.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">recipe → plan · fail-closed intent</text>
+<circle cx="686" cy="248" r="3.5" fill="#1F5FE0"/>
+<text x="696" y="252" font-size="8.8" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" letter-spacing="0.5" opacity="1.0">OFFLINE VERIFIED</text>
+<rect x="160" y="308" width="241" height="72" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" stroke-dasharray="4 4" opacity="1.0"/>
+<text x="173" y="330" font-size="14.5" fill="#0F1720" font-weight="650" text-anchor="start" opacity="1.0">jcheng-manipulation</text>
+<text x="388" y="330" font-size="9.5" fill="#8B97A6" font-weight="400" text-anchor="end" class="mono" opacity="1.0">1.0.0</text>
+<text x="173" y="348" font-size="9.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">frozen baseline · ArmPi</text>
+<circle cx="176" cy="366" r="3.5" fill="#0B6BCB"/>
+<text x="186" y="370" font-size="8.8" fill="#0B6BCB" font-weight="700" text-anchor="start" class="mono" letter-spacing="0.5" opacity="1.0">FROZEN</text>
+<rect x="414" y="308" width="241" height="72" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="427" y="330" font-size="14.5" fill="#0F1720" font-weight="650" text-anchor="start" opacity="1.0">jcheng-perception</text>
+<text x="642" y="330" font-size="9.5" fill="#8B97A6" font-weight="400" text-anchor="end" class="mono" opacity="1.0">0.1.0</text>
+<text x="427" y="348" font-size="9.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">edge + GPU · advisory pose</text>
+<circle cx="430" cy="366" r="3.5" fill="#8A5A00"/>
+<text x="440" y="370" font-size="8.8" fill="#8A5A00" font-weight="700" text-anchor="start" class="mono" letter-spacing="0.5" opacity="1.0">PARTIAL</text>
+<rect x="668" y="308" width="241" height="72" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="681" y="330" font-size="14.5" fill="#0F1720" font-weight="650" text-anchor="start" opacity="1.0">jcheng-teleop</text>
+<text x="896" y="330" font-size="9.5" fill="#8B97A6" font-weight="400" text-anchor="end" class="mono" opacity="1.0">0.3.0</text>
+<text x="681" y="348" font-size="9.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">capture · intent (offline)</text>
+<circle cx="684" cy="366" r="3.5" fill="#1F5FE0"/>
+<text x="694" y="370" font-size="8.8" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" letter-spacing="0.5" opacity="1.0">OFFLINE</text>
+<rect x="922" y="308" width="241" height="72" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="935" y="330" font-size="14.5" fill="#0F1720" font-weight="650" text-anchor="start" opacity="1.0">jcheng-learning</text>
+<text x="1150" y="330" font-size="9.5" fill="#8B97A6" font-weight="400" text-anchor="end" class="mono" opacity="1.0">0.2.0</text>
+<text x="935" y="348" font-size="9.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">datasets · training (offline)</text>
+<circle cx="938" cy="366" r="3.5" fill="#1F5FE0"/>
+<text x="948" y="370" font-size="8.8" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" letter-spacing="0.5" opacity="1.0">OFFLINE</text>
+<rect x="160" y="392" width="241" height="72" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="173" y="414" font-size="14.5" fill="#0F1720" font-weight="650" text-anchor="start" opacity="1.0">jcheng-mobile</text>
+<text x="388" y="414" font-size="9.5" fill="#8B97A6" font-weight="400" text-anchor="end" class="mono" opacity="1.0">0.1.0</text>
+<text x="173" y="432" font-size="9.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">static bring-up · dormant</text>
+<circle cx="176" cy="450" r="3.5" fill="#8B97A6"/>
+<text x="186" y="454" font-size="8.8" fill="#8B97A6" font-weight="700" text-anchor="start" class="mono" letter-spacing="0.5" opacity="1.0">DORMANT</text>
+<rect x="414" y="392" width="241" height="72" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="427" y="414" font-size="14.5" fill="#0F1720" font-weight="650" text-anchor="start" opacity="1.0">jcheng-devices</text>
+<text x="642" y="414" font-size="9.5" fill="#8B97A6" font-weight="400" text-anchor="end" class="mono" opacity="1.0">0.1.0</text>
+<text x="427" y="432" font-size="9.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">declaration · 10 profiles</text>
+<circle cx="430" cy="450" r="3.5" fill="#1F5FE0"/>
+<text x="440" y="454" font-size="8.8" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" letter-spacing="0.5" opacity="1.0">OFFLINE</text>
+<rect x="668" y="392" width="241" height="72" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="681" y="414" font-size="14.5" fill="#0F1720" font-weight="650" text-anchor="start" opacity="1.0">jcheng-scenarios</text>
+<text x="896" y="414" font-size="9.5" fill="#8B97A6" font-weight="400" text-anchor="end" class="mono" opacity="1.0">0.1.0</text>
+<text x="681" y="432" font-size="9.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">declaration · 8 schemas</text>
+<circle cx="684" cy="450" r="3.5" fill="#1F5FE0"/>
+<text x="694" y="454" font-size="8.8" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" letter-spacing="0.5" opacity="1.0">OFFLINE</text>
+<text x="922" y="482" font-size="9" fill="#8B97A6" font-weight="400" text-anchor="start" class="mono" opacity="1.0">declaration repos never execute</text>
+<text x="160" y="482" font-size="9" fill="#8B97A6" font-weight="400" text-anchor="start" class="mono" opacity="1.0">L3 → L1 + L2 client  ·  no direct hardware access</text>
+<rect x="160" y="516" width="1020" height="132" rx="10" fill="#F6F8FA" stroke="#1F5FE0" stroke-width="1.6" opacity="1.0"/>
+<text x="178" y="540" font-size="16" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">jcheng-system</text>
+<text x="296" y="540" font-size="10" fill="#5A6675" font-weight="400" text-anchor="start" class="mono" opacity="1.0">sole runtime authority</text>
+<rect x="1000" y="524" width="98" height="22" rx="11.0" fill="#E6F4EA" opacity="1.0"/>
+<text x="1008" y="538.42" font-size="9.5" fill="#1A7F37" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">SCOPE VERIFIED</text>
+<text x="1162" y="540" font-size="9.5" fill="#8B97A6" font-weight="400" text-anchor="end" class="mono" opacity="1.0">0.3.0-dev0</text>
+<rect x="178" y="556" width="235" height="34" rx="6" fill="#FFFFFF" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="188" y="570" font-size="11.5" fill="#0F1720" font-weight="650" text-anchor="start" class="mono" opacity="1.0">gateway</text>
+<text x="188" y="584" font-size="8.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">HTTP/WS only</text>
+<rect x="425" y="556" width="235" height="34" rx="6" fill="#FFFFFF" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="435" y="570" font-size="11.5" fill="#0F1720" font-weight="650" text-anchor="start" class="mono" opacity="1.0">lease</text>
+<text x="435" y="584" font-size="8.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">single holder · TTL</text>
+<rect x="672" y="556" width="235" height="34" rx="6" fill="#FFFFFF" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="682" y="570" font-size="11.5" fill="#0F1720" font-weight="650" text-anchor="start" class="mono" opacity="1.0">safety</text>
+<text x="682" y="584" font-size="8.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">veto · stop latch</text>
+<rect x="919" y="556" width="235" height="34" rx="6" fill="#FFFFFF" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="929" y="570" font-size="11.5" fill="#0F1720" font-weight="650" text-anchor="start" class="mono" opacity="1.0">arbiter</text>
+<text x="929" y="584" font-size="8.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">one motion path</text>
+<rect x="178" y="598" width="315" height="34" rx="6" fill="#FFFFFF" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="188" y="612" font-size="11.5" fill="#0F1720" font-weight="650" text-anchor="start" class="mono" opacity="1.0">executor</text>
+<text x="188" y="626" font-size="8.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">trajectory · in-flight stop</text>
+<rect x="507" y="598" width="315" height="34" rx="6" fill="#E8F0FF" stroke="#1F5FE0" stroke-width="1" opacity="1.0"/>
+<text x="517" y="612" font-size="11.5" fill="#0F1720" font-weight="650" text-anchor="start" class="mono" opacity="1.0">hardware bridge</text>
+<text x="517" y="626" font-size="8.8" fill="#1F5FE0" font-weight="700" text-anchor="start" opacity="1.0">ONLY PUBLISHER</text>
+<rect x="836" y="598" width="315" height="34" rx="6" fill="#FFFFFF" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="846" y="612" font-size="11.5" fill="#0F1720" font-weight="650" text-anchor="start" class="mono" opacity="1.0">evidence</text>
+<text x="846" y="626" font-size="8.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">bus-verified record</text>
+<text x="160" y="666" font-size="8.8" fill="#B42318" font-weight="400" text-anchor="start" class="mono" opacity="1.0">ArmPi scopes verified  ·  PiPER X read-only in progress  ·  deployment not ready</text>
+<rect x="160" y="694" width="1020" height="56" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="178" y="716" font-size="14.5" fill="#0F1720" font-weight="650" text-anchor="start" opacity="1.0">jcheng-interfaces</text>
+<text x="366" y="716" font-size="10" fill="#5A6675" font-weight="400" text-anchor="start" class="mono" opacity="1.0">v0.3.0 released  ·  v0.2.0 signed pin  ·  migration in progress</text>
+<rect x="1000" y="704" width="110" height="22" rx="11.0" fill="#E6F4EA" opacity="1.0"/>
+<text x="1008" y="718.24" font-size="9" fill="#1A7F37" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">VERIFIED CONTRACT</text>
+<rect x="160" y="782" width="1020" height="48" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="178" y="802" font-size="14.5" fill="#0F1720" font-weight="650" text-anchor="start" opacity="1.0">.github</text>
+<text x="258" y="802" font-size="10" fill="#5A6675" font-weight="400" text-anchor="start" class="mono" opacity="1.0">policy  ·  templates  ·  reusable CI  ·  ecosystem records</text>
+<rect x="1000" y="790" width="88" height="22" rx="11.0" fill="#F6F8FA" stroke="#5A6675" stroke-width="1" opacity="1.0"/>
+<text x="1008" y="804.24" font-size="9" fill="#5A6675" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">L0 GOVERNANCE</text>
+<marker id="arr-l" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1F5FE0"/></marker>
+<line x1="670" y1="488" x2="670" y2="500" stroke="#1F5FE0" stroke-width="1.8" opacity="1.0" marker-end="url(#arr-l)"/>
+<line x1="670" y1="648" x2="670" y2="690" stroke="#1F5FE0" stroke-width="1.8" opacity="1.0" marker-end="url(#arr-l)"/>
+<line x1="670" y1="750" x2="670" y2="764" stroke="#1F5FE0" stroke-width="1.8" opacity="1.0" marker-end="url(#arr-l)"/>
+<rect x="160" y="866" width="241" height="72" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="173" y="888" font-size="14.5" fill="#0F1720" font-weight="650" text-anchor="start" opacity="1.0">jcheng-simulation</text>
+<text x="388" y="888" font-size="9.5" fill="#8B97A6" font-weight="400" text-anchor="end" class="mono" opacity="1.0">0.1.0</text>
+<text x="173" y="906" font-size="9.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">domain 43 · mock / Gazebo</text>
+<circle cx="176" cy="924" r="3.5" fill="#1F5FE0"/>
+<text x="186" y="928" font-size="8.8" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" letter-spacing="0.5" opacity="1.0">OFFLINE</text>
+<rect x="414" y="866" width="241" height="72" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="427" y="888" font-size="14.5" fill="#0F1720" font-weight="650" text-anchor="start" opacity="1.0">jcheng-benchmark</text>
+<text x="642" y="888" font-size="9.5" fill="#8B97A6" font-weight="400" text-anchor="end" class="mono" opacity="1.0">0.1.0</text>
+<text x="427" y="906" font-size="9.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">read-only · no suite result</text>
+<circle cx="430" cy="924" r="3.5" fill="#8A5A00"/>
+<text x="440" y="928" font-size="8.8" fill="#8A5A00" font-weight="700" text-anchor="start" class="mono" letter-spacing="0.5" opacity="1.0">INCONCLUSIVE</text>
+<rect x="668" y="866" width="241" height="72" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="681" y="888" font-size="14.5" fill="#0F1720" font-weight="650" text-anchor="start" opacity="1.0">jcheng-ops</text>
+<text x="896" y="888" font-size="9.5" fill="#8B97A6" font-weight="400" text-anchor="end" class="mono" opacity="1.0">0.1.0</text>
+<text x="681" y="906" font-size="9.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">ArmPi legacy · HTTP health</text>
+<circle cx="684" cy="924" r="3.5" fill="#8B97A6"/>
+<text x="694" y="928" font-size="8.8" fill="#8B97A6" font-weight="700" text-anchor="start" class="mono" letter-spacing="0.5" opacity="1.0">LEGACY</text>
+<rect x="922" y="866" width="241" height="72" rx="9" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="935" y="888" font-size="14.5" fill="#0F1720" font-weight="650" text-anchor="start" opacity="1.0">jcheng-research</text>
+<text x="1150" y="888" font-size="9.5" fill="#8B97A6" font-weight="400" text-anchor="end" class="mono" opacity="1.0">0.1.0</text>
+<text x="935" y="906" font-size="9.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">reports · no runtime</text>
+<circle cx="938" cy="924" r="3.5" fill="#1F5FE0"/>
+<text x="948" y="928" font-size="8.8" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" letter-spacing="0.5" opacity="1.0">OFFLINE</text>
+<text x="160" y="948" font-size="9" fill="#8B97A6" font-weight="400" text-anchor="start" class="mono" opacity="1.0"> Outside the runtime dependency graph: these repositories simulate, measure, operate or investigate; none sends motion.</text>
+<text x="1220" y="204" font-size="10.5" fill="#1F5FE0" font-weight="700" text-anchor="start" class="mono" letter-spacing="1.6" opacity="1.0">HARDWARE PLANE</text>
+<text x="1220" y="224" font-size="9.5" fill="#8B97A6" font-weight="400" text-anchor="start" class="mono" opacity="1.0">reached only through the L2 bridge</text>
+<rect x="1220" y="244" width="316" height="132" rx="10" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<rect x="1220" y="244" width="3" height="132" rx="1.5" fill="#0B6BCB" opacity="1.0"/>
+<text x="1236" y="268" font-size="16" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">ArmPi Ultra</text>
+<text x="1236" y="287" font-size="9.5" fill="#5A6675" font-weight="400" text-anchor="start" class="mono" opacity="1.0">5-DoF · Pi 5 · vendor ROS 2</text>
+<rect x="1236" y="298" width="49" height="20" rx="10.0" fill="#FFFFFF" opacity="1.0"/>
+<text x="1244" y="311.24" font-size="9" fill="#0B6BCB" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">FROZEN</text>
+<text x="1236" y="338.0" font-size="9.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">M4/M5.2/S13/S17 verified scopes.</text>
+<text x="1236" y="351.23" font-size="9.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Motion-authority revocation is pending;</text>
+<text x="1236" y="364.46" font-size="9.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">read-only demo retained.</text>
+<rect x="1220" y="394" width="316" height="132" rx="10" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<rect x="1220" y="394" width="3" height="132" rx="1.5" fill="#1F5FE0" opacity="1.0"/>
+<text x="1236" y="418" font-size="16" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">PiPER X</text>
+<text x="1236" y="437" font-size="9.5" fill="#5A6675" font-weight="400" text-anchor="start" class="mono" opacity="1.0">6-DoF · CAN 1 Mbps · fixed cell</text>
+<rect x="1236" y="448" width="82" height="20" rx="10.0" fill="#FFFFFF" opacity="1.0"/>
+<text x="1244" y="461.24" font-size="9" fill="#1F5FE0" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">P2 READ-ONLY</text>
+<text x="1236" y="488.0" font-size="9.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Two candleLight channels; leader</text>
+<text x="1236" y="501.23" font-size="9.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">read-only; follower not commanded.</text>
+<text x="1236" y="514.46" font-size="9.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Production motion is planned P3.</text>
+<rect x="1220" y="544" width="316" height="132" rx="10" fill="#F6F8FA" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<rect x="1220" y="544" width="3" height="132" rx="1.5" fill="#8B97A6" opacity="1.0"/>
+<text x="1236" y="568" font-size="16" fill="#0F1720" font-weight="700" text-anchor="start" opacity="1.0">AR5</text>
+<text x="1236" y="587" font-size="9.5" fill="#5A6675" font-weight="400" text-anchor="start" class="mono" opacity="1.0">7-DoF · EtherCAT · dual-arm</text>
+<rect x="1236" y="598" width="55" height="20" rx="10.0" fill="#FFFFFF" opacity="1.0"/>
+<text x="1244" y="611.24" font-size="9" fill="#8B97A6" font-weight="600" text-anchor="start" class="mono" letter-spacing="0.4" opacity="1.0">PLANNED</text>
+<text x="1236" y="638.0" font-size="9.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">Six identity facts required before any</text>
+<text x="1236" y="651.23" font-size="9.8" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">backend, URDF or calibration work.</text>
+<text x="1220" y="716" font-size="10.5" fill="#0F1720" font-weight="650" text-anchor="start" opacity="1.0">Separate deployments.</text>
+<text x="1220" y="734.0" font-size="9.5" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">No shared gateway, DDS domain or</text>
+<text x="1220" y="746.825" font-size="9.5" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">calibration. ArmPi evidence does not</text>
+<text x="1220" y="759.65" font-size="9.5" fill="#5A6675" font-weight="400" text-anchor="start" opacity="1.0">transfer to PiPER X or AR5.</text>
+<line x1="48" y1="978" x2="1552" y2="978" stroke="#D5DDE6" stroke-width="1" opacity="1.0"/>
+<text x="48" y="996" font-size="10" fill="#8B97A6" font-weight="400" text-anchor="start" class="mono" opacity="1.0">Solid = runtime dependency · dashed = declaration / read-only. Source: docs/repo-boundaries.md v1.0 (2026-11-27).</text>
+<text x="1552" y="996" font-size="10" fill="#8B97A6" font-weight="400" text-anchor="end" class="mono" opacity="1.0">JCHENG ROBOTICS  /  ARCHITECTURE</text>
+</svg>

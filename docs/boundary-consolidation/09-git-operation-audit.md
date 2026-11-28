@@ -1,8 +1,9 @@
 # Git Operation Audit — 2026-11-27 专项
 
 > Status: **v1.0 (2026-11-27)**. 只记录与取证；**未执行 reset、rebase、revert、
-> merge、push、tag 变更或任何历史改写**。原始 reflog/log 保存在
-> [`evidence/20261127_git/`](evidence/20261127_git/)。
+> merge、push、tag 变更或任何历史改写**。原始 reflog/log 保存在本地
+> `docs/boundary-consolidation/evidence/20261127_git/`（gitignored，未提交；
+> 远端只保留脱敏报告）。
 
 ## 1. 直接回答
 
@@ -109,9 +110,9 @@
 
 | 证据 | 位置 |
 |---|---|
-| `.github` reflog/log/status | [`evidence/20261127_git/github.txt`](evidence/20261127_git/github.txt) |
-| `jcheng-devices` reflog/log/status | [`evidence/20261127_git/devices.txt`](evidence/20261127_git/devices.txt) |
-| `jcheng-scenarios` reflog/log/status | [`evidence/20261127_git/scenarios.txt`](evidence/20261127_git/scenarios.txt) |
+| `.github` reflog/log/status | `evidence/20261127_git/github.txt`（local-only, gitignored） |
+| `jcheng-devices` reflog/log/status | `evidence/20261127_git/devices.txt`（local-only, gitignored） |
+| `jcheng-scenarios` reflog/log/status | `evidence/20261127_git/scenarios.txt`（local-only, gitignored） |
 | 远端分支 | `origin/docs/devices-admission-20261127`、`origin/docs/scenarios-admission-20261127`；本会话分支无远端 |
 | 上游 | `.github` 分支跟踪 `origin/main`（`git push` 无参数会指向 main，**未执行**）；devices/scenarios 无上游 |
 

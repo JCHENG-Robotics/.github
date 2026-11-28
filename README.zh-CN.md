@@ -8,7 +8,29 @@
 
 组织主页：[profile/README.md](profile/README.md) | [profile/README.zh-CN.md](profile/README.zh-CN.md)
 
-## 当前状态（2026-11-26）
+## Baseline 1（2026-11-28）
+
+生态已完成第一个**离线集成基线**：
+
+- **DEVELOPMENT READY：YES**
+- **OFFLINE INTEGRATION READY：YES**
+- **BASELINE 1 COMPLETE：技术条件已满足；最终记录 #40 待 Board 批准/合并**
+- **DEPLOYMENT READY：NO**
+
+| Baseline 1 结果 | 证据 |
+|---|---|
+| 离线工件契约 1.0.0 **Accepted**，vocabulary `contracted` | interfaces #20/#21（`426f371`）；scenarios #5（`1c21885`） |
+| 真实 CLI cell 集成 | arm + gripper + camera；`matched_with_unverified` |
+| 8 场景合成 Mock 矿石分拣 | 8/8 分类正确；仅 `normal` 成功；benchmark INCONCLUSIVE / test PASS/FAIL |
+| 三臂登记 | ArmPi 5-DOF reference、PiPER X 6-DOF candidate、ROKAE **AR5L/AR5R** 7-DOF planned 双臂 |
+| 最终 main 回归 | interfaces 22、devices 123、scenarios 116、applications 218+5 等全部通过 |
+| 开发交接 | Quick Start、Developer Guide、统一验收入口、首个人工任务 |
+| 部署 | **NOT READY**，无真实运动/硬件输出授权 |
+
+详细记录见 [`docs/baseline1/ratification/`](docs/baseline1/ratification/README.md)。
+本轮不创建 Release/Tag。
+
+## 上一状态（2026-11-26）
 
 - M1–M5.2 已完成；M6 S13 回放 21/21 与 S17 实机 MoveIt plan-only 已通过；
   S14 底盘与完整 G8 复跑待做。
@@ -42,7 +64,8 @@
 | 文档 | 内容 |
 |---|---|
 | [profile/README.md](profile/README.md) | 生态主页（英文主文档） |
-| [ROADMAP.md](ROADMAP.md) | 生态里程碑 M0–M8 与当前状态 |
+| [docs/baseline1/ratification/README.md](docs/baseline1/ratification/README.md) | Baseline 1 验收、Manifest、QA 与冻结记录 |
+| [ROADMAP.md](ROADMAP.md) | 生态里程碑 M0–M8、Baseline 1 与当前状态 |
 | [CHANGELOG.md](CHANGELOG.md) | 生态级变更记录 |
 | [ACCEPTANCE.md](ACCEPTANCE.md) | 生态级验收状态与证据 |
 | [acceptance/ecosystem-2026-11-26.json](acceptance/ecosystem-2026-11-26.json) | 当前机器可读验收（schema v1；reviewer pending） |

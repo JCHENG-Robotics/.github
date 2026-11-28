@@ -8,7 +8,7 @@
 
 > 本文为英文主文档的中文对照；如有歧义，以英文版为准。
 
-**状态：** M1–M5.2 完成 · M6 进行中 · 2026-11-25 · 英文为主文档  
+**状态：** Baseline 1 技术验收完成 · 最终记录 #40 待批准 · 2026-11-28 · 英文为主文档  
 **从这里开始：** [生态路线图](https://github.com/JCHENG-Robotics/.github/blob/main/ROADMAP.md) ·
 [验收报告](https://github.com/JCHENG-Robotics/.github/blob/main/ACCEPTANCE.md) ·
 [冻结基线](https://github.com/JerichoCheng/jcheng-manipulation)
@@ -76,15 +76,16 @@ JCHENG Robotics 是一个面向低成本硬件、强调可靠性与可审计性�
 
 | 项 | 状态 |
 |---|---|
+| **Baseline 1** | **离线集成技术完成**；契约 1.0.0 Accepted、vocabulary `contracted`、9 个设备 profile、真实 CLI + 8 场景 Mock 任务 + benchmark；最终记录 #40 待批准。**部署 NOT READY。** |
 | 实验基线 | `jcheng-manipulation v1.0.0`，提交 `b3411e4`，已冻结；完整 G8 验收已记录 |
-| 生态里程碑 | **M1–M5.2 已完成**；M6 S13 与 S17 实机 MoveIt 已验证；S14 底盘与完整 G8 待做 |
-| 契约 | `jcheng-interfaces` v0.2.0（已签名标签）：14 msg / 10 srv / 1 action，7 个 Schema；v0.3.0 `intent_source` 评审中 |
+| 生态里程碑 | **Baseline 1 技术完成**；M1–M5.2 完成，M6 S13/S17 实机已验证；S14/G8 与部署待做 |
+| 契约 | 运行时 `jcheng-interfaces` v0.2.0（已签名）；离线工件契约 1.0.0 Accepted；vocabulary `contracted` |
 | 系统运行时 | `jcheng-system` 0.3.0-dev：13 个 ROS 包；M4 只读、M5.2 核心、M6 S13 + S17 实机已验证；S14/G8 待做 |
 | 运行时镜像 | `armpi-ultra:flatten-20261125`，7.1 GB arm64；20 节点 / 60 话题保持不变，重启后仍生效 |
 | 能力仓库 | `jcheng-mobile` v0.1.0 静态 `/scan`/`/odom`/`/map`；`jcheng-perception` v0.1.0 对齐深度 + split edge + 单次双视图 + 离线 ORE S0/S1；`jcheng-ops` v0.1.0 已部署 |
 | 学习 / 仿真 | `jcheng-learning` v0.2.0 M1 离线数据集基础设施；`jcheng-simulation` v0.1.0 域 43 上的离线多机器人被控对象（mock 已验证，Gazebo 部分验证） |
 | 遥操作 | `jcheng-teleop` v0.3.0 M0 设计 + M1 ROS-free 核心；系统 mock intake 与 ArmPi/Gate-2 仿真桥通过 L3；无硬件 |
-| 设备库 | `jcheng-devices` v0.1.0 离线注册表（6 设备 / 7 能力）、设备/能力描述 Schema、校验器与 CI；无设备访问、运行时或运动 |
+| 设备库 | `jcheng-devices` v0.1.0 离线注册表（9 设备 / 7 能力），含 ArmPi 5、PiPER X 6 与 ROKAE AR5L/AR5R 7；无设备访问、运行时或运动 |
 | 场景库 | `jcheng-scenarios` v0.1.0 SCEN 层声明式场景库（8 个仓库内 Schema 与 `ore_sorting` 参考场景）；仅离线校验；无消费方集成、评测或硬件 |
 | 操作台 / 编排 | `jcheng-studio` v0.7.0 控制台 + 只读 REST/WS + 会话/回放；`jcheng-applications` v0.1.0 M3 mock 运行 + S3 分支/tree/WAITING/derived；不加入 DDS、不执行运动 |
 | 调研 | `jcheng-research` v0.1.0，公开；草稿报告与 SAM3/AGX Orin 实验已记录，评审待做 |

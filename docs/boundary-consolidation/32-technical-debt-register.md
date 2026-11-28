@@ -22,9 +22,14 @@
 | TD-14 | No Humble/Gazebo/hardware regression | High | Deployment | all | container + bench plan | evidence at each layer |
 | TD-15 | Stale open PRs (.github #25/#26, devices #1, interfaces #17, studio #3) | Low | Main | Board | close/retire explicitly | no stale PRs |
 | TD-16 | Frontend still calls 410 legacy endpoints | Low | Main | studio | frontend copy/disable | UI has no legacy motion affordance |
-| TD-17 | Cross-repo artifact schema not converged (hash semantics, parameter/feedback/joint representation) | **High** | Dev branches | devices/scenarios/applications | canonical artifact schema | **Closed on branches** (#6/#4/#19): `source_hash` vs self `content_hash`; real artifacts parse (40) |
-| TD-18 | Cell-level capability composition missing (scenario requires arm+gripper+camera; device snapshot is one arm) | **High** | Dev branches | scenarios/devices/applications | cell composition/vocabulary | **Closed on branches**: role composition + `matched_with_unverified` (40) |
-| TD-19 | Device vs algorithm capability split (`perception.*` mixed into device requirements) | Medium | Dev branches | scenarios | classify by owner | **Closed on branches**: owner split + `deferred_to` (40) |
+| TD-17 | Cross-repo artifact schema/hash | High | Main | devices/scenarios/applications | — | **Closed on main** (#6/#4/#19): source hash vs artifact self-hash; stale rejection |
+| TD-18 | Cell-level capability composition | High | Main | scenarios/devices/applications | — | **Closed on main**: role composition + `matched_with_unverified` |
+| TD-19 | Device vs algorithm capability split | Medium | Main | scenarios | — | **Closed on main**: owner split + `deferred_to` |
+| TD-20 | Offline artifact contract proposal not approved; vocabulary `local_draft` | High | Main | interfaces | review interfaces #20 | proposal accepted; vocabulary `contracted` |
+| TD-21 | No ore_sorting Gazebo world; `gz` CLI missing; runtime unverified | Medium | Offline | simulation | add world + runtime check | asset loads and mock/Gazebo evidence |
+| TD-22 | AR5 has vendor-public facts only; no local SDK/URDF/calibration/unit | Medium | Main | devices | register local data when available | verified local limits/interface |
+| TD-23 | Accidental/closed remote branches not deleted | Low | Main | Board | approve cleanup list | branches removed with owner approval |
+| TD-24 | Mock ore-sorting task and acceptance gates unmerged (apps #20) | High | Dev branches | applications | review/merge #20 | merged + fixed-main rerun |
 
 ## Rules
 

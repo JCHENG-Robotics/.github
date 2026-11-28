@@ -1,8 +1,10 @@
 # Boundary Report — Actual Main Baseline
 
 > Status: **main integration snapshot (2026-11-28)**. Report-only; static
-> checks are not runtime safety proof. This supersedes the development-branch
-> counts for the main plane; the branch report remains for history.
+> checks are not runtime safety proof. This snapshot covered eight repositories
+> and is superseded for the final scope by the 16-repository run in
+> `docs/baseline1/48-final-regression-report.md` (25 open + 1 waived). The
+> branch report remains for history.
 
 ## 1. Snapshot
 

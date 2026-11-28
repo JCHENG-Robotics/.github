@@ -44,6 +44,7 @@
 | [`36-deployment-readiness-updated.md`](36-deployment-readiness-updated.md) | Deployment Readiness Updated | **NOT READY**；deployment FAIL |
 | [`37-armpi-ore-sorting-reference-result.md`](37-armpi-ore-sorting-reference-result.md) | ArmPi × ore_sorting Reference Result | 原始负结果记录；收敛结果见 40 |
 | [`40-td-contract-convergence-report.md`](40-td-contract-convergence-report.md) | TD-17/18/19 Convergence | 分支通过 `matched_with_unverified`；main 待合并/QA |
+| [`../baseline1/README.md`](../baseline1/README.md) | **Baseline 1 Final Acceptance** | 条件通过；15 份交付；main 待 review/merge |
 | [`38-independent-integration-qa-report.md`](38-independent-integration-qa-report.md) | Independent Integration QA | Development/Main PASS；Deployment FAIL |
 
 ## 审批状态

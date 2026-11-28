@@ -33,7 +33,7 @@ a capability match is not motion authorization.
 | Benchmark discrimination | observed INCONCLUSIVE; test-pass PASS; test-fail FAIL |
 | Regression | 15 repositories at fixed main SHAs + frozen `v1.0.0` tag; tests and gates pass (48) |
 | Contract proposal | Proposed to interfaces; golden vectors pass; vocabulary still `local_draft` |
-| Developer handover | guide, quick start and first task prepared; independent QA PASS |
+| Developer handover | guide, quick start and first task prepared; independent QA PASS WITH FINDINGS (P2 fixed, 49) |
 
 ## 3. Decision 10 exit criteria
 
@@ -46,7 +46,7 @@ a capability match is not motion authorization.
 | 5 | Minimal positive mock ore-sorting task runs end to end | **YES on candidate** (PR #20) |
 | 6 | Benchmark produces a traceable offline report | **YES** — suite/dataset hashes, scenario/evaluation IDs, data source; observed INCONCLUSIVE |
 | 7 | Simulation assets validated in the declared scope | **YES (offline only)** — no ore_sorting world asset; Gazebo runtime not verified |
-| 8 | Final main regression and independent QA | **YES on fixed main/candidate**; QA PASS (49) |
+| 8 | Final main regression and independent QA | **YES on fixed main/candidate**; QA PASS WITH FINDINGS (49) |
 | 9 | Developer Handover complete | **Content ready; merge pending** (#32 to be superseded by this delivery) |
 | 10 | Manifest fixes SHAs, versions, hashes and limits | **YES** (42) |
 | 11 | Repeatable build/test/offline entry | **YES** — `dev/baseline1-acceptance.sh` reruns the chain |

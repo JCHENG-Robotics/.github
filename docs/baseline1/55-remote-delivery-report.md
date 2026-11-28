@@ -17,10 +17,9 @@ applications #19.
 | Repository | PR | Head | State |
 |---|---|---|---|
 | devices | #7 | `dbf933b` | CI green; mergeable; `REVIEW_REQUIRED` |
-| applications | #20 | `bc6dc5b` | CI green; mergeable; `REVIEW_REQUIRED` |
+| applications | #20 | `9550fdc` | CI green; mergeable; `REVIEW_REQUIRED` |
 | interfaces | #20 | `bdd0e59` | all contract/security gates green; `REVIEW_REQUIRED` |
-| `.github` | this PR | recorded in PR metadata | review required |
-| `.github` | #32 | `584168d` | older main; handover content superseded by this delivery |
+| `.github` | #37 | QA-audited `f0c3152`; final head in PR | review required |
 
 No new approval was fabricated. The merge queue ruleset is active and
 `enforce_admins` is on.
@@ -33,7 +32,7 @@ No new approval was fabricated. The merge queue ruleset is active and
 | devices #5, scenarios #3 | superseded by single-commit #6/#4 |
 | `.github` #33/#34/#35 | superseded report branches |
 | `.github` #31 | superseded by #32 |
-| `.github` #32 | handover content carried into this delivery; to be closed after approval |
+| `.github` #32 | closed as superseded; handover content carried into #37 |
 
 Closing a PR did not delete its branch.
 

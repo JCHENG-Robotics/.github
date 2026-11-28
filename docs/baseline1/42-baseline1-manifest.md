@@ -32,9 +32,9 @@ artifact consumers.
 | Repository | PR | Head SHA | Base | Status |
 |---|---|---|---|---|
 | devices | #7 | `dbf933b55b29a677f46b3a0ac7426092fa22a8de` | `b82f273` | open, CI green, review required |
-| applications | #20 | `bc6dc5b98a6373d89b0ed89053eea2444225e722` | `02ed615` | open, CI green, review required |
+| applications | #20 | `9550fdc456eccc7f09745b2733315c36b76ff996` | `02ed615` | open, CI green, review required |
 | interfaces | #20 | `bdd0e59a6f30a3e1abe52b43e04e855f91c142ee` | `1e6ecd0` | open, CI green, review required |
-| `.github` | this PR | recorded in the merge commit | `b1e0706` | open, review required |
+| `.github` | #37 | QA-audited `f0c3152`; final head in PR | `b1e0706` | open, review required |
 | `.github` handover | #32 | `584168d` | older main | content superseded by this delivery |
 
 ## 3. Artifact hashes (candidate device tree)

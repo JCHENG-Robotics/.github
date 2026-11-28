@@ -38,7 +38,9 @@ required PRs are not merged.
   211+5/218+5, system 191, mobile 50, studio 13+222, perception 107, learning
   68 (frozen env), teleop 218, simulation 86+2, benchmark 61, ops 9, research
   gate, `.github` 20; no count mismatch.
-- Acceptance script exit 0 with candidate roots; evidence byte-identical.
+- Acceptance script exit 0 with candidate roots; task case files and
+  `samples.jsonl` byte-identical (the summary necessarily records root-specific
+  SHAs/benchmark paths).
 - All 8 cases exact; only `normal` success; stop-once behaviour confirmed;
   authorization failure has zero execute requests.
 - Negative tests: `STALE_DEVICE_HASH`, `NO_DEVICE_FOR_ROLE`, `INCOMPATIBLE_UNIT`.
@@ -47,7 +49,19 @@ required PRs are not merged.
   torque sensors and recorded joint ranges; all five snapshot hashes match 42.
 - No hardware, DDS/ROS, real motion, deployment or vendor data access.
 
-## 4. Residual risk
+## 4. Second re-audit (final candidate)
+
+The same independent reviewer re-checked the fixes: **PASS, no new P1/P2**.
+Residual P3 items were addressed as follows:
+
+- committed docs now include this report and the tracked acceptance entry;
+- #32 is recorded as closed/superseded in 55;
+- applications documentation and changelog describe the provenance fields and
+  `--repository-sha`;
+- `cell_roles` is present in `task_summary.json`;
+- the byte-identical claim is narrowed to case files and samples.
+
+## 5. Residual risk
 
 The QA could not verify GitHub PR review state because its environment had no
 `gh` auth; the delivery report (55) records the actual PR/CI state from the

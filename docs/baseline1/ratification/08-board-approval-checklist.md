@@ -7,15 +7,15 @@
 
 | # | PR | Why | Required check |
 |---|---|---|---|
-| 1 | `.github` #38 | final freeze record: manifest, acceptance, QA, release notes | m1-gate |
+| 1 | `.github` #39 | final record correction (ratified-main SHAs/hashes, COMPLETE status) | m1-gate |
 
 Already merged: interfaces #21 (`426f371`, Accepted 1.0.0), scenarios #5
 (`1c21885`, vocabulary `contracted`), devices #8 (`c4be897`, AR5L/AR5R, 9
-devices). Only the freeze record remains.
+devices), freeze record #38 (`bf866d6`). Only the record correction remains.
 
 ## 2. After merge (required before COMPLETE)
 
-1. Approve/merge #38.
+1. Approve/merge #39.
 2. The post-merge acceptance on the ratified mains is already recorded in 02/04
    (new requirements hashes and 9-device registry).
 3. Confirm the final QA on the freeze record; then change the four statuses to

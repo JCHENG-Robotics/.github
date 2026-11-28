@@ -6,7 +6,7 @@
 |---|---|---|
 | DEVELOPMENT READY | **YES** | guide, quick start, dev entries, tests, mock/sim entries verified |
 | OFFLINE INTEGRATION READY | **YES** | fixed main unified acceptance passes; 8 cases + benchmark |
-| BASELINE 1 COMPLETE | **NO — INCOMPLETE** | contract/vocabulary/AR5L-R ratification PRs and this freeze PR are unmerged/unapproved |
+| BASELINE 1 COMPLETE | **YES** | contract Accepted, vocabulary contracted, AR5L/R registered, freeze record merged; final acceptance on ratified main passes |
 | DEPLOYMENT READY | **NO** | deployment blockers unchanged; no real motion authorization |
 
 ## 2. Decision 10 criteria
@@ -27,16 +27,15 @@
 
 ## 3. Exact remaining human actions
 
-1. Approve and merge this freeze PR (`.github` #38).
-2. After merge, the final main SHAs are fixed; rerun the acceptance/regression
-   and final QA once on those SHAs and set COMPLETE.
-3. Optional: approve the branch cleanup list separately (no remote deletion by
+1. Approve and merge the final record update (`.github` #39). This publishes
+   the ratified-main SHAs and hashes; it does not change code or artifacts.
+2. Optional: approve the branch cleanup list separately (no remote deletion by
    the agent).
-4. Board decides release/tag; none was created.
+3. Board decides release/tag; none was created.
 
-The contract #21, vocabulary #5 and AR5L/R #8 are merged; the only remaining
-gate is this record. Until it is merged, Baseline 1 is **INCOMPLETE**. No
-approval is fabricated.
+Contract #21, vocabulary #5, AR5L/R #8 and the freeze record #38 are merged.
+All technical and approval conditions are met; #39 is the record correction
+because #38 merged the pre-ratification text.
 
 ## 4. Not verified
 

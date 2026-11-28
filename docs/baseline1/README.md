@@ -22,6 +22,7 @@
 | 13 | First Human-Led R&D Task | [53](53-first-human-led-task.md) |
 | 14 | Updated Technical Debt Register | [54](54-technical-debt-register-updated.md) |
 | 15 | Remote Delivery Report | [55](55-remote-delivery-report.md) |
+| — | **Ratification & Freeze** | [ratification/README.md](ratification/README.md) |
 
 ## Four statuses (do not substitute)
 

@@ -25,9 +25,9 @@
 | TD-17 | Cross-repo artifact schema/hash | High | Main | devices/scenarios/applications | — | **Closed on main** (#6/#4/#19): source hash vs artifact self-hash; stale rejection |
 | TD-18 | Cell-level capability composition | High | Main | scenarios/devices/applications | — | **Closed on main**: role composition + `matched_with_unverified` |
 | TD-19 | Device vs algorithm capability split | Medium | Main | scenarios | — | **Closed on main**: owner split + `deferred_to` |
-| TD-20 | Offline artifact contract proposal not approved; vocabulary `local_draft` | High | Main | interfaces | review interfaces #20 | proposal accepted; vocabulary `contracted` |
+| TD-20 | Offline artifact contract ratification not on main; vocabulary `local_draft` on main | High | Main | interfaces/scenarios | merge #21 then #5 | Accepted/1.0.0 + `contracted` on main |
 | TD-21 | No ore_sorting Gazebo world; `gz` CLI missing; runtime unverified | Medium | Offline | simulation | add world + runtime check | asset loads and mock/Gazebo evidence |
-| TD-22 | AR5 has vendor-public facts only; no local SDK/URDF/calibration/unit | Medium | Main | devices | register local data when available | verified local limits/interface |
+| TD-22 | AR5L/AR5R units have no local SDK/URDF/calibration; variant kinematics unverified | Medium | Dev branch | devices | merge #8; register local data | variant-specific limits/interface verified |
 | TD-23 | Accidental/closed remote branches not deleted | Low | Main | Board | approve cleanup list | branches removed with owner approval |
 | TD-24 | Mock ore-sorting task and acceptance gates unmerged (apps #20) | High | Dev branches | applications | review/merge #20 | merged + fixed-main rerun |
 

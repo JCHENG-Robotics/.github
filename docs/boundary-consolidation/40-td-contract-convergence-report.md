@@ -137,6 +137,9 @@ Result: `matched_with_unverified`, exit 0.
 
 This is a positive vertical integration with an explicit partial-verification
 classification, not a claim that the ArmPi meets every scenario requirement.
+The workspace entry `dev/reference-integration.sh` now generates the three
+snapshots and passes role arguments to the same commands; it was validated
+against the three convergence worktrees.
 
 ## 4. Tests and gates
 

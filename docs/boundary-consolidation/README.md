@@ -26,6 +26,14 @@
 | [`18-independent-qa-report.md`](18-independent-qa-report.md) | Independent QA Report | **PASS**；Rework 关闭；可 push/PR，不可 merge |
 | [`19-remote-delivery-report.md`](19-remote-delivery-report.md) | Remote Delivery Report | 9 个 PR；mobile #6 冲突阻塞；未 merge |
 | [`20-file-changes-and-rollback.md`](20-file-changes-and-rollback.md) | File Changes & Rollback | 文件/测试/回滚 SHA 汇总 |
+| [`21-pr-merge-integration-report.md`](21-pr-merge-integration-report.md) | PR Merge & Integration Report | 3 merged；6 blocked；门禁与依赖核查 |
+| [`22-safety-parameter-validation-plan.md`](22-safety-parameter-validation-plan.md) | Safety Parameter Validation Plan | 200 ms / 300 ms provisional；台架验证方法 |
+| [`23-studio-waiver-verification.md`](23-studio-waiver-verification.md) | Studio Waiver Verification | 默认不可达、过期检查、移除计划 |
+| [`24-phase2-source-of-truth-design.md`](24-phase2-source-of-truth-design.md) | Phase 2 Device/Scenario Design | MIG-01/02 + ArmPi×ore_sorting 设计（未实施） |
+| [`25-ecosystem-integration-baseline-1-manifest.md`](25-ecosystem-integration-baseline-1-manifest.md) | Baseline 1 Manifest | **INCOMPLETE**；main SHA/版本/风险 |
+| [`26-post-merge-regression-report.md`](26-post-merge-regression-report.md) | Post-Merge Regression | 实际 main 基线 + 分支证据；Baseline 未达成 |
+| [`27-mobile-conflict-resolution-report.md`](27-mobile-conflict-resolution-report.md) | Mobile Conflict Resolution | #6 → 新 main 分支移植；树等价；QA PASS；PR #7 |
+| [`28-phase2-implementation-status.md`](28-phase2-implementation-status.md) | Phase 2 Implementation Status | **未开始**；合并/回归/QA 门禁未满足 |
 
 ## 审批状态
 

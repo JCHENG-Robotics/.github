@@ -13,12 +13,21 @@
 | `jcheng-system` | `220b0ce` | `python3 -m pytest` | **190 passed** |
 | `jcheng-system` | `220b0ce` | `bash scripts/check_repo_gate.sh` | OK (14 packages) |
 | `jcheng-mobile` | `64dce1e` | `python3 -m pytest` | **50 passed** |
+| `jcheng-mobile` port | `dc93f4b` | `python3 -m pytest` | **50 passed** |
+| `jcheng-mobile` port | `dc93f4b` | `colcon build --packages-select jcheng_mobile_bringup` | OK (Jazzy) |
 | `jcheng-studio` | `ce7199b` | `python3 -m pytest -q tests` | **13 passed** |
 | `jcheng-studio` | `ce7199b` | `/tmp/studio-venv/bin/python -m pytest tests` | **222 passed** |
 | `jcheng-studio` | `ce7199b` | `bash scripts/check_repo_gate.sh` | OK |
 
 Hygiene: worktrees clean; no deleted files; no `deploy/` changes; no
 cross-repository implementation changes; no new secrets/PII/absolute paths.
+
+**Decision 2 mobile port QA**: new branch `feat/authority-hardening-port-20261127`
+at `dc93f4b`, created from `origin/main` `0972e4b`. The diff vs main is exactly
+19 files (+1229/−88); `git diff dc93f4b 9cee52d` is empty, so the port tree is
+identical to the audited conflict-resolved tree. 50 tests and the Jazzy colcon
+build pass; no rebase/cherry-pick/reset/force. **PASS**; the original #6 and its
+branch are preserved.
 
 ## 2. Verdict
 

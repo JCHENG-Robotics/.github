@@ -14,3 +14,15 @@ waivers:
       Removal is scheduled; the waiver expires 2026-12-31.
     owner: jcheng-studio
     expires: "2026-12-31"
+    reviewed_by: Board
+    reviewed_at: "2026-11-27"
+    removal_plan: >-
+      Split the non-motion `legacy_motion_error` helper out of the module so the
+      default backend does not import the legacy adapter; then, no later than
+      2026-12-31 or the legacy gateway retirement, move the adapter to
+      tools/legacy or delete it. No new features and no new callers. The
+      default-disabled 410 path stays covered by tests until removal.
+    closure_criteria: >-
+      The B4 finding is eliminated (no /motion/dispatch in the repository),
+      legacy endpoints remain permanently 410, the default/dual-switch/stop
+      tests still pass, and this waiver entry is removed.

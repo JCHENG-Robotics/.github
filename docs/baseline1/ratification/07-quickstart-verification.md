@@ -19,7 +19,7 @@
 | Command | Result |
 |---|---|
 | `dev/env-check.sh` | DEVELOPMENT READY with optional gaps |
-| `dev/validate-device.sh` | 9 devices / 7 capabilities on the AR5L/R candidate; 7 on merged main |
+| `dev/validate-device.sh` | 9 devices / 7 capabilities on merged main |
 | `dev/validate-scenario.sh` | 1 scenario / 6 profiles / 0 errors |
 | `dev/build.sh interfaces` | one package finished |
 | `dev/test.sh interfaces` | 22 tests, gate OK |

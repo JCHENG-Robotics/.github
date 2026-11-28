@@ -11,14 +11,14 @@
 
 All were approved by `JerichoSwaine` and merged through the protected branch.
 
-## 2. Ratification PRs awaiting approval
+## 2. Ratification merges and remaining record
 
 | Repository | PR | Head | State |
 |---|---|---|---|
-| interfaces | #21 | `f656d69` | CI green, `REVIEW_REQUIRED` |
-| scenarios | #5 | `d73e998` | CI green, `REVIEW_REQUIRED` |
-| devices | #8 | `0bbbc18` | CI green, `REVIEW_REQUIRED` |
-| `.github` | freeze PR | recorded in PR | m1-gate pending/required |
+| interfaces | #21 | merged `426f371` | Accepted 1.0.0 |
+| scenarios | #5 | merged `1c21885` | vocabulary contracted |
+| devices | #8 | merged `c4be897` | AR5L/AR5R, 9 devices |
+| `.github` | #38 | `fe6079b` | freeze record, review required |
 
 ## 3. Closed / superseded earlier
 
